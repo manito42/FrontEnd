@@ -28,8 +28,8 @@ const Header: React.FC = () => {
             <div className=" my-1 flex justify-center mx-5 ">
               <SearchInput />
             </div>
-            <Link href="/Hashtag" className="mr-5 hover:text-gray-900">
-              해시태그
+            <Link href="/Category" className="mr-5 hover:text-gray-900">
+              카테고리
             </Link>
             <Link href="/Profile" className="mr-5 hover:text-gray-900">
               프로필
