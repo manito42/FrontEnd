@@ -10,6 +10,10 @@
   @apply inline-flex text-black dark:text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg;
 }
 
+.app-container {
+  @apply container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center;
+}
+
 .mentor-card {
   @apply flex flex-col m-3 rounded-xl w-full
             transition duration-300 transform border border-gray-300
