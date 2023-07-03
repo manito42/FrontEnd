@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import DarkModeToggleButton from "./DarkModeButton";
 import { Divider, Drawer } from "antd";
+import SearchInput from "./SearchInput";
 
 const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -24,6 +25,9 @@ const Header: React.FC = () => {
           </Link>
 
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <div className=" my-1 flex justify-center mx-5 ">
+              <SearchInput />
+            </div>
             <Link href="/Hashtag" className="mr-5 hover:text-gray-900">
               해시태그
             </Link>
