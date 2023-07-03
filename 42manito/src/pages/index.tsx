@@ -6,7 +6,6 @@ import Layout from "../components/Layout";
 export default function Home() {
   return (
     <Layout>
-      {" "}
       <Head>
         <title>42Mainto</title>
         <meta name="description" content="오늘도 빡코딩!" />
