@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
@@ -19,7 +20,7 @@ const Header: React.FC = () => {
               >
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
               </svg>
-              <span className="ml-3 text-xl">빡빡이 포트폴리오</span>
+              <span className="ml-3 text-xl">42Manito</span>
             </a>
           </Link>
 
@@ -28,16 +29,13 @@ const Header: React.FC = () => {
               <a className="mr-5 hover:text-gray-900">홈</a>
             </Link>
 
-            <Link href="/projects">
-              <a className="mr-5 hover:text-gray-900">프로젝트</a>
+            <Link href="/Hashtag">
+              <a className="mr-5 hover:text-gray-900">해시태그</a>
             </Link>
 
-            <a
-              href="https://open.kakao.com/o/s1BHyWgc"
-              className="mr-5 hover:text-gray-900"
-            >
-              연락하기
-            </a>
+            <Link href="/Profile">
+              <a href="" className="mr-5 hover:text-gray-900" />
+            </Link>
           </nav>
           {/* 다크모드 토글 버튼 작업해야함 */}
           <DarkModeToggleButton />
