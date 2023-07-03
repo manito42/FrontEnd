@@ -11,7 +11,7 @@
 }
 
 .app-container {
-  @apply container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center;
+  @apply mx-24 flex flex-wrap min-h-screen p-5 flex-col md:flex-row items-center;
 }
 
 .mentor-card {
