@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import DarkModeToggleButton from "./DarkModeButton";
+import { Divider, Drawer } from "antd";
 
 const Header: React.FC = () => {
+  const [visible, setVisible] = useState(false);
+  const showDrawer = () => {
+    setVisible(true);
+  };
+  const onClose = () => {
+    setVisible(false);
+  };
+
   return (
     <>
       <header className="text-gray-600 body-font">
@@ -11,38 +20,36 @@ const Header: React.FC = () => {
             href="/"
             className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
             <span className="ml-3 text-xl">42Manito</span>
           </Link>
 
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <Link href="/" className="mr-5 hover:text-gray-900">
-              홈
-            </Link>
-
             <Link href="/Hashtag" className="mr-5 hover:text-gray-900">
               해시태그
             </Link>
-
             <Link href="/Profile" className="mr-5 hover:text-gray-900">
               프로필
             </Link>
-            <Link href="/Profile" className="mr-5 hover:text-gray-900">
+            <a className="mr-5 hover:text-gray-900" onClick={showDrawer}>
               메뉴
-            </Link>
+            </a>
           </nav>
-          {/* 다크모드 토글 버튼 작업해야함 */}
+          <Drawer
+            className="dark:bg-slate-600 px-4"
+            placement="right"
+            closable={false}
+            onClose={onClose}
+            open={visible}
+            width="15%"
+          >
+            <Link href="/Ranking">
+              <p className="text-xl px-3">랭킹</p>
+            </Link>
+            <Divider className="dark:bg-white" />
+            <Link href="/Feedback">
+              <p className="text-xl px-3">피드백</p>
+            </Link>
+          </Drawer>
           <DarkModeToggleButton />
         </div>
       </header>
