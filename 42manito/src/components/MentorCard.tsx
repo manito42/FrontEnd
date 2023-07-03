@@ -1,6 +1,11 @@
+import { MentorProfileDto } from "@/Types/MentorProfileDto";
 import React from "react";
 
-const MentorCard: React.FC = () => {
+interface props {
+  data: MentorProfileDto;
+}
+
+const MentorCard = ({ data }: props) => {
   return <div className="mentor-card"></div>;
 };
 
