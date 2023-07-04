@@ -5,6 +5,7 @@ export interface MentorProfileDto {
   id: number;
   shortDescription: string;
   description: string;
+  image: string;
   isHide: boolean;
   createdAt: string;
   updatedAt: string;
