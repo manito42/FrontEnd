@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  margin: 0;
+}
+
 .bg-primary {
   @apply bg-white dark:bg-slate-800;
 }
