@@ -2,7 +2,6 @@ import { MentorProfileDto } from "@/Types/MentorProfileDto";
 import React, { useState } from "react";
 import Image from "next/image";
 import { Row } from "antd";
-import Mentor from "@/pages/Mentor";
 
 interface props {
   data: MentorProfileDto;
