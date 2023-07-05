@@ -9,8 +9,21 @@ import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Row, Spin } from "antd";
 import MentorCard from "@/components/MentorCard";
+import Mentor from "./Mentor";
+import MentroModal from "@/components/mentor/MentorModal";
 
 export default function Home() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [currMentor, setCurrMentor] = useState<MentorProfileDto>(
+    {} as MentorProfileDto
+  );
+  const onClose = () => {
+    setIsVisible(false);
+  };
+  const onOpen = (data: MentorProfileDto) => {
+    setIsVisible(true);
+    setCurrMentor(data);
+  };
   const [mentor, setMentor] = useState<MentorProfileDto[]>(
     mockMentorProfiles.slice(0, 12)
   );
@@ -52,11 +65,17 @@ export default function Home() {
                 key={mentor.id}
                 style={{ display: "flex" }}
               >
-                <MentorCard data={mentor} key={mentor.id} />
+                <MentorCard data={mentor} key={mentor.id} onOpen={onOpen} />
               </div>
             ))}
           </Row>
         </InfiniteScroll>
+        {/* <Mentor isVisible={isVisible} onClose={onClose} data={currMentor} /> */}
+        <MentroModal
+          isVisible={isVisible}
+          onClose={onClose}
+          data={currMentor}
+        />
       </div>
     </Layout>
   );
