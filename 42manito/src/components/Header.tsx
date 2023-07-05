@@ -3,9 +3,11 @@ import Link from "next/link";
 import DarkModeToggleButton from "./DarkModeButton";
 import { Divider, Drawer } from "antd";
 import SearchInput from "./SearchInput";
+import InfoAlert from "./alert/InfoAlert";
 
 const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
+
   const showDrawer = () => {
     setVisible(true);
   };
@@ -21,7 +23,7 @@ const Header: React.FC = () => {
             href="/"
             className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
           >
-            <span className="ml-3 text-xl">42Manito</span>
+            <span className="ml-3 text-3xl">42Manito</span>
           </Link>
 
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
@@ -39,19 +41,20 @@ const Header: React.FC = () => {
             </a>
           </nav>
           <Drawer
-            className="dark:bg-slate-600 px-4"
+            className="dark:bg-slate-600 px-4 fade-in"
             placement="right"
             closable={false}
             onClose={onClose}
             open={visible}
-            width="15%"
+            width="25%"
           >
             <Link href="/Ranking">
-              <p className="text-xl px-3">랭킹</p>
+              <p className="text-xl px-3 mt-24">랭킹</p>
             </Link>
-            <Divider className="dark:bg-white" />
+
+            <Divider className="dark:bg-white mt-7 mb-7" />
             <Link href="/Feedback">
-              <p className="text-xl px-3">피드백</p>
+              <p className="text-xl px-3 mt-4">피드백</p>
             </Link>
           </Drawer>
           <DarkModeToggleButton />
