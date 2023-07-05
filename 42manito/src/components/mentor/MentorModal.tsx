@@ -2,6 +2,7 @@ import { MentorProfileDto } from "@/Types/MentorProfileDto";
 import Image from "next/image";
 import React, { useState } from "react";
 import MuiRate from "../MuiRate";
+import ConnectModal from "../conect/ConnectModal";
 
 interface props {
   onClose: () => void;
@@ -11,10 +12,12 @@ interface props {
 
 const MentorModal = ({ isVisible, onClose, data }: props) => {
   const [zoomOut, setZoomOut] = useState(false);
+  const [viewConnectModal, setViewConnectModal] = useState(false);
+
   if (!isVisible) return null;
 
   const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.currentTarget.id === "wrapper") onClose();
+    if (e.currentTarget.id === "wrapper") handleZoomOut();
   };
 
   const handleZoomOut = () => {
@@ -22,7 +25,16 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
     setTimeout(() => {
       onClose();
       setZoomOut(false);
-    }, 400); // 여기서 300ms는 줌아웃 애니메이션이 완료되기까지 기다리는 시간입니다.
+      setViewConnectModal(false);
+    }, 400); // 줌아웃 에니메이션 실행 시간을 기다림
+  };
+
+  const handleConnectOpen = () => {
+    setViewConnectModal(true);
+  };
+
+  const handleConnectClose = () => {
+    setViewConnectModal(false);
   };
 
   return (
@@ -63,6 +75,7 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
                     <button
                       className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                       type="button"
+                      onClick={() => handleConnectOpen()}
                     >
                       Connect
                     </button>
@@ -119,6 +132,10 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
           </div>
         </div>
       </section>
+      <ConnectModal
+        viewConnectModal={viewConnectModal}
+        onClose={handleConnectClose}
+      />{" "}
     </div>
   );
 };
