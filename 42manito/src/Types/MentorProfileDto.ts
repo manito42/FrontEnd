@@ -3,9 +3,11 @@ import { HashtagDto } from "./HashtagDto";
 
 export interface MentorProfileDto {
   id: number;
+  nickname: string;
   shortDescription: string;
   description: string;
-  image: string;
+  role: string;
+  profileImage: string;
   isHide: boolean;
   createdAt: string;
   updatedAt: string;
