@@ -1,6 +1,6 @@
 import { MentorProfileDto } from "@/Types/MentorProfileDto";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import MuiRate from "../MuiRate";
 
 interface props {
@@ -9,11 +9,20 @@ interface props {
   data: MentorProfileDto;
 }
 
-const MentroModal = ({ isVisible, onClose, data }: props) => {
+const MentorModal = ({ isVisible, onClose, data }: props) => {
+  const [zoomOut, setZoomOut] = useState(false);
   if (!isVisible) return null;
 
   const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget.id === "wrapper") onClose();
+  };
+
+  const handleZoomOut = () => {
+    setZoomOut(true);
+    setTimeout(() => {
+      onClose();
+      setZoomOut(false);
+    }, 400); // 여기서 300ms는 줌아웃 애니메이션이 완료되기까지 기다리는 시간입니다.
   };
 
   return (
@@ -23,12 +32,14 @@ const MentroModal = ({ isVisible, onClose, data }: props) => {
       onClick={handleClose}
     >
       <section
-        className="relative py-16 bg-blueGray-200 mt-24"
+        className={`relative py-16 mt-24 mentor-modal ${
+          zoomOut && "close-modal"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="text-black dark:text-white text-5xl absolute top-0 right-5"
-          onClick={onClose}
+          className="text-white text-5xl absolute top-0 right-5 -mb-5"
+          onClick={handleZoomOut}
         >
           X
         </button>
@@ -112,4 +123,4 @@ const MentroModal = ({ isVisible, onClose, data }: props) => {
   );
 };
 
-export default MentroModal;
+export default MentorModal;
