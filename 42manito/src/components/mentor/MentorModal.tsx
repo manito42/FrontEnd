@@ -63,15 +63,13 @@ const MentroModal = ({ isVisible, onClose, data }: props) => {
                       <span className="text-xl font-bold block uppercase tracking-wide text-black dark:text-white">
                         19
                       </span>
-                      <span className="text-sm text-blueGray-400">
-                        이달의 멘토링
-                      </span>
+                      <span className="text-sm text-blueGray-400">Month.</span>
                     </div>
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                         2345
                       </span>
-                      <span className="text-sm text-blueGray-400">멘토링</span>
+                      <span className="text-sm text-blueGray-400">Total.</span>
                     </div>
                   </div>
                 </div>
