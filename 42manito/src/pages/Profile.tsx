@@ -1,3 +1,4 @@
+import Enroll from "@/components/enroll/Enroll";
 import Layout from "@/components/layout/Layout";
 import React, { useState } from "react";
 
@@ -6,7 +7,9 @@ const Profile: React.FC = () => {
   return (
     <>
       <Layout>
-        <div className="app-container">프로필 페이지</div>
+        <div className="app-container">
+          <Enroll />
+        </div>
       </Layout>
     </>
   );
