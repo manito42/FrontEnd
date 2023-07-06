@@ -26,19 +26,27 @@ const Enroll = () => {
     <div className="my-16 w-full">
       <div className="w-[100%] dark:bg-white/40 bg-black/40 h-[1px]" />
       <div className="flex justify-center items-center my-16 md:flex-row flex-col">
-        <div className="flex text-4xl">
+        <div className="text-4xl">
           <TypeIt
             options={{
               loop: false,
-              speed: 40,
+              speed: 70,
               waitUntilVisible: true,
               cursor: false,
             }}
-          >
-            <h1>Mentor.</h1>
-          </TypeIt>
+            getBeforeInit={(instance) => {
+              instance
+                .type("Mentee?")
+                .pause(500)
+                .delete(3)
+                .pause(500)
+                .type("or.");
+
+              return instance;
+            }}
+          />
         </div>
-        <div className="overflow-y-scroll w-full mx-20 h-80">
+        <div className="overflow-y-scroll w-full mx-10 h-80">
           {mentor.map((data) => (
             <EnrollCard data={data} key={data.id} isMentor={true} />
           ))}
@@ -47,13 +55,21 @@ const Enroll = () => {
           <TypeIt
             options={{
               loop: false,
-              speed: 40,
+              speed: 70,
               waitUntilVisible: true,
               cursor: false,
             }}
-          >
-            <h1>Mentee.</h1>
-          </TypeIt>
+            getBeforeInit={(instance) => {
+              instance
+                .type(`Mentor?`)
+                .pause(500)
+                .delete(3)
+                .pause(500)
+                .type("ee.");
+
+              return instance;
+            }}
+          />
         </div>
         <div className="overflow-y-scroll h-80 w-full mx-20">
           {mentee.map((data) => (

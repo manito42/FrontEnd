@@ -142,3 +142,7 @@ a {
 p {
   @apply text-slate-600 dark:text-slate-400;
 }
+
+span {
+  @apply text-slate-600 dark:text-slate-400;
+}
