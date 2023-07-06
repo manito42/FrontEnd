@@ -3,7 +3,7 @@ import Link from "next/link";
 import DarkModeToggleButton from "./DarkModeButton";
 import { Divider, Drawer } from "antd";
 import SearchInput from "./SearchInput";
-import InfoAlert from "./alert/InfoAlert";
+import { UserResDto } from "@/Types/UserResDto";
 
 const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -14,6 +14,7 @@ const Header: React.FC = () => {
   const onClose = () => {
     setVisible(false);
   };
+  // TODO : Login을 하면 isMentor 확인 후 false면 프로필 버튼 disabled
 
   return (
     <>
