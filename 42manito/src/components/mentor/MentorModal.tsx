@@ -1,7 +1,7 @@
 import { MentorProfileDto } from "@/Types/MentorProfileDto";
 import Image from "next/image";
 import React, { useState } from "react";
-import MuiRate from "../MuiRate";
+import MuiRate from "../global/MuiRate";
 import ConnectModal from "../conect/ConnectModal";
 
 interface props {
