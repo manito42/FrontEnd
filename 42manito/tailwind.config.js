@@ -1,9 +1,12 @@
-/** @type {import('tailwindcss').Config} */
+/**
+ * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
+ */
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/flowbite-react/**/*.js",
   ],
   darkMode: "class",
   theme: {
@@ -13,7 +16,16 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      scrollbar: (theme) => ({
+        thin: "thin",
+        thumb: "rounded-lg",
+        DEFAULT: {
+          background: "transparent",
+          thumb: theme("backgroundColor.gray.200"),
+          track: theme("backgroundColor.transparent"),
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require("flowbite/plugin")],
 };
