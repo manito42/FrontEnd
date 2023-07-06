@@ -1,13 +1,12 @@
-import { MentorProfileDto } from "@/Types/MentorProfileDto";
+import { mentorResDto } from "@/Types/MentorProfileDto";
 import Image from "next/image";
 import React, { useState } from "react";
-import MuiRate from "../global/MuiRate";
 import ConnectModal from "../conect/ConnectModal";
 
 interface props {
   onClose: () => void;
   isVisible: boolean;
-  data: MentorProfileDto;
+  data: mentorResDto;
 }
 
 const MentorModal = ({ isVisible, onClose, data }: props) => {
@@ -63,7 +62,7 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
                   <div className="relative">
                     <Image
                       alt="..."
-                      src={data.profileImage}
+                      src={data.user.profileImage}
                       className="shadow-xl rounded-full align-middle border-none -m-16 lg:ml-6 ml-1"
                       width={300}
                       height={300}
@@ -100,7 +99,7 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
               </div>
               <div className="text-center mt-28">
                 <h3 className="text-4xl font-semibold leading-normal text-blueGray-700">
-                  {data.nickname}
+                  {data.user.nickname}
                 </h3>
               </div>
               <div className="mt-10 py-10 border-t border-blueGray-200 text-center">

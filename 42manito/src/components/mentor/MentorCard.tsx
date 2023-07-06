@@ -1,11 +1,11 @@
-import { MentorProfileDto } from "@/Types/MentorProfileDto";
+import { MentorProfileDto, mentorResDto } from "@/Types/MentorProfileDto";
 import React, { useState } from "react";
 import Image from "next/image";
 import { Row } from "antd";
 
 interface props {
-  data: MentorProfileDto;
-  onOpen: (data: MentorProfileDto) => void;
+  data: mentorResDto;
+  onOpen: (data: mentorResDto) => void;
 }
 
 const MentorCard = ({ data, onOpen }: props) => {
@@ -14,14 +14,14 @@ const MentorCard = ({ data, onOpen }: props) => {
       <div className="mentor-card" onClick={() => onOpen(data)}>
         <Image
           className="rounded-t-xl object-cover layout-responsive flex "
-          src={data.profileImage}
+          src={data.user.profileImage}
           alt="cover image"
           width={500}
           height={500}
           quality={100}
         />
         <div className="p-4 flex flex-col">
-          <h1 className="text-xl font-bold">{data.nickname}</h1>
+          <h1 className="text-xl font-bold">{data.user.nickname}</h1>
           <h3 className="mt-4 text-l">{data.shortDescription}</h3>
           <div className="flex items-start mt-2 m-auto">
             {data.hashtags.map((aTag) => (
