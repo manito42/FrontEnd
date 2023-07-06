@@ -64,7 +64,7 @@ const EnrollCard = ({ data, isMentor }: EnrollCardProps) => {
 
   return (
     <div className="enroll-card">
-      <div className="mt-7">{msg}</div>
+      <h1 className="mt-7">{msg}</h1>
       <div className="flex items-center">
         <div className="mx-1">
           <AcceptButton data={data} isVisible={acceptButton} />

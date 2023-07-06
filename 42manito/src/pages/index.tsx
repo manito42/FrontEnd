@@ -4,9 +4,9 @@ import { useState } from "react";
 import { mentorResDto } from "@/Types/MentorProfileDto";
 import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Row, Spin } from "antd";
 import MentorCard from "@/components/mentor/MentorCard";
 import MentorModal from "@/components/mentor/MentorModal";
+import { Row } from "antd";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -51,7 +51,7 @@ export default function Home() {
               className="example"
               style={{ verticalAlign: "middle", alignContent: "center" }}
             >
-              <Spin />
+              로딩중.
             </div>
           }
         >

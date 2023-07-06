@@ -54,7 +54,7 @@ const SearchInput: React.FC = () => {
         >
           <button
             type="submit"
-            className="p-1.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="p-1.5 ml-2 text-sm font-medium text-white bg-pink-600 rounded-lg border border-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-500 dark:active:bg-pink-600 dark:focus:ring-pink-800"
           >
             <svg
               className="w-5 h-5"

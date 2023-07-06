@@ -4,14 +4,15 @@
 
 :root {
   --ti-cursor-color: #6366f1;
+  --ti-cursor-margin-left: 0.1em;
 }
+
 body {
   margin: 0;
 }
 
 .bg-primary {
   @apply bg-white dark:bg-slate-800;
-  animation: fadeIn 0.4s;
 }
 
 @keyframes fadeIn {
@@ -56,6 +57,22 @@ body {
 
 .btn-project {
   @apply inline-flex text-black dark:text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg;
+}
+
+.svg {
+  @apply fill-slate-500 dark:fill-slate-400;
+}
+
+.svg:hover {
+  @apply fill-indigo-500;
+}
+
+.btn-drawer {
+  @apply border-0;
+}
+
+.btn-drawer:hover {
+  @apply text-indigo-500 transition-all scale-x-110 scale-y-110;
 }
 
 .app-container {
@@ -110,7 +127,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply text-slate-900 dark:text-white;
+  @apply text-slate-600 dark:text-slate-400;
 }
 
 footer {
@@ -119,9 +136,9 @@ footer {
 }
 
 a {
-  @apply text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-50;
+  @apply text-slate-600 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-50;
 }
 
 p {
-  @apply text-slate-500 dark:text-slate-400;
+  @apply text-slate-600 dark:text-slate-400;
 }

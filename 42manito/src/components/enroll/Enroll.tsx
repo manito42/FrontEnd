@@ -25,16 +25,18 @@ const Enroll = () => {
   return (
     <div className="my-16 w-full">
       <div className="w-[100%] dark:bg-white/40 bg-black/40 h-[1px]" />
-      <div className="flex justify-center items-center my-16 2xl:flex-row flex-col">
+      <div className="flex justify-center items-center my-16 md:flex-row flex-col">
         <div className="flex text-4xl">
           <TypeIt
             options={{
               loop: false,
-              strings: ["Mentor."],
               speed: 40,
               waitUntilVisible: true,
+              cursor: false,
             }}
-          />
+          >
+            <h1>Mentor.</h1>
+          </TypeIt>
         </div>
         <div className="overflow-y-scroll w-full mx-20 h-80">
           {mentor.map((data) => (
@@ -45,11 +47,13 @@ const Enroll = () => {
           <TypeIt
             options={{
               loop: false,
-              strings: ["Mentee."],
               speed: 40,
               waitUntilVisible: true,
+              cursor: false,
             }}
-          />
+          >
+            <h1>Mentee.</h1>
+          </TypeIt>
         </div>
         <div className="overflow-y-scroll h-80 w-full mx-20">
           {mentee.map((data) => (
