@@ -1,6 +1,6 @@
 import { ReservationGetDto } from "@/Types/Reservations";
 
-const mocReservation: ReservationGetDto[] = [
+export const mocReservation: ReservationGetDto[] = [
   {
     id: 1,
     mentorId: 1,
@@ -25,7 +25,7 @@ const mocReservation: ReservationGetDto[] = [
   },
   {
     id: 3,
-    mentorId: 2,
+    mentorId: 3,
     menteeId: 1,
     categoryId: 3,
     requestMessage: "string",
@@ -51,7 +51,7 @@ const mocReservation: ReservationGetDto[] = [
     menteeId: 1,
     categoryId: 5,
     requestMessage: "string",
-    status: "COMPLETE",
+    status: "ACCEPT",
     createdAt: "2021-10-10T14:00:00.000Z",
     updatedAt: "2021-10-10T14:00:00.000Z",
     hashtags: [{ id: 1, name: "hashtag1" }],
@@ -84,7 +84,7 @@ const mocReservation: ReservationGetDto[] = [
     menteeId: 3,
     categoryId: 2,
     requestMessage: "string",
-    status: "COMPLETE",
+    status: "ACCEPT",
     createdAt: "2021-10-10T14:00:00.000Z",
     updatedAt: "2021-10-10T14:00:00.000Z",
     hashtags: [{ id: 1, name: "hashtag1" }],
