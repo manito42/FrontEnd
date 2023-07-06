@@ -1,7 +1,7 @@
 import Layout from "../components/layout/Layout";
-import Enroll from "@/components/home/Enroll";
+import Enroll from "@/components/enroll/Enroll";
 import { useState } from "react";
-import { MentorProfileDto } from "@/Types/MentorProfileDto";
+import { mentorResDto } from "@/Types/MentorProfileDto";
 import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Row, Spin } from "antd";
@@ -10,19 +10,19 @@ import MentorModal from "@/components/mentor/MentorModal";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
-  const [currMentor, setCurrMentor] = useState<MentorProfileDto>(
-    {} as MentorProfileDto
+  const [currMentor, setCurrMentor] = useState<mentorResDto>(
+    {} as mentorResDto
   );
 
   const onClose = () => {
     setIsVisible(false);
   };
 
-  const onOpen = (data: MentorProfileDto) => {
+  const onOpen = (data: mentorResDto) => {
     setIsVisible(true);
     setCurrMentor(data);
   };
-  const [mentor, setMentor] = useState<MentorProfileDto[]>(
+  const [mentor, setMentor] = useState<mentorResDto[]>(
     mockMentorProfiles.slice(0, 12)
   );
   const [page, setPage] = useState(1);

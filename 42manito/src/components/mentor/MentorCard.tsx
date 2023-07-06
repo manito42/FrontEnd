@@ -1,4 +1,4 @@
-import { MentorProfileDto, mentorResDto } from "@/Types/MentorProfileDto";
+import { mentorResDto } from "@/Types/MentorProfileDto";
 import React, { useState } from "react";
 import Image from "next/image";
 import { Row } from "antd";
