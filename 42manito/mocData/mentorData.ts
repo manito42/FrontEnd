@@ -485,4 +485,3 @@ export const mockMentorProfiles: MentorProfileDto[] = [
   },
 ];
 
-console.log(mockMentorProfiles);
