@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ti-cursor-color: #6366f1;
+}
 body {
   margin: 0;
 }
@@ -86,6 +89,15 @@ body {
 .mentor-card {
   @apply flex flex-col m-3 rounded-xl w-full
             transition duration-300 transform border border-gray-300
+            hover:scale-105
+            hover:shadow-lg
+            dark:border-gray-200/50
+            dark:hover:shadow-gray-400/40;
+}
+
+.enroll-card {
+  @apply flex flex-col m-10 rounded-xl p-5
+  transition duration-300 transform border border-gray-300
             hover:scale-105
             hover:shadow-lg
             dark:border-gray-200/50
