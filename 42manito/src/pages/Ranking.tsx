@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout/Layout";
 import InfoAlert from "@/components/alert/InfoAlert";
 import React, { useState } from "react";
 

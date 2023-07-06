@@ -1,15 +1,12 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Head from "next/head";
-import Layout from "../components/Layout";
+import Layout from "../components/layout/Layout";
 import Enroll from "@/components/home/Enroll";
 import { useState } from "react";
 import { MentorProfileDto } from "@/Types/MentorProfileDto";
 import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Row, Spin } from "antd";
-import MentorCard from "@/components/MentorCard";
-import MentroModal from "@/components/mentor/MentorModal";
+import MentorCard from "@/components/mentor/MentorCard";
+import MentorModal from "@/components/mentor/MentorModal";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -72,7 +69,7 @@ export default function Home() {
           </Row>
         </InfiniteScroll>
         {/* <Mentor isVisible={isVisible} onClose={onClose} data={currMentor} /> */}
-        <MentroModal
+        <MentorModal
           isVisible={isVisible}
           onClose={onClose}
           data={currMentor}

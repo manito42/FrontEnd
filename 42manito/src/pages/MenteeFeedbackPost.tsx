@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout/Layout";
 import React from "react";
 
 const MenteeFeedbackPost: React.FC = () => {
