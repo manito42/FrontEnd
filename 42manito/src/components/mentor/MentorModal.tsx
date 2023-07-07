@@ -83,26 +83,26 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
                 <div className="w-full lg:w-4/12 px-4 lg:order-1" id="Count">
                   <div className="flex justify-center py-4 lg:pt-4 pt-8">
                     <div className="mr-4 p-3 text-center">
-                      <span className="text-xl font-bold block uppercase tracking-wide text-black dark:text-white">
+                      <h1 className="text-xl font-bold block uppercase tracking-wide">
                         19
-                      </span>
-                      <span className="text-sm text-blueGray-400">Month.</span>
+                      </h1>
+                      <h1 className="text-sm text-blueGray-400">Month.</h1>
                     </div>
                     <div className="mr-4 p-3 text-center">
-                      <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                      <h1 className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                         2345
-                      </span>
-                      <span className="text-sm text-blueGray-400">Total.</span>
+                      </h1>
+                      <h1 className="text-sm text-blueGray-400">Total.</h1>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="text-center mt-28">
-                <h3 className="text-4xl font-semibold leading-normal text-blueGray-700">
+                <h2 className="text-4xl font-semibold leading-normal text-blueGray-700">
                   {data.user.nickname}
-                </h3>
+                </h2>
               </div>
-              <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
+              <div className="mt-10 py-10 border-t dark:border-slate-300  border-slate-700 text-center">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-9/12 px-4">
                     <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
@@ -118,12 +118,12 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
                 </div> */}
                 <div className="flex items-start mt-2 m-auto">
                   {data.hashtags.map((aTag) => (
-                    <h1
+                    <h6
                       className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 w-30"
                       key={aTag.id}
                     >
                       {aTag.name}
-                    </h1>
+                    </h6>
                   ))}
                 </div>
               </div>
