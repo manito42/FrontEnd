@@ -39,6 +39,10 @@ export default function Home() {
     setMentor([...mentor, ...nextCards]);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <Layout>
       <div className="app-container">
@@ -55,8 +59,7 @@ export default function Home() {
             </div>
           }
         >
-          <Enroll />
-          <Row style={{ display: "flex", flexWrap: "wrap" }}>
+          <Row style={{ display: "flex", flexWrap: "wrap", marginTop: "3em" }}>
             {mentor.map((mentor) => (
               <div
                 className="px-3 mb-10  sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4"
@@ -75,6 +78,13 @@ export default function Home() {
           data={currMentor}
         />
       </div>
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-5 right-5 h-10 w-10 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white text-center"
+        style={{ zIndex: 1000 }}
+      >
+        ↑
+      </button>
     </Layout>
   );
 }
