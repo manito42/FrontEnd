@@ -12,9 +12,10 @@ const DarkModeToggleButton: React.FC = () => {
                     inline-flex items-center
                border-0 py-1 px-3 rounded text-base mt-4 md:mt-0
                 focus:outline-none
-                bg-gray-100
-                hover:bg-gray-50
-                hover:text-orange-500
+                text-orange-500
+                bg-yellow-300
+                hover:bg-yellow-200
+                hover:text-orange-300
                 dark:bg-slate-600
                 dark:text-slate-400
                 dark:hover:bg-slate-700
