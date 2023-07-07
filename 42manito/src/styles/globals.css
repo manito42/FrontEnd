@@ -122,12 +122,18 @@ body {
 }
 
 h1,
-h2,
 h3,
 h4,
-h5,
-h6 {
+h5 {
   @apply text-slate-600 dark:text-slate-400;
+}
+
+h2 {
+  @apply dark:text-slate-300 text-slate-800;
+}
+
+h6 {
+  @apply dark:text-slate-200 text-slate-800;
 }
 
 footer {
