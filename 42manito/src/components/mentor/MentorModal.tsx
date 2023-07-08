@@ -54,7 +54,7 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
         >
           X
         </button>
-        <div className=" mx-auto px-4 ">
+        <div className="mx-auto px-4 ">
           <div className="relative flex flex-col min-w-0 break-words bg-white dark:bg-slate-600 w-full mb-6 shadow-xl rounded-lg">
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
