@@ -10,7 +10,7 @@ const DarkModeToggleButton: React.FC = () => {
       <button
         className="
                     inline-flex items-center
-               border-0 py-1 px-3 rounded text-base mt-4 md:mt-0
+               border-0 py-1 px-3 rounded text-base md:mt-0
                 focus:outline-none
                 text-orange-500
                 bg-yellow-300
