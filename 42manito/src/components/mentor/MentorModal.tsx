@@ -43,7 +43,7 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
       onClick={handleClose}
     >
       <section
-        className={`relative py-16 mt-24 mentor-modal ${
+        className={`relative py-16 md:mt-24 mentor-modal max-h-[80vh] overflow-y-scroll ${
           zoomOut && "close-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -54,7 +54,7 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
         >
           X
         </button>
-        <div className="container mx-auto px-4">
+        <div className=" mx-auto px-4 ">
           <div className="relative flex flex-col min-w-0 break-words bg-white dark:bg-slate-600 w-full mb-6 shadow-xl rounded-lg">
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
