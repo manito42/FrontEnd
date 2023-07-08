@@ -31,8 +31,8 @@ const Header: React.FC = () => {
           <div className=" my-1 flex justify-center ml-10 ">
             <SearchInput />
           </div>
-          <nav className="md:ml-auto flex flex-wrap items-center justify-center btn-drawer">
-            <div className="mr-5" onClick={showDrawer}>
+          <nav className="md:ml-auto flex flex-wrap items-center justify-center mt-5 md:mt-0">
+            <div className="mr-5 btn-drawer" onClick={showDrawer}>
               <svg
                 width="45px"
                 height="45px"
@@ -44,9 +44,10 @@ const Header: React.FC = () => {
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M5 7C5 6.44772 5.44772 6 6 6H18C18.5523 6 19 6.44772 19 7C19 7.55228 18.5523 8 18 8H6C5.44772 8 5 7.55228 5 7ZM5 12C5 11.4477 5.44772 11 6 11H18C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13H6C5.44772 13 5 12.5523 5 12ZM5 17C5 16.4477 5.44772 16 6 16H18C18.5523 16 19 16.4477 19 17C19 17.5523 18.5523 18 18 18H6C5.44772 18 5 17.5523 5 17Z"
-                ></path>{" "}
+                />
               </svg>
             </div>
+            <DarkModeToggleButton />
           </nav>
           <Drawer
             className="dark:bg-slate-600 px-4 fade-in"
@@ -78,7 +79,6 @@ const Header: React.FC = () => {
               <p className="text-xl px-3 m-5 btn-drawer">Sign Out.</p>
             </Link>
           </Drawer>
-          <DarkModeToggleButton />
         </div>
       </header>
     </>
