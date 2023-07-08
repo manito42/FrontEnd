@@ -23,6 +23,7 @@ export default function Home() {
     setIsVisible(true);
     setCurrMentor(data);
   };
+
   const [mentor, setMentor] = useState<mentorResDto[]>(
     mockMentorProfiles.slice(0, 12)
   );
@@ -62,6 +63,7 @@ export default function Home() {
         >
           <Typo />
           <Divider className="dark:bg-slate-400 bg-slate-500 " />
+          <div className="my-[20vh]" />
           <Row
             style={{ display: "flex", flexWrap: "wrap", marginTop: "3em" }}
             className="mt-10"
