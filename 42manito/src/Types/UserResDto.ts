@@ -6,8 +6,6 @@ interface MentorProfileDto {
   nickname: string;
   shortDescription: string;
   description: string;
-  role: string;
-  profileImage: string;
   isHide: boolean;
   createdAt: string;
   updatedAt: string;
