@@ -41,14 +41,18 @@ export const mockMentorProfiles: mentorResDto[] = [
   },
   {
     id: 3,
-    shortDescription: "Mock Mentor 3",
-    description: "Description of mock mentor 3",
+    shortDescription:
+      "My expertise lies in data science and artificial intelligence research.",
+    description:
+      "My expertise lies in data science and artificial intelligence research.",
     isHide: false,
     createdAt: "2023-01-01T00:00:00.000Z",
     updatedAt: "2023-01-01T00:00:00.000Z",
     hashtags: [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
+      { id: 3, name: "data" },
+      { id: 4, name: "AI" },
     ],
     categories: [{ id: 3, name: "Category 1" }],
     user: {
