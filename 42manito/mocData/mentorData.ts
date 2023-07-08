@@ -13,7 +13,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "software" },
       { id: 2, name: "engineering" },
     ],
-    categories: [{ id: 1, name: "Technology" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 1,
       nickname: "Mock Mentor 1",
@@ -32,7 +32,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 3, name: "data" },
       { id: 4, name: "AI" },
     ],
-    categories: [{ id: 2, name: "Data Science" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 2,
       nickname: "Mock Mentor 2",
@@ -54,7 +54,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 3, name: "data" },
       { id: 4, name: "AI" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 3, name: "STUDY" }],
     user: {
       id: 3,
       nickname: "Mock Mentor 3",
@@ -72,7 +72,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 4,
       nickname: "Mock Mentor 4",
@@ -90,7 +90,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 5,
       nickname: "Mock Mentor 5",
@@ -108,7 +108,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 6,
       nickname: "Mock Mentor 6",
@@ -126,7 +126,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 7,
       nickname: "Mock Mentor 7",
@@ -144,7 +144,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 8,
       nickname: "Mock Mentor 8",
@@ -162,7 +162,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 9,
       nickname: "Mock Mentor 9",
@@ -180,7 +180,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 10,
       nickname: "Mock Mentor 10",
@@ -198,7 +198,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 11,
       nickname: "Mock Mentor 11",
@@ -216,7 +216,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 12,
       nickname: "Mock Mentor 12",
@@ -234,7 +234,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 13,
       nickname: "Mock Mentor 13",
@@ -252,7 +252,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 14,
       nickname: "Mock Mentor 14",
@@ -270,7 +270,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 15,
       nickname: "Mock Mentor 15",
@@ -288,7 +288,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 16,
       nickname: "Mock Mentor 16",
@@ -306,7 +306,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 17,
       nickname: "Mock Mentor 17",
@@ -324,7 +324,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 18,
       nickname: "Mock Mentor 18",
@@ -342,7 +342,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 19,
       nickname: "Mock Mentor 19",
@@ -360,7 +360,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 20,
       nickname: "Mock Mentor 20",
@@ -378,7 +378,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 21,
       nickname: "Mock Mentor 21",
@@ -396,7 +396,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 22,
       nickname: "Mock Mentor 22",
@@ -414,7 +414,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 23,
       nickname: "Mock Mentor 23",
@@ -432,7 +432,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 24,
       nickname: "Mock Mentor 24",
@@ -450,7 +450,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 25,
       nickname: "Mock Mentor 25",
@@ -468,7 +468,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 26,
       nickname: "Mock Mentor 26",
@@ -486,7 +486,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 27,
       nickname: "Mock Mentor 27",
@@ -504,7 +504,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 2, name: "HOBBY" }],
     user: {
       id: 28,
       nickname: "Mock Mentor 28",
@@ -522,7 +522,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 1, name: "hashtag1" },
       { id: 2, name: "hashtag2" },
     ],
-    categories: [{ id: 3, name: "Category 1" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 29,
       nickname: "Mock Mentor 29",
@@ -540,7 +540,7 @@ export const mockMentorProfiles: mentorResDto[] = [
       { id: 14, name: "hashtag14" },
       { id: 15, name: "hashtag15" },
     ],
-    categories: [{ id: 30, name: "Category 28" }],
+    categories: [{ id: 1, name: "DEVELOP" }],
     user: {
       id: 30,
       nickname: "Mock Mentor 30",
