@@ -4,11 +4,39 @@
 
 :root {
   --ti-cursor-color: #6366f1;
-  --ti-cursor-margin-left: 0.1em;
+  --ti-cursor-margin-left: 10px;
 }
 
 body {
   margin: 0;
+}
+
+h1,
+h3,
+h4,
+h5 {
+  @apply text-slate-600 dark:text-slate-400;
+}
+
+h2 {
+  @apply dark:text-slate-300 text-slate-800;
+}
+
+h6 {
+  @apply dark:text-slate-200 text-slate-800;
+}
+
+footer {
+  @apply text-gray-600 dark:text-white
+    bg-gray-100 dark:bg-slate-600/20;
+}
+
+a {
+  @apply text-slate-600 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-50;
+}
+
+p {
+  @apply text-slate-800 dark:text-slate-200;
 }
 
 .bg-primary {
@@ -76,8 +104,10 @@ body {
 }
 
 .app-container {
-  @apply mx-24 flex flex-wrap min-h-screen p-5 flex-col md:flex-row items-center;
+  @apply mx-10 md:mx-24 flex flex-wrap min-h-screen p-5 flex-col md:flex-row items-center;
 }
+
+/* animation */
 
 .fade-in {
   animation: fadeIn 0.4s ease-in;
@@ -103,6 +133,8 @@ body {
   animation: zoonOut 0.2s ease-in;
 }
 
+/* Card */
+
 .mentor-card {
   @apply flex flex-col m-3 rounded-xl w-full
             transition duration-300 transform border border-gray-300
@@ -119,36 +151,4 @@ body {
             hover:shadow-lg
             dark:border-gray-200/50
             dark:hover:shadow-gray-400/40;
-}
-
-h1,
-h3,
-h4,
-h5 {
-  @apply text-slate-600 dark:text-slate-400;
-}
-
-h2 {
-  @apply dark:text-slate-300 text-slate-800;
-}
-
-h6 {
-  @apply dark:text-slate-200 text-slate-800;
-}
-
-footer {
-  @apply text-gray-600 dark:text-white
-    bg-gray-100 dark:bg-slate-600/20;
-}
-
-a {
-  @apply text-slate-600 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-50;
-}
-
-p {
-  @apply text-slate-600 dark:text-slate-400;
-}
-
-span {
-  @apply text-slate-600 dark:text-slate-400;
 }
