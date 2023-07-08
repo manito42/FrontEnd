@@ -6,7 +6,8 @@ import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MentorCard from "@/components/mentor/MentorCard";
 import MentorModal from "@/components/mentor/MentorModal";
-import { Row } from "antd";
+import { Divider, Row } from "antd";
+import Typo from "@/components/home/Typo";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -59,10 +60,15 @@ export default function Home() {
             </div>
           }
         >
-          <Row style={{ display: "flex", flexWrap: "wrap", marginTop: "3em" }}>
+          <Typo />
+          <Divider className="dark:bg-slate-400 bg-slate-500 " />
+          <Row
+            style={{ display: "flex", flexWrap: "wrap", marginTop: "3em" }}
+            className="mt-10"
+          >
             {mentor.map((mentor) => (
               <div
-                className="px-3 mb-10  sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4"
+                className="px-3 mb-10  xs:w-1/3 md:w-1/3 lg:w-1/4"
                 key={mentor.id}
                 style={{ display: "flex" }}
               >
