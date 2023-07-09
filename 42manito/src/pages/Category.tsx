@@ -4,7 +4,7 @@ import PandaSingAnimation from "@/components/category/PandaSingAnimation";
 import Layout from "@/components/layout/Layout";
 import React, { useEffect } from "react";
 
-const Category: React.FC = () => {
+const Category = () => {
   const [isVisible, setIsVisible] = React.useState(false);
   const [categoryId, setCategoryId] = React.useState<number>(0); //
 
