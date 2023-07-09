@@ -1,20 +1,37 @@
 import { UserResDto } from "@/Types/UserResDto";
 import Enroll from "@/components/enroll/Enroll";
 import Layout from "@/components/layout/Layout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { mocUser } from "../../mocData/mocUserData";
 import Image from "next/image";
 import TypeIt from "typeit-react";
-import { Type } from "class-transformer";
-import HobbyAnimation from "@/components/global/HobbyAnimaiton";
+import HobbyAnimation from "@/components/global/HobbyAnimation";
 import DevelopAnimation from "@/components/global/DevelopAnimation";
 import ProfileTypo from "@/components/Profile/ProfileTypo";
+import ProfileUpdate from "@/components/Profile/ProfileUpdate";
 
 const Profile = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [isProfileOpen, setIsProfileOpen] = useState(true);
+  const [isProfileUpdateOpen, setIsProfileUpdateOpen] = useState(false);
+
+  const openProfileUpdate = () => {
+    setIsProfileUpdateOpen(true);
+  };
+
+  const closeProfileUpdate = () => {
+    setIsProfileUpdateOpen(false);
+  };
 
   const data: UserResDto = mocUser;
+
+  useEffect(() => {
+    if (isProfileUpdateOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isProfileUpdateOpen]);
 
   // TODO: 로그인 상태가 아니면 로그인 페이지로 이동
   // TODO: 멘토가 아니라면  멘토 등록 알람 띄우기
@@ -23,6 +40,15 @@ const Profile = () => {
       <div className="app-container mt-20 flex flex-wrap">
         {isProfileOpen ? (
           <>
+            <div className="w-full flex justify-end ">
+              <button
+                className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={() => openProfileUpdate()}
+              >
+                수정하기
+              </button>
+            </div>
             <div className="flex flex-wrap w-full items-center justify-center">
               <Image
                 alt="ProfileImage"
@@ -128,6 +154,11 @@ const Profile = () => {
           </>
         )}
       </div>
+      <ProfileUpdate
+        onClose={closeProfileUpdate}
+        isVisible={isProfileUpdateOpen}
+        data={data}
+      />
     </Layout>
   );
 };
