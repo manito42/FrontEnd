@@ -143,7 +143,7 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
       />
       <button
         onClick={scrollToTop}
-        className="fixed bottom-5 right-5 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white text-center w-[5vw] h-[5vw] min-w-[55px] min-h-[55px] text-4xl font-bold"
+        className="fixed bottom-5 right-5 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold"
         style={{ zIndex: 1000 }}
       >
         ↑
