@@ -4,6 +4,7 @@ export interface MentorFeedbackResDto {
   mentorId: number;
   reservationId: number;
   rating: number;
+  content: string;
   createdAt: string;
   updatedAt: string;
 }
