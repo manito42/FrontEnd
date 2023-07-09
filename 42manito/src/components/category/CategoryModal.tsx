@@ -14,7 +14,6 @@ interface props {
 
 const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
   const [zoomOut, setZoomOut] = useState(false);
-  const [viewConnectModal, setViewConnectModal] = useState(false);
   const [open, setOpen] = React.useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currMentor, setCurrMentor] = useState<mentorResDto>(
@@ -65,7 +64,6 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
     setTimeout(() => {
       onClose();
       setZoomOut(false);
-      setViewConnectModal(false);
     }, 400); // 줌아웃 에니메이션 실행 시간을 기다림
   };
 
