@@ -152,3 +152,12 @@ p {
             dark:border-gray-200/50
             dark:hover:shadow-gray-400/40;
 }
+
+.feedback-card {
+  @apply w-full flex flex-wrap rounded-xl
+  transition duration-300 transform border border-gray-300
+            hover:scale-105
+            hover:shadow-lg
+            dark:border-gray-200/50
+            dark:hover:shadow-gray-400/40;
+}
