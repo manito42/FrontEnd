@@ -1,6 +1,6 @@
 import Layout from "../components/layout/Layout";
 import Enroll from "@/components/enroll/Enroll";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { mentorResDto } from "@/Types/MentorProfileDto";
 import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -45,6 +45,14 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    if (isVisible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isVisible]);
+
   return (
     <Layout>
       <div className="app-container">
@@ -64,20 +72,11 @@ export default function Home() {
           <Typo />
           <Divider className="dark:bg-slate-400 bg-slate-500 " />
           <div className="my-[20vh]" />
-          <Row
-            style={{ display: "flex", flexWrap: "wrap", marginTop: "3em" }}
-            className="mt-10"
-          >
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-5 p-5">
             {mentor.map((mentor) => (
-              <div
-                className="px-3 mb-10  xs:w-1/3 md:w-1/3 lg:w-1/4"
-                key={mentor.id}
-                style={{ display: "flex" }}
-              >
-                <MentorCard data={mentor} key={mentor.id} onOpen={onOpen} />
-              </div>
+              <MentorCard data={mentor} key={mentor.id} onOpen={onOpen} />
             ))}
-          </Row>
+          </div>
         </InfiniteScroll>
         {/* <Mentor isVisible={isVisible} onClose={onClose} data={currMentor} /> */}
         <MentorModal

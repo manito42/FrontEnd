@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import { mocFeedback } from "../../mocData/mocFeedback";
 
 const Feedback = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [feedback, setFeedback] = useState<MentorFeedbackResDto[]>(
     [] as MentorFeedbackResDto[]
   );
@@ -20,29 +19,18 @@ const Feedback = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (isVisible) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [isVisible]);
-
   return (
     <>
       <Layout>
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <div className="app-container">
-            <div className="flex flex-wrap ">
+          /* TODO: 추후에 무한스크롤로 구현해야함 */
+          <div className="w-full p-10 md:p-26">
+            <span>FeedbackLog.</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
               {feedback.map((feedback) => (
-                <div
-                  className="w-full xs:w-1/2 md:w-1/3 mt-5 px-3"
-                  key={feedback.id}
-                >
-                  <FeedbackCard data={feedback} isVisible={isVisible} />
-                </div>
+                <FeedbackCard data={feedback} key={feedback.id} />
               ))}
             </div>
           </div>

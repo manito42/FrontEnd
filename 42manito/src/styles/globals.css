@@ -110,23 +110,23 @@ p {
 /* animation */
 
 .fade-in {
-  animation: fadeIn 0.4s ease-in;
+  animation: fadeIn 0.3s ease-in;
 }
 
 .fade-out {
-  animation: fadeOut 0.5s ease-out;
+  animation: fadeOut 0.3s ease-out;
 }
 
 .mentor-modal {
-  animation: zoomIn 0.6s ease-out;
+  animation: zoomIn 0.3s ease-In;
 }
 
 .close-modal {
-  animation: zoonOut 0.4s ease-in;
+  animation: zoonOut 0.3s ease-out;
 }
 
 .connect-modal {
-  animation: zoomIn 0.3s ease-out;
+  animation: zoomIn 0.2s ease-out;
 }
 
 .close-connect-modal {
@@ -136,7 +136,7 @@ p {
 /* Card */
 
 .mentor-card {
-  @apply flex flex-col m-3 rounded-xl w-full
+  @apply grid grid-rows-4 grid-flow-row-dense grid-cols-1 gap-4 m-3 rounded-xl w-full
             transition duration-300 transform border border-gray-300
             hover:scale-105
             hover:shadow-lg

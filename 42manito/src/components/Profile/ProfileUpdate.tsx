@@ -4,6 +4,7 @@ import { UserResDto } from "@/Types/UserResDto";
 import React, { useRef, useState } from "react";
 import { Input } from "antd";
 import HashtagCard from "./HashtagCard";
+import ConnectModal from "../conect/ConnectModal";
 
 interface props {
   onClose: () => void;
@@ -19,6 +20,8 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
   const [intro, setIntro] = useState<string>("");
   const [hashtags, setHashtags] = useState<HashtagPostDto[]>([]);
   const [categories, setCategories] = useState<CategoryDto>({} as CategoryDto);
+  const [disabled, setDisabled] = useState<boolean>(false);
+  const [viewConnectModal, setViewConnectModal] = useState(false);
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +30,7 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
     setTimeout(() => {
       onClose();
       setZoomOut(false);
-    }, 400); // 줌아웃 에니메이션 실행 시간을 기다림
+    }, 300); // 줌아웃 에니메이션 실행 시간을 기다림
   };
 
   const scrollToTop = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,7 +45,18 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
   }
 
   const handleSubmit = () => {
+    setDisabled(true);
+    handleConnectOpen();
     // TODO: 여기서 완성된 정보들 보내기
+    setDisabled(false);
+  };
+
+  const handleConnectOpen = () => {
+    setViewConnectModal(true);
+  };
+
+  const handleConnectClose = () => {
+    setViewConnectModal(false);
   };
 
   return (
@@ -72,8 +86,9 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
                 className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => handleSubmit()}
+                disabled={disabled}
               >
-                Submit.
+                Submit
               </button>
             </div>
             <div className="flex flex-col">
@@ -139,7 +154,7 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
                     <HashtagCard hashtag={hashtag.name} key={index} />
                   ))}
                 </div>
-                <form className="w-full max-w-sm p-5">
+                <form className="w-full max-w-sm">
                   <div className="flex items-center border-b border-slate-600 dark:border-slate-200 py-2 md:ml-7 overflow-x-scroll">
                     <Input
                       className="appearance-none bg-transparent border-none w-full text-gray-700 dark:text-white mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -168,6 +183,11 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
       >
         ↑
       </button>
+      <ConnectModal
+        viewConnectModal={viewConnectModal}
+        message={"수정하시겠습니까?"}
+        onClose={handleConnectClose}
+      />
     </div>
   );
 };

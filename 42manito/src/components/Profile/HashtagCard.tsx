@@ -5,6 +5,7 @@ interface props {
 }
 
 const HashtagCard = ({ hashtag }: props) => {
+	// TODO: 해시태그 삭제 기능 구현
   return (
     <div className="flex flex-row mx-3">
       <h6 className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 ">

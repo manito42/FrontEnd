@@ -25,7 +25,7 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
       onClose();
       setZoomOut(false);
       setViewConnectModal(false);
-    }, 400); // 줌아웃 에니메이션 실행 시간을 기다림
+    }, 300); // 줌아웃 에니메이션 실행 시간을 기다림
   };
 
   const handleConnectOpen = () => {
@@ -38,7 +38,7 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full p-20"
+      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full p-5 md:p-20"
       id="wrapper"
       onClick={handleClose}
     >
@@ -133,8 +133,9 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
       </section>
       <ConnectModal
         viewConnectModal={viewConnectModal}
+        message="멘토에게 커넥트 요청을 보내시겠습니까?"
         onClose={handleConnectClose}
-      />{" "}
+      />
     </div>
   );
 };
