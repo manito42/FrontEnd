@@ -7,10 +7,9 @@ import Image from "next/image";
 
 interface props {
   data: MentorFeedbackResDto;
-  isVisible: boolean;
 }
 
-const FeedbackCard = ({ data, isVisible }: props) => {
+const FeedbackCard = ({ data }: props) => {
   const [currUser, setCurrUser] = useState<mentorResDto>({} as mentorResDto);
   const [loading, setLoading] = useState(true); // loading 상태 추가
   const [date, setDate] = useState<string>("");
