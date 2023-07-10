@@ -2,11 +2,13 @@ import React, { useState } from "react";
 
 interface Props {
   viewConnectModal: boolean;
+  message: string;
   onClose: () => void;
 }
 
-const ConnectModal = ({ viewConnectModal, onClose }: Props) => {
+const ConnectModal = ({ viewConnectModal, message, onClose }: Props) => {
   const [focus, setFocus] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   if (viewConnectModal === false) return null;
 
@@ -18,9 +20,19 @@ const ConnectModal = ({ viewConnectModal, onClose }: Props) => {
     }, 200);
   };
 
+  const handleDisabled = () => {
+    setDisabled(true);
+    setDisabled(false);
+  };
+
+  const handleConnect = () => {
+    handleDisabled();
+    // TODO: 커넥트요청하기
+  };
+
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full p-20"
+      className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center w-full p-20"
       id="wrapper"
       onClick={(e) => e.stopPropagation()}
     >
@@ -41,13 +53,14 @@ const ConnectModal = ({ viewConnectModal, onClose }: Props) => {
             <div className="px-6">
               <div className="text-center mt-5">
                 <h3 className="text-4xl font-semibold leading-normal">
-                  Are you sure?
+                  {message}
                 </h3>
               </div>
               <div className="flex flex-row m-5 justify-around">
                 <button
                   className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                   type="button"
+                  onClick={handleConnect}
                 >
                   Yes
                 </button>
