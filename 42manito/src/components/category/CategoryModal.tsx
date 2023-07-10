@@ -64,7 +64,7 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
     setTimeout(() => {
       onClose();
       setZoomOut(false);
-    }, 400); // 줌아웃 에니메이션 실행 시간을 기다림
+    }, 300); // 줌아웃 에니메이션 실행 시간을 기다림
   };
 
   const mentorModalOpen = (data: mentorResDto) => {
@@ -85,15 +85,14 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full px-20"
+      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full px-5 md:px-20"
       id="wrapper"
     >
       <section
-        className={`relative py-16 mentor-modal h-[80vh] overflow-y-scroll ${
+        className={`relative py-16 mentor-modal h-[100vh]  ${
           zoomOut && "close-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
-        ref={scrollContainerRef}
       >
         <button
           className="text-white text-5xl absolute top-0 right-5 -mb-5"
@@ -102,7 +101,10 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
           X
         </button>
         <div className=" px-4">
-          <div className="relative flex break-words bg-white dark:bg-slate-600 w-[80vw] h-[100%] mb-6 shadow-xl rounded-lg ">
+          <div
+            className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[90vw] h-[80vh] mb-6 shadow-xl rounded-lg p-10 overflow-y-scroll"
+            ref={scrollContainerRef}
+          >
             <InfiniteScroll
               dataLength={mentor.length}
               next={fetchMoreData}
@@ -114,24 +116,15 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
                 </p>
               }
             >
-              <Row
-                style={{ display: "flex", flexWrap: "wrap", marginTop: "3em" }}
-                className="mt-10"
-              >
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-5 p-5">
                 {mentor.map((mentor) => (
-                  <div
-                    className="px-3 mb-10 xs:w-1/3 md:w-1/3 lg:w-1/4"
+                  <MentorCard
+                    data={mentor}
                     key={mentor.id}
-                    style={{ display: "flex" }}
-                  >
-                    <MentorCard
-                      data={mentor}
-                      key={mentor.id}
-                      onOpen={mentorModalOpen}
-                    />
-                  </div>
+                    onOpen={mentorModalOpen}
+                  />
                 ))}
-              </Row>
+              </div>
             </InfiniteScroll>
           </div>
         </div>
