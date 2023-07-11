@@ -116,7 +116,7 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
                 </p>
               }
             >
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-5 p-5">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-5">
                 {mentor.map((mentor) => (
                   <MentorCard
                     data={mentor}
