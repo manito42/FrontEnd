@@ -21,7 +21,16 @@ export const userApi = createApi({
       },
       keepUnusedDataFor: 100,
     }),
+    getUser: builder.query<UserResDto, { id: number }>({
+      query: ({ id }) => {
+        return {
+          url: `${process.env.NEXT_PUBLIC_}/users/${id}`,
+          method: "GET",
+        };
+      },
+      keepUnusedDataFor: 100,
+    }),
   }),
 });
 
-export const { useGetAllUsersQuery } = userApi;
+export const { useGetAllUsersQuery, useGetUserQuery } = userApi;
