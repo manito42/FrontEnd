@@ -12,10 +12,10 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: baseQueryWithGlobalErrorHandler,
   endpoints: (builder) => ({
-    getUsers: builder.query<UserResDto[], { take: number; page: number }>({
+    getAllUsers: builder.query<UserResDto[], { take: number; page: number }>({
       query: ({ take, page }) => {
         return {
-          url: `${process.env.NEXT_PUBLIC_SERVER_URL}/users?take=${take}&page=${page}`,
+          url: `${process.env.NEXT_PUBLIC_}/users/`,
           method: "GET",
         };
       },
@@ -24,4 +24,4 @@ export const userApi = createApi({
   }),
 });
 
-export const { useGetUsersQuery } = userApi;
+export const { useGetAllUsersQuery } = userApi;

@@ -72,13 +72,12 @@ export default function Home() {
           <Typo />
           <Divider className="dark:bg-slate-400 bg-slate-500 " />
           <div className="my-[20vh]" />
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-5 p-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-10 p-5">
             {mentor.map((mentor) => (
               <MentorCard data={mentor} key={mentor.id} onOpen={onOpen} />
             ))}
           </div>
         </InfiniteScroll>
-        {/* <Mentor isVisible={isVisible} onClose={onClose} data={currMentor} /> */}
         <MentorModal
           isVisible={isVisible}
           onClose={onClose}

@@ -10,28 +10,27 @@ interface props {
 const MentorCard = ({ data, onOpen }: props) => {
   return (
     <>
-      <div className="mentor-card m-3" onClick={() => onOpen(data)}>
+      <div className="mentor-card" onClick={() => onOpen(data)}>
         <Image
-          className="row-span-5 rounded-t-xl object-cover layout-responsive flex w-full"
+          className="rounded-t-xl object-cover layout-responsive flex w-full "
           src={data.user.profileImage}
           alt="cover image"
           width={100}
           height={100}
           quality={100}
         />
-        <div className="row-span-7 placeholder:p-4 flex flex-col justify-center items-center ml-3 mr-3 mb-4">
-          <h2 className="text-xl font-bold mt-5">{data.user.nickname}</h2>
+        <div
+          className="flex-col justify-center items-center p-2 md:p-5"
+          id="MentorCardContent"
+        >
+          <h2 className="text-xl py-3 font-bold mt-5">{data.user.nickname}</h2>
+          <h3 className="text-l py-3">{data.shortDescription}</h3>
 
-          <div className="placeholder:p-4 flex flex-col justify-center items-center ml-3 mr-3 mb-4"></div>
-          <h3 className="text-l p-4">{data.shortDescription}</h3>
-          <div className="flex flex-row mt-2 m-auto overflow-x-scroll w-full">
+          <div className="flex-wrap justify-center items-center py-3">
             {data.hashtags.map((aTag) => (
-              <h6
-                className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 "
-                key={aTag.id}
-              >
-                {aTag.name}
-              </h6>
+              <span className="text-blue-500 text-sm" key={aTag.id}>
+                {`#${aTag.name} `}
+              </span>
             ))}
           </div>
         </div>

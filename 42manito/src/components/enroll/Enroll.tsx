@@ -20,8 +20,6 @@ const Enroll = () => {
       (value.status === "ACCEPT" || value.status === "REQUEST")
   );
 
-  console.log(`mentor: ${mentor.length} mentee: ${mentee.length}`);
-
   return (
     <div className="my-16 w-full">
       <div className="w-[100%] dark:bg-white/40 bg-black/40 h-[1px]" />

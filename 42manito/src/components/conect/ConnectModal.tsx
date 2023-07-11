@@ -28,6 +28,7 @@ const ConnectModal = ({ viewConnectModal, message, onClose }: Props) => {
   const handleConnect = () => {
     handleDisabled();
     // TODO: 커넥트요청하기
+    // handleFocusOut();
   };
 
   return (
@@ -42,12 +43,6 @@ const ConnectModal = ({ viewConnectModal, message, onClose }: Props) => {
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          className="text-white text-3xl absolute top-0 right-5 -mb-5"
-          onClick={handleFocusOut}
-        >
-          X
-        </button>
         <div className="container mx-auto px-4">
           <div className="relative flex flex-col min-w-0 break-words bg-white dark:bg-slate-600 w-full mb-6 shadow-xl rounded-lg">
             <div className="px-6">

@@ -136,7 +136,7 @@ p {
 /* Card */
 
 .mentor-card {
-  @apply grid grid-rows-4 grid-flow-row-dense grid-cols-1 gap-4 m-3 rounded-xl w-full
+  @apply rounded-xl w-full
             transition duration-300 transform border border-gray-300
             hover:scale-105
             hover:shadow-lg

@@ -30,7 +30,7 @@ const Category = () => {
       <Layout>
         <div className="app-container">
           <div className="flex flex-wrap w-full justify-center lg:justify-around items-center">
-            <div>
+            <div className=" my-16 md:my-3">
               <HappyDevelopAnimation />
               <div className="w-full flex justify-start">
                 <span
@@ -43,7 +43,7 @@ const Category = () => {
                 </span>
               </div>
             </div>
-            <div>
+            <div className="my-16 md:my-3">
               <PandaSingAnimation />
               <div className="w-full flex justify-end">
                 <span
