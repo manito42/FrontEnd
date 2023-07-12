@@ -1,4 +1,4 @@
-import { mentorResDto } from "@/Types/MentorProfileDto";
+import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 
 export const mockMentorProfiles: mentorResDto[] = [
   {
