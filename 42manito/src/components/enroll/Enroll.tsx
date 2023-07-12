@@ -1,6 +1,6 @@
 import React from "react";
 import { mocReservation } from "../../../mocData/mocReservation";
-import { ReservationGetDto } from "@/Types/Reservations";
+import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 import EnrollCard from "./components/ErollCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TypeIt from "typeit-react";

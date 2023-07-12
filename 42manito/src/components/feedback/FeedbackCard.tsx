@@ -2,7 +2,7 @@ import { MentorFeedbackResDto } from "@/Types/MentorFeedbackDto";
 import { UserResDto } from "@/Types/UserResDto";
 import React, { useEffect, useState } from "react";
 import { mockMentorProfiles } from "../../../mocData/mentorData";
-import { mentorResDto } from "@/Types/MentorProfileDto";
+import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import Image from "next/image";
 
 interface props {

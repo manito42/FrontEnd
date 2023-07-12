@@ -1,4 +1,4 @@
-import { mentorResDto } from "@/Types/MentorProfileDto";
+import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import Image from "next/image";
 import React, { useState } from "react";
 import ConnectModal from "../conect/ConnectModal";

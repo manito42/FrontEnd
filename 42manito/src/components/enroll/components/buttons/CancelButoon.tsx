@@ -1,4 +1,4 @@
-import { ReservationGetDto } from "@/Types/Reservations";
+import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 import React from "react";
 
 interface CancelButtonProps {

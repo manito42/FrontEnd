@@ -1,4 +1,4 @@
-import { ReservationGetDto } from "@/Types/Reservations";
+import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 import FeedbackPost from "@/components/feedback/FeedbackPost";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";

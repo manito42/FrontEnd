@@ -1,4 +1,4 @@
-import { ReservationGetDto } from "@/Types/Reservations";
+import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 import Layout from "@/components/layout/Layout";
 import React, { useState } from "react";
 

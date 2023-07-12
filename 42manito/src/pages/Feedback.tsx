@@ -6,7 +6,7 @@ import { mocFeedback } from "../../mocData/mocFeedback";
 import { useRouter } from "next/router";
 import FeedbackPost from "@/components/feedback/FeedbackPost";
 import { mocReservation } from "../../mocData/mocReservation";
-import { ReservationGetDto } from "@/Types/Reservations";
+import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 
 const Feedback = () => {
   const [feedback, setFeedback] = useState<MentorFeedbackResDto[]>(

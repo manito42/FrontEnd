@@ -1,5 +1,5 @@
-import { mentorResDto } from "@/Types/MentorProfileDto";
-import { ReservationGetDto } from "@/Types/Reservations";
+import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
+import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 import React, { useEffect, useState } from "react";
 import { mockMentorProfiles } from "../../../../mocData/mentorData";
 import AcceptButton from "./buttons/AcceptButton";

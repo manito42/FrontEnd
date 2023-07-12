@@ -1,4 +1,4 @@
-import { mentorResDto } from "@/Types/MentorProfileDto";
+import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import React, { useEffect, useRef, useState } from "react";
 import { mockMentorProfiles } from "../../../mocData/mentorData";
 import MentorCard from "../mentor/MentorCard";

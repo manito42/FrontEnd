@@ -1,5 +1,5 @@
-import { CategoryDto } from "@/Types/CategoryDto";
-import { HashtagPostDto } from "@/Types/HashtagDto";
+import { CategoryDto } from "@/Types/Categories/CategoryDto";
+import { HashtagPostDto } from "@/Types/Hashtag/HashtagDto";
 import { UserResDto } from "@/Types/UserResDto";
 import React, { useRef, useState } from "react";
 import { Input } from "antd";

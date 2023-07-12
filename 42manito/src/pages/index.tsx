@@ -1,7 +1,7 @@
 import Layout from "../components/layout/Layout";
 import Enroll from "@/components/enroll/Enroll";
 import { useEffect, useState } from "react";
-import { mentorResDto } from "@/Types/MentorProfileDto";
+import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MentorCard from "@/components/mentor/MentorCard";
