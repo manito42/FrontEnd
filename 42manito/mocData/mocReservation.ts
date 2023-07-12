@@ -1,4 +1,4 @@
-import { ReservationGetDto } from "@/Types/Reservations";
+import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 
 export const mocReservation: ReservationGetDto[] = [
   {
