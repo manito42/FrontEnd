@@ -1,5 +1,5 @@
 import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
-import { MentorProfilePatchDto } from "@/Types/MentorProfilePatchDto";
+import { MentorProfilePatchDto } from "@/Types/Mentor/MentorProfilePatchDto";
 import customAxios from "@/utils/CustomAxios";
 import { BaseQueryFn, createApi } from "@reduxjs/toolkit/dist/query/react";
 import { AxiosError, AxiosRequestConfig } from "axios";
@@ -43,10 +43,26 @@ export const mentorApi = createApi({
   reducerPath: "mentorApi",
   baseQuery: mentorBaseQuery({ baseUrl: `${process.env.NEXT_PUBLIC_MOC_URL}` }),
   endpoints: (builder) => ({
-    getAllMentor: builder.query<mentorResDto[], void>({
-      query: () => {
+    getAllMentor: builder.query<
+      mentorResDto[],
+      { take: number; page: number; category_id?: number; hashtag_id?: number }
+    >({
+      query: (args: {
+        take: number;
+        page: number;
+        category_id?: number;
+        hashtag_id?: number;
+      }) => {
+        const query =
+          "take=" +
+          String(args.take) +
+          "&page=" +
+          String(args.page) +
+          (args.category_id === undefined
+            ? ""
+            : "&category_id=" + args.category_id);
         return {
-          url: `/mentor_profiles`,
+          url: `/mentor_profiles?${query}`,
           method: "GET",
         };
       },
