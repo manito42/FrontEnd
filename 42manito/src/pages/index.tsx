@@ -1,28 +1,19 @@
 import Layout from "../components/layout/Layout";
-import Enroll from "@/components/enroll/Enroll";
 import { useEffect, useState } from "react";
 import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MentorCard from "@/components/mentor/MentorCard";
 import MentorModal from "@/components/mentor/MentorModal";
-import { Divider, Row } from "antd";
+import { Divider } from "antd";
 import Typo from "@/components/home/Typo";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/RTK/store";
 
 export default function Home() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [currMentor, setCurrMentor] = useState<mentorResDto>(
-    {} as mentorResDto
+  const currMentorState = useSelector(
+    (state: RootState) => state.rootReducers.currMentor
   );
-
-  const onClose = () => {
-    setIsVisible(false);
-  };
-
-  const onOpen = (data: mentorResDto) => {
-    setIsVisible(true);
-    setCurrMentor(data);
-  };
 
   const [mentor, setMentor] = useState<mentorResDto[]>(
     mockMentorProfiles.slice(0, 12)
@@ -46,12 +37,12 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (isVisible) {
+    if (currMentorState.openMentorModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [isVisible]);
+  }, [currMentorState.openMentorModal]);
 
   return (
     <Layout>
@@ -72,22 +63,19 @@ export default function Home() {
           <Typo />
           <Divider className="dark:bg-slate-400 bg-slate-500 " />
           <div className="my-[20vh]" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-10 p-5">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-10 p-5">
             {mentor.map((mentor) => (
-              <MentorCard data={mentor} key={mentor.id} onOpen={onOpen} />
+              <MentorCard data={mentor} key={mentor.id} />
             ))}
           </div>
         </InfiniteScroll>
-        <MentorModal
-          isVisible={isVisible}
-          onClose={onClose}
-          data={currMentor}
-        />
+        {currMentorState.openMentorModal && (
+          <MentorModal data={currMentorState.currMentor} />
+        )}
       </div>
       <button
         onClick={scrollToTop}
-        className="fixed bottom-5 right-5 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold"
-        style={{ zIndex: 1000 }}
+        className="fixed bottom-5 right-5 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold z-50"
       >
         ↑
       </button>

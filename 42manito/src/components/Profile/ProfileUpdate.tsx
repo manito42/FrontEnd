@@ -1,35 +1,34 @@
 import { CategoryDto } from "@/Types/Categories/CategoryDto";
 import { HashtagPostDto } from "@/Types/Hashtag/HashtagDto";
-import { UserResDto } from "@/Types/UserResDto";
-import React, { useRef, useState } from "react";
+import { UserResDto } from "@/Types/User/UserResDto";
+import React, { memo, useEffect, useReducer, useRef, useState } from "react";
 import { Input } from "antd";
 import HashtagCard from "./HashtagCard";
 import ConnectModal from "../conect/ConnectModal";
+import { RootState, useAppDispatch } from "@/RTK/store";
+import { useSelector } from "react-redux";
+import { ProfileUpdateSlice } from "@/RTK/Slices/ProfileUpdate";
 
 interface props {
   onClose: () => void;
-  isVisible: boolean;
   data: UserResDto;
 }
 
 const { TextArea } = Input;
 
-const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
-  const [zoomOut, setZoomOut] = useState(false);
-  const [shortIntro, setShortIntro] = useState<string>("");
-  const [intro, setIntro] = useState<string>("");
-  const [hashtags, setHashtags] = useState<HashtagPostDto[]>([]);
-  const [categories, setCategories] = useState<CategoryDto>({} as CategoryDto);
-  const [disabled, setDisabled] = useState<boolean>(false);
-  const [viewConnectModal, setViewConnectModal] = useState(false);
-
+const ProfileUpdate = ({ onClose, data }: props) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
+  const state = useSelector(
+    (state: RootState) => state.rootReducers.profileUpdate
+  );
 
   const handleZoomOut = () => {
-    setZoomOut(true);
+    dispatch(ProfileUpdateSlice.actions.setZoomOut(true));
     setTimeout(() => {
+      dispatch(ProfileUpdateSlice.actions.deleteAll());
+      dispatch(ProfileUpdateSlice.actions.setZoomOut(false));
       onClose();
-      setZoomOut(false);
     }, 300); // 줌아웃 에니메이션 실행 시간을 기다림
   };
 
@@ -40,23 +39,19 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
     }
   };
 
-  if (!isVisible) {
-    return null;
-  }
-
   const handleSubmit = () => {
-    setDisabled(true);
+    dispatch(ProfileUpdateSlice.actions.setDisabled(true));
     handleConnectOpen();
     // TODO: 여기서 완성된 정보들 보내기
-    setDisabled(false);
+    dispatch(ProfileUpdateSlice.actions.setDisabled(false));
   };
 
   const handleConnectOpen = () => {
-    setViewConnectModal(true);
+    dispatch(ProfileUpdateSlice.actions.setViewConnectModal(true));
   };
 
   const handleConnectClose = () => {
-    setViewConnectModal(false);
+    dispatch(ProfileUpdateSlice.actions.setViewConnectModal(false));
   };
 
   return (
@@ -66,7 +61,7 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
     >
       <section
         className={`relative py-16 mentor-modal h-[80vh] ${
-          zoomOut && "close-modal"
+          state.zoomOut && "close-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
@@ -86,7 +81,7 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
                 className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => handleSubmit()}
-                disabled={disabled}
+                disabled={state.disabled}
               >
                 Submit
               </button>
@@ -113,7 +108,13 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
                       showCount
                       maxLength={50}
                       style={{ height: 80, marginBottom: 24 }}
-                      onChange={(e) => setShortIntro(e.target.value)}
+                      onChange={(e) =>
+                        dispatch(
+                          ProfileUpdateSlice.actions.setShortIntro(
+                            e.target.value
+                          )
+                        )
+                      }
                       placeholder="최대 50글자"
                     />
                   </div>
@@ -140,7 +141,11 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
                       showCount
                       maxLength={1000}
                       style={{ height: 80, marginBottom: 24 }}
-                      onChange={(e) => setIntro(e.target.value)}
+                      onChange={(e) =>
+                        dispatch(
+                          ProfileUpdateSlice.actions.setIntro(e.target.value)
+                        )
+                      }
                       placeholder="최대 1000글자"
                     />
                   </div>
@@ -183,13 +188,22 @@ const ProfileUpdate = ({ onClose, isVisible, data }: props) => {
       >
         ↑
       </button>
-      <ConnectModal
-        viewConnectModal={viewConnectModal}
-        message={"수정하시겠습니까?"}
-        onClose={handleConnectClose}
-      />
+      {state.viewConnectModal && (
+        <ConnectModal
+          message={"수정하시겠습니까?"}
+          onClose={handleConnectClose}
+        />
+      )}
     </div>
   );
 };
 
-export default ProfileUpdate;
+const validation = (prev: props, next: props) => {
+  if (prev.data.updatedAt === next.data.updatedAt) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export default memo(ProfileUpdate, validation);

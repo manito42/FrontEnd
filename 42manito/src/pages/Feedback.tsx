@@ -1,4 +1,3 @@
-import { MentorFeedbackResDto } from "@/Types/MentorFeedbackDto";
 import FeedbackCard from "@/components/feedback/FeedbackCard";
 import Layout from "@/components/layout/Layout";
 import React, { useCallback, useEffect, useState } from "react";
@@ -7,10 +6,11 @@ import { useRouter } from "next/router";
 import FeedbackPost from "@/components/feedback/FeedbackPost";
 import { mocReservation } from "../../mocData/mocReservation";
 import { ReservationGetDto } from "@/Types/Reservation/Reservations";
+import { FeedbackGetDto } from "@/Types/Feedback/FeedbackGetDto";
 
 const Feedback = () => {
-  const [feedback, setFeedback] = useState<MentorFeedbackResDto[]>(
-    [] as MentorFeedbackResDto[]
+  const [feedback, setFeedback] = useState<FeedbackGetDto[]>(
+    [] as FeedbackGetDto[]
   );
 
   const router = useRouter();

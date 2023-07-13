@@ -1,7 +1,7 @@
-import { UserResDto } from "@/Types/UserResDto";
+import { UserResDto } from "@/Types/User/UserResDto";
 import Enroll from "@/components/enroll/Enroll";
 import Layout from "@/components/layout/Layout";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { mocUser } from "../../mocData/mocUserData";
 import Image from "next/image";
 import TypeIt from "typeit-react";
@@ -19,9 +19,9 @@ const Profile = () => {
     setIsProfileUpdateOpen(true);
   };
 
-  const closeProfileUpdate = () => {
+  const closeProfileUpdate = useCallback(() => {
     setIsProfileUpdateOpen(false);
-  };
+  }, []);
 
   const data: UserResDto = mocUser;
 
@@ -122,7 +122,7 @@ const Profile = () => {
                 <span className="text-3xl font-bold text-slate-800 dark:text-slate-200">
                   해시태그.
                 </span>
-                <div className="flex flex-col overflow-y-scroll ">
+                <div className="flex flex-col overflow-y-auto">
                   {data.mentorProfile.hashtags.map((aTag) => (
                     <h6
                       className="m-3 p-3 rounded-md bg-sky-200 dark:bg-sky-700 "
@@ -154,11 +154,9 @@ const Profile = () => {
           </>
         )}
       </div>
-      <ProfileUpdate
-        onClose={closeProfileUpdate}
-        isVisible={isProfileUpdateOpen}
-        data={data}
-      />
+      {isProfileUpdateOpen && (
+        <ProfileUpdate onClose={closeProfileUpdate} data={data} />
+      )}
     </Layout>
   );
 };
