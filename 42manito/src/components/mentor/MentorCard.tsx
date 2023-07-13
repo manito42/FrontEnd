@@ -1,16 +1,24 @@
 import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import Image from "next/image";
+import { useAppDispatch } from "@/RTK/store";
+import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 
 interface props {
   data: mentorResDto;
-  onOpen: (data: mentorResDto) => void;
 }
 
-const MentorCard = ({ data, onOpen }: props) => {
+const MentorCard = ({ data }: props) => {
+  const dispatch = useAppDispatch();
+
+  const openMentorModal = (data: mentorResDto) => {
+    dispatch(CurrMentorSlice.actions.setMentor(data));
+    dispatch(CurrMentorSlice.actions.openMentorModal());
+  };
+
   return (
     <>
-      <div className="mentor-card" onClick={() => onOpen(data)}>
+      <div className="mentor-card" onClick={() => openMentorModal(data)}>
         <Image
           className="rounded-t-xl object-cover layout-responsive flex w-full "
           src={data.user.profileImage}
@@ -39,4 +47,12 @@ const MentorCard = ({ data, onOpen }: props) => {
   );
 };
 
-export default MentorCard;
+const validation = (prev: props, next: props) => {
+  if (prev.data.updatedAt === next.data.updatedAt) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export default memo(MentorCard, validation);
