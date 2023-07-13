@@ -44,7 +44,7 @@ const Enroll = () => {
             }}
           />
         </div>
-        <div className="overflow-y-scroll w-full mx-10 h-80">
+        <div className="overflow-y-auto w-full mx-10">
           {mentor.map((data) => (
             <EnrollCard data={data} key={data.id} isMentor={true} />
           ))}
@@ -69,7 +69,7 @@ const Enroll = () => {
             }}
           />
         </div>
-        <div className="overflow-y-scroll h-80 w-full mx-20">
+        <div className="overflow-y-auto w-full mx-20">
           {mentee.map((data) => (
             <EnrollCard data={data} key={data.id} isMentor={false} />
           ))}
