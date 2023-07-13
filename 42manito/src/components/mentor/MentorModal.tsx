@@ -1,40 +1,38 @@
+import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { RootState, useAppDispatch } from "@/RTK/store";
 import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useCallback } from "react";
+import { useSelector } from "react-redux";
 import ConnectModal from "../conect/ConnectModal";
 
 interface props {
-  onClose: () => void;
-  isVisible: boolean;
   data: mentorResDto;
 }
 
-const MentorModal = ({ isVisible, onClose, data }: props) => {
-  const [zoomOut, setZoomOut] = useState(false);
-  const [viewConnectModal, setViewConnectModal] = useState(false);
-
-  if (!isVisible) return null;
-
+const MentorModal = ({ data }: props) => {
+  const dispatch = useAppDispatch();
+  const currMentorState = useSelector(
+    (state: RootState) => state.rootReducers.currMentor
+  );
   const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget.id === "wrapper") handleZoomOut();
   };
 
   const handleZoomOut = () => {
-    setZoomOut(true);
+    dispatch(CurrMentorSlice.actions.handleZoomOut(true));
     setTimeout(() => {
-      onClose();
-      setZoomOut(false);
-      setViewConnectModal(false);
+      dispatch(CurrMentorSlice.actions.deleteMentor());
     }, 300); // 줌아웃 에니메이션 실행 시간을 기다림
   };
 
   const handleConnectOpen = () => {
-    setViewConnectModal(true);
+    dispatch(CurrMentorSlice.actions.openConnectModal());
   };
 
-  const handleConnectClose = () => {
-    setViewConnectModal(false);
-  };
+  const handleConnectClose = useCallback(() => {
+    dispatch(CurrMentorSlice.actions.closeConnectModal());
+  }, [dispatch]);
 
   return (
     <div
@@ -44,7 +42,7 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
     >
       <section
         className={`relative py-16 md:mt-24 mentor-modal max-h-[80vh] overflow-y-scroll ${
-          zoomOut && "close-modal"
+          currMentorState.zoomOut && "close-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
@@ -131,11 +129,12 @@ const MentorModal = ({ isVisible, onClose, data }: props) => {
           </div>
         </div>
       </section>
-      <ConnectModal
-        viewConnectModal={viewConnectModal}
-        message="멘토에게 커넥트 요청을 보내시겠습니까?"
-        onClose={handleConnectClose}
-      />
+      {currMentorState.openConnectModal && (
+        <ConnectModal
+          message="멘토에게 커넥트 요청을 보내시겠습니까?"
+          onClose={handleConnectClose}
+        />
+      )}
     </div>
   );
 };
