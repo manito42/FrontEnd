@@ -6,11 +6,7 @@ import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import ConnectModal from "../conect/ConnectModal";
 
-interface props {
-  data: mentorResDto;
-}
-
-const MentorModal = ({ data }: props) => {
+const MentorModal = () => {
   const dispatch = useAppDispatch();
   const currMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
@@ -22,6 +18,8 @@ const MentorModal = ({ data }: props) => {
   const handleZoomOut = () => {
     dispatch(CurrMentorSlice.actions.handleZoomOut(true));
     setTimeout(() => {
+      dispatch(CurrMentorSlice.actions.closeMentorModal());
+      dispatch(CurrMentorSlice.actions.handleZoomOut(false));
       dispatch(CurrMentorSlice.actions.deleteMentor());
     }, 300); // 줌아웃 에니메이션 실행 시간을 기다림
   };
@@ -36,12 +34,12 @@ const MentorModal = ({ data }: props) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full p-5 md:p-20"
+      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full p-5 md:p-20 h-[100vh]"
       id="wrapper"
       onClick={handleClose}
     >
       <section
-        className={`relative py-16 md:mt-24 mentor-modal max-h-[80vh] overflow-y-scroll ${
+        className={`relative py-16 md:mt-24 mentor-modal md:top-16 ${
           currMentorState.zoomOut && "close-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -52,21 +50,23 @@ const MentorModal = ({ data }: props) => {
         >
           X
         </button>
-        <div className="mx-auto px-4 ">
-          <div className="relative flex flex-col min-w-0 break-words bg-white dark:bg-slate-600 w-full mb-6 shadow-xl rounded-lg">
+        <div className="relative flex z-[1000] w-full justify-center items-center">
+          <Image
+            alt="..."
+            src={currMentorState.currMentor.user.profileImage}
+            className="shadow-xl rounded-full align-middle border-none -m-16 lg:ml-6 ml-1"
+            width={180}
+            height={180}
+          />
+        </div>
+        <div className="px-4">
+          <div
+            className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[90vw] h-[80vh] mb-6 shadow-xl rounded-lg p-10 overflow-y-auto"
+            id="mentorModal"
+          >
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
-                <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                  <div className="relative">
-                    <Image
-                      alt="..."
-                      src={data.user.profileImage}
-                      className="shadow-xl rounded-full align-middle border-none -m-16 lg:ml-6 ml-1"
-                      width={300}
-                      height={300}
-                    />
-                  </div>
-                </div>
+                <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center"></div>
                 <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                   <div className="py-6 px-3 mt-32 sm:mt-0">
                     <button
@@ -97,14 +97,24 @@ const MentorModal = ({ data }: props) => {
               </div>
               <div className="text-center mt-28">
                 <h2 className="text-4xl font-semibold leading-normal text-blueGray-700">
-                  {data.user.nickname}
+                  {currMentorState.currMentor.user.nickname}
                 </h2>
               </div>
               <div className="mt-10 py-10 border-t dark:border-slate-300  border-slate-700 text-center">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-9/12 px-4">
                     <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                      {data.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
+                      {currMentorState.currMentor.description}
                     </p>
                   </div>
                 </div>
@@ -115,7 +125,7 @@ const MentorModal = ({ data }: props) => {
                   <MuiRate IsReadOnly={true} Value={5.0} />
                 </div> */}
                 <div className="flex items-start mt-2 m-auto">
-                  {data.hashtags.map((aTag) => (
+                  {currMentorState.currMentor.hashtags.map((aTag) => (
                     <h6
                       className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 w-30"
                       key={aTag.id}
