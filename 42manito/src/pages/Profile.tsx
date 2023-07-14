@@ -39,7 +39,7 @@ const Profile = () => {
     <Layout>
       <div className="app-container mt-20 flex flex-wrap">
         {isProfileOpen ? (
-          <>
+          <div className="">
             <div className="w-full flex justify-end ">
               <button
                 className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
@@ -58,7 +58,6 @@ const Profile = () => {
                 quality={100}
                 style={{ borderRadius: "50%" }}
               />
-
               <div className="mx-10">
                 <div className="" id="Count">
                   <div className="flex justify-center py-4 lg:pt-4 pt-8">
@@ -107,37 +106,41 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row justify-center w-full my-3 md:my-28 h-[40vh]">
-              <div className="flex flex-col justify-center items-center ">
-                <span className="text-3xl font-bold text-slate-800 dark:text-slate-200 h-[5vh]">
-                  카테고리.
-                </span>
-                {data.mentorProfile.categories[0].name === "DEVELOP" ? (
-                  <DevelopAnimation />
-                ) : (
-                  <HobbyAnimation />
-                )}
-              </div>
-              <div className="flex flex-col justify-between items-center md:ml-24 w-[40vh] h-[40vh]">
-                <span className="text-3xl font-bold text-slate-800 dark:text-slate-200">
-                  해시태그.
-                </span>
-                <div className="flex flex-col overflow-y-auto">
-                  {data.mentorProfile.hashtags.map((aTag) => (
-                    <h6
-                      className="m-3 p-3 rounded-md bg-sky-200 dark:bg-sky-700 "
-                      key={aTag.id}
-                    >
-                      {aTag.name}
-                    </h6>
-                  ))}
+            <div className="grid grid-rows-2">
+              <div className="grid gird-rows-2  row-span-6 lg:grid-cols-2 justify-center w-full my-3 md:my-28 max-h-[40vh]">
+                <div className="flex flex-col justify-center items-center ">
+                  <span className="text-3xl font-bold text-slate-800 dark:text-slate-200 h-[5vh]">
+                    카테고리.
+                  </span>
+                  {data.mentorProfile.categories[0].name === "DEVELOP" ? (
+                    <DevelopAnimation />
+                  ) : (
+                    <HobbyAnimation />
+                  )}
+                </div>
+                <div className="flex flex-col justify-between items-center md:ml-24 w-[40vh] h-[40vh] overflow-y-auto">
+                  <span className="text-3xl font-bold text-slate-800 dark:text-slate-200">
+                    해시태그.
+                  </span>
+                  <div className="flex flex-col overflow-y-auto">
+                    {data.mentorProfile.hashtags.map((aTag) => (
+                      <h6
+                        className="m-3 p-3 rounded-md bg-sky-200 dark:bg-sky-700 "
+                        key={aTag.id}
+                      >
+                        {aTag.name}
+                      </h6>
+                    ))}
+                  </div>
                 </div>
               </div>
+              <div className="row-span-6 ">
+                <Enroll />
+              </div>
             </div>
-            <Enroll />
-          </>
+          </div>
         ) : (
-          <>
+          <div>
             <Enroll />
             <ProfileTypo />
             <div className="w-full flex justify-end">
@@ -151,7 +154,7 @@ const Profile = () => {
                 </button>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
       {isProfileUpdateOpen && (
