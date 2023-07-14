@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider attribute="class">
         <Head>
           <title>42Mainto</title>
-          <meta name="description" content="오늘도 빡코딩!" />
+          <meta name="description" content="멘토링서비스" />
           <link
             rel="icon"
             type="image/png"
