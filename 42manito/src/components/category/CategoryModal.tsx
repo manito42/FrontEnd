@@ -5,6 +5,8 @@ import MentorCard from "../mentor/MentorCard";
 import MentorModal from "../mentor/MentorModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Row } from "antd";
+import { useSelector } from "react-redux";
+import { RootState } from "@/RTK/store";
 
 interface props {
   onClose: () => void;
@@ -14,11 +16,12 @@ interface props {
 
 const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
   const [zoomOut, setZoomOut] = useState(false);
-  const [open, setOpen] = React.useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [currMentor, setCurrMentor] = useState<mentorResDto>(
-    {} as mentorResDto
+
+  const currMentorState = useSelector(
+    (state: RootState) => state.rootReducers.currMentor
   );
+
   const [page, setPage] = useState(1);
 
   const getCategoryMentors = (id: number): mentorResDto[] => {
@@ -33,8 +36,6 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
   const [mentor, setMentor] = useState<mentorResDto[]>(
     initialMentors.slice(0, 12)
   );
-
-  console.log(categoryId);
 
   useEffect(() => {
     const newMentors = getCategoryMentors(categoryId);
@@ -67,15 +68,6 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
     }, 300); // 줌아웃 에니메이션 실행 시간을 기다림
   };
 
-  const mentorModalOpen = (data: mentorResDto) => {
-    setOpen(true);
-    setCurrMentor(data);
-  };
-
-  const mentorModalClose = () => {
-    setOpen(false);
-  };
-
   const scrollToTop = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (scrollContainerRef.current) {
@@ -85,11 +77,11 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full px-5 md:px-20"
+      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full px-5 md:px-20 h-[100vh]"
       id="wrapper"
     >
       <section
-        className={`relative py-16 mentor-modal h-[100vh]  ${
+        className={`relative py-16 mentor-modal h-[100vh] md:top-[5.4em]   ${
           zoomOut && "close-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -100,7 +92,7 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
         >
           X
         </button>
-        <div className=" px-4">
+        <div className="px-4">
           <div
             className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[90vw] h-[80vh] mb-6 shadow-xl rounded-lg p-10 overflow-y-scroll"
             ref={scrollContainerRef}
@@ -118,22 +110,16 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
             >
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-5">
                 {mentor.map((mentor) => (
-                  <MentorCard
-                    data={mentor}
-                    key={mentor.id}
-                    onOpen={mentorModalOpen}
-                  />
+                  <MentorCard data={mentor} key={mentor.id} />
                 ))}
               </div>
             </InfiniteScroll>
           </div>
         </div>
       </section>
-      <MentorModal
-        isVisible={open}
-        onClose={mentorModalClose}
-        data={currMentor}
-      />
+      {currMentorState.openMentorModal && currMentorState.currMentor.user && (
+        <MentorModal />
+      )}
       <button
         onClick={scrollToTop}
         className="fixed bottom-5 right-5 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold"
