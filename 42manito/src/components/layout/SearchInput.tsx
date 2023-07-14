@@ -10,6 +10,12 @@ const SearchInput: React.FC = () => {
     setSearch(e.target.value);
   };
 
+  const handleClick = () => {
+    if (search.length > 0) {
+      router.push({ pathname: "/Search", query: { query: search } });
+    }
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
@@ -46,33 +52,28 @@ const SearchInput: React.FC = () => {
             required
           />
         </div>
-        <Link
-          href={{
-            pathname: "/Search",
-            query: { query: search },
-          }}
+        <button
+          onClick={handleClick}
+          type="button"
+          className="p-1.5 ml-2 text-sm font-medium text-white bg-pink-600 rounded-lg border border-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-500 dark:active:bg-pink-600 dark:focus:ring-pink-800"
+          disabled={search.length === 0}
         >
-          <button
-            type="submit"
-            className="p-1.5 ml-2 text-sm font-medium text-white bg-pink-600 rounded-lg border border-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-500 dark:active:bg-pink-600 dark:focus:ring-pink-800"
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              ></path>
-            </svg>
-            <span className="sr-only">Search</span>
-          </button>
-        </Link>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+          <span className="sr-only">Search</span>
+        </button>
       </form>
     </>
   );
