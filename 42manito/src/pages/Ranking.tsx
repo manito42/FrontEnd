@@ -6,28 +6,14 @@ import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import { mockMentorProfiles } from "../../mocData/mentorData";
 import MentorCard from "@/components/mentor/MentorCard";
 import MentorModal from "@/components/mentor/MentorModal";
+import { useSelector } from "react-redux";
+import { RootState } from "@/RTK/store";
 
 const Ranking: React.FC = () => {
-  const [isAlert, setIsAlert] = useState(true);
   const mentor: mentorResDto[] = mockMentorProfiles;
-  const [isVisible, setIsVisible] = useState(false);
-  const [currMentor, setCurrMentor] = useState<mentorResDto>(
-    {} as mentorResDto
+  const currMentorState = useSelector(
+    (state: RootState) => state.rootReducers.currMentor
   );
-
-  const onCloseAlert = () => {
-    setIsAlert(false);
-    location.href = "/";
-  };
-
-  const onOpen = (data: mentorResDto) => {
-    setIsVisible(true);
-    setCurrMentor(data);
-  };
-
-  const onClose = () => {
-    setIsVisible(false);
-  };
 
   return (
     <>
@@ -40,14 +26,14 @@ const Ranking: React.FC = () => {
             <span className="text-5xl font-bold">Total.</span>
             <div className="flex flex-col justify-center items-center md:m-10">
               <div>
-                <MentorCard data={mentor[3]} onOpen={onOpen} />
+                <MentorCard data={mentor[3]} />
               </div>
               <div className="flex flex-row">
                 <div className="md:m-10">
-                  <MentorCard data={mentor[29]} onOpen={onOpen} />
+                  <MentorCard data={mentor[29]} />
                 </div>
                 <div className="md:m-10">
-                  <MentorCard data={mentor[25]} onOpen={onOpen} />
+                  <MentorCard data={mentor[25]} />
                 </div>
               </div>
             </div>
@@ -61,24 +47,22 @@ const Ranking: React.FC = () => {
             <span className="text-5xl font-bold">Month.</span>
             <div className="flex flex-col justify-center items-center md:m-10">
               <div>
-                <MentorCard data={mentor[25]} onOpen={onOpen} />
+                <MentorCard data={mentor[25]} />
               </div>
               <div className="flex flex-row">
                 <div className="md:m-10">
-                  <MentorCard data={mentor[18]} onOpen={onOpen} />
+                  <MentorCard data={mentor[18]} />
                 </div>
                 <div className="md:m-10">
-                  <MentorCard data={mentor[9]} onOpen={onOpen} />
+                  <MentorCard data={mentor[9]} />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <MentorModal
-          isVisible={isVisible}
-          onClose={onClose}
-          data={currMentor}
-        />
+        {currMentorState.openMentorModal && currMentorState.currMentor.user && (
+          <MentorModal />
+        )}
       </Layout>
     </>
   );
