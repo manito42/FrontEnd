@@ -2,9 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  width: 2px; /* 스크롤바의 너비 설정 */
+  height: 2px; /* 스크롤바의 높이 설정 */
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0); /* 스크롤 트랙의 배경 색상 설정 */
+  border-radius: 8px; /* 스크롤 트랙의 모서리 둥그렇게 처리 */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #cecece; /* 스크롤바의 색상 */
+  border-radius: 8px; /* 스크롤바의 모서리 둥그렇게 처리 */
+}
+
 :root {
   --ti-cursor-color: #6366f1;
-  --ti-cursor-margin-left: 10px;
+  --scroll: 0;
 }
 
 body {
@@ -83,6 +97,28 @@ p {
   }
 }
 
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+}
+
 .btn-project {
   @apply inline-flex text-black dark:text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg;
 }
@@ -118,11 +154,11 @@ p {
 }
 
 .mentor-modal {
-  animation: zoomIn 0.3s ease-In;
+  animation: slideIn 0.3s ease-in;
 }
 
 .close-modal {
-  animation: zoonOut 0.3s ease-out;
+  animation: slideOut 0.3s ease-out;
 }
 
 .connect-modal {
@@ -138,10 +174,15 @@ p {
 .mentor-card {
   @apply rounded-xl w-full
             transition duration-300 transform border border-gray-300
-            hover:scale-105
+            sm:scale-100
+            scale-[0.75]
+            sm:hover:scale-105
             hover:shadow-lg
             dark:border-gray-200/50
             dark:hover:shadow-gray-400/40;
+}
+
+@media (max-width: 640px) {
 }
 
 .enroll-card {
@@ -160,4 +201,61 @@ p {
             hover:shadow-lg
             dark:border-gray-200/50
             dark:hover:shadow-gray-400/40;
+}
+
+/*cssfile */
+
+/* about test */
+
+.about-section {
+  @apply w-full bg-black;
+}
+
+.about-typo {
+  @apply w-full h-[100vh];
+}
+
+.arrow {
+  @apply w-[50vh];
+}
+
+.about-typo-text-big {
+  @apply text-[2.5em] sm:text-[3.5em] md:text-[5em] lg:text-[6em] xl:text-[7em] font-bold text-white w-full relative;
+}
+
+.about-image1 {
+  background-image: url("../../public/pexels-min-an-920534.jpg");
+  @apply bg-contain md:bg-cover w-full h-[100vh] flex flex-wrap items-center p-[3em];
+}
+
+.about-image2 {
+  background-image: url("../../public/pexels-fauxels-3183165.jpg");
+  @apply w-full h-[100vh] items-center p-[3em] bg-cover flex flex-wrap;
+}
+
+.about-image3 {
+  background-image: url("../../public/pexels-pixabay-270557.jpg");
+  @apply w-full h-[100vh] bg-cover p-[3em] flex flex-wrap;
+}
+
+@media (max-width: 767px) {
+  .about-image1 {
+    background-image: none;
+  }
+  .about-image2 {
+    background-image: none;
+  }
+  .about-image3 {
+    background-image: none;
+  }
+}
+
+.arrow {
+  display: none; /* 초기 상태 감추기 */
+}
+
+.show .arrow {
+  display: absolute; /* 보이게 하기 */
+  font-size: 5em;
+  color: white;
 }
