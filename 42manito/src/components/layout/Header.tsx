@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import Link from "next/link";
 import DarkModeToggleButton from "./DarkModeButton";
 import SearchInput from "./SearchInput";
-import { UserResDto } from "@/Types/UserResDto";
 import { Divider, Drawer } from "antd";
 
 const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
-    setVisible(true);
+    setVisible(!visible);
   };
   const onClose = () => {
     setVisible(false);
@@ -18,7 +17,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="text-gray-600 body-font bg-gray-100 dark:bg-gray-900">
+      <header className="text-gray-600 body-font bg-gray-100 dark:bg-gray-900 w-full md:fixed md:z-[9999]">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <Link
             href="/"
@@ -50,7 +49,7 @@ const Header: React.FC = () => {
             <DarkModeToggleButton />
           </nav>
           <Drawer
-            className="dark:bg-slate-600 px-4 fade-in"
+            className="dark:bg-slate-600 px-4 fade-in md:pt-10"
             placement="right"
             closable={false}
             onClose={onClose}
