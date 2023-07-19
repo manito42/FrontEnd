@@ -56,7 +56,7 @@ const ProfileUpdate = ({ onClose, data }: props) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full px-20"
+      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full px-3 md:px-20"
       id="wrapper"
     >
       <section
@@ -71,12 +71,12 @@ const ProfileUpdate = ({ onClose, data }: props) => {
         >
           X
         </button>
-        <div className=" px-4">
+        <div className="">
           <div
-            className="relative flex flex-col break-words bg-white dark:bg-slate-500 w-[60vw] h-[70vh] mb-6 shadow-xl rounded-lg p-10 overflow-y-scroll"
+            className="relative flex flex-col break-words bg-white dark:bg-slate-500 w-[90vw] md:w-[60vw] h-[70vh] mb-6 p-5 shadow-xl rounded-lg overflow-y-scroll"
             ref={scrollContainerRef}
           >
-            <div className="w-full flex justify-end ">
+            <div className="w-full flex justify-end">
               <button
                 className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"

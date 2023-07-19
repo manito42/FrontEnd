@@ -25,6 +25,11 @@ body {
   margin: 0;
 }
 
+body,
+html {
+  overflow-x: hidden;
+}
+
 h1,
 h3,
 h4,
@@ -55,6 +60,10 @@ p {
 
 .bg-primary {
   @apply bg-white dark:bg-slate-800;
+}
+
+.header {
+  @apply text-gray-600 bg-gray-100 dark:bg-gray-900 w-full md:fixed md:z-[9999];
 }
 
 @keyframes fadeIn {
@@ -119,6 +128,36 @@ p {
   }
 }
 
+@keyframes sideLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(10%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sideRight {
+  0% {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-10%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .btn-project {
   @apply inline-flex text-black dark:text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg;
 }
@@ -140,7 +179,7 @@ p {
 }
 
 .app-container {
-  @apply mx-10 md:mx-24 flex flex-wrap min-h-screen p-5 flex-col md:flex-row items-center;
+  @apply mx-10 md:mx-24 flex flex-wrap flex-col md:flex-row items-center;
 }
 
 /* animation */
@@ -182,9 +221,6 @@ p {
             dark:hover:shadow-gray-400/40;
 }
 
-@media (max-width: 640px) {
-}
-
 .enroll-card {
   @apply flex flex-col m-10 rounded-xl p-5
   transition duration-300 transform border border-gray-300
@@ -207,55 +243,207 @@ p {
 
 /* about test */
 
-.about-section {
-  @apply w-full bg-black;
+.about {
+  @apply w-[100vw] h-[100vh] bg-black;
 }
 
-.about-typo {
-  @apply w-full h-[100vh];
+.about-show {
+  @apply flex flex-wrap w-[100vw] h-[100vh] items-center justify-center;
 }
 
-.arrow {
-  @apply w-[50vh];
-}
-
-.about-typo-text-big {
-  @apply text-[2.5em] sm:text-[3.5em] md:text-[5em] lg:text-[6em] xl:text-[7em] font-bold text-white w-full relative;
-}
-
-.about-image1 {
+#about1 {
   background-image: url("../../public/pexels-min-an-920534.jpg");
-  @apply bg-contain md:bg-cover w-full h-[100vh] flex flex-wrap items-center p-[3em];
+  background-repeat: no-repeat;
+  background-size: cover;
+  @apply w-[100vw] h-[100vh];
 }
 
-.about-image2 {
-  background-image: url("../../public/pexels-fauxels-3183165.jpg");
-  @apply w-full h-[100vh] items-center p-[3em] bg-cover flex flex-wrap;
+#about2 {
+  background-color: white;
+  background-image: url("../../public/help-g7d291c5d5_1280.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  @apply w-[100vw] h-[100vh];
+
+  .about-show {
+    @apply relative flex flex-wrap w-[100vw] h-[100vh] justify-end items-center md:items-end;
+
+    .about-title {
+      @apply text-white text-[1.5em] lg:text-[3em] w-[90%] mt-56 md:mt-0 md:w-[50%] font-bold p-[1em];
+    }
+  }
 }
 
-.about-image3 {
+#about3 {
   background-image: url("../../public/pexels-pixabay-270557.jpg");
-  @apply w-full h-[100vh] bg-cover p-[3em] flex flex-wrap;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @apply w-[100vw] h-[100vh];
+
+  .about-show {
+    @apply relative flex w-[100vw] h-[100vh] justify-center items-center;
+  }
+
+  .about-image {
+    @apply w-[40%] rounded-lg object-contain;
+    opacity: 0;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .about-title {
+    @apply text-white text-[1.5em] lg:text-[3em] w-[90%] md:w-[50%] font-bold p-[0.5em] md:p-[1em];
+  }
 }
 
-@media (max-width: 767px) {
-  .about-image1 {
-    background-image: none;
-  }
-  .about-image2 {
-    background-image: none;
-  }
-  .about-image3 {
-    background-image: none;
+#about4 {
+  @apply w-[100vw] h-[100vh];
+
+  .about-show {
+    @apply relative flex flex-wrap w-[100vw] h-[100vh] justify-center items-center;
+
+    .about-title {
+      @apply text-white text-[1.5em] lg:text-[3em] w-[90%] md:w-[50%] font-bold p-[1em];
+    }
+    .about-image {
+      @apply w-[40%] max-h-[80vh] rounded-lg object-contain;
+      opacity: 0;
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
   }
 }
 
-.arrow {
-  display: none; /* 초기 상태 감추기 */
+#about5 {
+  background-image: url("../../public/af920ee4-b05c-4584-a5a1-e24c2d537acd_rw_1920.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @apply w-[100vw] h-[100vh];
+
+  .about-show {
+    @apply relative flex flex-wrap w-[100vw] h-[100vh] justify-end items-end md:items-start;
+
+    .about-title {
+      @apply text-white text-[1.5em] lg:text-[3em] w-[90%] md:w-[50%] font-bold p-[1em] mb-32 md:mb-0;
+    }
+  }
 }
 
-.show .arrow {
-  display: absolute; /* 보이게 하기 */
-  font-size: 5em;
+.about1-content {
+  @apply flex flex-wrap w-[100vw] h-[100vh] justify-center items-center;
+
+  .about-left {
+    @apply flex items-center justify-center p-[1em] max-w-[40vw];
+  }
+
+  .about-right {
+    @apply flex items-center justify-center p-[1em];
+  }
+}
+
+@keyframes fadeInLeft {
+  /* 이곳에 키 프레임을 정의하세요. */
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutLeft {
+  /* 이곳에 키 프레임을 정의하세요. */
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fadeInRight {
+  /* 이곳에 키 프레임을 정의하세요. */
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutRight {
+  /* 이곳에 키 프레임을 정의하세요. */
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.fade-in-left {
+  animation: fadeInLeft 1s ease-in-out forwards;
+}
+
+.fade-in-right {
+  animation: fadeInRight 1s ease-in-out forwards;
+}
+
+.fade-out-left {
+  animation: fadeOutLeft 1s ease-in-out forwards;
+}
+
+.fade-out-right {
+  animation: fadeOutRight 1s ease-in-out forwards;
+}
+
+.image-fade-in-left {
+  animation: fadeInLeft 1s ease-in-out forwards 0.6s;
+}
+
+.image-fade-out-left {
+  animation: fadeOutLeft 1s ease-in-out forwards 0.4s;
+}
+
+.image-fade-in-right {
+  animation: fadeInRight 1s ease-in-out forwards 0.6s;
+}
+
+.image-fade-out-right {
+  animation: fadeOutRight 1s ease-in-out forwards 0.4s;
+}
+
+.typo-action1 {
   color: white;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.typo-action2 {
+  color: white;
+  font-weight: 800;
+  font-size: 3em;
+}
+
+/* 반응형 구성을 위한 미디어 쿼리 */
+@media (min-width: 1024px) {
+  .typo-action1 {
+    font-size: 5em;
+  }
+
+  .typo-action2 {
+    font-size: 6em;
+  }
 }

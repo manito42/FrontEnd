@@ -5,215 +5,188 @@ import React, { useEffect, useRef, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import TypeIt from "typeit-react";
 import AnimatedText from "@/components/typo/AnimationTypo";
+import TypoAction from "typo-action";
+import TypoActionTest from "@/components/about/typoAction";
 
 const About = () => {
-  const opserverRef = useRef<IntersectionObserver | null>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
 
   const setScrollVar = () => {
     const htmlElement = document.documentElement;
-    const percentOfScreenHeightScrolled =
-      htmlElement.scrollTop / htmlElement.clientHeight;
-    console.log(Math.min(percentOfScreenHeightScrolled * 100, 100));
-    htmlElement.style.setProperty(
-      "--scroll",
-      String(Math.min(percentOfScreenHeightScrolled * 100, 100))
-    );
+    const sections = document.querySelectorAll(".about");
+    const scrollY = htmlElement.scrollTop;
+
+    let currentSection = {} as HTMLElement;
+
+    sections.forEach((section: Element) => {
+      const sectionHTMLElement = section as HTMLElement;
+      const sectionTop = sectionHTMLElement.offsetTop;
+      const sectionHeight = sectionHTMLElement.clientHeight;
+
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        currentSection = sectionHTMLElement as HTMLElement;
+      }
+    });
+
+    if (currentSection) {
+      const sectionHeight = currentSection.clientHeight;
+      const sectionTop = currentSection.offsetTop;
+      const scrollInSection = scrollY - sectionTop;
+      const percentOfSectionHeightScrolled =
+        (scrollInSection / sectionHeight) * 100;
+
+      console.log(Math.min(percentOfSectionHeightScrolled, 100));
+      htmlElement.style.setProperty(
+        "--scroll",
+        String(Math.min(percentOfSectionHeightScrolled, 100))
+      );
+    }
   };
+
+  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+    for (let entry of entries) {
+      const section = entry.target as HTMLElement;
+      const targetId = section.id;
+      const targetShowElement = document.querySelector(
+        `.about-show[data-id='${targetId}']`
+      );
+
+      if (!targetShowElement) continue;
+
+      if (entry.isIntersecting) {
+        // Add animations for each section
+        if (targetId === "about2") {
+          const targetTitle = document.querySelector(`#about2 .about-title`);
+          targetTitle?.classList.remove("fade-out-right");
+          targetTitle?.classList.add("fade-in-right");
+        } else if (targetId === "about3") {
+          const targetTitle = document.querySelector(`#about3 .about-title`);
+          targetTitle?.classList.remove("fade-out-left");
+          targetTitle?.classList.add("fade-in-left");
+          const targetImage = document.querySelector(`#about3 .about-image`);
+          targetImage?.classList.remove("image-fade-out-left");
+          targetImage?.classList.add("image-fade-in-left");
+        } else if (targetId === "about4") {
+          const targetTitle = document.querySelector(`#about4 .about-title`);
+          targetTitle?.classList.remove("fade-out-right");
+          targetTitle?.classList.add("fade-in-right");
+          const targetImage = document.querySelector(`#about4 .about-image`);
+          targetImage?.classList.remove("image-fade-out-right");
+          targetImage?.classList.add("image-fade-in-right");
+        } else if (targetId === "about5") {
+          const targetTitle = document.querySelector(`#about5 .about-title`);
+          targetTitle?.classList.remove("fade-out-left");
+          targetTitle?.classList.add("fade-in-left");
+        }
+      } else {
+        // Reverse animations for each section
+        if (targetId === "about2") {
+          const targetTitle = document.querySelector(`#about2 .about-title`);
+          targetTitle?.classList.remove("fade-in-right");
+          targetTitle?.classList.add("fade-out-right");
+        } else if (targetId === "about3") {
+          const targetTitle = document.querySelector(`#about3 .about-title`);
+          targetTitle?.classList.remove("fade-in-left");
+          targetTitle?.classList.add("fade-out-left");
+          const targetImage = document.querySelector(`#about3 .about-image`);
+          targetImage?.classList.remove("image-fade-in-left");
+          targetImage?.classList.add("image-fade-out-left");
+        } else if (targetId === "about4") {
+          const targetTitle = document.querySelector(`#about4 .about-title`);
+          targetTitle?.classList.remove("fade-in-right");
+          targetTitle?.classList.add("fade-out-right");
+          const targetImage = document.querySelector(`#about4 .about-image`);
+          targetImage?.classList.remove("image-fade-in-right");
+          targetImage?.classList.add("image-fade-out-right");
+        } else if (targetId === "about5") {
+          const targetTitle = document.querySelector(`#about5 .about-title`);
+          targetTitle?.classList.remove("fade-in-left");
+          targetTitle?.classList.add("fade-out-left");
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    const aboutObserver = new IntersectionObserver(handleIntersection, {
+      rootMargin: "-150px 0px -150px 0px",
+    });
+
+    setScrollVar();
+
+    observer.current = aboutObserver;
+
+    document.querySelectorAll(".about").forEach((section) => {
+      observer.current?.observe(section);
+    });
+
+    window.addEventListener("scroll", setScrollVar);
+    window.addEventListener("resize", setScrollVar);
+
+    return () => {};
+  }, []);
 
   return (
     <Layout>
       {/* Other elements */}
-      <div className="about-typo">
-        {/* Other elements */}
-        <TypeIt
-          autoStart={false}
-          startDelay={0}
-          loop={false}
-          getAfterInit={(instance) => {
-            instance
-              .type("Hello")
-              .pause(500)
-              .delete(5)
-              .type("World")
-              .pause(500)
-              .go();
-
-            return instance;
-          }}
-        />
+      <div className="about" id="about1">
+        <div className="about-show" data-id="about1">
+          <div className="about1-content">
+            <div className="about-left text-white">
+              <TypoAction
+                text="No man lives alone."
+                className="typo-action1"
+                cursorView={false}
+                speed={80}
+              />
+            </div>
+            <div className="about-right">
+              <TypoAction
+                text="42Manito"
+                className="typo-action2"
+                speed={80}
+                delay={80 * 3}
+                cursorColor="blue"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-      {/* Other elements */}
+      <div className="about" id="about2">
+        <div className="absolute w-[100vw] h-[100vh] opacity-70 bg-gray-700" />
+        <div className="about-show" data-id="about2">
+          <span className="about-title">
+            {`"42마니또에서 나도 가르치는 베테랑, 배우는 초심자가 될 수 있다!
+            42서울의 각양각색 멘토링 경험을 만끽해보세요."`}
+          </span>
+        </div>
+      </div>
+      <div className="about" id="about3">
+        <div className="absolute w-[100vw] h-[100vh] opacity-40 bg-black" />
+        <div className="about-show" data-id="about3">
+          <span className="about-title">{`"42마니또 통해 서로 지식과 취미를 나누며 성장하는 42서울의 정체성을 경험해보세요. 서로의 시너지를 느낄 수 있는 환경에서 더 큰 발전을 이루어 가요."`}</span>
+          <img src="pexels-fauxels-3183165.jpg" className="about-image" />
+        </div>
+      </div>
+      <div className="about" id="about4">
+        <div className="absolute w-[100vw] h-[100vh] opacity-40 bg-black" />
+        <div className="about-show" data-id="about4">
+          <img
+            src="pexels-ricardo-oliveira-13952574.jpg"
+            className="about-image"
+          />
+          <span className="about-title">
+            {`"멘토 신청으로 지식과 열정을 나누세요. 누구나 멘토가 될 수 있습니다!"`}
+          </span>
+        </div>
+      </div>
+      <div className="about" id="about5">
+        <div className="about-show" data-id="about5">
+          <span className="about-title">{`"42마니또와 함께 공부와 취미를 도전하며 도움과 격려를 받아보세요!"`}</span>
+        </div>
+      </div>
     </Layout>
   );
 };
 
 export default About;
-
-// const About = () => {
-//   const observer = useRef<IntersectionObserver | null>(null);
-//   const [isSectionVisible, setIsSectionVisible] = useState<{
-//     [key: string]: boolean;
-//   }>({ Typo1: false });
-
-//   useEffect(() => {
-//     const setScrollVar = () => {
-//       const htmlElement = document.documentElement;
-//       const sections = document.querySelectorAll(".about-section > div");
-//       const scrollY = htmlElement.scrollTop;
-
-//       let currentSection = {} as HTMLElement;
-
-//       sections.forEach((section: Element) => {
-//         const sectionHTMLElement = section as HTMLElement;
-//         const sectionTop = sectionHTMLElement.offsetTop;
-//         const sectionHeight = sectionHTMLElement.clientHeight;
-
-//         if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-//           currentSection = sectionHTMLElement as HTMLElement;
-//         }
-//       });
-
-//       if (currentSection) {
-//         const sectionHeight = currentSection.clientHeight;
-//         const sectionTop = currentSection.offsetTop;
-//         const scrollInSection = scrollY - sectionTop;
-//         const percentOfSectionHeightScrolled =
-//           (scrollInSection / sectionHeight) * 100;
-
-//         console.log(Math.min(percentOfSectionHeightScrolled, 100));
-//         htmlElement.style.setProperty(
-//           "--scroll",
-//           String(Math.min(percentOfSectionHeightScrolled, 100))
-//         );
-//       }
-//     };
-
-//     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-//       for (let i = entries.length - 1; i >= 0; i--) {
-//         const entry = entries[i];
-//         const isVisible = entry.isIntersecting;
-//         setIsSectionVisible((prevState) => {
-//           console.log("Observed entries:", entries);
-//           console.log("Updated isSectionVisible state:", {
-//             ...prevState,
-//             [entry.target.id]: isVisible,
-//           });
-
-//           return {
-//             ...prevState,
-//             [entry.target.id]: isVisible,
-//           };
-//         });
-//         if (entry.isIntersecting) {
-//           document.querySelectorAll("#image-box").forEach((img) => {
-//             img.classList.remove("show");
-//           });
-
-//           const targetHTMLElement = entry.target as HTMLElement;
-//           const img = document.querySelector<HTMLImageElement>(
-//             targetHTMLElement.dataset.imgToShow!
-//           );
-//           img?.classList.add("show");
-//           break;
-//         }
-//       }
-//     };
-
-//     const newObserver = new IntersectionObserver(handleIntersection, {
-//       threshold: 0.5,
-//     });
-//     observer.current = newObserver;
-
-//     window.addEventListener("scroll", setScrollVar);
-//     window.addEventListener("resize", setScrollVar);
-
-//     setScrollVar();
-
-//     document.querySelectorAll("[data-img-to-show]").forEach((section) => {
-//       observer.current?.observe(section);
-//     });
-
-//     return () => {
-//       window.removeEventListener("scroll", setScrollVar);
-//       window.removeEventListener("resize", setScrollVar);
-//       observer.current?.disconnect();
-//     };
-//   }, [setIsSectionVisible]);
-
-//   return (
-//     <Layout>
-//       <div>
-//         <section className="about-section">
-//           <div>
-//             <div
-//               id="image-box"
-//               className="about-image1"
-//               data-img-to-show="#Test1"
-//             >
-//               <span id="Typo-text1" className="about-typo-text-title">
-//                 42Manito
-//               </span>
-//               <span id="Typo-text2" className="about-typo-text-big">
-//                 No man lives alone.
-//               </span>
-//             </div>
-//           </div>
-//           <div id="Typo1" className="about-typo">
-//             <img
-//               src="pexels-ricardo-oliveira-13952574.jpg"
-//               alt="arrow"
-//               className="arrow"
-//             />
-//             <AnimatedText
-//               text={"manito"}
-//               isVisible={isSectionVisible.Typo1}
-//               fontSize={120}
-//               textColor="blue"
-//               speed={50}
-//               delay={500}
-//             />
-//           </div>
-//           <div
-//             id="Test1"
-//             className=" delay-[300ms] duration-[600ms] translate-y-[200px]  text-stone-200"
-//           >
-//             <span className="text-white text-[5em]">안녕하세요</span>
-//           </div>
-
-//           <div
-//             id="image-box"
-//             className="about-image2"
-//             data-img-to-show="#Typo2"
-//           >
-//             <span id="Typo-text3" className="about-typo-text-title">
-//               42Manito
-//             </span>
-//             <span id="Typo-text4" className="about-typo-text-big">
-//               No man lives alone.
-//             </span>
-//           </div>
-//           <div className="w-full h-100vh">
-//             <div id="Typo2" className="about-typo">
-//               <img
-//                 src="pexels-ricardo-oliveira-13952574.jpg"
-//                 alt="arrow"
-//                 className="arrow"
-//               />
-//               {/* Typo 자리*/}
-//             </div>
-//           </div>
-//           <div id="image-box" className="about-image3">
-//             <span id="Typo-text5" className="about-typo-text-title">
-//               42Manito
-//             </span>
-//             <span id="Typo-text6" className="about-typo-text-big">
-//               No man lives alone.
-//             </span>
-//           </div>
-//         </section>
-//       </div>
-//     </Layout>
-//   );
-// };
-
-// export default About;

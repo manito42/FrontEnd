@@ -28,7 +28,7 @@ const Category = () => {
   return (
     <>
       <Layout>
-        <div className="app-container">
+        <div className="app-container min-h-screen">
           <div className="flex flex-wrap w-full justify-center lg:justify-around items-center">
             <div className=" my-16 md:my-3">
               <HappyDevelopAnimation />

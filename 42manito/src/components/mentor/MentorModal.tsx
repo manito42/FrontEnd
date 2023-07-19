@@ -34,12 +34,12 @@ const MentorModal = () => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full p-5 md:p-20 h-[100vh]"
+      className="fixed inset-0 bg-black bg-opacity-75 md:bg-opacity-40 backdrop-blur-sm flex justify-center items-center w-full p-10 md:p-20 h-[100vh]"
       id="wrapper"
       onClick={handleClose}
     >
       <section
-        className={`relative py-16 md:mt-24 mentor-modal md:top-16 ${
+        className={`relative py-16 md:mt-24 mentor-modal top-10 md:top-16 ${
           currMentorState.zoomOut && "close-modal"
         }`}
         onClick={(e) => e.stopPropagation()}

@@ -37,7 +37,7 @@ const Profile = () => {
   // TODO: 멘토가 아니라면  멘토 등록 알람 띄우기
   return (
     <Layout>
-      <div className="app-container mt-20 flex flex-wrap">
+      <div className="app-container pt-32 min-h-screen">
         {isProfileOpen ? (
           <div className="">
             <div className="w-full flex justify-end ">
@@ -107,7 +107,7 @@ const Profile = () => {
               </div>
             </div>
             <div className="grid grid-rows-2">
-              <div className="grid gird-rows-2  row-span-6 lg:grid-cols-2 justify-center w-full my-3 md:my-28 max-h-[40vh]">
+              <div className="grid gird-rows-2 lg:grid-cols-2 justify-center w-full my-3 md:my-28 max-h-[40vh]">
                 <div className="flex flex-col justify-center items-center ">
                   <span className="text-3xl font-bold text-slate-800 dark:text-slate-200 h-[5vh]">
                     카테고리.
@@ -134,7 +134,7 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <div className="row-span-6 ">
+              <div className="">
                 <Enroll />
               </div>
             </div>
