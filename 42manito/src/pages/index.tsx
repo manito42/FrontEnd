@@ -1,21 +1,20 @@
 import Layout from "../components/layout/Layout";
 import { useEffect, useState } from "react";
-import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MentorCard from "@/components/mentor/MentorCard";
 import MentorModal from "@/components/mentor/MentorModal";
 import { Divider } from "antd";
 import Typo from "@/components/home/Typo";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 import { useGetHomeQuery } from "@/RTK/Apis/Home";
-import { isAllOf } from "@reduxjs/toolkit";
 
 export default function Home() {
   const currMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
 
   const {
     data: mentorCardData,
@@ -30,10 +29,15 @@ export default function Home() {
 
   const fetchMoreData = () => {
     if (mentorCardData) {
-      if (mentorCardData?.length % 12 !== 0) {
+      if (mentorCardData.length % 12 !== 0) {
+        setHasMore(false);
         return;
       }
       setPage(page + 1);
+      if (mentorCardError) {
+        alert("데이터를 불러오는데 실패했습니다.");
+        return;
+      }
     }
   };
 
@@ -52,7 +56,7 @@ export default function Home() {
           <InfiniteScroll
             dataLength={mentorCardData.length}
             next={fetchMoreData}
-            hasMore={mentorCardData.length % 12 !== 0}
+            hasMore={hasMore}
             loader={
               <div
                 className="example"
@@ -67,7 +71,7 @@ export default function Home() {
             <div className="my-[20vh]" />
             <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 p-5 w-[80vw]">
               {mentorCardData.map((mentor) => (
-                <MentorCard data={mentor} key={mentor.mentorProfile.id} />
+                <MentorCard data={mentor} key={mentor.id} />
               ))}
             </div>
           </InfiniteScroll>
