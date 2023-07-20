@@ -28,4 +28,14 @@ customAxios.interceptors.request.use(
   }
 );
 
+customAxios.interceptors.response.use((response) => {
+  // 서버로부터 응답을 수신한 경우 토큰 발급에 대한 특정 조건별로 아래 로직을 추가
+  const accessToken = response.data.accessToken;
+  if (accessToken) {
+    localStorage.setItem("accessToken", accessToken);
+  }
+  // 응답을 그대로 반환
+  return response;
+});
+
 export default customAxios;
