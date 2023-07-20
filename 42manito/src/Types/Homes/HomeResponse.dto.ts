@@ -1,23 +1,19 @@
-import { mentorResDto } from "../Mentor/MentorProfileDto";
+import { CategoriesResponseDto } from "../Categories/CategoriesResponse.dto";
+import { HashtagResponseDto } from "../Hashtags/HashtagResponse.dto";
 
 export interface HomeResponseDto {
-  nickname: string;
-  profileImage: string;
-  mentorProfile: {
+  id: number;
+  shortDescription: string;
+  description: string;
+  isHide: boolean;
+  mentoringCount: number;
+  createdAt: string;
+  updatedAt: string;
+  hashtags: HashtagResponseDto[];
+  categories: CategoriesResponseDto[];
+  user: {
     id: number;
-    shortDescription: string;
-    description: string;
-    isHide: boolean;
-    mentoringCount: number;
-    createdAt: string;
-    updatedAt: string;
-    hashtags: {
-      id: number;
-      name: string;
-    }[];
-    categories: {
-      id: number;
-      name: string;
-    }[];
+    nickname: string;
+    profileImage: string;
   };
 }
