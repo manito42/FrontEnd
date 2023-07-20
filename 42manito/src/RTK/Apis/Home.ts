@@ -14,8 +14,11 @@ export const homeApi = createApi({
         url: `/home?take=${args.take}&page=${args.page}`,
         method: "GET",
       }),
-      transformResponse: (res: HomeResponseDto[]) => {
-        return res;
+      merge: (prev, next) => {
+        prev.push(...next);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
       },
     }),
   }),
