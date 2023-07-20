@@ -1,3 +1,5 @@
+import { HomeGetAllDto } from "@/Types/Homes/HomeGetAll.dto";
+import { HomeResponseDto } from "@/Types/Homes/HomeResponse.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
 
@@ -7,11 +9,16 @@ export const homeApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_DEV_URL}`,
   }),
   endpoints: (builder) => ({
-    getHome: builder.query({
-      query: () => ({
-        url: `/home`,
+    getHome: builder.query<HomeResponseDto[], HomeGetAllDto>({
+      query: (args: HomeGetAllDto) => ({
+        url: `/home?take=${args.take}&page=${args.page}`,
         method: "GET",
       }),
+      transformResponse: (res: HomeResponseDto[]) => {
+        return res;
+      },
     }),
   }),
 });
+
+export const { useGetHomeQuery } = homeApi;
