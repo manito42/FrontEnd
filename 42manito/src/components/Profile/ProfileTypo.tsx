@@ -30,23 +30,27 @@ const ProfileTypo = () => {
           >
             <div className="flex flex-wrap ">
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {"내 "}
                 </span>
               </div>
               <div>
-                <span className="text-7xl text-pink-600">{TypoPoint1}</span>
+                <span className="text-4xl sm:text-5xl lg:text-7xl text-pink-600">
+                  {TypoPoint1}
+                </span>
               </div>
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {"과 "}
                 </span>
               </div>
               <div>
-                <span className="text-7xl text-pink-600">{TypoPoint2}</span>
+                <span className="text-4xl sm:text-5xl lg:text-7xl text-pink-600">
+                  {TypoPoint2}
+                </span>
               </div>
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {", "}
                 </span>
               </div>
@@ -65,31 +69,37 @@ const ProfileTypo = () => {
           >
             <div className="flex flex-wrap ">
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {" 그러면서 "}
                 </span>
               </div>
               <div>
-                <span className="text-8xl text-indigo-600">{TypoPoint3}</span>
+                <span className="text-4xl sm:text-6xl lg:text-8xl text-indigo-600">
+                  {TypoPoint3}
+                </span>
               </div>
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {"을 "}
                 </span>
               </div>
               <div>
-                <span className="text-7xl text-pink-600">{TypoPoint4}</span>
+                <span className="text-4xl sm:text-5xl lg:text-7xl text-pink-600">
+                  {TypoPoint4}
+                </span>
               </div>
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {"하고 싶다면 "}
                 </span>
               </div>
               <div>
-                <span className="text-8xl text-indigo-600">{TypoPoint5}</span>
+                <span className="text-4xl sm:text-6xl lg:text-8xl text-indigo-600">
+                  {TypoPoint5}
+                </span>
               </div>
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {"!"}
                 </span>
               </div>
@@ -108,28 +118,45 @@ const ProfileTypo = () => {
           >
             <div className="flex flex-wrap ">
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {"너도 누군가의 "}
                 </span>
               </div>
               <div>
-                <span className="text-7xl text-pink-600">{TypoPoint6}</span>
+                <span className="text-4xl sm:text-5xl lg:text-7xl text-pink-600">
+                  {TypoPoint6}
+                </span>
               </div>
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {"로 함께  "}
                 </span>
               </div>
               <div>
-                <span className="text-8xl text-indigo-600">{TypoPoint7}</span>
+                <span className="text-4xl sm:text-6xl lg:text-8xl text-indigo-600">
+                  {TypoPoint7}
+                </span>
               </div>
               <div>
-                <span className="text-6xl text-slate-800 dark:text-slate-200">
+                <span className="text-3xl sm:text-4xl lg:text-6xl text-slate-800 dark:text-slate-200">
                   {"할 수 있다."}
                 </span>
               </div>
             </div>
           </TypeIt>
+        </div>
+        <div className="w-full flex justify-end">
+          <div className="py-6 px-3 mt-32 sm:mt-0">
+            <button
+              className="text-blue-600 dark:text-white font-bold hover:scale-x-110 hover:scale-y-110 border-[rgba(255,255,255,100)] hover:border-b-[1px] text-5xl"
+              type="button"
+              onClick={() => {}}
+            >
+              <span className="text-4xl sm:text-5xl lg:text-7xl">
+                신청하기 →
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
