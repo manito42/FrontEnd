@@ -5,7 +5,7 @@ import { createApi } from "@reduxjs/toolkit/dist/query/react";
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: BaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_MOC_URL}`,
+    baseUrl: `${process.env.NEXT_PUBLIC_DEV_URL}`,
   }),
   endpoints: (builder) => ({
     getUser: builder.query<UserDefaultDto, { id: number }>({
