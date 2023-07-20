@@ -1,13 +1,16 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Link from "next/link";
 import DarkModeToggleButton from "./DarkModeButton";
 import SearchInput from "./SearchInput";
 import { Divider, Drawer } from "antd";
 import { useLoginMutation } from "@/RTK/Apis/Auth";
+import { useAppDispatch } from "@/RTK/store";
+import { GlobalSlice } from "@/RTK/Slices/Global";
 
 const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const [login] = useLoginMutation();
+  const [login, { data }] = useLoginMutation();
+  const dispatch = useAppDispatch();
 
   const showDrawer = () => {
     setVisible(!visible);
@@ -20,6 +23,14 @@ const Header: React.FC = () => {
   const testLogin = () => {
     login();
   };
+
+  useEffect(() => {
+    if (data) {
+      dispatch(
+        GlobalSlice.actions.signIn({ accessToken: data.accessToken, uId: 1 })
+      );
+    }
+  }, [data?.accessToken]);
 
   return (
     <>
