@@ -4,8 +4,13 @@ import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 import EnrollCard from "./components/ErollCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TypeIt from "typeit-react";
+import ProfileTypo from "../Profile/ProfileTypo";
 
-const Enroll = () => {
+interface props {
+  viewProfileTypo: boolean;
+}
+
+const Enroll = ({ viewProfileTypo }: props) => {
   const reservation: ReservationGetDto[] = mocReservation;
 
   const mentor: ReservationGetDto[] = reservation.filter(
@@ -21,9 +26,9 @@ const Enroll = () => {
   );
 
   return (
-    <div className="my-16 w-full h-[40vh]">
+    <div className="my-16 w-full">
       <div className="w-[100%] dark:bg-white/40 bg-black/40 h-[1px]" />
-      <div className="grid grid-rows-2 lg:grid-cols-2 gap-y-6 lg:gap-y-0 items-center my-16 md:flex-row flex-col">
+      <div className="grid grid-rows-2 xl:grid-cols-2 gap-y-6 xl:gap-y-0 items-center my-16 xl:max-h-[50vh] md:mt-32 lg:-mb-32">
         <div className="flex-row justify-center w-full lg:flex items-center">
           <div className="text-4xl">
             <TypeIt
@@ -45,13 +50,13 @@ const Enroll = () => {
               }}
             />
           </div>
-          <div className="overflow-y-auto w-full mx-10 h-[30vh]">
+          <div className="overflow-y-auto w-full mx-10 max-h-[50vh]">
             {mentor.map((data) => (
               <EnrollCard data={data} key={data.id} isMentor={true} />
             ))}
           </div>
         </div>
-        <div className="flex-row justify-center w-full lg:flex items-center ">
+        <div className="flex-row justify-center w-full lg:flex items-center mt-16 lg:mt-0">
           <div className="text-4xl">
             <TypeIt
               options={{
@@ -72,13 +77,14 @@ const Enroll = () => {
               }}
             />
           </div>
-          <div className="overflow-y-auto w-full mx-10 h-[30vh]">
+          <div className="overflow-y-auto w-full mx-10 max-h-[50vh]">
             {mentee.map((data) => (
               <EnrollCard data={data} key={data.id} isMentor={false} />
             ))}
           </div>
         </div>
       </div>
+      {!viewProfileTypo && <ProfileTypo />}
     </div>
   );
 };
