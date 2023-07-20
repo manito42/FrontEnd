@@ -1,6 +1,5 @@
 import Layout from "../components/layout/Layout";
 import { useEffect, useState } from "react";
-import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import { mockMentorProfiles } from "../../mocData/mentorData";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MentorCard from "@/components/mentor/MentorCard";
@@ -9,31 +8,33 @@ import { Divider } from "antd";
 import Typo from "@/components/home/Typo";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
+import { useGetHomeQuery } from "@/RTK/Apis/Home";
+import { isAllOf } from "@reduxjs/toolkit";
 
 export default function Home() {
   const currMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
-
-  const [mentor, setMentor] = useState<mentorResDto[]>(
-    mockMentorProfiles.slice(0, 12)
-  );
   const [page, setPage] = useState(1);
 
-  const fetchMoreData = () => {
-    setPage(page + 1);
-    if (mentor.length >= mockMentorProfiles.length) {
-      return; // 모든 데이터를 불러왔으면 추가로 더 불러오지 않음
-    }
-    const nextCards = mockMentorProfiles.slice(
-      mentor.length,
-      mentor.length + 12
-    );
-    setMentor([...mentor, ...nextCards]);
-  };
+  const {
+    data: mentorCardData,
+    isError: mentorCardError,
+    isLoading: mentorCardLoading,
+    refetch,
+  } = useGetHomeQuery({ take: 12, page: page });
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const fetchMoreData = () => {
+    if (mentorCardData) {
+      if (mentorCardData?.length % 12 !== 0) {
+        return;
+      }
+      setPage(page + 1);
+    }
   };
 
   useEffect(() => {
@@ -47,28 +48,30 @@ export default function Home() {
   return (
     <Layout>
       <div className="app-container">
-        <InfiniteScroll
-          dataLength={mentor.length}
-          next={fetchMoreData}
-          hasMore={mentor.length < mockMentorProfiles.length}
-          loader={
-            <div
-              className="example"
-              style={{ verticalAlign: "middle", alignContent: "center" }}
-            >
-              로딩중.
+        {mentorCardData && !mentorCardLoading && (
+          <InfiniteScroll
+            dataLength={mentorCardData.length}
+            next={fetchMoreData}
+            hasMore={mentorCardData.length % 12 !== 0}
+            loader={
+              <div
+                className="example"
+                style={{ verticalAlign: "middle", alignContent: "center" }}
+              >
+                로딩중.
+              </div>
+            }
+          >
+            <Typo />
+            <Divider className="dark:bg-slate-400 bg-slate-500 " />
+            <div className="my-[20vh]" />
+            <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 p-5 w-[80vw]">
+              {mentorCardData.map((mentor) => (
+                <MentorCard data={mentor} key={mentor.mentorProfile.id} />
+              ))}
             </div>
-          }
-        >
-          <Typo />
-          <Divider className="dark:bg-slate-400 bg-slate-500 " />
-          <div className="my-[20vh]" />
-          <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 p-5 w-[80vw]">
-            {mentor.map((mentor) => (
-              <MentorCard data={mentor} key={mentor.id} />
-            ))}
-          </div>
-        </InfiniteScroll>
+          </InfiniteScroll>
+        )}
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />
         )}
