@@ -7,6 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Row } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
+import { useGetCategoryQuery } from "@/RTK/Apis/Category";
 
 interface props {
   onClose: () => void;
@@ -16,50 +17,31 @@ interface props {
 
 const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
   const [zoomOut, setZoomOut] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const currMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
 
-  const [page, setPage] = useState(1);
-
-  const getCategoryMentors = (id: number): mentorResDto[] => {
-    return mockMentorProfiles.filter(
-      (mentor) => mentor.categories[0].id === id
-    );
-  };
-
-  const initialMentors = getCategoryMentors(categoryId);
-
-  const [mentorData, setMentorData] = useState<mentorResDto[]>(initialMentors);
-  const [mentor, setMentor] = useState<mentorResDto[]>(
-    initialMentors.slice(0, 12)
-  );
-
-  useEffect(() => {
-    const newMentors = getCategoryMentors(categoryId);
-    setPage(1);
-    setMentorData(newMentors);
-    setMentor(newMentors.slice(0, 12));
-  }, [categoryId]);
+  const {
+    data: mentorCardData,
+    isError: mentorCardError,
+    isLoading: mentorCardLoading,
+    refetch,
+  } = useGetCategoryQuery({ take: 12, page: page, category_id: categoryId });
 
   if (!isVisible) return null;
 
   const fetchMoreData = () => {
-    console.log(page);
-    setPage(page + 1);
-    if (mentor.length >= mentorData.length) {
-      return; // 모든 데이터를 불러왔으면 추가로 더 불러오지 않음
+    if (mentorCardData) {
+      if (mentorCardData.length % 12 !== 0) {
+        setHasMore(false);
+        return;
+      }
     }
-    const nextCards = mentorData.slice(mentor.length, mentor.length + 12);
-    setMentor([...mentor, ...nextCards]);
   };
-
-  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.currentTarget.id === "wrapper") handleZoomOut();
-  };
-
   const handleZoomOut = () => {
     setZoomOut(true);
     setTimeout(() => {
@@ -97,23 +79,25 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
             className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[90vw] h-[80vh] mb-6 shadow-xl rounded-lg p-10 overflow-y-scroll"
             ref={scrollContainerRef}
           >
-            <InfiniteScroll
-              dataLength={mentor.length}
-              next={fetchMoreData}
-              hasMore={mentor.length < mentorData.length}
-              loader={<h4>로딩중...</h4>}
-              endMessage={
-                <p style={{ textAlign: "center" }}>
-                  <strong>모든 데이터를 불러왔습니다.</strong>
-                </p>
-              }
-            >
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-5">
-                {mentor.map((mentor) => (
-                  <MentorCard data={mentor} key={mentor.id} />
-                ))}
-              </div>
-            </InfiniteScroll>
+            {mentorCardData && !mentorCardLoading && (
+              <InfiniteScroll
+                dataLength={mentorCardData.length}
+                next={fetchMoreData}
+                hasMore={hasMore}
+                loader={<h4>로딩중...</h4>}
+                endMessage={
+                  <p style={{ textAlign: "center" }}>
+                    <strong>모든 데이터를 불러왔습니다.</strong>
+                  </p>
+                }
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-5">
+                  {mentorCardData.map((mentor) => (
+                    <MentorCard data={mentor} key={mentor.id} />
+                  ))}
+                </div>
+              </InfiniteScroll>
+            )}
           </div>
         </div>
       </section>
