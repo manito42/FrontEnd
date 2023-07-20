@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 
 const Profile = () => {
-  const [isProfileOpen, setIsProfileOpen] = useState(true);
   const [isProfileUpdateOpen, setIsProfileUpdateOpen] = useState(false);
   const ownerId = useSelector(
     (state: RootState) => state.rootReducers.global.uId
@@ -33,16 +32,6 @@ const Profile = () => {
   }, []);
 
   useEffect(() => {
-    if (OwnerData) {
-      if (OwnerData.isMentor === true) {
-        setIsProfileOpen(true);
-      } else {
-        setIsProfileOpen(false);
-      }
-    }
-  }, [OwnerData?.isMentor]);
-
-  useEffect(() => {
     if (isProfileUpdateOpen) {
       document.body.style.overflow = "hidden";
     } else {
@@ -56,7 +45,7 @@ const Profile = () => {
     <Layout>
       {OwnerData && !OwnerLoading && (
         <div className="app-container pt-32 min-h-screen">
-          {isProfileOpen ? (
+          {OwnerData.isMentor ? (
             <div className="">
               <div className="w-full flex justify-end ">
                 <button
@@ -153,26 +142,12 @@ const Profile = () => {
                     </div>
                   </div>
                 </div>
-                <div className="">
-                  <Enroll />
-                </div>
+                <Enroll viewProfileTypo={OwnerData.isMentor} />
               </div>
             </div>
           ) : (
             <div>
-              <Enroll />
-              <ProfileTypo />
-              <div className="w-full flex justify-end">
-                <div className="py-6 px-3 mt-32 sm:mt-0">
-                  <button
-                    className="text-blue-600 dark:text-white font-bold hover:scale-x-110 hover:scale-y-110 border-[rgba(255,255,255,100)] hover:border-b-[1px] text-5xl"
-                    type="button"
-                    onClick={() => {}}
-                  >
-                    <span>신청하기 →</span>
-                  </button>
-                </div>
-              </div>
+              <Enroll viewProfileTypo={OwnerData?.isMentor} />
             </div>
           )}
         </div>
