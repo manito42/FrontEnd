@@ -11,12 +11,17 @@ export const categoryApi = createApi({
   endpoints: (builder) => ({
     getCategory: builder.query<HomeResponseDto[], HomeGetCategoryDto>({
       query: (args: HomeGetCategoryDto) => ({
-        url: `/category?take=${args.take}&page=${args.page}&category_id=${args.category_id}`,
+        url: `/home/${args.category_id}?take=${args.take}&page=${args.page}`,
         method: "GET",
       }),
-      transformResponse: (res: HomeResponseDto[]) => {
-        return res;
+      merge: (prev, next) => {
+        prev.push(...next);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
       },
     }),
   }),
 });
+
+export const { useGetCategoryQuery } = categoryApi;
