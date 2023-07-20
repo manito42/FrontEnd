@@ -3,9 +3,11 @@ import Link from "next/link";
 import DarkModeToggleButton from "./DarkModeButton";
 import SearchInput from "./SearchInput";
 import { Divider, Drawer } from "antd";
+import { useLoginMutation } from "@/RTK/Apis/Auth";
 
 const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
+  const [login] = useLoginMutation();
 
   const showDrawer = () => {
     setVisible(!visible);
@@ -14,6 +16,10 @@ const Header: React.FC = () => {
     setVisible(false);
   };
   // TODO : Login을 하면 isMentor 확인 후 false면 프로필 버튼 disabled
+
+  const testLogin = () => {
+    login();
+  };
 
   return (
     <>
@@ -77,6 +83,9 @@ const Header: React.FC = () => {
             <Link href="/SignOut">
               <p className="text-xl px-3 m-5 btn-drawer">Sign Out.</p>
             </Link>
+            <div id="testLogin" onClick={testLogin}>
+              임시로그인
+            </div>
           </Drawer>
         </div>
       </header>
