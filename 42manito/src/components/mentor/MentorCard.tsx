@@ -1,17 +1,17 @@
-import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import React, { memo, useState } from "react";
 import Image from "next/image";
 import { useAppDispatch } from "@/RTK/store";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 
 interface props {
-  data: mentorResDto;
+  data: MentorProfileDto;
 }
 
 const MentorCard = ({ data }: props) => {
   const dispatch = useAppDispatch();
 
-  const openMentorModal = (data: mentorResDto) => {
+  const openMentorModal = (data: MentorProfileDto) => {
     dispatch(CurrMentorSlice.actions.setMentor(data));
     dispatch(CurrMentorSlice.actions.openMentorModal());
   };
@@ -28,12 +28,17 @@ const MentorCard = ({ data }: props) => {
           quality={100}
         />
         <div
-          className="flex-col justify-center items-center p-2 md:p-5"
+          className="w-full flex-col justify-center items-center p-2 md:p-5]"
           id="MentorCardContent"
         >
-          <h2 className="text-xl py-3 font-bold mt-5">{data.user.nickname}</h2>
-          <h3 className="text-l py-3">{data.shortDescription}</h3>
-
+          <div className="w-full relative my-3">
+            <span className="text-xl font-bold truncate">
+              {data.user.nickname}
+            </span>
+          </div>
+          <div>
+            <span className="text-l py-3">{data.shortDescription}</span>
+          </div>
           <div className="flex-wrap justify-center items-center py-3">
             {data.hashtags.map((aTag) => (
               <span className="text-blue-500 text-sm" key={aTag.id}>

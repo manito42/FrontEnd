@@ -1,6 +1,5 @@
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { RootState, useAppDispatch } from "@/RTK/store";
-import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import Image from "next/image";
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
@@ -34,12 +33,12 @@ const MentorModal = () => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-75 md:bg-opacity-40 backdrop-blur-sm flex justify-center items-center w-full p-10 md:p-20 h-[100vh]"
+      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-[100vw] px-5 md:px-20 h-[100vh]"
       id="wrapper"
       onClick={handleClose}
     >
       <section
-        className={`relative py-16 md:mt-24 mentor-modal top-10 md:top-16 ${
+        className={`relative py-16 mentor-modal h-[100vh] top-24 md:top-32 ${
           currMentorState.zoomOut && "close-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -61,7 +60,7 @@ const MentorModal = () => {
         </div>
         <div className="px-4">
           <div
-            className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[90vw] h-[80vh] mb-6 shadow-xl rounded-lg p-10 overflow-y-auto"
+            className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[95vw] md:w-[90vw] h-[50vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overflow-y-scroll"
             id="mentorModal"
           >
             <div className="px-6">
@@ -79,7 +78,7 @@ const MentorModal = () => {
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12 px-4 lg:order-1" id="Count">
-                  <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                  {/* <div className="flex justify-center py-4 lg:pt-4 pt-8">
                     <div className="mr-4 p-3 text-center">
                       <h1 className="text-xl font-bold block uppercase tracking-wide">
                         19
@@ -92,7 +91,7 @@ const MentorModal = () => {
                       </h1>
                       <h1 className="text-sm text-blueGray-400">Total.</h1>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="text-center mt-28">
@@ -104,16 +103,6 @@ const MentorModal = () => {
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-9/12 px-4">
                     <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                      {currMentorState.currMentor.description}
-                      {currMentorState.currMentor.description}
-                      {currMentorState.currMentor.description}
-                      {currMentorState.currMentor.description}
-                      {currMentorState.currMentor.description}
-                      {currMentorState.currMentor.description}
-                      {currMentorState.currMentor.description}
-                      {currMentorState.currMentor.description}
-                      {currMentorState.currMentor.description}
-                      {currMentorState.currMentor.description}
                       {currMentorState.currMentor.description}
                     </p>
                   </div>
