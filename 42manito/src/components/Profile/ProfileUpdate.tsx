@@ -1,6 +1,3 @@
-import { CategoryDto } from "@/Types/Categories/CategoryDto";
-import { HashtagPostDto } from "@/Types/Hashtag/HashtagDto";
-import { UserResDto } from "@/Types/User/UserResDto";
 import React, { memo, useEffect, useReducer, useRef, useState } from "react";
 import { Input } from "antd";
 import HashtagCard from "./HashtagCard";
@@ -8,10 +5,11 @@ import ConnectModal from "../conect/ConnectModal";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { useSelector } from "react-redux";
 import { ProfileUpdateSlice } from "@/RTK/Slices/ProfileUpdate";
+import { UserDefaultDto } from "@/Types/Users/UserDefault.dto";
 
 interface props {
   onClose: () => void;
-  data: UserResDto;
+  data: UserDefaultDto;
 }
 
 const { TextArea } = Input;
