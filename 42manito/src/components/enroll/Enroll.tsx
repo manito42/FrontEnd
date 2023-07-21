@@ -26,8 +26,8 @@ const Enroll = ({ viewProfileTypo }: props) => {
   );
 
   return (
-    <div className="my-16 w-full">
-      <div className="w-[100%] dark:bg-white/40 bg-black/40 h-[1px]" />
+    <div className="w-[90vw] md:w-full">
+      <div className="w-full dark:bg-white/40 bg-black/40 h-[1px]" />
       <div className="grid grid-rows-2 xl:grid-cols-2 gap-y-6 xl:gap-y-0 items-center my-16 xl:max-h-[50vh] md:mt-32 lg:-mb-32">
         <div className="flex-row justify-center w-full lg:flex items-center">
           <div className="text-4xl">
@@ -84,7 +84,7 @@ const Enroll = ({ viewProfileTypo }: props) => {
           </div>
         </div>
       </div>
-      {!viewProfileTypo && <ProfileTypo />}
+      <div className="">{!viewProfileTypo && <ProfileTypo />}</div>
     </div>
   );
 };
