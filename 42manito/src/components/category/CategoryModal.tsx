@@ -1,10 +1,7 @@
-import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import React, { useEffect, useRef, useState } from "react";
-import { mockMentorProfiles } from "../../../mocData/mentorData";
 import MentorCard from "../mentor/MentorCard";
 import MentorModal from "../mentor/MentorModal";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Row } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 import { useGetCategoryQuery } from "@/RTK/Apis/Category";
@@ -21,10 +18,6 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
   const [page, setPage] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const currMentorState = useSelector(
-    (state: RootState) => state.rootReducers.currMentor
-  );
-
   const {
     data: mentorCardData,
     isError: mentorCardError,
@@ -32,7 +25,12 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
     refetch,
   } = useGetCategoryQuery({ take: 12, page: page, category_id: categoryId });
 
-  if (!isVisible) return null;
+  useEffect(() => {
+    return () => {
+      setPage(0);
+      setHasMore(true);
+    };
+  }, []);
 
   const fetchMoreData = () => {
     if (mentorCardData) {
@@ -57,9 +55,11 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
     }
   };
 
+  if (!isVisible) return null;
+
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-full px-5 md:px-20 h-[100vh]"
+      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-[100vw] px-5 md:px-20 h-[100vh]"
       id="wrapper"
     >
       <section
@@ -76,7 +76,7 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
         </button>
         <div className="px-4">
           <div
-            className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[90vw] h-[80vh] mb-6 shadow-xl rounded-lg p-10 overflow-y-scroll"
+            className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[95vw] md:w-[90vw] h-[80vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overflow-y-scroll"
             ref={scrollContainerRef}
           >
             {mentorCardData && !mentorCardLoading && (
@@ -91,7 +91,7 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
                   </p>
                 }
               >
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-5">
+                <div className="w-[90vw] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 md:gap-10 p-0 md:p-5 md:w-[80vw]">
                   {mentorCardData.map((mentor) => (
                     <MentorCard data={mentor} key={mentor.id} />
                   ))}
@@ -101,9 +101,6 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
           </div>
         </div>
       </section>
-      {currMentorState.openMentorModal && currMentorState.currMentor.user && (
-        <MentorModal />
-      )}
       <button
         onClick={scrollToTop}
         className="fixed bottom-5 right-5 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold"
