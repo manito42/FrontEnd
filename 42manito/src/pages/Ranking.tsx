@@ -1,5 +1,4 @@
 import Layout from "@/components/layout/Layout";
-import InfoAlert from "@/components/alert/InfoAlert";
 import React, { useState } from "react";
 import { Divider } from "antd";
 import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
