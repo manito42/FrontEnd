@@ -15,7 +15,21 @@ export const categoryApi = createApi({
         method: "GET",
       }),
       merge: (prev, next) => {
-        prev.push(...next);
+        // 중복을 제거하기 위해 id 기반으로 데이터를 결합
+        const merged = [...prev, ...next].reduce<HomeResponseDto[]>(
+          (accumulator, item) => {
+            const isExisting = accumulator.find((i) => i.id === item.id);
+
+            if (!isExisting) {
+              accumulator.push(item);
+            }
+
+            return accumulator;
+          },
+          []
+        );
+
+        return merged;
       },
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;

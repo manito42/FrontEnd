@@ -10,9 +10,17 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation<TestAuthResDto, void>({
       query: () => ({
-        url: `/dev/login/1`,
+        url: `/dev/login/5`,
         method: "GET",
       }),
+      transformResponse: (response: TestAuthResDto) => {
+        const accessToken = response.accessToken;
+        if (accessToken) {
+          localStorage.removeItem("accessToken");
+          localStorage.setItem("accessToken", accessToken);
+        }
+        return response;
+      },
     }),
   }),
 });

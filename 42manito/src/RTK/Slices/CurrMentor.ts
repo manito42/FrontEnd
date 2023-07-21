@@ -1,15 +1,15 @@
-import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
+import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface currMentorType {
-  currMentor: mentorResDto;
+  currMentor: MentorProfileDto;
   openMentorModal: boolean;
   zoomOut: boolean;
   openConnectModal: boolean;
 }
 
 const InitialState: currMentorType = {
-  currMentor: {} as mentorResDto,
+  currMentor: {} as MentorProfileDto,
   openMentorModal: false,
   zoomOut: false,
   openConnectModal: false,
@@ -19,7 +19,7 @@ export const CurrMentorSlice = createSlice({
   name: "CurrMentor",
   initialState: InitialState,
   reducers: {
-    setMentor(state, action: PayloadAction<mentorResDto>) {
+    setMentor(state, action: PayloadAction<MentorProfileDto>) {
       state.currMentor = action.payload;
     },
     openMentorModal(state) {

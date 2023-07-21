@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface globalState {
-  uId: number | undefined;
-  accessToken: string | undefined;
+  uId: number;
+  accessToken: string;
 }
 
 const InitialState: globalState = {
-  uId: undefined,
-  accessToken: undefined,
+  uId: 0,
+  accessToken: "",
 };
 
 export const GlobalSlice = createSlice({
@@ -23,3 +23,5 @@ export const GlobalSlice = createSlice({
     },
   },
 });
+
+export const { signIn, signOut } = GlobalSlice.actions;

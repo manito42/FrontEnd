@@ -1,5 +1,5 @@
 import { BaseQueryFn } from "@reduxjs/toolkit/dist/query/react";
-import { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import customAxios from "./CustomAxios";
 
 export const BaseQuery =
@@ -17,11 +17,16 @@ export const BaseQuery =
   > =>
   async ({ url, method, data, params }) => {
     try {
-      const result = await customAxios({
+      const accessToken = localStorage.getItem("accessToken");
+      const result = await axios({
         url: baseUrl + url,
         method,
         data,
         params,
+        headers: {
+          ...(accessToken && { Authorization: `Bearer ${accessToken}` }), // 헤더에 토큰을 추가합니다.
+        },
+        timeout: 5000,
       });
       return { data: result.data };
     } catch (axiosError) {
