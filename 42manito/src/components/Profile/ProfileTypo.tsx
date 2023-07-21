@@ -1,4 +1,8 @@
-import React from "react";
+import { useGetUserQuery, useSetMentorAcceptMutation } from "@/RTK/Apis/User";
+import { RootState } from "@/RTK/store";
+import { skip } from "node:test";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import TypeIt from "typeit-react";
 
 const ProfileTypo = () => {
@@ -15,6 +19,31 @@ const ProfileTypo = () => {
   const TypoPoint5: string = `"멘토 신청"`;
   const TypoPoint6: string = "이상적인 멘토";
   const TypoPoint7: string = `"성장"`;
+
+  const [setMentor, { data, isLoading, error }] = useSetMentorAcceptMutation();
+  const Owner = useSelector((state: RootState) => state.rootReducers.global);
+  const { data: Userdata, isLoading: UserIsLoading } = useGetUserQuery({
+    id: Owner.uId,
+  });
+
+  const handleAccept = () => {
+    if (Owner.uId !== 0 && Userdata) {
+      setMentor({
+        id: Owner.uId,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (data) {
+      alert("멘토 신청이 완료되었습니다.");
+      console.log(Userdata);
+    }
+  }, [data]);
+
+  if (UserIsLoading) {
+    return <div>로딩중</div>;
+  }
 
   return (
     <div className=" flex flex-col min-h-[80vh] p-5 items-start justify-center text-7xl font-bold md:mx-0">
@@ -150,7 +179,7 @@ const ProfileTypo = () => {
             <button
               className="text-blue-600 dark:text-white font-bold hover:scale-x-110 hover:scale-y-110 border-[rgba(255,255,255,100)] hover:border-b-[1px] text-5xl"
               type="button"
-              onClick={() => {}}
+              onClick={handleAccept}
             >
               <span className="text-4xl sm:text-5xl lg:text-7xl">
                 신청하기 →
