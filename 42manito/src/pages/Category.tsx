@@ -1,12 +1,19 @@
+import { RootState } from "@/RTK/store";
 import CategoryModal from "@/components/category/CategoryModal";
 import HappyDevelopAnimation from "@/components/category/HappyDevelopAnimaiton";
 import PandaSingAnimation from "@/components/category/PandaSingAnimation";
 import Layout from "@/components/layout/Layout";
+import MentorModal from "@/components/mentor/MentorModal";
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Category = () => {
   const [isVisible, setIsVisible] = React.useState(false);
   const [categoryId, setCategoryId] = React.useState<number>(0); //
+
+  const currMentorState = useSelector(
+    (state: RootState) => state.rootReducers.currMentor
+  );
 
   const onOpen = (id: number) => {
     setIsVisible(true);
@@ -63,6 +70,9 @@ const Category = () => {
           onClose={onClose}
           categoryId={categoryId}
         />
+        {currMentorState.openMentorModal && currMentorState.currMentor.user && (
+          <MentorModal />
+        )}
       </Layout>
     </>
   );
