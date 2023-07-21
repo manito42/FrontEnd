@@ -69,7 +69,7 @@ export default function Home() {
             <Typo />
             <Divider className="dark:bg-slate-400 bg-slate-500 " />
             <div className="my-[20vh]" />
-            <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 p-5 w-[80vw]">
+            <div className="w-[95vw] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 md:gap-10 p-0 md:p-5 md:w-[80vw]">
               {mentorCardData.map((mentor) => (
                 <MentorCard data={mentor} key={mentor.id} />
               ))}
