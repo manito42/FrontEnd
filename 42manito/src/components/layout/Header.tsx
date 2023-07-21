@@ -5,11 +5,13 @@ import SearchInput from "./SearchInput";
 import { Divider, Drawer } from "antd";
 import { useLoginMutation } from "@/RTK/Apis/Auth";
 import { useAppDispatch } from "@/RTK/store";
-import { GlobalSlice } from "@/RTK/Slices/Global";
+import { GlobalSlice, signIn } from "@/RTK/Slices/Global";
+import { useRouter } from "next/router";
 
 const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [login, { data }] = useLoginMutation();
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const showDrawer = () => {
@@ -26,9 +28,9 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-      dispatch(
-        GlobalSlice.actions.signIn({ accessToken: data.accessToken, uId: 1 })
-      );
+      dispatch(signIn({ accessToken: data.accessToken, uId: 5 }));
+      console.log(data);
+      router.push("/");
     }
   }, [data?.accessToken]);
 
