@@ -10,9 +10,13 @@ import ProfileUpdate from "@/components/Profile/ProfileUpdate";
 import { useGetUserQuery } from "@/RTK/Apis/User";
 import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
+import { useRouter } from "next/router";
 
 const Profile = () => {
   const [isProfileUpdateOpen, setIsProfileUpdateOpen] = useState(false);
+  const [id, setId] = useState<number>(0);
+  const router = useRouter();
+
   const ownerId = useSelector(
     (state: RootState) => state.rootReducers.global.uId
   );
@@ -21,7 +25,7 @@ const Profile = () => {
     isError: OwnerError,
     isLoading: OwnerLoading,
     refetch,
-  } = useGetUserQuery({ id: ownerId ?? 1 }); // 추후에 로그인한 유저의 id인데 GlobalSlice에 있는 id로 해야함
+  } = useGetUserQuery({ id: ownerId }, { skip: ownerId === 0 });
 
   const openProfileUpdate = () => {
     setIsProfileUpdateOpen(true);
@@ -38,6 +42,14 @@ const Profile = () => {
       document.body.style.overflow = "unset";
     }
   }, [isProfileUpdateOpen]);
+
+  useEffect(() => {
+    if (ownerId !== 0) {
+      refetch();
+    }
+  }, [ownerId]);
+
+  console.log(OwnerData);
 
   // TODO: 로그인 상태가 아니면 로그인 페이지로 이동
   // TODO: 멘토가 아니라면  멘토 등록 알람 띄우기
@@ -119,8 +131,8 @@ const Profile = () => {
                     <span className="text-3xl font-bold text-slate-800 dark:text-slate-200 h-[5vh]">
                       카테고리.
                     </span>
-                    {OwnerData.mentorProfile.categories[0].name ===
-                    "DEVELOP" ? (
+                    {OwnerData.mentorProfile.categories.length > 0 &&
+                    OwnerData.mentorProfile.categories[0].name === "DEVELOP" ? (
                       <DevelopAnimation />
                     ) : (
                       <HobbyAnimation />
@@ -131,14 +143,15 @@ const Profile = () => {
                       해시태그.
                     </span>
                     <div className="flex flex-col overflow-y-auto">
-                      {OwnerData.mentorProfile.hashtags.map((aTag) => (
-                        <h6
-                          className="m-3 p-3 rounded-md bg-sky-200 dark:bg-sky-700 "
-                          key={aTag.id}
-                        >
-                          {aTag.name}
-                        </h6>
-                      ))}
+                      {OwnerData.mentorProfile.hashtags.length > 0 &&
+                        OwnerData.mentorProfile.hashtags.map((aTag) => (
+                          <h6
+                            className="m-3 p-3 rounded-md bg-sky-200 dark:bg-sky-700 "
+                            key={aTag.id}
+                          >
+                            {aTag.name}
+                          </h6>
+                        ))}
                     </div>
                   </div>
                 </div>
@@ -146,13 +159,13 @@ const Profile = () => {
               </div>
             </div>
           ) : (
-            <div>
+            <div className="app-container">
               <Enroll viewProfileTypo={OwnerData?.isMentor} />
             </div>
           )}
         </div>
       )}
-      {isProfileUpdateOpen && (
+      {isProfileUpdateOpen && OwnerData && (
         <ProfileUpdate onClose={closeProfileUpdate} data={OwnerData} />
       )}
     </Layout>
