@@ -1,73 +1,66 @@
-import FeedbackCard from "@/components/feedback/FeedbackCard";
 import Layout from "@/components/layout/Layout";
-import React, { useCallback, useEffect, useState } from "react";
-import { mocFeedback } from "../../mocData/mocFeedback";
-import { useRouter } from "next/router";
-import FeedbackPost from "@/components/feedback/FeedbackPost";
-import { mocReservation } from "../../mocData/mocReservation";
-import { MenteeFeedbacksResDto } from "@/Types/MenteeFeedbacks/MenteeFeedbacksRes.dto";
+import React from "react";
 
 const Feedback = () => {
-  const [feedback, setFeedback] = useState<MenteeFeedbacksResDto[]>(
-    [] as MenteeFeedbacksResDto[]
-  );
-
-  const router = useRouter();
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  // const [reservation, setReservation] = useState<ReservationGetDto>(
-  //   {} as ReservationGetDto
+  // const [feedback, setFeedback] = useState<MenteeFeedbacksResDto[]>(
+  //   [] as MenteeFeedbacksResDto[]
   // );
 
-  const { isFinish, id } = router.query;
-  const FeedbackId = Number(id);
+  // const router = useRouter();
+  // const [openModal, setOpenModal] = useState<boolean>(false);
+  // // const [reservation, setReservation] = useState<ReservationGetDto>(
+  // //   {} as ReservationGetDto
+  // // );
 
-  const [loading, setLoading] = useState(true); // loading 상태 추가
+  // const { isFinish, id } = router.query;
+  // const FeedbackId = Number(id);
 
-  const closeModal = useCallback(() => {
-    setOpenModal(false);
-  }, []);
+  // const [loading, setLoading] = useState(true); // loading 상태 추가
 
-  useEffect(() => {
-    setFeedback(mocFeedback.filter((feedback) => feedback.mentorId === 1));
-    setLoading(false); // 데이터 로딩이 완료되면 loading 상태를 false로 변경
-    console.log(feedback);
+  // const closeModal = useCallback(() => {
+  //   setOpenModal(false);
+  // }, []);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   setFeedback(mocFeedback.filter((feedback) => feedback.mentorId === 1));
+  //   setLoading(false); // 데이터 로딩이 완료되면 loading 상태를 false로 변경
+  //   console.log(feedback);
 
-  useEffect(() => {
-    if (isFinish === "true") {
-      setOpenModal(true);
-      //TODO: id를 이용해서 reservation 개체를 가져와야함
-      const ret = mocReservation.find(
-        (reservation) => reservation.id === FeedbackId
-      );
-      if (ret) {
-        // setReservation(ret);
-      } else {
-        setOpenModal(false);
-      }
-    }
-  }, [isFinish, FeedbackId]);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  // useEffect(() => {
+  //   if (isFinish === "true") {
+  //     setOpenModal(true);
+  //     //TODO: id를 이용해서 reservation 개체를 가져와야함
+  //     const ret = mocReservation.find(
+  //       (reservation) => reservation.id === FeedbackId
+  //     );
+  //     if (ret) {
+  //       // setReservation(ret);
+  //     } else {
+  //       setOpenModal(false);
+  //     }
+  //   }
+  // }, [isFinish, FeedbackId]);
 
   return (
     <>
       <Layout>
-        {loading ? (
+        {/* {loading ? (
           <p>Loading...</p>
         ) : (
           <div className="w-full p-10 md:p-26">
             <span className="flex text-4xl font-bold text-slate-800 dark:text-slate-200 my-10">
               FeedbackLog.
             </span>
-            {/* TODO: 추후에 무한스크롤로 구현해야함 */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
               {feedback.map((feedback) => (
                 <FeedbackCard data={feedback} key={feedback.id} />
               ))}
             </div>
           </div>
-        )}
+        )} */}
         {/* <FeedbackPost
           isVisible={openModal}
           onClose={closeModal}

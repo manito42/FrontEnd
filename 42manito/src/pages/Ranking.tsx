@@ -1,7 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import React, { useState } from "react";
 import { Divider } from "antd";
-import { mockMentorProfiles } from "../../mocData/mentorData";
 import MentorCard from "@/components/mentor/MentorCard";
 import MentorModal from "@/components/mentor/MentorModal";
 import { useSelector } from "react-redux";
@@ -9,7 +8,6 @@ import { RootState } from "@/RTK/store";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 
 const Ranking: React.FC = () => {
-  const mentor: MentorProfileDto[] = mockMentorProfiles;
   const currMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
@@ -17,7 +15,7 @@ const Ranking: React.FC = () => {
   return (
     <>
       <Layout>
-        <div className="app-container">
+        {/* <div className="app-container">
           <div
             id="Total."
             className="w-full flex flex-col justify-center items-center"
@@ -61,7 +59,7 @@ const Ranking: React.FC = () => {
         </div>
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />
-        )}
+        )} */}
       </Layout>
     </>
   );
