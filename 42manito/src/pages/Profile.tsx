@@ -42,14 +42,6 @@ const Profile = () => {
     }
   }, [isProfileUpdateOpen]);
 
-  useEffect(() => {
-    if (ownerId !== 0) {
-      refetch();
-    }
-  }, [ownerId]);
-
-  console.log(OwnerData);
-
   // TODO: 로그인 상태가 아니면 로그인 페이지로 이동
   // TODO: 멘토가 아니라면  멘토 등록 알람 띄우기
   return (
