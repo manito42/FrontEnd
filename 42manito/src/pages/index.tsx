@@ -1,13 +1,15 @@
 import Layout from "../components/layout/Layout";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import MentorCard from "@/components/mentor/MentorCard";
-import MentorModal from "@/components/mentor/MentorModal";
 import { Divider } from "antd";
-import Typo from "@/components/home/Typo";
 import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 import { useGetHomeQuery } from "@/RTK/Apis/Home";
+import dynamic from "next/dynamic";
+
+const Typo = dynamic(() => import("@/components/home/Typo"));
+const MentorCard = dynamic(() => import("@/components/mentor/MentorCard"));
+const MentorModal = dynamic(() => import("@/components/mentor/MentorModal"));
 
 export default function Home() {
   const currMentorState = useSelector(
