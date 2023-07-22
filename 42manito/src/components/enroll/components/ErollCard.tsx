@@ -1,21 +1,21 @@
-import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
-import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 import React, { useEffect, useState } from "react";
-import { mockMentorProfiles } from "../../../../mocData/mentorData";
 import AcceptButton from "./buttons/AcceptButton";
 import CancelButton from "./buttons/CancelButoon";
 import FinishButton from "./buttons/FinishButton";
+import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
+import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
+import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 
 interface EnrollCardProps {
-  data: ReservationGetDto;
+  data: ReservationDefaultDto;
   isMentor: boolean;
 }
 
 const EnrollCard = ({ data, isMentor }: EnrollCardProps) => {
-  const user: mentorResDto[] = mockMentorProfiles; // TODO: User 개체여야함
+  const user: MentorProfileDto[] = ; // TODO: User 개체여야함
   const [msg, setMsg] = useState<string>("");
 
-  const targetUser: mentorResDto | undefined = user.find((mentor) =>
+  const targetUser: MentorProfileDto | undefined = user.find((mentor) =>
     isMentor
       ? mentor.user.id === data.menteeId
       : mentor.user.id === data.mentorId
