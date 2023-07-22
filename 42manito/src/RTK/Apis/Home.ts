@@ -9,19 +9,15 @@ export const homeApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_DEV_URL}`,
   }),
   endpoints: (builder) => ({
-    getHome: builder.query<HomeResponseDto[], HomeGetAllDto>({
-      query: (args: HomeGetAllDto) => ({
-        url: `/home?take=${args.take}&page=${args.page}`,
-        method: "GET",
-      }),
-      merge: (prev, next) => {
-        prev.push(...next);
-      },
-      forceRefetch({ currentArg, previousArg }) {
-        return currentArg !== previousArg;
+    getMentors: builder.mutation<HomeResponseDto[], HomeGetAllDto>({
+      query: (args: HomeGetAllDto) => {
+        return {
+          url: `/home?take=${args.take}&page=${args.page}`,
+          method: "GET",
+        };
       },
     }),
   }),
 });
 
-export const { useGetHomeQuery } = homeApi;
+export const { useGetMentorsMutation } = homeApi;
