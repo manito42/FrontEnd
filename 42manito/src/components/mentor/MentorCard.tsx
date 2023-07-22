@@ -20,28 +20,25 @@ const MentorCard = ({ data }: props) => {
     <>
       <div className="mentor-card" onClick={() => openMentorModal(data)}>
         <Image
-          className="rounded-t-xl object-cover layout-responsive flex w-full "
+          className="mentor-image-container"
           src={data.user.profileImage}
           alt="cover image"
           width={100}
           height={100}
-          quality={100}
+          quality={80}
         />
-        <div
-          className="w-full flex-col justify-center items-center p-2 md:p-5]"
-          id="MentorCardContent"
-        >
-          <div className="w-full relative my-3">
-            <span className="text-xl font-bold truncate">
-              {data.user.nickname}
-            </span>
+        <div className="mentor-card-content" id="MentorCardContent">
+          <div className="user-nickname-container">
+            <span className="user-nickname">{data.user.nickname}</span>
           </div>
           <div>
-            <span className="text-l py-3">{data.shortDescription}</span>
+            <span className="user-short-description">
+              {data.shortDescription}
+            </span>
           </div>
-          <div className="flex-wrap justify-center items-center py-3">
+          <div className="hashtag-container">
             {data.hashtags.map((aTag) => (
-              <span className="text-blue-500 text-sm" key={aTag.id}>
+              <span className="hashtags-font" key={aTag.id}>
                 {`#${aTag.name} `}
               </span>
             ))}
