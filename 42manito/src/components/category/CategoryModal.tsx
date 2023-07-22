@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import MentorCard from "../mentor/MentorCard";
-import MentorModal from "../mentor/MentorModal";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useGetCategoryMentorsMutation } from "@/RTK/Apis/Category";
+import { RootState, useAppDispatch } from "@/RTK/store";
 import { useSelector } from "react-redux";
-import { RootState } from "@/RTK/store";
-import { useGetCategoryQuery } from "@/RTK/Apis/Category";
+import { initCategoryMentors, setCategoryMentors } from "@/RTK/Slices/Category";
+import { Spin } from "antd";
+import dynamic from "next/dynamic";
 
 interface props {
   onClose: () => void;
@@ -12,18 +13,22 @@ interface props {
   categoryId: number;
 }
 
+const MentorCard = dynamic(() => import("@/components/mentor/MentorCard"), {
+  loading: () => <Spin />,
+});
+
 const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
   const [zoomOut, setZoomOut] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const {
-    data: mentorCardData,
-    isError: mentorCardError,
-    isLoading: mentorCardLoading,
-    refetch,
-  } = useGetCategoryQuery({ take: 12, page: page, category_id: categoryId });
+  const [getMentors, { data, isLoading, error }] =
+    useGetCategoryMentorsMutation();
+  const categoriesMentors = useSelector(
+    (state: RootState) => state.rootReducers.category.categoryMentors
+  );
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     return () => {
@@ -33,18 +38,18 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
   }, []);
 
   const fetchMoreData = () => {
-    if (mentorCardData) {
-      if (mentorCardData.length % 12 !== 0) {
-        setHasMore(false);
-        return;
-      }
-    }
+    getMentors({ take: 12, page: page, category_id: categoryId });
+    setPage(page + 1);
   };
+
   const handleZoomOut = () => {
     setZoomOut(true);
     setTimeout(() => {
       onClose();
       setZoomOut(false);
+      dispatch(initCategoryMentors());
+      setPage(0);
+      setHasMore(true);
     }, 300); // 줌아웃 에니메이션 실행 시간을 기다림
   };
 
@@ -54,6 +59,27 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
       scrollContainerRef.current.scrollTop = 0;
     }
   };
+
+  useEffect(() => {
+    // 첫 페이지 데이터 불러오기.
+    getMentors({ take: 12, page: 0, category_id: categoryId });
+    setPage(page + 1);
+  }, [categoryId]);
+
+  useEffect(() => {
+    if (data && !error) {
+      dispatch(setCategoryMentors(data));
+      if (data.length % 12 !== 0 || data.length === 0) {
+        setHasMore(false);
+      }
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(initCategoryMentors());
+    };
+  }, []);
 
   if (!isVisible) return null;
 
@@ -79,20 +105,15 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
             className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[95vw] md:w-[90vw] h-[80vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overflow-y-scroll"
             ref={scrollContainerRef}
           >
-            {mentorCardData && !mentorCardLoading && (
+            {categoriesMentors && !isLoading && (
               <InfiniteScroll
-                dataLength={mentorCardData.length}
+                dataLength={categoriesMentors.length}
                 next={fetchMoreData}
                 hasMore={hasMore}
-                loader={<h4>로딩중...</h4>}
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <strong>모든 데이터를 불러왔습니다.</strong>
-                  </p>
-                }
+                loader={<Spin></Spin>}
               >
                 <div className="w-[90vw] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 md:gap-10 p-0 md:p-5 md:w-[80vw]">
-                  {mentorCardData.map((mentor) => (
+                  {categoriesMentors.map((mentor) => (
                     <MentorCard data={mentor} key={mentor.id} />
                   ))}
                 </div>
