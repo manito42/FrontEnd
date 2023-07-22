@@ -1,0 +1,37 @@
+@import "./animation.css";
+
+.connect-modal {
+  animation: zoomIn 0.2s ease-out;
+}
+
+.close-connect-modal {
+  animation: zoonOut 0.2s ease-in;
+}
+
+.connect-container {
+  @apply fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center w-full p-20;
+
+  & .connect-section {
+    @apply relative py-16 mt-24 connect-modal;
+
+    & .connect-container {
+      @apply container mx-auto px-4;
+
+      & .connect-content {
+        @apply relative flex flex-col min-w-0 break-words bg-white dark:bg-slate-600 w-full mb-6 shadow-xl rounded-lg;
+
+        & .message {
+          @apply text-4xl font-semibold leading-normal;
+        }
+
+        & .connect-btn-container {
+          @apply flex flex-row m-5 justify-around;
+
+          & .connect-btn {
+            @apply bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150;
+          }
+        }
+      }
+    }
+  }
+}
