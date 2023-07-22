@@ -1,15 +1,15 @@
 import Layout from "@/components/layout/Layout";
 import React, { useState } from "react";
 import { Divider } from "antd";
-import { mentorResDto } from "@/Types/Mentor/MentorProfileDto";
 import { mockMentorProfiles } from "../../mocData/mentorData";
 import MentorCard from "@/components/mentor/MentorCard";
 import MentorModal from "@/components/mentor/MentorModal";
 import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
+import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 
 const Ranking: React.FC = () => {
-  const mentor: mentorResDto[] = mockMentorProfiles;
+  const mentor: MentorProfileDto[] = mockMentorProfiles;
   const currMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
