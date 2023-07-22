@@ -1,8 +1,8 @@
-import { ReservationGetDto } from "@/Types/Reservation/Reservations";
+import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
 import React from "react";
 
 interface CancelButtonProps {
-  data: ReservationGetDto;
+  data: ReservationPostDto;
   isVisible: boolean;
 }
 
