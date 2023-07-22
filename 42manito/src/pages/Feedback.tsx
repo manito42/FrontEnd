@@ -5,17 +5,18 @@ import { mocFeedback } from "../../mocData/mocFeedback";
 import { useRouter } from "next/router";
 import FeedbackPost from "@/components/feedback/FeedbackPost";
 import { mocReservation } from "../../mocData/mocReservation";
+import { MenteeFeedbacksResDto } from "@/Types/MenteeFeedbacks/MenteeFeedbacksRes.dto";
 
 const Feedback = () => {
-  const [feedback, setFeedback] = useState<FeedbackGetDto[]>(
-    [] as FeedbackGetDto[]
+  const [feedback, setFeedback] = useState<MenteeFeedbacksResDto[]>(
+    [] as MenteeFeedbacksResDto[]
   );
 
   const router = useRouter();
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [reservation, setReservation] = useState<ReservationGetDto>(
-    {} as ReservationGetDto
-  );
+  // const [reservation, setReservation] = useState<ReservationGetDto>(
+  //   {} as ReservationGetDto
+  // );
 
   const { isFinish, id } = router.query;
   const FeedbackId = Number(id);
@@ -42,7 +43,7 @@ const Feedback = () => {
         (reservation) => reservation.id === FeedbackId
       );
       if (ret) {
-        setReservation(ret);
+        // setReservation(ret);
       } else {
         setOpenModal(false);
       }
@@ -67,11 +68,11 @@ const Feedback = () => {
             </div>
           </div>
         )}
-        <FeedbackPost
+        {/* <FeedbackPost
           isVisible={openModal}
           onClose={closeModal}
           data={reservation}
-        />
+        /> */}
       </Layout>
     </>
   );
