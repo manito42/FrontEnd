@@ -5,7 +5,6 @@ import Image from "next/image";
 import TypeIt from "typeit-react";
 import HobbyAnimation from "@/components/global/HobbyAnimation";
 import DevelopAnimation from "@/components/global/DevelopAnimation";
-import ProfileTypo from "@/components/Profile/ProfileTypo";
 import ProfileUpdate from "@/components/Profile/ProfileUpdate";
 import { useGetUserQuery } from "@/RTK/Apis/User";
 import { useSelector } from "react-redux";
