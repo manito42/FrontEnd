@@ -25,6 +25,8 @@ const Enroll = ({ viewProfileTypo }: props) => {
       (value.status === "ACCEPT" || value.status === "REQUEST")
   );
 
+  // TODO: users/id/reservation으로 불러와서 해야함
+
   return (
     <div className="w-[90vw] md:w-full">
       <div className="w-full dark:bg-white/40 bg-black/40 h-[1px]" />

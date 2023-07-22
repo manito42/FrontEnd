@@ -5,7 +5,7 @@ import SearchInput from "./SearchInput";
 import { Divider, Drawer } from "antd";
 import { useLoginMutation } from "@/RTK/Apis/Auth";
 import { RootState, useAppDispatch } from "@/RTK/store";
-import { GlobalSlice, signIn } from "@/RTK/Slices/Global";
+import { signIn } from "@/RTK/Slices/Global";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
@@ -98,9 +98,11 @@ const Header: React.FC = () => {
               </Link>
             )}
             <Divider className="dark:bg-slate-400 bg-slate-500 my-16" />
-            <Link href="/SignIn">
-              <p className="text-xl  px-3 m-5 btn-drawer">Sign In.</p>
-            </Link>
+            {Owner === 0 && (
+              <Link href="/SignIn">
+                <p className="text-xl  px-3 m-5 btn-drawer">Sign In.</p>
+              </Link>
+            )}
             {Owner !== 0 && (
               <Link href="/SignOut">
                 <p className="text-xl px-3 m-5 btn-drawer">Sign Out.</p>
