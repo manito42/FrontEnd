@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import AcceptButton from "./buttons/AcceptButton";
-import CancelButton from "./buttons/CancelButoon";
+import CancelButton from "./buttons/CancelButton";
 import FinishButton from "./buttons/FinishButton";
-import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
-import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
+import { useGetUserQuery } from "@/RTK/Apis/User";
+import PendingButton from "./buttons/PendingButton";
 
 interface EnrollCardProps {
   data: ReservationDefaultDto;
@@ -12,43 +12,60 @@ interface EnrollCardProps {
 }
 
 const EnrollCard = ({ data, isMentor }: EnrollCardProps) => {
-  const user: MentorProfileDto[] = ; // TODO: User 개체여야함
   const [msg, setMsg] = useState<string>("");
-
-  const targetUser: MentorProfileDto | undefined = user.find((mentor) =>
-    isMentor
-      ? mentor.user.id === data.menteeId
-      : mentor.user.id === data.mentorId
-  ); // TODO: 추후에 삭제예정
 
   const [acceptButton, setAcceptButton] = useState<boolean>(false);
   const [cancelButton, setCancelButton] = useState<boolean>(false);
+  const [pendingButton, setPendingButton] = useState<boolean>(false);
   const [finishButton, setFinishButton] = useState<boolean>(false);
+
+  const {
+    data: targetUser,
+    isLoading,
+    error,
+  } = useGetUserQuery({ id: isMentor ? data.menteeId : data.mentorId });
 
   const updateStatus = () => {
     if (isMentor) {
-      if (data.status === "REQUEST") {
+      if (data.status === "REQUEST" && !isLoading && targetUser) {
         setAcceptButton(true);
         setCancelButton(true);
         setFinishButton(false);
-        setMsg(`${targetUser?.user.nickname} 님이 멘토링을 신청하셨습니다.`);
-      } else if (data.status === "ACCEPT") {
+        setPendingButton(false);
+        setMsg(`${targetUser.nickname} 님이 멘토링을 신청하셨습니다.`);
+      } else if (data.status === "ACCEPT" && !isLoading && targetUser) {
         setAcceptButton(false);
         setCancelButton(false);
         setFinishButton(true);
-        setMsg(`${targetUser?.user.nickname} 님과 멘토링이 진행중입니다.`);
+        setPendingButton(false);
+        setMsg(`${targetUser.nickname} 님과 멘토링이 진행중입니다.`);
+      } else if (data.status === "PENDING" && !isLoading && targetUser) {
+        setAcceptButton(false);
+        setCancelButton(false);
+        setFinishButton(false);
+        setPendingButton(false);
+        setMsg(`${targetUser.nickname} 님이 피드백을 작성중입니다.`);
       }
     } else {
-      if (data.status === "REQUEST") {
+      if (data.status === "REQUEST" && !isLoading && targetUser) {
         setAcceptButton(false);
         setCancelButton(true);
         setFinishButton(false);
-        setMsg(`${targetUser?.user.nickname} 님에게 멘토링을 신청하셨습니다.`);
-      } else if (data.status === "ACCEPT") {
+        setPendingButton(false);
+        setMsg(`${targetUser.nickname} 님에게 멘토링을 신청하셨습니다.`);
+      } else if (data.status === "ACCEPT" && !isLoading && targetUser) {
         setAcceptButton(false);
         setCancelButton(false);
         setFinishButton(true);
-        setMsg(`${targetUser?.user.nickname} 님과 멘토링이 진행중입니다.`);
+        setMsg(`${targetUser.nickname} 님과 멘토링이 진행중입니다.`);
+      } else if (data.status === "PENDING" && !isLoading && targetUser) {
+        setAcceptButton(false);
+        setCancelButton(false);
+        setFinishButton(false);
+        setPendingButton(true);
+        setMsg(
+          `${targetUser.nickname} 님과의 멘토링에 대한 피드백을 작성해주세요.`
+        );
       }
     }
   };
@@ -57,23 +74,32 @@ const EnrollCard = ({ data, isMentor }: EnrollCardProps) => {
     updateStatus();
   }, [data.status]);
 
-  if (targetUser === undefined) return null; // TODO: 추후에 삭제예정
-  if (data.status === "COMPLETED") return null; // TODO: 추후에 삭제예정
-  if (data.status === "REJECT") return null; // TODO: 추후에 삭제예정
-  if (data.status === "CANCEL") return null; // TODO: 추후에 삭제예정
+  useEffect(() => {
+    return () => {
+      setAcceptButton(false);
+      setCancelButton(false);
+      setFinishButton(false);
+      setPendingButton(false);
+    };
+  });
+
+  if (data === undefined) return null;
 
   return (
     <div className="enroll-card">
       <h1 className="mt-7">{msg}</h1>
       <div className="flex items-center">
         <div className="mx-1">
-          <AcceptButton data={data} isVisible={acceptButton} />
+          <AcceptButton data={{ id: data.id }} isVisible={acceptButton} />
         </div>
         <div className="mx-1">
           <CancelButton data={data} isVisible={cancelButton} />
         </div>
         <div className="mx-1">
-          <FinishButton data={data} isVisible={finishButton} />
+          <FinishButton data={data.id} isVisible={finishButton} />
+        </div>
+        <div className="mx-1">
+          <PendingButton data={data.id} isVisible={pendingButton} />
         </div>
       </div>
     </div>
