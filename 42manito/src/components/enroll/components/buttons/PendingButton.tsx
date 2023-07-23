@@ -9,7 +9,7 @@ import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
 
 interface FinishButtonProps {
-  data: ReservationPatchMenteeCompletionDto;
+  data: number;
   isVisible: boolean;
 }
 
@@ -27,10 +27,10 @@ const PendingButton = ({ data, isVisible }: FinishButtonProps) => {
     if (rating === 0 || content === "") {
       alert("평점 또는 피드백 메시지를 입력해주세요.");
     } else {
-      complete({ id: data.id, rating: rating, content: content });
+      complete({ id: data, rating: rating, content: content });
       setOnConnectModal(false);
     }
-  }, [data.id]);
+  }, [data]);
 
   const closeConnectModal = useCallback(() => {
     setOnConnectModal(false);

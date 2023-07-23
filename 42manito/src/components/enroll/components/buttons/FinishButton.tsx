@@ -5,7 +5,7 @@ import MuiRate from "@/components/global/MuiRate";
 import React, { useCallback, useEffect, useState } from "react";
 
 interface FinishButtonProps {
-  data: ReservationPatchMentorCompletionDto;
+  data: number;
   isVisible: boolean;
 }
 
@@ -22,10 +22,10 @@ const FinishButton = ({ data, isVisible }: FinishButtonProps) => {
     if (rating === 0) {
       alert("평점을 입력해주세요.");
     } else {
-      pending({ id: data.id, rating: rating });
+      pending({ id: data, rating: rating });
       setOnConnectModal(false);
     }
-  }, [data.id]);
+  }, [data]);
 
   const closeConnectModal = useCallback(() => {
     setOnConnectModal(false);
