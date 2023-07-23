@@ -1,32 +1,29 @@
 import React from "react";
-import { mocReservation } from "../../../mocData/mocReservation";
-import { ReservationGetDto } from "@/Types/Reservation/Reservations";
 import EnrollCard from "./components/ErollCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TypeIt from "typeit-react";
 import ProfileTypo from "../Profile/ProfileTypo";
+import { RootState, useAppDispatch } from "@/RTK/store";
+import { useSelect } from "@mui/base";
+import { useGetEnrollQuery } from "@/RTK/Apis/Enroll";
+import { Spin } from "antd";
+import { useSelector } from "react-redux";
 
 interface props {
   viewProfileTypo: boolean;
 }
 
 const Enroll = ({ viewProfileTypo }: props) => {
-  const reservation: ReservationGetDto[] = mocReservation;
-
-  const mentor: ReservationGetDto[] = reservation.filter(
-    (value) =>
-      value.mentorId === 1 &&
-      (value.status === "ACCEPT" || value.status === "REQUEST")
+  const Owner = useSelector(
+    (state: RootState) => state.rootReducers.global.uId
   );
-
-  const mentee: ReservationGetDto[] = reservation.filter(
-    (value) =>
-      value.menteeId === 1 &&
-      (value.status === "ACCEPT" || value.status === "REQUEST")
-  );
-
+  const dispatch = useAppDispatch();
+  const { data, isLoading, error } = useGetEnrollQuery({ id: Owner });
   // TODO: users/id/reservation으로 불러와서 해야함
 
+  if (isLoading) {
+    return <Spin />;
+  }
   return (
     <div className="w-[90vw] md:w-full">
       <div className="w-full dark:bg-white/40 bg-black/40 h-[1px]" />
@@ -53,7 +50,7 @@ const Enroll = ({ viewProfileTypo }: props) => {
             />
           </div>
           <div className="overflow-y-auto w-full mx-10 max-h-[50vh]">
-            {mentor.map((data) => (
+            {data?.mentorReservations.map((data) => (
               <EnrollCard data={data} key={data.id} isMentor={true} />
             ))}
           </div>
@@ -80,7 +77,7 @@ const Enroll = ({ viewProfileTypo }: props) => {
             />
           </div>
           <div className="overflow-y-auto w-full mx-10 max-h-[50vh]">
-            {mentee.map((data) => (
+            {data?.menteeReservations.map((data) => (
               <EnrollCard data={data} key={data.id} isMentor={false} />
             ))}
           </div>
