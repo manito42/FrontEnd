@@ -1,6 +1,5 @@
 import { BaseQueryFn } from "@reduxjs/toolkit/dist/query/react";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
-import customAxios from "./CustomAxios";
 
 export const BaseQuery =
   (
