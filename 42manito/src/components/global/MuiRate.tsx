@@ -49,6 +49,7 @@ function IconContainer(props: IconContainerProps) {
 interface MuiRateProps {
   Value: number;
   IsReadOnly: boolean;
+  setValue?: (value: number) => void;
 }
 
 const MuiRate = (props: MuiRateProps) => {
@@ -58,6 +59,17 @@ const MuiRate = (props: MuiRateProps) => {
   } else {
     value = props.Value;
   }
+
+  const handleChange = (
+    event: React.ChangeEvent<{}>,
+    newValue: number | null
+  ) => {
+    if (props.setValue && newValue !== null) {
+      props.setValue(newValue);
+      console.log(newValue);
+    }
+  };
+
   return (
     <>
       <StyledRating
@@ -67,6 +79,7 @@ const MuiRate = (props: MuiRateProps) => {
         getLabelText={(value: number) => customIcons[value].label}
         highlightSelectedOnly
         readOnly={props.IsReadOnly}
+        onChange={handleChange}
       />
     </>
   );
