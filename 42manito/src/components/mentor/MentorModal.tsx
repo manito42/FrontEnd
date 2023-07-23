@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import ConnectModal from "../conect/ConnectModal";
+import { usePostReservationRequestMutation } from "@/RTK/Apis/Enroll";
 
 const MentorModal = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +17,8 @@ const MentorModal = () => {
   const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget.id === "wrapper") handleZoomOut();
   };
+
+  const [postReservation] = usePostReservationRequestMutation();
 
   const handleZoomOut = () => {
     dispatch(CurrMentorSlice.actions.handleZoomOut(true));
@@ -33,6 +36,10 @@ const MentorModal = () => {
   const handleConnectClose = useCallback(() => {
     dispatch(CurrMentorSlice.actions.closeConnectModal());
   }, [dispatch]);
+
+  const handleYes = () => {
+    postReservation({});
+  };
 
   return (
     <div className="mentor-modal-container" id="wrapper" onClick={handleClose}>
@@ -124,6 +131,7 @@ const MentorModal = () => {
         <ConnectModal
           message="멘토에게 커넥트 요청을 보내시겠습니까?"
           onClose={handleConnectClose}
+          handleYes={handleYes}
         />
       )}
     </div>
