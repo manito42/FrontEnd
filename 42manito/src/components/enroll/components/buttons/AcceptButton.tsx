@@ -1,18 +1,31 @@
-import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
-import React from "react";
+import { usePatchReservationAcceptMutation } from "@/RTK/Apis/Enroll";
+import { ReservationPatchAcceptDto } from "@/Types/Reservations/ReservationPatchAccept.dto";
+import ConnectModal from "@/components/conect/ConnectModal";
+import React, { useCallback, useState } from "react";
 
 interface AcceptButtonProps {
-  data: ReservationPostDto;
+  data: ReservationPatchAcceptDto;
   isVisible: boolean;
 }
 
 const AcceptButton = ({ data, isVisible }: AcceptButtonProps) => {
-  if (!isVisible) return null;
+  const [accept] = usePatchReservationAcceptMutation();
+  const [onConnectModal, setOnConnectModal] = useState<boolean>(false);
 
   const handleAccept = () => {
-    // TODO : 수락 로직
+    setOnConnectModal(true);
   };
 
+  const handleYes = useCallback(async () => {
+    await accept({ id: data.id });
+    setOnConnectModal(false);
+  }, [data.id]);
+
+  const onClose = useCallback(() => {
+    setOnConnectModal(false);
+  }, []);
+
+  if (!isVisible) return null;
   return (
     <div className="mt-4">
       <button
@@ -22,6 +35,13 @@ const AcceptButton = ({ data, isVisible }: AcceptButtonProps) => {
       >
         수락
       </button>
+      {onConnectModal && (
+        <ConnectModal
+          message="멘토링을 수락하시겠습니까?"
+          onClose={onClose}
+          handleYes={handleYes}
+        />
+      )}
     </div>
   );
 };
