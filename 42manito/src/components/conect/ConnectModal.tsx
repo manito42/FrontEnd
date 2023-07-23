@@ -3,9 +3,11 @@ import React, { useState } from "react";
 interface Props {
   message: string;
   onClose: () => void;
+  handleYes: () => void;
+  children?: React.ReactNode;
 }
 
-const ConnectModal = ({ message, onClose }: Props) => {
+const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
   const [focus, setFocus] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
@@ -19,8 +21,7 @@ const ConnectModal = ({ message, onClose }: Props) => {
 
   const handleConnect = () => {
     setDisabled(true);
-    // TODO: 커넥트요청하기
-    // handleFocusOut();
+    handleYes();
     setDisabled(false);
   };
 
@@ -38,6 +39,7 @@ const ConnectModal = ({ message, onClose }: Props) => {
           <div className="connect-content">
             <div className="px-6">
               <div className="text-center mt-5">
+                {children}
                 <h3 className="message">{message}</h3>
               </div>
               <div className="connect-btn-container">
