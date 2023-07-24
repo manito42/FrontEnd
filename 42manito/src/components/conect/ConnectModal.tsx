@@ -32,12 +32,15 @@ const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
       onClick={(e) => e.stopPropagation()}
     >
       <section
-        className={`onnect-section ${focus && "close-connect-modal"}`}
+        className={`connect-section ${focus && "close-connect-modal"}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="connect-container">
           <div className="connect-content">
-            <div className="px-6">
+            <button className="close-btn" onClick={onClose}>
+              X
+            </button>
+            <div className="max-h-[70vh] overflow-y-auto">
               <div className="text-center mt-5">
                 {children}
                 <h3 className="message">{message}</h3>
