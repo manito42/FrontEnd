@@ -16,7 +16,20 @@ export const enrollApi = createApi({
   }),
   tagTypes: ["Enroll"],
   endpoints: (builder) => ({
+    // enroll REQUEST, ACCEPT, PENDING 만 가져오기
     getEnroll: builder.query<EnrollResDto, EnrollReqDto>({
+      query: (args: EnrollReqDto) => {
+        return {
+          url: `/users/${args.id}/reservations?take=${args.take}&page=${
+            args.page
+          }&active=${true}`,
+          method: "GET",
+        };
+      },
+      keepUnusedDataFor: 100,
+      providesTags: [{ type: "Enroll", id: "LIST" }],
+    }),
+    getAllEnroll: builder.query<EnrollResDto, EnrollReqDto>({
       query: (args: EnrollReqDto) => {
         return {
           url: `/users/${args.id}/reservations?take=${args.take}&page=${args.page}`,
@@ -103,6 +116,7 @@ export const enrollApi = createApi({
 
 export const {
   useGetEnrollQuery,
+  useGetAllEnrollQuery,
   usePostReservationRequestMutation,
   usePatchReservationAcceptMutation,
   usePatchReservationCancelMutation,
