@@ -65,11 +65,9 @@ const Category = () => {
             </div>
           </div>
         </div>
-        <CategoryModal
-          isVisible={isVisible}
-          onClose={onClose}
-          categoryId={categoryId}
-        />
+        {isVisible && (
+          <CategoryModal onClose={onClose} categoryId={categoryId} />
+        )}
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />
         )}
