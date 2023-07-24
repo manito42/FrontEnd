@@ -1,10 +1,16 @@
-import Link from "next/link";
+import {
+  initSearchResult,
+  setHasMore,
+  setSearchPage,
+} from "@/RTK/Slices/Search";
+import { useAppDispatch } from "@/RTK/store";
 import { useRouter } from "next/router";
 import React, { useState, FormEvent } from "react";
 
 const SearchInput: React.FC = () => {
   const [search, setSearch] = useState("");
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -12,7 +18,10 @@ const SearchInput: React.FC = () => {
 
   const handleClick = () => {
     if (search.length > 0) {
-      router.push({ pathname: "/Search", query: { query: search } });
+      router.push({ pathname: "/Search", query: { search } });
+      dispatch(setSearchPage(0));
+      dispatch(setHasMore(true));
+      dispatch(initSearchResult());
     }
   };
 
