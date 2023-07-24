@@ -1,14 +1,15 @@
 import { usePatchReservationAcceptMutation } from "@/RTK/Apis/Enroll";
 import { ReservationPatchAcceptDto } from "@/Types/Reservations/ReservationPatchAccept.dto";
 import ConnectModal from "@/components/conect/ConnectModal";
+import TextArea from "antd/es/input/TextArea";
 import React, { useCallback, useState } from "react";
 
 interface AcceptButtonProps {
   data: ReservationPatchAcceptDto;
-  isVisible: boolean;
+  message: string;
 }
 
-const AcceptButton = ({ data, isVisible }: AcceptButtonProps) => {
+const AcceptButton = ({ data, message }: AcceptButtonProps) => {
   const [accept] = usePatchReservationAcceptMutation();
   const [onConnectModal, setOnConnectModal] = useState<boolean>(false);
 
@@ -25,7 +26,6 @@ const AcceptButton = ({ data, isVisible }: AcceptButtonProps) => {
     setOnConnectModal(false);
   }, []);
 
-  if (!isVisible) return null;
   return (
     <div className="mt-4">
       <button
@@ -40,7 +40,16 @@ const AcceptButton = ({ data, isVisible }: AcceptButtonProps) => {
           message="멘토링을 수락하시겠습니까?"
           onClose={onClose}
           handleYes={handleYes}
-        />
+        >
+          <div className="flex-row w-[100%] justify-center items-center">
+            <div className="w-full flex-wrap justify-center items-center h-auto mt-3 md:mt-12">
+              <div className="w-full justify-start text-xl font-bold mr-5">
+                {"요청메시지"}
+              </div>
+              <TextArea value={message} className="w-full max-w[500px]" />
+            </div>
+          </div>
+        </ConnectModal>
       )}
     </div>
   );
