@@ -89,18 +89,29 @@ const EnrollCard = ({ data, isMentor }: EnrollCardProps) => {
     <div className="enroll-card">
       <h1 className="mt-7">{msg}</h1>
       <div className="flex items-center">
-        <div className="mx-1">
-          <AcceptButton data={{ id: data.id }} isVisible={acceptButton} />
-        </div>
-        <div className="mx-1">
-          <CancelButton data={data} isVisible={cancelButton} />
-        </div>
-        <div className="mx-1">
-          <FinishButton data={data.id} isVisible={finishButton} />
-        </div>
-        <div className="mx-1">
-          <PendingButton data={data.id} isVisible={pendingButton} />
-        </div>
+        {acceptButton && (
+          <div className="mx-1">
+            <AcceptButton
+              data={{ id: data.id }}
+              message={data.requestMessage}
+            />
+          </div>
+        )}
+        {cancelButton && (
+          <div className="mx-1">
+            <CancelButton data={data} />
+          </div>
+        )}
+        {finishButton && (
+          <div className="mx-1">
+            <FinishButton data={data.id} />
+          </div>
+        )}
+        {pendingButton && (
+          <div className="mx-1">
+            <PendingButton data={data.id} />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -10,12 +10,11 @@ import React, { useCallback, useEffect, useState } from "react";
 
 interface FinishButtonProps {
   data: number;
-  isVisible: boolean;
 }
 
-const PendingButton = ({ data, isVisible }: FinishButtonProps) => {
+const PendingButton = ({ data }: FinishButtonProps) => {
   const [onConnectModal, setOnConnectModal] = useState<boolean>(false);
-  const [rating, setRiting] = useState<number>(0);
+  const [rating, setRating] = useState<number>(0);
   const [content, setContent] = useState<string>("");
   const [complete] = usePatchReservationCompleteMutation();
 
@@ -37,14 +36,8 @@ const PendingButton = ({ data, isVisible }: FinishButtonProps) => {
   }, []);
 
   const handleRating = (rating: number) => {
-    setRiting(rating);
+    setRating(rating);
   };
-
-  const handleContent = (content: string) => {
-    setContent(content);
-  };
-
-  if (!isVisible) return null;
 
   return (
     <div className="mt-4">
@@ -63,14 +56,24 @@ const PendingButton = ({ data, isVisible }: FinishButtonProps) => {
           onClose={closeConnectModal}
           handleYes={handleYes}
         >
-          <MuiRate Value={rating} setValue={handleRating} IsReadOnly={false} />
-          <TextArea
-            showCount
-            maxLength={300}
-            style={{ height: 80, marginBottom: 24 }}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="최대 300글자"
-          />
+          <div className="flex-row w-[100%] justify-center items-center">
+            <div className="w-full flex justify-center items-center">
+              <MuiRate
+                Value={rating}
+                setValue={handleRating}
+                IsReadOnly={false}
+              />
+            </div>
+            <div className="w-full flex justify-center items-center">
+              <TextArea
+                showCount
+                maxLength={300}
+                style={{ height: 80, marginBottom: 24 }}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="최대 300글자"
+              />
+            </div>
+          </div>
         </ConnectModal>
       )}
     </div>

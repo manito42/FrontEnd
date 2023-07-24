@@ -6,13 +6,12 @@ import React, { useCallback, useEffect, useState } from "react";
 
 interface FinishButtonProps {
   data: number;
-  isVisible: boolean;
 }
 
-const FinishButton = ({ data, isVisible }: FinishButtonProps) => {
+const FinishButton = ({ data }: FinishButtonProps) => {
   const [onConnectModal, setOnConnectModal] = useState<boolean>(false);
   const [pending] = usePatchReservationPendingMutation();
-  const [rating, setRiting] = useState<number>(0);
+  const [rating, setRating] = useState<number>(0);
 
   const openConnectModal = () => {
     setOnConnectModal(true);
@@ -32,10 +31,8 @@ const FinishButton = ({ data, isVisible }: FinishButtonProps) => {
   }, []);
 
   const handleRating = (rating: number) => {
-    setRiting(rating);
+    setRating(rating);
   };
-
-  if (!isVisible) return null;
 
   return (
     <div className="mt-4">
@@ -53,7 +50,13 @@ const FinishButton = ({ data, isVisible }: FinishButtonProps) => {
           onClose={closeConnectModal}
           handleYes={handleYes}
         >
-          <MuiRate Value={rating} setValue={handleRating} IsReadOnly={false} />
+          <div className="flex-row w-[100%] justify-center items-center">
+            <MuiRate
+              Value={rating}
+              setValue={handleRating}
+              IsReadOnly={false}
+            />
+          </div>
         </ConnectModal>
       )}
     </div>
