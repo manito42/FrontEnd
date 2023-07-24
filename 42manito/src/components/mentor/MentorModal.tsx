@@ -3,7 +3,7 @@ import { RootState, useAppDispatch } from "@/RTK/store";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ConnectModal from "../conect/ConnectModal";
+import ConnectModal from "../connect/ConnectModal";
 import { usePostReservationRequestMutation } from "@/RTK/Apis/Enroll";
 import MentorConnectSelect from "./MentorConnectSelect";
 import { initMentorConnect, setMessage } from "@/RTK/Slices/MentorConnect";

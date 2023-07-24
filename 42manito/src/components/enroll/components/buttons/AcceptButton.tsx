@@ -1,6 +1,6 @@
 import { usePatchReservationAcceptMutation } from "@/RTK/Apis/Enroll";
 import { ReservationPatchAcceptDto } from "@/Types/Reservations/ReservationPatchAccept.dto";
-import ConnectModal from "@/components/conect/ConnectModal";
+import ConnectModal from "@/components/connect/ConnectModal";
 import TextArea from "antd/es/input/TextArea";
 import React, { useCallback, useState } from "react";
 

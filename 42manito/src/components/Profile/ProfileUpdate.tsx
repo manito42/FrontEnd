@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useReducer, useRef, useState } from "react";
 import { Input } from "antd";
 import HashtagCard from "./HashtagCard";
-import ConnectModal from "../conect/ConnectModal";
+import ConnectModal from "../connect/ConnectModal";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { useSelector } from "react-redux";
 import { ProfileUpdateSlice } from "@/RTK/Slices/ProfileUpdate";
@@ -190,6 +190,7 @@ const ProfileUpdate = ({ onClose, data }: props) => {
         <ConnectModal
           message={"수정하시겠습니까?"}
           onClose={handleConnectClose}
+          handleYes={handleSubmit}
         />
       )}
     </div>

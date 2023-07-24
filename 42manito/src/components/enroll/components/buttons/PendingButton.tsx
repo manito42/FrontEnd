@@ -1,7 +1,7 @@
 import { usePatchReservationCompleteMutation } from "@/RTK/Apis/Enroll";
 import { ReservationPatchMenteeCompletionDto } from "@/Types/Reservations/ReservationPatchMenteeCompletion.dto";
 import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
-import ConnectModal from "@/components/conect/ConnectModal";
+import ConnectModal from "@/components/connect/ConnectModal";
 import FeedbackPost from "@/components/feedback/FeedbackPost";
 import MuiRate from "@/components/global/MuiRate";
 import TextArea from "antd/es/input/TextArea";

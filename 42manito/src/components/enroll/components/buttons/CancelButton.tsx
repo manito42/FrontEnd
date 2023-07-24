@@ -1,6 +1,6 @@
 import { usePatchReservationCancelMutation } from "@/RTK/Apis/Enroll";
 import { ReservationPatchCancelReqDto } from "@/Types/Reservations/ReservationPatchCancelReq.dto";
-import ConnectModal from "@/components/conect/ConnectModal";
+import ConnectModal from "@/components/connect/ConnectModal";
 import React, { useCallback, useState } from "react";
 
 interface CancelButtonProps {

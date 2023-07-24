@@ -1,6 +1,6 @@
 import { usePatchReservationPendingMutation } from "@/RTK/Apis/Enroll";
 import { ReservationPatchMentorCompletionDto } from "@/Types/Reservations/ReservationPatchMentorCompletion.dto";
-import ConnectModal from "@/components/conect/ConnectModal";
+import ConnectModal from "@/components/connect/ConnectModal";
 import MuiRate from "@/components/global/MuiRate";
 import React, { useCallback, useEffect, useState } from "react";
 
