@@ -9,7 +9,6 @@ import dynamic from "next/dynamic";
 
 interface props {
   onClose: () => void;
-  isVisible: boolean;
   categoryId: number;
 }
 
@@ -17,7 +16,7 @@ const MentorCard = dynamic(() => import("@/components/mentor/MentorCard"), {
   loading: () => <Spin />,
 });
 
-const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
+const CategoryModal = ({ onClose, categoryId }: props) => {
   const [zoomOut, setZoomOut] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
@@ -81,16 +80,14 @@ const CategoryModal = ({ onClose, isVisible, categoryId }: props) => {
     };
   }, []);
 
-  if (!isVisible) return null;
-
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-[100vw] px-5 md:px-20 h-[100vh]"
       id="wrapper"
     >
       <section
-        className={`relative py-16 mentor-modal h-[100vh] md:top-[5.4em]   ${
-          zoomOut && "close-modal"
+        className={`relative py-16  h-[100vh] md:top-[5.4em]   ${
+          zoomOut ? "close-modal" : "mentor-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
