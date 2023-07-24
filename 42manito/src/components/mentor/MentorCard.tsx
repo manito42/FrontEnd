@@ -12,6 +12,7 @@ const MentorCard = ({ data }: props) => {
   const dispatch = useAppDispatch();
 
   const openMentorModal = (data: MentorProfileDto) => {
+    dispatch(CurrMentorSlice.actions.deleteMentor());
     dispatch(CurrMentorSlice.actions.setMentor(data));
     dispatch(CurrMentorSlice.actions.openMentorModal());
   };
