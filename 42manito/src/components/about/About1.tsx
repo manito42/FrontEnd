@@ -1,5 +1,5 @@
 import React from "react";
-import TypoAction from "./typoAction";
+import TypoAction from "typo-action";
 
 export default function About1() {
   return (
