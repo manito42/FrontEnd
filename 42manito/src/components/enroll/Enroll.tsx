@@ -1,10 +1,8 @@
 import React from "react";
 import EnrollCard from "./components/ErollCard";
-import InfiniteScroll from "react-infinite-scroll-component";
 import TypeIt from "typeit-react";
 import ProfileTypo from "../Profile/ProfileTypo";
 import { RootState, useAppDispatch } from "@/RTK/store";
-import { useSelect } from "@mui/base";
 import { useGetEnrollQuery } from "@/RTK/Apis/Enroll";
 import { Spin } from "antd";
 import { useSelector } from "react-redux";
@@ -17,7 +15,6 @@ const Enroll = ({ viewProfileTypo }: props) => {
   const Owner = useSelector(
     (state: RootState) => state.rootReducers.global.uId
   );
-  const dispatch = useAppDispatch();
   const { data, isLoading, error } = useGetEnrollQuery({ id: Owner });
   // TODO: users/id/reservation으로 불러와서 해야함
 
