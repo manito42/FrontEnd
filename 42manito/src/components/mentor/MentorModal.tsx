@@ -1,12 +1,19 @@
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import Image from "next/image";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ConnectModal from "../conect/ConnectModal";
 import { usePostReservationRequestMutation } from "@/RTK/Apis/Enroll";
+import MentorConnectSelect from "./MentorConnectSelect";
+import { initMentorConnect, setMessage } from "@/RTK/Slices/MentorConnect";
+import DevelopAnimation from "../global/DevelopAnimation";
+import HobbyAnimation from "../global/HobbyAnimation";
+import TextArea from "antd/es/input/TextArea";
+import classnames from "classnames";
 
 const MentorModal = () => {
+  const [closeAnimation, setCloseAnimation] = useState(false);
   const dispatch = useAppDispatch();
   const currMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
@@ -14,22 +21,24 @@ const MentorModal = () => {
   const Owner = useSelector(
     (state: RootState) => state.rootReducers.global.uId
   );
+  const connectState = useSelector(
+    (state: RootState) => state.rootReducers.mentorConnect
+  );
   const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget.id === "wrapper") handleZoomOut();
   };
 
   const [postReservation] = usePostReservationRequestMutation();
-
   const handleZoomOut = () => {
-    dispatch(CurrMentorSlice.actions.handleZoomOut(true));
+    setCloseAnimation(true);
     setTimeout(() => {
+      setCloseAnimation(false);
       dispatch(CurrMentorSlice.actions.closeMentorModal());
-      dispatch(CurrMentorSlice.actions.handleZoomOut(false));
-      dispatch(CurrMentorSlice.actions.deleteMentor());
-    }, 300); // 줌아웃 에니메이션 실행 시간을 기다림
+    }, 300);
   };
 
   const handleConnectOpen = () => {
+    dispatch(initMentorConnect());
     dispatch(CurrMentorSlice.actions.openConnectModal());
   };
 
@@ -37,15 +46,29 @@ const MentorModal = () => {
     dispatch(CurrMentorSlice.actions.closeConnectModal());
   }, [dispatch]);
 
-  const handleYes = () => {
-    postReservation({});
+  const handleYes = async () => {
+    if (
+      connectState.message.length === 0 ||
+      connectState.hashtags.length <= 0
+    ) {
+      alert("요청 메세지와 해시태그를 입력해주세요.");
+    } else {
+      await postReservation({
+        mentorId: currMentorState.currMentor.user.id,
+        menteeId: Owner,
+        categoryId: currMentorState.currMentor.categories[0].id, // 카테고리 선택할 수 있게 해야함
+        requestMessage: connectState.message, // 요청 메세지
+        hashtags: connectState.hashtags, // 해시태그
+      });
+      handleConnectClose();
+    }
   };
 
   return (
     <div className="mentor-modal-container" id="wrapper" onClick={handleClose}>
       <section
         className={`mentor-modal-section ${
-          currMentorState.zoomOut && "close-modal"
+          closeAnimation ? "close-modal" : "mentor-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
@@ -132,7 +155,36 @@ const MentorModal = () => {
           message="멘토에게 커넥트 요청을 보내시겠습니까?"
           onClose={handleConnectClose}
           handleYes={handleYes}
-        />
+        >
+          <div className="flex-row w-[100%] justify-center items-center">
+            <div className="w-full flex justify-center items-center">
+              {currMentorState.currMentor.categories[0].name === "DEVELOP" ? (
+                <DevelopAnimation size="20vw" />
+              ) : (
+                <HobbyAnimation size="20vw" />
+              )}
+            </div>
+            <div className="w-full flex-wrap justify-center items-center h-auto mt-3 md:mt-12">
+              <div className="w-full justify-start text-xl font-bold mr-5">
+                {"해시태그선택"}
+              </div>
+              <MentorConnectSelect
+                hashtag={currMentorState.currMentor.hashtags}
+              />
+            </div>
+            <div className="w-full flex-wrap justify-center items-center h-auto mt-3 md:mt-5">
+              <div className="text-xl font-bold">요청메시지</div>
+              <TextArea
+                showCount
+                maxLength={1000}
+                style={{ height: 80, marginBottom: 24 }}
+                onChange={(e) => dispatch(setMessage(e.target.value))}
+                placeholder="최대 1000글자"
+                className="w-full max-w-[500px]"
+              />
+            </div>
+          </div>
+        </ConnectModal>
       )}
     </div>
   );
