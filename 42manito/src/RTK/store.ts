@@ -6,6 +6,7 @@ import { homeApi } from "./Apis/Home";
 import { categoryApi } from "./Apis/Category";
 import { authApi } from "./Apis/Auth";
 import { enrollApi } from "./Apis/Enroll";
+import { searchApi } from "./Apis/Search";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     [categoryApi.reducerPath]: categoryApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [enrollApi.reducerPath]: enrollApi.reducer,
+    [searchApi.reducerPath]: searchApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -22,7 +24,8 @@ export const store = configureStore({
       .concat(homeApi.middleware)
       .concat(categoryApi.middleware)
       .concat(authApi.middleware)
-      .concat(enrollApi.middleware),
+      .concat(enrollApi.middleware)
+      .concat(searchApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

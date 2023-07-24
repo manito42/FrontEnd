@@ -7,6 +7,7 @@
 @import "./mentor.css";
 @import "./animation.css";
 @import "./connect.css";
+@import "./search.css";
 
 ::-webkit-scrollbar {
   width: 2px; /* 스크롤바의 너비 설정 */
@@ -133,3 +134,13 @@ p {
             dark:border-gray-200/50
             dark:hover:shadow-gray-400/40;
 }
+
+.close-modal {
+  animation: slideOut 0.3s ease-out;
+}
+
+.mentor-modal {
+  animation: slideIn 0.3s ease-in;
+}
+
+/* animaiton */
