@@ -9,7 +9,7 @@ import MentorConnectSelect from "./MentorConnectSelect";
 import { initMentorConnect, setMessage } from "@/RTK/Slices/MentorConnect";
 import DevelopAnimation from "../global/DevelopAnimation";
 import HobbyAnimation from "../global/HobbyAnimation";
-import TextArea from "antd/es/input/TextArea";
+import { Input } from "antd";
 import classnames from "classnames";
 
 const MentorModal = () => {
@@ -174,7 +174,7 @@ const MentorModal = () => {
             </div>
             <div className="w-full flex-wrap justify-center items-center h-auto mt-3 md:mt-5">
               <div className="text-xl font-bold">요청메시지</div>
-              <TextArea
+              <Input.TextArea
                 showCount
                 maxLength={1000}
                 style={{ height: 80, marginBottom: 24 }}

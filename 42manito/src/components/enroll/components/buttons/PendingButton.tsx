@@ -4,7 +4,7 @@ import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
 import ConnectModal from "@/components/connect/ConnectModal";
 import FeedbackPost from "@/components/feedback/FeedbackPost";
 import MuiRate from "@/components/global/MuiRate";
-import TextArea from "antd/es/input/TextArea";
+import { Input } from "antd";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
 
@@ -65,7 +65,7 @@ const PendingButton = ({ data }: FinishButtonProps) => {
               />
             </div>
             <div className="w-full flex justify-center items-center">
-              <TextArea
+              <Input.TextArea
                 showCount
                 maxLength={300}
                 style={{ height: 80, marginBottom: 24 }}

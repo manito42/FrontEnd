@@ -1,7 +1,7 @@
 import { usePatchReservationAcceptMutation } from "@/RTK/Apis/Enroll";
 import { ReservationPatchAcceptDto } from "@/Types/Reservations/ReservationPatchAccept.dto";
 import ConnectModal from "@/components/connect/ConnectModal";
-import TextArea from "antd/es/input/TextArea";
+import { Input } from "antd";
 import React, { useCallback, useState } from "react";
 
 interface AcceptButtonProps {
@@ -46,7 +46,7 @@ const AcceptButton = ({ data, message }: AcceptButtonProps) => {
               <div className="w-full justify-start text-xl font-bold mr-5">
                 {"요청메시지"}
               </div>
-              <TextArea value={message} className="w-full max-w[500px]" />
+              <Input.TextArea value={message} className="w-full max-w[500px]" />
             </div>
           </div>
         </ConnectModal>
