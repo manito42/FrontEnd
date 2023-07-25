@@ -3,20 +3,23 @@ import Link from "next/link";
 import DarkModeToggleButton from "./DarkModeButton";
 import SearchInput from "./SearchInput";
 import { Divider, Drawer } from "antd";
-import { useLoginMutation } from "@/RTK/Apis/Auth";
+import { useAuthSignInMutation, useLoginMutation } from "@/RTK/Apis/Auth";
 import { RootState, useAppDispatch } from "@/RTK/store";
-import { signIn } from "@/RTK/Slices/Global";
+import { signIn, signOut } from "@/RTK/Slices/Global";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { SignIn } from "@/utils/SignIn";
 
 const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const [login, { data }] = useLoginMutation();
+  const [login, { data, isLoading }] = useLoginMutation();
   const Owner = useSelector(
     (state: RootState) => state.rootReducers.global.uId
   );
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  const [Auth] = useAuthSignInMutation();
 
   const showDrawer = () => {
     setVisible(!visible);
@@ -27,16 +30,14 @@ const Header: React.FC = () => {
   // TODO : Login을 하면 isMentor 확인 후 false면 프로필 버튼 disabled
 
   const testLogin = () => {
-    login();
+    console.log(Owner);
+    login({ id: Owner });
   };
 
-  useEffect(() => {
-    if (data) {
-      dispatch(signIn({ accessToken: data.accessToken, uId: 5 }));
-      console.log(data);
-      router.push("/");
-    }
-  }, [data?.accessToken]);
+  const handleSingOut = () => {
+    dispatch(signOut());
+    router.push("/");
+  };
 
   return (
     <>
@@ -81,7 +82,7 @@ const Header: React.FC = () => {
             <Link href="/About">
               <p className="text-xl px-3 mt-10 m-5 btn-drawer">About.</p>
             </Link>
-            {Owner !== 0 && (
+            {Owner !== 0 && !Number.isNaN(Owner) && (
               <Link href="/Profile">
                 <p className="text-xl px-3 m-5 btn-drawer">Profile.</p>
               </Link>
@@ -92,21 +93,22 @@ const Header: React.FC = () => {
             {/* <Link href="/Ranking">
               <p className="text-xl px-3 m-5 btn-drawer">Ranking.</p>
             </Link> */}
-            {Owner !== 0 && (
+            {Owner !== 0 && !Number.isNaN(Owner) && (
               <Link href="/Feedback">
                 <p className="text-xl px-3 m-5 btn-drawer">Feedback.</p>
               </Link>
             )}
             <Divider className="dark:bg-slate-400 bg-slate-500 my-16" />
-            {Owner === 0 && (
-              <Link href="/SignIn">
-                <p className="text-xl  px-3 m-5 btn-drawer">Sign In.</p>
-              </Link>
-            )}
-            {Owner !== 0 && (
-              <Link href="/SignOut">
+            {Owner === 0 ||
+              (Number.isNaN(Owner) && (
+                <div id="42AuthSignIn" onClick={() => SignIn()}>
+                  <p className="text-xl  px-3 m-5 btn-drawer">Sign In.</p>
+                </div>
+              ))}
+            {Owner !== 0 && !Number.isNaN(Owner) && (
+              <div id="SignOut" onClick={handleSingOut}>
                 <p className="text-xl px-3 m-5 btn-drawer">Sign Out.</p>
-              </Link>
+              </div>
             )}
             <div id="testLogin" onClick={testLogin}>
               임시로그인

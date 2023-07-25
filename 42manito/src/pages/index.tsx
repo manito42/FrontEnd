@@ -7,6 +7,8 @@ import { RootState, useAppDispatch } from "@/RTK/store";
 import { useGetMentorsMutation } from "@/RTK/Apis/Home";
 import dynamic from "next/dynamic";
 import { initAllMentor, setAllMentor } from "@/RTK/Slices/Home";
+import { useRouter } from "next/router";
+import { signIn, signOut } from "@/RTK/Slices/Global";
 
 const Typo = dynamic(() => import("@/components/home/Typo"));
 const MentorCard = dynamic(() => import("@/components/mentor/MentorCard"));
@@ -22,6 +24,9 @@ export default function Home() {
   const dispatch = useAppDispatch();
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const router = useRouter();
+
+  const { uid } = router.query;
 
   const [getMentors, { data, isLoading, error }] = useGetMentorsMutation();
 
@@ -33,6 +38,19 @@ export default function Home() {
     getMentors({ take: 12, page: page });
     setPage(page + 1);
   };
+
+  useEffect(() => {
+    console.log(uid);
+    if (uid !== "0") {
+      dispatch(signIn({ uId: Number(uid) }));
+    } else if (uid === undefined) {
+      return;
+    } else {
+      alert("로그인에 실했습니다.");
+      dispatch(signOut());
+      router.push("/");
+    }
+  }, [uid]);
 
   useEffect(() => {
     if (currMentorState.openMentorModal) {

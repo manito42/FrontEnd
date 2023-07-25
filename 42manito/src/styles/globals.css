@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @import "./home.css";
-@import "./about.css";
+/* @import "./about.css"; */
 @import "./mentor.css";
 @import "./animation.css";
 @import "./connect.css";
@@ -144,3 +144,210 @@ p {
 }
 
 /* animaiton */
+
+/* about */
+
+.about {
+  @apply w-[100vw] h-[100vh] bg-black;
+}
+
+.about-show {
+  @apply flex flex-wrap w-[100vw] h-[100vh] items-center justify-center;
+}
+
+#about1 {
+  background-image: url("../../public/about1BgImage.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  @apply w-[100vw] h-[100vh];
+}
+
+#about2 {
+  background-color: white;
+  background-image: url("../../public/about2BgImage.webp");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  @apply w-[100vw] h-[100vh];
+
+  & .about-show {
+    @apply relative flex flex-wrap w-[100vw] h-[100vh] justify-end items-center md:items-end;
+
+    & .about-title {
+      @apply text-white text-[1.5em] lg:text-[3em] w-[90%] mt-56 md:mt-0 md:w-[50%] font-bold p-[1em];
+    }
+  }
+}
+
+#about3 {
+  background-image: url("../../public/about3BgImage.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  @apply w-[100vw] h-[100vh];
+
+  & .about-show {
+    @apply relative flex w-[100vw] h-[100vh] justify-center items-center;
+  }
+
+  & .about-image {
+    @apply w-[40%] rounded-lg object-contain;
+    opacity: 0;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  & .about-title {
+    @apply text-white text-[1.5em] lg:text-[3em] w-[90%] md:w-[50%] font-bold p-[0.5em] md:p-[1em];
+  }
+}
+
+#about4 {
+  @apply w-[100vw] h-[100vh];
+
+  & .about-show {
+    @apply relative flex flex-wrap w-[100vw] h-[100vh] justify-center items-center;
+
+    & .about-title {
+      @apply text-white text-[1.5em] lg:text-[3em] w-[90%] md:w-[50%] font-bold p-[1em];
+    }
+    & .about-image {
+      @apply w-[40%] max-h-[80vh] rounded-lg object-contain;
+      opacity: 0;
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+}
+
+#about5 {
+  background-image: url("../../public/about5BgImage.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @apply w-[100vw] h-[100vh];
+
+  & .about-show {
+    @apply relative flex flex-wrap w-[100vw] h-[100vh] justify-end items-end md:items-start;
+
+    & .about-title {
+      @apply text-white text-[1.5em] lg:text-[3em] w-[90%] md:w-[50%] font-bold p-[1em] mb-32 md:mb-0;
+    }
+  }
+}
+
+.about1-content {
+  @apply flex flex-wrap w-[100vw] h-[100vh] justify-center items-center;
+
+  & .about-left {
+    @apply flex items-center justify-center p-[1em] max-w-[40vw];
+  }
+
+  & .about-right {
+    @apply flex items-center justify-center p-[1em];
+  }
+}
+
+@keyframes fadeInLeft {
+  /* 이곳에 키 프레임을 정의하세요. */
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutLeft {
+  /* 이곳에 키 프레임을 정의하세요. */
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fadeInRight {
+  /* 이곳에 키 프레임을 정의하세요. */
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutRight {
+  /* 이곳에 키 프레임을 정의하세요. */
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.fade-in-left {
+  animation: fadeInLeft 1s ease-in-out forwards;
+}
+
+.fade-in-right {
+  animation: fadeInRight 1s ease-in-out forwards;
+}
+
+.fade-out-left {
+  animation: fadeOutLeft 1s ease-in-out forwards;
+}
+
+.fade-out-right {
+  animation: fadeOutRight 1s ease-in-out forwards;
+}
+
+.image-fade-in-left {
+  animation: fadeInLeft 1s ease-in-out forwards 0.6s;
+}
+
+.image-fade-out-left {
+  animation: fadeOutLeft 1s ease-in-out forwards 0.4s;
+}
+
+.image-fade-in-right {
+  animation: fadeInRight 1s ease-in-out forwards 0.6s;
+}
+
+.image-fade-out-right {
+  animation: fadeOutRight 1s ease-in-out forwards 0.4s;
+}
+
+.typo-action1 {
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.typo-action2 {
+  color: white;
+  font-weight: 800;
+  font-size: 3em;
+}
+
+/* 반응형 구성을 위한 미디어 쿼리 */
+@media (min-width: 1024px) {
+  .typo-action1 {
+    font-size: 5em;
+  }
+
+  .typo-action2 {
+    font-size: 6em;
+  }
+}

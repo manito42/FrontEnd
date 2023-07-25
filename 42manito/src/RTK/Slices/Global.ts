@@ -2,12 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface globalState {
   uId: number;
-  accessToken: string;
 }
 
 const InitialState: globalState = {
   uId: 0,
-  accessToken: "",
 };
 
 export const GlobalSlice = createSlice({
@@ -16,7 +14,6 @@ export const GlobalSlice = createSlice({
   reducers: {
     signIn(state, action: PayloadAction<globalState>) {
       state.uId = action.payload.uId;
-      state.accessToken = action.payload.accessToken;
     },
     signOut(state) {
       state = InitialState;
