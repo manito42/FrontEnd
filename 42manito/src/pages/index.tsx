@@ -33,6 +33,7 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // 아직 테스트해야할게 많음 특히 Auth, ProfileUpdate
   return (
     <Layout>
       <div className="app-container home">

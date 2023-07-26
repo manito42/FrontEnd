@@ -1,5 +1,6 @@
 import React from "react";
 
+// 아직은 만들어두고 사용안함
 interface Props {
   msg: string;
   isAlert: boolean;

@@ -13,6 +13,8 @@ const StyledRating = styled(Rating)(({ theme }) => ({
   },
 }));
 
+// TODO: 테스트해야함
+
 const customIcons: {
   [index: string]: {
     icon: React.ReactElement;
