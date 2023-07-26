@@ -1,7 +1,7 @@
 import React from "react";
-import EnrollCard from "./components/ErollCard";
+import EnrollCard from "./components/Card";
 import TypeIt from "typeit-react";
-import ProfileTypo from "../Profile/ProfileTypo";
+import ProfileTypo from "../Profile/Typo";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { useGetEnrollQuery } from "@/RTK/Apis/Enroll";
 import { Spin } from "antd";
