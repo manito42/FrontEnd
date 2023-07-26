@@ -7,6 +7,8 @@ import { Spin } from "antd";
 import { useSelector } from "react-redux";
 import EnrollCard from "./components/Card";
 
+// TODO: 엔롤 테스트해봐야함
+
 interface props {
   viewProfileTypo: boolean;
 }
