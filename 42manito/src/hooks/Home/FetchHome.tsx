@@ -26,6 +26,7 @@ export const useFetchHome = () => {
         setHasMore(false);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   return { allMentor, fetchMoreData, hasMore };

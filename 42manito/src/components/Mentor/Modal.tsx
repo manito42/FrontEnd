@@ -1,16 +1,15 @@
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import Image from "next/image";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import ConnectModal from "../Connect/ConnectModal";
 import { usePostReservationRequestMutation } from "@/RTK/Apis/Enroll";
-import MentorConnectSelect from "./ConnectSelect";
 import { initMentorConnect, setMessage } from "@/RTK/Slices/MentorConnect";
 import DevelopAnimation from "../Global/DevelopAnimation";
 import HobbyAnimation from "../Global/HobbyAnimation";
 import { Input } from "antd";
-import classnames from "classnames";
+import MentorConnectSelect from "./ConnectSelect";
 
 const MentorModal = () => {
   const [closeAnimation, setCloseAnimation] = useState(false);

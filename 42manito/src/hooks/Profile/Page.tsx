@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 import { useRouter } from "next/router";
 import { useGetUserQuery } from "@/RTK/Apis/User";
+import { useEffect } from "react";
 
 export const useProfilePage = () => {
   const router = useRouter();
@@ -15,9 +16,11 @@ export const useProfilePage = () => {
     { skip: ownerId === 0 }
   );
 
-  if (ownerId !== Number(userId)) {
-    router.push("/NotFound");
-  }
+  useEffect(() => {
+    if (ownerId !== Number(userId)) {
+      router.push("/404");
+    }
+  }, [ownerId, userId, router]);
 
   return { OwnerData, OwnerLoading };
 };

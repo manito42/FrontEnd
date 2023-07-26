@@ -27,7 +27,7 @@ export default function Home() {
     return () => {
       dispatch(initAllMentor());
     };
-  }, []);
+  }, [OwnerId, dispatch]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });

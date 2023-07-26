@@ -1,7 +1,7 @@
 import Enroll from "@/components/Enroll";
 import Layout from "@/components/Layout/Layout";
 import React from "react";
-import ProfileUpdate from "@/components/Profile/Update";
+import ProfileUpdate from "@/components/Profile/Update/Update";
 import ProfileImage from "@/components/Profile/Image";
 import ProfileInfo from "@/components/Profile/Info";
 import ProfileCategories from "@/components/Profile/Categories";
@@ -13,7 +13,9 @@ const Profile = () => {
   const { isProfileUpdateOpen, openProfileUpdate, closeProfileUpdate } =
     useProfileUpdateModal();
   const { OwnerData, OwnerLoading } = useProfilePage();
-
+  if (typeof window === "undefined") {
+    return <div>로딩 중...</div>; // 로딩 표시를 보여주셔도 되고, 아무것도 보여주지 않으셔도 됩니다.
+  }
   return (
     <Layout>
       {OwnerData && !OwnerLoading && (

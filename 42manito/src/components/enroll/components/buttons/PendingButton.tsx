@@ -18,14 +18,14 @@ const PendingButton = ({ data }: FinishButtonProps) => {
     setOnConnectModal(true);
   };
 
-  const handleYes = useCallback(() => {
+  const handleYes = () => {
     if (rating === 0 || content === "") {
       alert("평점 또는 피드백 메시지를 입력해주세요.");
     } else {
       complete({ id: data, rating: rating, content: content });
       setOnConnectModal(false);
     }
-  }, [data]);
+  };
 
   const closeConnectModal = useCallback(() => {
     setOnConnectModal(false);

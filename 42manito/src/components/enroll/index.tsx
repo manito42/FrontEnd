@@ -1,11 +1,11 @@
 import React from "react";
-import EnrollCard from "./components/Card";
 import TypeIt from "typeit-react";
 import ProfileTypo from "../Profile/Typo";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { useGetEnrollQuery } from "@/RTK/Apis/Enroll";
 import { Spin } from "antd";
 import { useSelector } from "react-redux";
+import EnrollCard from "./components/Card";
 
 interface props {
   viewProfileTypo: boolean;
@@ -16,7 +16,6 @@ const Enroll = ({ viewProfileTypo }: props) => {
     (state: RootState) => state.rootReducers.global.uId
   );
   const { data, isLoading, error } = useGetEnrollQuery({ id: Owner });
-  // TODO: users/id/reservation으로 불러와서 해야함
 
   if (isLoading) {
     return <Spin />;

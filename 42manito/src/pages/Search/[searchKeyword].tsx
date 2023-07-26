@@ -1,63 +1,21 @@
-import { useGetSearchMutation } from "@/RTK/Apis/Search";
-import { initSearchResult, setSearchResult } from "@/RTK/Slices/Search";
-import { RootState, useAppDispatch } from "@/RTK/store";
+import { RootState } from "@/RTK/store";
 import Layout from "@/components/Layout/Layout";
-import MentorCard from "@/components/Mentor/Card";
 import MentorModal from "@/components/Mentor/Modal";
-import { Spin } from "antd";
+import SearchMentorList from "@/components/Search/MentorList";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useFetchSearch } from "@/hooks/Search/FetchSearch";
 
 const Search: React.FC = () => {
-  const router = useRouter();
-  const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(0);
-  const [SearchMutation, { data, isLoading, error }] = useGetSearchMutation();
-  const searchMentors = useSelector(
-    (state: RootState) => state.rootReducers.search.searchResult
-  );
   const currMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
+  const { searchMentors, hasMore, fetchMoreData } = useFetchSearch();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const dispatch = useAppDispatch();
-
-  const { searchKeyword } = router.query;
-
-  const fetchMoreData = () => {
-    if (searchKeyword) {
-      SearchMutation({
-        search_string: searchKeyword as string,
-        take: 12,
-        page: page,
-      });
-      setPage(page + 1);
-    }
-  };
-
-  useEffect(() => {
-    if (data) {
-      dispatch(setSearchResult(data));
-      if (data.length % 12 !== 0 || data.length === 0) {
-        setHasMore(false);
-      }
-    }
-  }, [isLoading]);
-
-  useEffect(() => {
-    fetchMoreData();
-    return () => {
-      setPage(0);
-      setHasMore(true);
-      dispatch(initSearchResult());
-    };
-  }, []);
 
   useEffect(() => {
     const htmlElement = document.querySelector("html");
@@ -81,18 +39,11 @@ const Search: React.FC = () => {
           {searchMentors.length <= 0 ? (
             <span>검색결과가 없습니다.</span>
           ) : (
-            <InfiniteScroll
-              dataLength={searchMentors.length}
-              next={fetchMoreData}
+            <SearchMentorList
+              searchMentors={searchMentors}
+              fetchMoreData={fetchMoreData}
               hasMore={hasMore}
-              loader={<Spin />}
-            >
-              <div className="mentor-cards-container">
-                {searchMentors.map((mentor) => (
-                  <MentorCard data={mentor} key={mentor.id} />
-                ))}
-              </div>
-            </InfiniteScroll>
+            />
           )}
           {currMentorState.openMentorModal &&
             currMentorState.currMentor.user && <MentorModal />}

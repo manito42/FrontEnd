@@ -1,11 +1,11 @@
 import React, { memo, useEffect, useReducer, useRef, useState } from "react";
 import { Input } from "antd";
-import HashtagCard from "./HashtagCard";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { useSelector } from "react-redux";
 import { ProfileUpdateSlice } from "@/RTK/Slices/ProfileUpdate";
 import { UserDefaultDto } from "@/Types/Users/UserDefault.dto";
 import ConnectModal from "@/components/Connect/ConnectModal";
+import HashtagCard from "../HashtagCard";
 
 interface props {
   onClose: () => void;

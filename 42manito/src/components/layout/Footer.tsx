@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Footer: React.FC = () => {
+export default function Footer() {
   return (
     <>
       <footer className="body-font">
@@ -77,6 +77,4 @@ const Footer: React.FC = () => {
       </footer>
     </>
   );
-};
-
-export default Footer;
+}

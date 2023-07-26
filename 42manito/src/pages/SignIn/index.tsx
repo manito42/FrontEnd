@@ -14,6 +14,7 @@ export default function SignIn() {
       localStorage.setItem("uid", uid as string);
       router.push("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Layout from "@/components/Layout/Layout";
-import dynamic from "next/dynamic";
-
-const About1 = dynamic(() => import("@/components/About/About1"));
-const About2 = dynamic(() => import("@/components/About/About2"));
-const About3 = dynamic(() => import("@/components/About/About3"));
-const About4 = dynamic(() => import("@/components/About/About4"));
-const About5 = dynamic(() => import("@/components/About/About5"));
+import About1 from "@/components/About/About1";
+import About2 from "@/components/About/About2";
+import About3 from "@/components/About/About3";
+import About4 from "@/components/About/About4";
+import About5 from "@/components/About/About5";
 
 const About = () => {
   const observer = useRef<IntersectionObserver | null>(null);

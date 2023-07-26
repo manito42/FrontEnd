@@ -24,7 +24,7 @@ const FinishButton = ({ data }: FinishButtonProps) => {
       pending({ id: data, rating: rating });
       setOnConnectModal(false);
     }
-  }, [data]);
+  }, [data, pending, rating]);
 
   const closeConnectModal = useCallback(() => {
     setOnConnectModal(false);

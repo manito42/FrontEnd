@@ -7,10 +7,10 @@ import { signIn, signOut } from "@/RTK/Slices/Global";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { SignIn } from "@/utils/SignIn";
-import SearchInput from "../Search/SearchInput";
 import DarkModeToggleButton from "./DarkModeButton";
+import SearchInput from "../Search/SearchInput";
 
-const Header: React.FC = () => {
+export default function Header() {
   const [visible, setVisible] = useState(false);
   const [login, { data, isLoading }] = useLoginMutation();
   const Owner = useSelector(
@@ -27,7 +27,6 @@ const Header: React.FC = () => {
   const onClose = () => {
     setVisible(false);
   };
-  // TODO : Login을 하면 isMentor 확인 후 false면 프로필 버튼 disabled
 
   const handleSingOut = () => {
     dispatch(signOut());
@@ -109,6 +108,4 @@ const Header: React.FC = () => {
       </header>
     </>
   );
-};
-
-export default Header;
+}

@@ -1,7 +1,6 @@
 import { useGetUserQuery, useSetMentorAcceptMutation } from "@/RTK/Apis/User";
 import { RootState } from "@/RTK/store";
-import { skip } from "node:test";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import TypeIt from "typeit-react";
 
@@ -37,7 +36,6 @@ const ProfileTypo = () => {
   useEffect(() => {
     if (data) {
       alert("멘토 신청이 완료되었습니다.");
-      console.log(Userdata);
     }
   }, [data]);
 
