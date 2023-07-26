@@ -1,11 +1,7 @@
 import { usePatchReservationCompleteMutation } from "@/RTK/Apis/Enroll";
-import { ReservationPatchMenteeCompletionDto } from "@/Types/Reservations/ReservationPatchMenteeCompletion.dto";
-import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
-import ConnectModal from "@/components/connect/ConnectModal";
-import FeedbackPost from "@/components/feedback/FeedbackPost";
-import MuiRate from "@/components/global/MuiRate";
+import ConnectModal from "@/components/Connect/ConnectModal";
+import MuiRate from "@/components/Global/MuiRate";
 import { Input } from "antd";
-import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
 
 interface FinishButtonProps {

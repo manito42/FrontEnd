@@ -1,7 +1,7 @@
 import { usePatchReservationPendingMutation } from "@/RTK/Apis/Enroll";
 import { ReservationPatchMentorCompletionDto } from "@/Types/Reservations/ReservationPatchMentorCompletion.dto";
-import ConnectModal from "@/components/connect/ConnectModal";
-import MuiRate from "@/components/global/MuiRate";
+import ConnectModal from "@/components/Connect/ConnectModal";
+import MuiRate from "@/components/Global/MuiRate";
 import React, { useCallback, useEffect, useState } from "react";
 
 interface FinishButtonProps {

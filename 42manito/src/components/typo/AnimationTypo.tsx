@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useState } from "react";
-import useAnimationTypo from "./useAnimationTypo";
+import useAnimationTypo from "@/hooks/Typo/AnimationTypo";
 
 interface AnimatedTextProps {
   fontSize?: number;
@@ -24,8 +23,6 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
     delay,
     isVisible,
   });
-
-  console.log(isVisible);
 
   return (
     <div

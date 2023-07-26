@@ -32,6 +32,10 @@ body {
   margin: 0;
 }
 
+.no-scroll {
+  overflow-y: hidden !important;
+}
+
 body,
 html {
   overflow-x: hidden;
@@ -250,7 +254,6 @@ p {
 }
 
 @keyframes fadeInLeft {
-  /* 이곳에 키 프레임을 정의하세요. */
   from {
     opacity: 0;
     transform: translateX(-100%);
@@ -262,7 +265,6 @@ p {
 }
 
 @keyframes fadeOutLeft {
-  /* 이곳에 키 프레임을 정의하세요. */
   from {
     opacity: 1;
     transform: translateX(0);
@@ -274,7 +276,6 @@ p {
 }
 
 @keyframes fadeInRight {
-  /* 이곳에 키 프레임을 정의하세요. */
   from {
     opacity: 0;
     transform: translateX(100%);
@@ -286,7 +287,6 @@ p {
 }
 
 @keyframes fadeOutRight {
-  /* 이곳에 키 프레임을 정의하세요. */
   from {
     opacity: 1;
     transform: translateX(0);
@@ -341,7 +341,6 @@ p {
   font-size: 3em;
 }
 
-/* 반응형 구성을 위한 미디어 쿼리 */
 @media (min-width: 1024px) {
   .typo-action1 {
     font-size: 5em;
