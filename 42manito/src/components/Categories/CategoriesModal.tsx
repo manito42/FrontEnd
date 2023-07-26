@@ -12,7 +12,7 @@ interface props {
   categoryId: number;
 }
 
-const MentorCard = dynamic(() => import("@/components/mentor/MentorCard"), {
+const MentorCard = dynamic(() => import("@/components/Mentor/Card"), {
   loading: () => <Spin />,
 });
 
@@ -30,16 +30,32 @@ const CategoryModal = ({ onClose, categoryId }: props) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    fetchMoreData();
     return () => {
       setPage(0);
       setHasMore(true);
+      dispatch(initCategoryMentors());
     };
   }, []);
 
-  const fetchMoreData = () => {
-    getMentors({ take: 12, page: page, category_id: categoryId });
+  const fetchMoreData = async () => {
+    await getMentors({
+      take: 12,
+      page: page,
+      category_id: categoryId,
+    });
+
     setPage(page + 1);
   };
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setCategoryMentors(data));
+      if (data.length % 12 !== 0 || data.length === 0) {
+        setHasMore(false);
+      }
+    }
+  }, [isLoading]);
 
   const handleZoomOut = () => {
     setZoomOut(true);
@@ -58,27 +74,6 @@ const CategoryModal = ({ onClose, categoryId }: props) => {
       scrollContainerRef.current.scrollTop = 0;
     }
   };
-
-  useEffect(() => {
-    // 첫 페이지 데이터 불러오기.
-    getMentors({ take: 12, page: 0, category_id: categoryId });
-    setPage(page + 1);
-  }, [categoryId]);
-
-  useEffect(() => {
-    if (data && !error) {
-      dispatch(setCategoryMentors(data));
-      if (data.length % 12 !== 0 || data.length === 0) {
-        setHasMore(false);
-      }
-    }
-  }, [isLoading]);
-
-  useEffect(() => {
-    return () => {
-      dispatch(initCategoryMentors());
-    };
-  }, []);
 
   return (
     <div
@@ -101,21 +96,21 @@ const CategoryModal = ({ onClose, categoryId }: props) => {
           <div
             className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[95vw] md:w-[90vw] h-[80vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overflow-y-scroll"
             ref={scrollContainerRef}
+            id="scrollableDiv"
           >
-            {categoriesMentors && !isLoading && (
-              <InfiniteScroll
-                dataLength={categoriesMentors.length}
-                next={fetchMoreData}
-                hasMore={hasMore}
-                loader={<Spin></Spin>}
-              >
-                <div className="w-[90vw] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 md:gap-10 p-0 md:p-5 md:w-[80vw]">
-                  {categoriesMentors.map((mentor) => (
-                    <MentorCard data={mentor} key={mentor.id} />
-                  ))}
-                </div>
-              </InfiniteScroll>
-            )}
+            <InfiniteScroll
+              dataLength={categoriesMentors.length}
+              next={fetchMoreData}
+              hasMore={hasMore}
+              loader={<Spin></Spin>}
+              scrollableTarget="scrollableDiv"
+            >
+              <div className="w-[90vw] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 md:gap-10 p-0 md:p-5 md:w-[80vw]">
+                {categoriesMentors.map((mentor) => (
+                  <MentorCard data={mentor} key={mentor.id} />
+                ))}
+              </div>
+            </InfiniteScroll>
           </div>
         </div>
       </section>
