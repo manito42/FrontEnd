@@ -20,7 +20,7 @@ const AcceptButton = ({ data, message }: AcceptButtonProps) => {
   const handleYes = useCallback(async () => {
     await accept({ id: data.id });
     setOnConnectModal(false);
-  }, [data.id]);
+  }, [accept, data.id]);
 
   const onClose = useCallback(() => {
     setOnConnectModal(false);
