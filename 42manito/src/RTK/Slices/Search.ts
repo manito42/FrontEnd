@@ -3,14 +3,10 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface searchStateType {
   searchResult: MentorProfileDto[];
-  page: number;
-  hasMore: boolean;
 }
 
 const InitialState: searchStateType = {
   searchResult: [],
-  page: 0,
-  hasMore: true,
 };
 
 export const SearchSlice = createSlice({
@@ -23,14 +19,7 @@ export const SearchSlice = createSlice({
     initSearchResult(state) {
       state.searchResult = [];
     },
-    setSearchPage(state, action: PayloadAction<number>) {
-      state.page = action.payload;
-    },
-    setHasMore(state, action: PayloadAction<boolean>) {
-      state.hasMore = action.payload;
-    },
   },
 });
 
-export const { setSearchResult, initSearchResult, setSearchPage, setHasMore } =
-  SearchSlice.actions;
+export const { setSearchResult, initSearchResult } = SearchSlice.actions;

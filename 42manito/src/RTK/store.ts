@@ -8,25 +8,30 @@ import { authApi } from "./Apis/Auth";
 import { enrollApi } from "./Apis/Enroll";
 import { searchApi } from "./Apis/Search";
 
-export const store = configureStore({
-  reducer: {
-    rootReducers: rootReducer,
-    [userApi.reducerPath]: userApi.reducer,
-    [homeApi.reducerPath]: homeApi.reducer,
-    [categoryApi.reducerPath]: categoryApi.reducer,
-    [authApi.reducerPath]: authApi.reducer,
-    [enrollApi.reducerPath]: enrollApi.reducer,
-    [searchApi.reducerPath]: searchApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(userApi.middleware)
-      .concat(homeApi.middleware)
-      .concat(categoryApi.middleware)
-      .concat(authApi.middleware)
-      .concat(enrollApi.middleware)
-      .concat(searchApi.middleware),
-});
+export const makeServerStore = () => {
+  const store = configureStore({
+    reducer: {
+      rootReducers: rootReducer,
+      [userApi.reducerPath]: userApi.reducer,
+      [homeApi.reducerPath]: homeApi.reducer,
+      [categoryApi.reducerPath]: categoryApi.reducer,
+      [authApi.reducerPath]: authApi.reducer,
+      [enrollApi.reducerPath]: enrollApi.reducer,
+      [searchApi.reducerPath]: searchApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware()
+        .concat(userApi.middleware)
+        .concat(homeApi.middleware)
+        .concat(categoryApi.middleware)
+        .concat(authApi.middleware)
+        .concat(enrollApi.middleware)
+        .concat(searchApi.middleware),
+  });
+  return store;
+};
+
+export const store = makeServerStore();
 
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
