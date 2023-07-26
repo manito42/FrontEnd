@@ -1,6 +1,5 @@
 import { TestAuthResDto } from "@/Types/Auths/TestAuthRes.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
-import { setTokenCookie } from "@/utils/TestSetCookie";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
 import { access } from "fs";
 
@@ -15,14 +14,6 @@ export const authApi = createApi({
         url: `/dev/login/${args.id}`,
         method: "GET",
       }),
-      transformResponse: (response: TestAuthResDto) => {
-        const accessToken = response.accessToken;
-        if (accessToken) {
-          setTokenCookie(accessToken);
-        }
-
-        return response;
-      },
     }),
     authSignIn: builder.mutation<void, void>({
       query: () => ({
