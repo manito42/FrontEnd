@@ -18,7 +18,7 @@ const CancelButton = ({ data }: CancelButtonProps) => {
   const handleYes = useCallback(() => {
     cancel({ id: data.id });
     setOnConnectModal(false);
-  }, [data.id]);
+  }, [cancel, data.id]);
 
   const closeConnectModal = useCallback(() => {
     setOnConnectModal(false);
