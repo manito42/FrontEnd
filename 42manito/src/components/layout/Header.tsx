@@ -1,7 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
 import Link from "next/link";
-import DarkModeToggleButton from "./DarkModeButton";
-import SearchInput from "./SearchInput";
 import { Divider, Drawer } from "antd";
 import { useAuthSignInMutation, useLoginMutation } from "@/RTK/Apis/Auth";
 import { RootState, useAppDispatch } from "@/RTK/store";
@@ -9,6 +7,8 @@ import { signIn, signOut } from "@/RTK/Slices/Global";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { SignIn } from "@/utils/SignIn";
+import SearchInput from "../Search/SearchInput";
+import DarkModeToggleButton from "./DarkModeButton";
 
 const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -28,11 +28,6 @@ const Header: React.FC = () => {
     setVisible(false);
   };
   // TODO : Login을 하면 isMentor 확인 후 false면 프로필 버튼 disabled
-
-  const testLogin = () => {
-    console.log(Owner);
-    login({ id: Owner });
-  };
 
   const handleSingOut = () => {
     dispatch(signOut());
@@ -87,32 +82,28 @@ const Header: React.FC = () => {
                 <p className="text-xl px-3 m-5 btn-drawer">Profile.</p>
               </Link>
             )}
-            <Link href="/Category">
+            <Link href="/Categories">
               <p className="text-xl px-3 m-5 btn-drawer">Category.</p>
             </Link>
             {/* <Link href="/Ranking">
               <p className="text-xl px-3 m-5 btn-drawer">Ranking.</p>
             </Link> */}
-            {Owner !== 0 && !Number.isNaN(Owner) && (
+            {/* {Owner !== 0 && !Number.isNaN(Owner) && (
               <Link href="/Feedback">
                 <p className="text-xl px-3 m-5 btn-drawer">Feedback.</p>
               </Link>
-            )}
+            )} */}
             <Divider className="dark:bg-slate-400 bg-slate-500 my-16" />
-            {Owner === 0 ||
-              (Number.isNaN(Owner) && (
-                <div id="42AuthSignIn" onClick={() => SignIn()}>
-                  <p className="text-xl  px-3 m-5 btn-drawer">Sign In.</p>
-                </div>
-              ))}
+            {Owner === 0 && (
+              <div id="42AuthSignIn" onClick={() => SignIn()}>
+                <p className="text-xl  px-3 m-5 btn-drawer">Sign In.</p>
+              </div>
+            )}
             {Owner !== 0 && !Number.isNaN(Owner) && (
               <div id="SignOut" onClick={handleSingOut}>
                 <p className="text-xl px-3 m-5 btn-drawer">Sign Out.</p>
               </div>
             )}
-            <div id="testLogin" onClick={testLogin}>
-              임시로그인
-            </div>
           </Drawer>
         </div>
       </header>
