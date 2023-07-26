@@ -1,100 +1,47 @@
-import Layout from "../components/layout/Layout";
-import { useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Divider, Spin } from "antd";
+import Layout from "../components/Layout/Layout";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "@/RTK/store";
-import { useGetMentorsMutation } from "@/RTK/Apis/Home";
 import dynamic from "next/dynamic";
-import { initAllMentor, setAllMentor } from "@/RTK/Slices/Home";
-import { useRouter } from "next/router";
-import { signIn, signOut } from "@/RTK/Slices/Global";
+import { initAllMentor } from "@/RTK/Slices/Home";
+import { signIn } from "@/RTK/Slices/Global";
+import HomeMentorList from "@/components/Home/MentorList";
+import { useMentorModal } from "@/hooks/Mentor/MentorModal";
+import { useFetchHome } from "@/hooks/Home/FetchHome";
 
-const Typo = dynamic(() => import("@/components/home/Typo"));
-const MentorCard = dynamic(() => import("@/components/mentor/MentorCard"));
-const MentorModal = dynamic(() => import("@/components/mentor/MentorModal"));
+const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
 export default function Home() {
-  const currMentorState = useSelector(
-    (state: RootState) => state.rootReducers.currMentor
-  );
-  const allMentor = useSelector(
-    (state: RootState) => state.rootReducers.home.allMentor
-  );
   const dispatch = useAppDispatch();
-  const [page, setPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
-  const router = useRouter();
+  const OwnerId = useSelector(
+    (state: RootState) => state.rootReducers.global.uId
+  );
 
-  const { uid } = router.query;
-
-  const [getMentors, { data, isLoading, error }] = useGetMentorsMutation();
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const fetchMoreData = () => {
-    getMentors({ take: 12, page: page });
-    setPage(page + 1);
-  };
+  const currMentorState = useMentorModal();
+  const { allMentor, fetchMoreData, hasMore } = useFetchHome();
 
   useEffect(() => {
-    console.log(uid);
-    if (uid !== "0") {
-      dispatch(signIn({ uId: Number(uid) }));
-    } else if (uid === undefined) {
-      return;
-    } else {
-      alert("로그인에 실했습니다.");
-      dispatch(signOut());
-      router.push("/");
+    if (OwnerId === 0) {
+      dispatch(signIn());
     }
-  }, [uid]);
-
-  useEffect(() => {
-    if (currMentorState.openMentorModal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [currMentorState.openMentorModal]);
-
-  useEffect(() => {
-    if (data && !error) {
-      dispatch(setAllMentor(data));
-      if (data.length % 12 !== 0 || data.length === 0) {
-        setHasMore(false);
-      }
-    }
-  }, [isLoading]);
-
-  useEffect(() => {
     return () => {
       dispatch(initAllMentor());
     };
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <Layout>
       <div className="app-container home">
         {allMentor && (
-          <InfiniteScroll
-            dataLength={allMentor.length}
-            next={fetchMoreData}
+          <HomeMentorList
+            allMentor={allMentor}
+            fetchMoreData={fetchMoreData}
             hasMore={hasMore}
-            loader={<Spin />}
-            className="overflow-none overscroll-y-none overflow-hidden"
-          >
-            <Typo />
-            <Divider className="divider" />
-            <div className="home-space" />
-            <div className="mentor-cards-container">
-              {allMentor.map((mentor) => (
-                <MentorCard data={mentor} key={mentor.id} />
-              ))}
-            </div>
-          </InfiniteScroll>
+          />
         )}
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />

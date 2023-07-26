@@ -2,8 +2,10 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import { Provider } from "react-redux";
-import { store } from "@/RTK/store";
+import store from "@/RTK/store";
 import Head from "next/head";
+
+// 서버 측의 store에 대한 참조를 반환하는 두 가지 새로운 함수를 추가합니다.
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

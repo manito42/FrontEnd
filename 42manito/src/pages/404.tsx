@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
+import Link from "next/link";
 import React from "react";
 
 const NotFound = () => {
@@ -19,6 +20,11 @@ const NotFound = () => {
             404
           </p>
         </div>
+        <Link href="/">
+          <h2 className="font-extrabold text-5xl text-center text-white mt-4">
+            Go home →
+          </h2>
+        </Link>
       </div>
     </div>
   );
