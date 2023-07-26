@@ -3,12 +3,12 @@ import { RootState, useAppDispatch } from "@/RTK/store";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ConnectModal from "../connect/ConnectModal";
+import ConnectModal from "../Connect/ConnectModal";
 import { usePostReservationRequestMutation } from "@/RTK/Apis/Enroll";
-import MentorConnectSelect from "./MentorConnectSelect";
+import MentorConnectSelect from "./ConnectSelect";
 import { initMentorConnect, setMessage } from "@/RTK/Slices/MentorConnect";
-import DevelopAnimation from "../global/DevelopAnimation";
-import HobbyAnimation from "../global/HobbyAnimation";
+import DevelopAnimation from "../Global/DevelopAnimation";
+import HobbyAnimation from "../Global/HobbyAnimation";
 import { Input } from "antd";
 import classnames from "classnames";
 
