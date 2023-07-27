@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TypeIt from "typeit-react";
 import ProfileTypo from "../Profile/Typo";
 import { RootState, useAppDispatch } from "@/RTK/store";
@@ -17,7 +17,18 @@ const Enroll = ({ viewProfileTypo }: props) => {
   const Owner = useSelector(
     (state: RootState) => state.rootReducers.global.uId
   );
-  const { data, isLoading, error } = useGetEnrollQuery({ id: Owner });
+  const [page, setPage] = useState(0);
+  const { data, isLoading, error } = useGetEnrollQuery({
+    id: Owner,
+    take: 12,
+    page: page,
+  });
+
+  useEffect(() => {
+    if (data) {
+      setPage(page + 1);
+    }
+  }, [data, isLoading, page]);
 
   if (isLoading) {
     return <Spin />;
@@ -48,6 +59,7 @@ const Enroll = ({ viewProfileTypo }: props) => {
             />
           </div>
           <div className="overflow-y-auto w-full mx-10 max-h-[50vh]">
+            <InfinityScroll></InfinityScroll>
             {data?.mentorReservations.map((data) => (
               <EnrollCard data={data} key={data.id} isMentor={true} />
             ))}
