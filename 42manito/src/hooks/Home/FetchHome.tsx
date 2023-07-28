@@ -21,9 +21,10 @@ export const useFetchHome = () => {
 
   useEffect(() => {
     if (data && !error) {
-      dispatch(setAllMentor(data));
       if (data.length % 12 !== 0 || data.length === 0) {
         setHasMore(false);
+      } else {
+        dispatch(setAllMentor(data));
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

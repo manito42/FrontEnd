@@ -13,7 +13,7 @@ export default function ProfileImage({ src }: props) {
       width={200}
       height={200}
       quality={50}
-      className="object-cover w-[200px] h-[200px]"
+      className="object-cover w-[15vh] h-[15vh] md:w-[15vw] md:h-[15vw]"
       style={{ borderRadius: "50%" }}
     />
   );

@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
-import { RootState } from "@/RTK/store";
+import { RootState, useAppDispatch } from "@/RTK/store";
 import { useRouter } from "next/router";
 import { useGetUserQuery } from "@/RTK/Apis/User";
 import { useEffect } from "react";
+import { signIn } from "@/RTK/Slices/Global";
 
 export const useProfilePage = () => {
   const router = useRouter();
   const { userId } = router.query;
+  const dispatch = useAppDispatch();
 
   const ownerId = useSelector(
     (state: RootState) => state.rootReducers.global.uId
@@ -16,11 +18,13 @@ export const useProfilePage = () => {
     { skip: ownerId === 0 }
   );
 
+  const isBrowser = typeof window !== "undefined";
+
   useEffect(() => {
-    if (ownerId !== Number(userId)) {
+    if (isBrowser && ownerId !== 0 && ownerId !== Number(userId)) {
       router.push("/404");
     }
-  }, [ownerId, userId, router]);
+  }, [ownerId, userId, isBrowser, router, dispatch]);
 
   return { OwnerData, OwnerLoading };
 };
