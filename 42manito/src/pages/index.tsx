@@ -22,7 +22,10 @@ export default function Home() {
 
   useEffect(() => {
     if (OwnerId === 0) {
-      dispatch(signIn());
+      const id = localStorage.getItem("uid");
+      if (id !== null) {
+        dispatch(signIn(Number(id)));
+      }
     }
     return () => {
       dispatch(initAllMentor());
