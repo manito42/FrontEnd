@@ -1,0 +1,48 @@
+{
+  "name": "42manito",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.10.8",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.2",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/node": "20.3.3",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6",
+    "antd": "^5.7.3",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "classnames": "^2.3.2",
+    "dotenv": "^16.3.1",
+    "eslint": "8.44.0",
+    "eslint-config-next": "13.4.7",
+    "next": "13.4.7",
+    "next-env": "^1.1.1",
+    "next-redux-wrapper": "^8.1.0",
+    "next-themes": "^0.2.1",
+    "postcss": "8.4.24",
+    "postcss-nesting": "^12.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-lottie-player": "^1.5.4",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "sharp": "^0.32.4",
+    "tailwindcss": "3.3.2",
+    "typeit-react": "^2.6.4",
+    "typescript": "5.1.6",
+    "typo-action": "^1.1.28"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.1.4"
+  }
+}

@@ -12,14 +12,10 @@ import SearchInput from "../Search/SearchInput";
 
 export default function Header() {
   const [visible, setVisible] = useState(false);
-  const [login, { data, isLoading }] = useLoginMutation();
   const Owner = useSelector(
     (state: RootState) => state.rootReducers.global.uId
   );
-  const router = useRouter();
   const dispatch = useAppDispatch();
-
-  const [Auth] = useAuthSignInMutation();
 
   const showDrawer = () => {
     setVisible(!visible);
@@ -28,10 +24,25 @@ export default function Header() {
     setVisible(false);
   };
 
-  const handleSingOut = () => {
-    dispatch(signOut());
-    router.push("/");
+  const handleSingOut = async () => {
+    const id = localStorage.getItem("uid");
+    if (id) {
+      await localStorage.removeItem("uid");
+      await localStorage.removeItem("accessToken");
+      dispatch(signOut());
+      location.reload();
+    }
   };
+
+  useEffect(() => {
+    if (Owner === 0) {
+      const id = localStorage.getItem("uid");
+      if (id !== null) {
+        dispatch(signIn(Number(id)));
+      }
+    }
+    return () => {};
+  }, [Owner, dispatch]);
 
   return (
     <>
@@ -77,7 +88,7 @@ export default function Header() {
               <p className="text-xl px-3 mt-10 m-5 btn-drawer">About.</p>
             </Link>
             {Owner !== 0 && !Number.isNaN(Owner) && (
-              <Link href="/Profile">
+              <Link href={`/Profile/${Owner}`}>
                 <p className="text-xl px-3 m-5 btn-drawer">Profile.</p>
               </Link>
             )}

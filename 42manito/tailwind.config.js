@@ -16,6 +16,14 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      screens: {
+        "mobile-landscape": {
+          raw: "(orientation: landscape) and (max-height: 767px)",
+        },
+        "mobile-highres-landscape": {
+          raw: "(orientation: landscape) and (max-height: 800px)",
+        },
+      },
       scrollbar: (theme) => ({
         thin: "thin",
         thumb: "rounded-lg",

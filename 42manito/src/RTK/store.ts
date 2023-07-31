@@ -7,6 +7,7 @@ import { categoryApi } from "./Apis/Category";
 import { authApi } from "./Apis/Auth";
 import { enrollApi } from "./Apis/Enroll";
 import { searchApi } from "./Apis/Search";
+import signInMiddleware from "./Middleware/signInMiddleware";
 
 export const makeServerStore = () => {
   const store = configureStore({
@@ -26,7 +27,8 @@ export const makeServerStore = () => {
         .concat(categoryApi.middleware)
         .concat(authApi.middleware)
         .concat(enrollApi.middleware)
-        .concat(searchApi.middleware),
+        .concat(searchApi.middleware)
+        .prepend(signInMiddleware),
   });
   return store;
 };

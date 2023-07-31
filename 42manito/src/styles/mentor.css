@@ -11,7 +11,7 @@
           dark:hover:shadow-gray-400/40;
 
   & .mentor-image-container {
-    @apply rounded-t-xl object-cover flex w-full;
+    @apply rounded-t-xl object-cover flex w-full h-[45%];
   }
 
   & .mentor-card-content {
@@ -42,7 +42,7 @@
 /* mentor modal */
 
 .mentor-modal-container {
-  @apply fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-[100vw] px-5 md:px-20 h-[100vh];
+  @apply fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-[100vw] px-5 md:px-20 h-[100vh] flex;
 
   & .mentor-modal-section {
     @apply relative py-16 h-[100vh] top-24 md:top-32;
@@ -52,10 +52,10 @@
     }
 
     & .mentor-image-container {
-      @apply relative flex z-[100] w-full justify-center items-center;
+      @apply relative z-[100] flex justify-center items-center;
 
       & .mentor-image {
-        @apply shadow-xl rounded-full align-middle border-none -m-16 lg:ml-6 ml-1;
+        @apply shadow-xl rounded-full align-middle border-none -mb-10 md:-m-16 lg:ml-6 ml-1 object-cover w-[13vh] h-[13vh] md:w-[13vw] md:h-[13vw];
       }
     }
   }
@@ -99,10 +99,10 @@
       }
 
       & .mentor-hashtag-container {
-        @apply flex items-start mt-2 m-auto;
+        @apply flex flex-wrap items-start mt-2 m-auto w-full;
 
         & .mentor-hashtag {
-          @apply px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700;
+          @apply px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 mt-2;
         }
       }
     }

@@ -1,20 +1,32 @@
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
+import { ReservationGetResDto } from "@/Types/Reservations/ReservationGetRes.dto";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface EnrollStateType {
-  Reservations: ReservationDefaultDto[];
+  mentorReservation: ReservationDefaultDto[];
+  menteeReservation: ReservationDefaultDto[];
 }
 
 const InitialState: EnrollStateType = {
-  Reservations: [],
+  mentorReservation: [],
+  menteeReservation: [],
 };
 
 export const EnrollSlice = createSlice({
   name: "Enroll",
   initialState: InitialState,
   reducers: {
-    setReservations(state, action: PayloadAction<ReservationDefaultDto[]>) {
-      state.Reservations = [...state.Reservations, ...action.payload];
+    setMentorReservations(
+      state,
+      action: PayloadAction<ReservationDefaultDto[]>
+    ) {
+      state.mentorReservation = [...state.mentorReservation, ...action.payload];
+    },
+    setMenteeReservations(
+      state,
+      action: PayloadAction<ReservationDefaultDto[]>
+    ) {
+      state.menteeReservation = [...state.menteeReservation, ...action.payload];
     },
     initReservations(state) {
       state = InitialState;
@@ -22,4 +34,8 @@ export const EnrollSlice = createSlice({
   },
 });
 
-export const { setReservations, initReservations } = EnrollSlice.actions;
+export const {
+  setMentorReservations,
+  setMenteeReservations,
+  initReservations,
+} = EnrollSlice.actions;

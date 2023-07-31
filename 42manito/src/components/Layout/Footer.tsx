@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <>
-      <footer className="body-font">
-        <div className="">
+      <footer className="body-font w-[100vw]">
+        <div className="w-full">
           <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
             <Link
               href="/"

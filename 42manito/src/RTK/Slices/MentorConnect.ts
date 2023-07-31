@@ -1,8 +1,12 @@
 import { HashtagResponseDto } from "@/Types/Hashtags/HashtagResponse.dto";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+interface hashtagType {
+  id: number;
+}
+
 interface MentorConnectTypes {
-  hashtags: HashtagResponseDto[];
+  hashtags: hashtagType[];
   message: string;
 }
 
@@ -15,7 +19,7 @@ export const MentorConnectSlice = createSlice({
   name: "MentorConnect",
   initialState: InitialState,
   reducers: {
-    setHashtags(state, action: PayloadAction<HashtagResponseDto[]>) {
+    setHashtags(state, action: PayloadAction<hashtagType[]>) {
       state.hashtags = action.payload;
     },
     deleteHashtag(state, action: PayloadAction<number>) {
