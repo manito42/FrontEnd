@@ -19,10 +19,10 @@ export default function UserProfile() {
   return (
     <Layout>
       {OwnerData && !OwnerLoading && (
-        <div className="app-container pt-32 min-h-screen">
+        <div className="app-container pt-32">
           {OwnerData.isMentor ? (
-            <div className="mt-12 w-[100vw]">
-              <div className="w-[20%] md:w-[8%]">
+            <div className="mt-12 w-[100vw] flex flex-col">
+              <div className="w-[20%] absolute md:w-[8%] right-10">
                 <button
                   className="text-xs md:text-[1vw] md:h-[3vw] bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow w-full px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                   type="button"
@@ -39,17 +39,15 @@ export default function UserProfile() {
                   count={OwnerData.mentorProfile.mentoringCount}
                 />
               </div>
-              <div className="">
-                <div className="flex flex-wrap justify-center w-full my-3">
-                  <ProfileCategories
-                    categories={OwnerData.mentorProfile.categories}
-                  />
-                  <ProfileHashtag hashtag={OwnerData.mentorProfile.hashtags} />
-                </div>
-                <div className="">
-                  <Enroll viewProfileTypo={OwnerData.isMentor} />
-                </div>
+              <div className="flex flex-wrap justify-center w-full my-3 mt-14">
+                <ProfileCategories
+                  categories={OwnerData.mentorProfile.categories}
+                />
+
+                <ProfileHashtag hashtag={OwnerData.mentorProfile.hashtags} />
               </div>
+
+              <Enroll viewProfileTypo={OwnerData.isMentor} />
             </div>
           ) : (
             <div className="app-container">
