@@ -17,27 +17,57 @@ export const enrollApi = createApi({
   tagTypes: ["Enroll"],
   endpoints: (builder) => ({
     // enroll REQUEST, ACCEPT, PENDING 만 가져오기
-    getEnroll: builder.query<EnrollResDto, EnrollReqDto>({
+    getActiveMentorEnrollment: builder.mutation<
+      ReservationDefaultDto[],
+      EnrollReqDto
+    >({
       query: (args: EnrollReqDto) => {
         return {
           url: `/users/${args.id}/reservations?take=${args.take}&page=${
             args.page
-          }&active=${true}`,
+          }&active=${true}&as_mentor=${true}&as_mentee=${false}`,
           method: "GET",
         };
       },
-      keepUnusedDataFor: 100,
-      providesTags: [{ type: "Enroll", id: "LIST" }],
     }),
-    getAllEnroll: builder.query<EnrollResDto, EnrollReqDto>({
+    getActiveMenteeEnrollment: builder.mutation<
+      ReservationDefaultDto[],
+      EnrollReqDto
+    >({
       query: (args: EnrollReqDto) => {
         return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${args.page}`,
+          url: `/users/${args.id}/reservations?take=${args.take}&page=${
+            args.page
+          }&active=${true}&as_mentor=${false}&as_mentee=${true}`,
           method: "GET",
         };
       },
-      keepUnusedDataFor: 100,
-      providesTags: [{ type: "Enroll", id: "LIST" }],
+    }),
+    getAllMentorEnrollment: builder.mutation<
+      ReservationDefaultDto[],
+      EnrollReqDto
+    >({
+      query: (args: EnrollReqDto) => {
+        return {
+          url: `/users/${args.id}/reservations?take=${args.take}&page=${
+            args.page
+          }&as_mentor=${true}&as_mentee=${false}&active=${false}`,
+          method: "GET",
+        };
+      },
+    }),
+    getAllMenteeEnrollment: builder.mutation<
+      ReservationDefaultDto[],
+      EnrollReqDto
+    >({
+      query: (args: EnrollReqDto) => {
+        return {
+          url: `/users/${args.id}/reservations?take=${args.take}&page=${
+            args.page
+          }&as_mentor=${false}&as_mentee=${true}&active=${false}`,
+          method: "GET",
+        };
+      },
     }),
     // 처음 멘토링 신청을 보낼때
     postReservationRequest: builder.mutation<
@@ -115,8 +145,10 @@ export const enrollApi = createApi({
 });
 
 export const {
-  useGetEnrollQuery,
-  useGetAllEnrollQuery,
+  useGetActiveMentorEnrollmentMutation,
+  useGetActiveMenteeEnrollmentMutation,
+  useGetAllMenteeEnrollmentMutation,
+  useGetAllMentorEnrollmentMutation,
   usePostReservationRequestMutation,
   usePatchReservationAcceptMutation,
   usePatchReservationCancelMutation,
