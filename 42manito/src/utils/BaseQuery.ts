@@ -42,7 +42,7 @@ export const BaseQuery =
         Router.push("/");
       } else if (err.status === 404) {
         alert("존재하지 않는 작업입니다.");
-        Router.push("/NotFound");
+        Router.push("/404");
       } else if (err.status === 409) {
         alert("이미 완료된 작업입니다.");
       } else if (err.status === 401) {
