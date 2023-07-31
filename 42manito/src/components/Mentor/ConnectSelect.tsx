@@ -39,7 +39,11 @@ export default function MentorConnectSelect({ hashtag }: props) {
 
   const handleChange = (value: Array<number>) => {
     const selectedHashtags = hashtag.filter((tag) => value.includes(tag.id));
-    dispatch(setHashtags(selectedHashtags));
+    const selectedHashtagIds = selectedHashtags.map((tag) => {
+      return { id: tag.id };
+    });
+
+    dispatch(setHashtags(selectedHashtagIds));
   };
 
   return (
