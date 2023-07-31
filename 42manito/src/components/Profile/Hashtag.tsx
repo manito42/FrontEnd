@@ -11,7 +11,7 @@ export default function ProfileHashtag({ hashtag }: props) {
       <span className="text-3xl font-bold text-slate-800 dark:text-slate-200">
         해시태그.
       </span>
-      <div className="flex flex-col overflow-y-auto">
+      <div className="flex flex-wrap w-full">
         {hashtag.length > 0 &&
           hashtag.map((aTag) => (
             <h6
