@@ -35,3 +35,10 @@ npm run dev
 ```
 npm run build
 ```
+
+<br />
+<br />
+
+## Deploy
+
+- AWS amplify
