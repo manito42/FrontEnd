@@ -16,6 +16,7 @@
 
     & .connect-container {
       @apply px-4;
+
       & .close-btn {
         @apply text-white text-5xl w-full flex justify-end p-5;
       }

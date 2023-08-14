@@ -64,6 +64,11 @@ h6 {
   max-width: 100%;
 }
 
+:where(.css-dev-only-do-not-override-txh9fw).ant-input-textarea-show-count
+  .ant-input-data-count {
+  @apply dark:text-slate-200 text-slate-800;
+}
+
 footer {
   @apply text-gray-600 dark:text-white
     bg-gray-100 dark:bg-slate-600/20;

@@ -105,7 +105,10 @@ const ProfileUpdate = ({ onClose, data }: props) => {
                     <TextArea
                       showCount
                       maxLength={50}
-                      style={{ height: 80, marginBottom: 24 }}
+                      style={{
+                        height: 80,
+                        marginBottom: 24,
+                      }}
                       onChange={(e) =>
                         dispatch(
                           ProfileUpdateSlice.actions.setShortIntro(
