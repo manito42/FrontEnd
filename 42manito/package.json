@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_cb4cbb05c7d26e0"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -43,6 +46,19 @@
     "typo-action": "^1.1.28"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^2.1.4"
-  }
+    "@storybook/addon-essentials": "^7.3.0",
+    "@storybook/addon-interactions": "^7.3.0",
+    "@storybook/addon-links": "^7.3.0",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.3.0",
+    "@storybook/nextjs": "^7.3.0",
+    "@storybook/react": "^7.3.0",
+    "@storybook/testing-library": "^0.2.0",
+    "chromatic": "^6.22.0",
+    "eslint-plugin-storybook": "^0.6.13",
+    "storybook": "^7.3.0"
+  },
+  "packageManager": "yarn@3.6.1",
+  "readme": "ERROR: No README data found!",
+  "_id": "42manito@0.1.0"
 }
