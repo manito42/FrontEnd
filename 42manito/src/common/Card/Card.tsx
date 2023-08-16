@@ -40,12 +40,13 @@ export default function ManitoCard<T extends ElementType, D>({
   );
 
   return (
-    <div
+    <section
+      id="manito-card"
       {...rest}
       onClick={() => onClick(data)}
       className={classNameValue} // 통합된 className 문자열을 적용합니다.
     >
       {children}
-    </div>
+    </section>
   );
 }
