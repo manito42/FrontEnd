@@ -1,7 +1,23 @@
 .base {
-  @apply bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150;
+  @apply bg-pink-500 active:bg-pink-600 uppercase text-white font-bold shadow text-xs px-4 py-2 rounded outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150;
 }
 
 .base:hover {
-  @apply bg-pink-600;
+  @apply bg-pink-600 shadow-md;
+}
+
+.base:focus {
+  @apply outline-none;
+}
+
+.button-small {
+  @apply py-1 px-3 text-xs;
+}
+
+.button-medium {
+  @apply py-2 px-4 text-sm;
+}
+
+.button-large {
+  @apply py-2 px-6 text-base;
 }

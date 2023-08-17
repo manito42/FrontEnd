@@ -1,1 +1,2 @@
-import { Textarea } from './Textarea';
+export { Button } from './Button';
+export { Textarea } from './Textarea';
