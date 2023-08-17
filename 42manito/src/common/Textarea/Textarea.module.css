@@ -1,0 +1,3 @@
+.base {
+  @apply focus:border-pink-500 hover:border-pink-400 focus:ring-pink-500;
+}
