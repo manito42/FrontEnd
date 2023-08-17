@@ -7,7 +7,7 @@ interface ButtonProps extends ComponentProps<'button'> {
 }
 
 export function Button({ children, size, fullWidth, ...props }: ButtonProps) {
-  const sizeClass = size ? styles[`button-${size}`] : styles.medium;
+  const sizeClass = size ? styles[`button-${size}`] : styles['button-medium'];
   return (
     <button
       className={`${styles.base} ${sizeClass} ${fullWidth ? 'w-full' : ''}`}
