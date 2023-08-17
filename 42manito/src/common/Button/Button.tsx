@@ -6,7 +6,12 @@ interface ButtonProps extends ComponentProps<'button'> {
   fullWidth?: boolean;
 }
 
-export function Button({ children, size, fullWidth, ...props }: ButtonProps) {
+export default function Button({
+  children,
+  size,
+  fullWidth,
+  ...props
+}: ButtonProps) {
   const sizeClass = size ? styles[`button-${size}`] : styles['button-medium'];
   return (
     <button
