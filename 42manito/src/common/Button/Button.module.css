@@ -5,3 +5,15 @@
 .base:hover {
   @apply bg-pink-600;
 }
+
+.button-small {
+  @apply py-1 px-3 text-xs;
+}
+
+.button-medium {
+  @apply py-2 px-4 text-sm;
+}
+
+.button-large {
+  @apply py-2 px-6 text-base;
+}

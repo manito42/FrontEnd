@@ -2,13 +2,17 @@ import { ComponentProps } from 'react';
 import styles from './Button.module.css';
 
 interface ButtonProps extends ComponentProps<'button'> {
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'secondary' | 'tertiary';
+  size?: 'small' | 'medium' | 'large';
+  fullWidth?: boolean;
 }
 
-export function Button({ children, size, variant, ...props }: ButtonProps) {
+export function Button({ children, size, fullWidth, ...props }: ButtonProps) {
+  const sizeClass = size ? styles[`button-${size}`] : styles.medium;
   return (
-    <button className={styles.base} {...props}>
+    <button
+      className={`${styles.base} ${sizeClass} ${fullWidth ? 'w-full' : ''}`}
+      {...props}
+    >
       {children}
     </button>
   );
