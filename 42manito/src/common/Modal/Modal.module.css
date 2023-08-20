@@ -1,0 +1,45 @@
+.modal-container {
+  @apply fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-[100vw] px-5 md:px-20 h-[100vh];
+}
+
+.modal-section {
+  @apply relative py-16 h-[100vh] top-24 md:top-32;
+}
+
+.modal-content {
+  @apply relative flex flex-col break-words bg-white dark:bg-slate-700 w-[95vw] md:w-[90vw] h-[50vh] md:h-[65vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overflow-y-scroll min-h-[55vh] max-w-[60vw];
+}
+
+.close-modal {
+  animation: slideOut 0.3s ease-out;
+}
+
+.mentor-modal {
+  animation: slideIn 0.3s ease-in;
+}
+
+.close-btn {
+  @apply text-white text-5xl absolute top-0 right-5 -mb-5;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+}
