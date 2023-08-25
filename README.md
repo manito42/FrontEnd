@@ -9,7 +9,7 @@
 
 - @9utty (이건학)
 - @nyeoni (김나연)
-- @sumnii (송수민)
+- @falconlee236 (이상윤)
 
 <br />
 <br />
