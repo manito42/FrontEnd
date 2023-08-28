@@ -6,7 +6,6 @@ import HobbyAnimation from "../Global/HobbyAnimation";
 interface props {
   categories: CategoriesResponseDto[];
 }
-``;
 
 export default function ProfileCategories({ categories }: props) {
   return (
