@@ -1,7 +1,3 @@
-import { HashtagGetDto } from "@/Types/Hashtags/HashtagGet.dto";
-import { HashtagPostDto } from "@/Types/Hashtags/HashtagPost.dto";
-import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
-import { MentorProfilePatchReqDto } from "@/Types/MentorProfiles/MentorProfilePatchReq.dto";
 import { UserDefaultDto } from "@/Types/Users/UserDefault.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
@@ -36,6 +32,22 @@ export const userApi = createApi({
       },
       invalidatesTags: [{ type: "User", id: "LIST" }],
     }),
+    setIsHide: builder.mutation<
+      MentorProfileDto,
+      { id: number; isHide: boolean }
+    >({
+      query: (args: { id: number; isHide: boolean }) => {
+        const body = {
+          isHide: args.isHide,
+        };
+        return {
+          url: `/mentor_profiles/${args.id}`,
+          data: body,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: [{ type: "User", id: "LIST" }],
+    }),
     setUserUpdate: builder.mutation<MentorProfileDto, MentorProfilePatchReqDto>(
       {
         query: (args: MentorProfilePatchReqDto) => {
@@ -65,4 +77,5 @@ export const {
   useSetMentorAcceptMutation,
   useSetUserUpdateMutation,
   usePostHashtagMutation,
+  useSetIsHideMutation,
 } = userApi;
