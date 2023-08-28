@@ -3,9 +3,9 @@ import { HashtagResponseDto } from "../Hashtags/HashtagResponse.dto";
 
 export interface MentorProfilePatchReqDto {
   id: number;
-  isHide: boolean;
-  shortDescription: string;
-  description: string;
-  hashtags: HashtagResponseDto[];
-  categories: CategoriesResponseDto[];
+  isHide?: boolean;
+  shortDescription?: string;
+  description?: string;
+  hashtags?: HashtagResponseDto[];
+  categories?: CategoriesResponseDto[];
 }
