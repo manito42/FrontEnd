@@ -38,6 +38,9 @@ export const ProfileUpdateSlice = createSlice({
     setHashtags(state, action: PayloadAction<HashtagResponseDto[]>) {
       state.hashtags = action.payload;
     },
+    addHashtag(state, action: PayloadAction<HashtagResponseDto>) {
+      state.hashtags.push(action.payload);
+    },
     setCategories(state, action: PayloadAction<CategoriesResponseDto[]>) {
       state.categories = action.payload;
     },
