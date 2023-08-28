@@ -14,7 +14,7 @@ export default function About4() {
           placeholder="blur"
         />
         <span className="about-title">
-          {`"멘토 신청으로 지식과 열정을 나누세요. 누구나 멘토가 될 수 있습니다!"`}
+          {`"마니또와 함께 성장하다! 42서울 커뮤니티에서 당신의 동료를 찾으세요."`}
         </span>
       </div>
     </div>
