@@ -1,3 +1,4 @@
+import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import { UserDefaultDto } from "@/Types/Users/UserDefault.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
@@ -32,7 +33,27 @@ export const userApi = createApi({
       },
       invalidatesTags: [{ type: "User", id: "LIST" }],
     }),
+    setIsHide: builder.mutation<
+      MentorProfileDto,
+      { id: number; isHide: boolean }
+    >({
+      query: (args: { id: number; isHide: boolean }) => {
+        const body = {
+          isHide: args.isHide,
+        };
+        return {
+          url: `/mentor_profiles/${args.id}`,
+          data: body,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: [{ type: "User", id: "LIST" }],
+    }),
   }),
 });
 
-export const { useGetUserQuery, useSetMentorAcceptMutation } = userApi;
+export const {
+  useGetUserQuery,
+  useSetMentorAcceptMutation,
+  useSetIsHideMutation,
+} = userApi;
