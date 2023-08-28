@@ -1,11 +1,17 @@
+import { useSetIsHideMutation } from "@/RTK/Apis/User";
+import { RootState } from "@/RTK/store";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function ManitoToggle() {
   const [isHide, setIsHide] = useState(false);
+  const [setIsHideMutation, {}] = useSetIsHideMutation();
+  const owner = useSelector(
+    (state: RootState) => state.rootReducers.global.uId
+  );
 
   const changeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsHide(!e.target.checked); // Checkbox가 체크되면 isHide는 false가 되고, 그렇지 않으면 true가 됩니다.
-    console.log(!e.target.checked);
+    setIsHideMutation({ id: owner, isHide: !e.target.checked });
   };
 
   return (
