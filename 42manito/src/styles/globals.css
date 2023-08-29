@@ -355,3 +355,7 @@ p {
     font-size: 6em;
   }
 }
+
+.ant-input-data-count {
+  @apply text-slate-800 dark:text-slate-200;
+}
