@@ -1,3 +1,8 @@
+import { HashtagGetDto } from "@/Types/Hashtags/HashtagGet.dto";
+import { HashtagPostDto } from "@/Types/Hashtags/HashtagPost.dto";
+import { HashtagResponseDto } from "@/Types/Hashtags/HashtagResponse.dto";
+import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
+import { MentorProfilePatchReqDto } from "@/Types/MentorProfiles/MentorProfilePatchReq.dto";
 import { UserDefaultDto } from "@/Types/Users/UserDefault.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
@@ -60,7 +65,7 @@ export const userApi = createApi({
         invalidatesTags: [{ type: "User", id: "LIST" }],
       }
     ),
-    postHashtag: builder.mutation<HashtagGetDto, HashtagPostDto>({
+    postHashtag: builder.mutation<HashtagResponseDto, HashtagPostDto>({
       query: (args: HashtagPostDto) => {
         return {
           url: `/hashtags`,
