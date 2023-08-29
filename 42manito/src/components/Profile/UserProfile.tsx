@@ -8,6 +8,8 @@ import ProfileCategories from "@/components/Profile/Categories";
 import ProfileHashtag from "@/components/Profile/Hashtag";
 import { useProfileUpdateModal } from "@/hooks/Profile/UpdateModal";
 import { useProfilePage } from "@/hooks/Profile/Page";
+import { useRouter } from "next/router";
+import ManitoToggle from "./Toggle";
 
 export default function UserProfile() {
   const { OwnerData, OwnerLoading } = useProfilePage();
@@ -15,7 +17,7 @@ export default function UserProfile() {
 
   const updateButtonHandler = () => {
     if (OwnerData) {
-      route.push(`profileUpdate/${OwnerData.id}`);
+      route.push(`/ProfileUpdate/${OwnerData.id}`);
     }
   };
 
@@ -31,7 +33,7 @@ export default function UserProfile() {
               <button
                 className="text-xs md:text-[1vw] md:h-[3vw] bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow w-full px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                onClick={() => openProfileUpdate()}
+                onClick={() => updateButtonHandler()}
               >
                 수정하기
               </button>
