@@ -50,6 +50,11 @@ export const ProfileUpdateSlice = createSlice({
     setViewConnectModal(state, action: PayloadAction<boolean>) {
       state.viewConnectModal = action.payload;
     },
+    deleteOneHashtag(state, action: PayloadAction<string>) {
+      state.hashtags = state.hashtags.filter(
+        (hashtag) => hashtag.name !== action.payload
+      );
+    },
     deleteAll(state) {
       state = ProfileUpdate;
     },
