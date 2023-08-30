@@ -8,12 +8,19 @@ import ProfileCategories from "@/components/Profile/Categories";
 import ProfileHashtag from "@/components/Profile/Hashtag";
 import { useProfileUpdateModal } from "@/hooks/Profile/UpdateModal";
 import { useProfilePage } from "@/hooks/Profile/Page";
+import { useRouter } from "next/router";
 import ManitoToggle from "./Toggle";
 
 export default function UserProfile() {
-  const { isProfileUpdateOpen, openProfileUpdate, closeProfileUpdate } =
-    useProfileUpdateModal();
   const { OwnerData, OwnerLoading } = useProfilePage();
+  const route = useRouter();
+
+  const updateButtonHandler = () => {
+    if (OwnerData) {
+      route.push(`/ProfileUpdate/${OwnerData.id}`);
+    }
+  };
+
   if (typeof window === "undefined") {
     return <div>로딩 중...</div>; // 로딩 표시를 보여주셔도 되고, 아무것도 보여주지 않으셔도 됩니다.
   }
@@ -26,7 +33,7 @@ export default function UserProfile() {
               <button
                 className="text-xs md:text-[1vw] md:h-[3vw] bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow w-full px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                onClick={() => openProfileUpdate()}
+                onClick={() => updateButtonHandler()}
               >
                 수정하기
               </button>
@@ -67,9 +74,6 @@ export default function UserProfile() {
             </div>
           </div>
         </div>
-      )}
-      {isProfileUpdateOpen && OwnerData && (
-        <ProfileUpdate onClose={closeProfileUpdate} data={OwnerData} />
       )}
     </Layout>
   );
