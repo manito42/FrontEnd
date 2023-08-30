@@ -5,11 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_cb4cbb05c7d26e0"
+    "start": "next start"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
