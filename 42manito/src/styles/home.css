@@ -1,5 +1,5 @@
 .home {
-  @apply h-auto w-full;
+  @apply h-auto;
 
   & .divider {
     @apply dark:bg-slate-400 bg-slate-500;

@@ -1,33 +1,30 @@
-import { usePatchReservationMenteeFeedbackMutation } from "@/RTK/Apis/Enroll";
+import { usePatchReservationPendingMutation } from "@/RTK/Apis/Enroll";
+import { ReservationPatchMentorCompletionDto } from "@/Types/Reservations/ReservationPatchMentorCompletion.dto";
 import ConnectModal from "@/components/Connect/ConnectModal";
 import MuiRate from "@/components/Global/MuiRate";
-import { Input } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
-
-const { TextArea } = Input;
 
 interface FinishButtonProps {
   data: number;
 }
 
-const MenteeFeedbackButton = ({ data }: FinishButtonProps) => {
+const FinishButton = ({ data }: FinishButtonProps) => {
   const [onConnectModal, setOnConnectModal] = useState<boolean>(false);
+  const [pending] = usePatchReservationPendingMutation();
   const [rating, setRating] = useState<number>(0);
-  const [content, setContent] = useState<string>("");
-  const [menteeFeedback] = usePatchReservationMenteeFeedbackMutation();
 
   const openConnectModal = () => {
     setOnConnectModal(true);
   };
 
-  const handleYes = () => {
-    if (rating === 0 || content === "") {
-      alert("평점 또는 피드백 메시지를 입력해주세요.");
+  const handleYes = useCallback(() => {
+    if (rating === 0) {
+      alert("평점을 입력해주세요.");
     } else {
-      menteeFeedback({ id: data, rating: rating, content: content });
+      pending({ id: data, rating: rating });
       setOnConnectModal(false);
     }
-  };
+  }, [data, pending, rating]);
 
   const closeConnectModal = useCallback(() => {
     setOnConnectModal(false);
@@ -45,32 +42,20 @@ const MenteeFeedbackButton = ({ data }: FinishButtonProps) => {
         type="button"
         onClick={openConnectModal}
       >
-        피드백
+        완료
       </button>
-
       {onConnectModal && (
         <ConnectModal
-          message="피드백을 완료하시겠습니까?"
+          message="멘토링을 완료하시겠습니까?"
           onClose={closeConnectModal}
           handleYes={handleYes}
         >
           <div className="flex-row w-[100%] justify-center items-center">
-            <div className="w-full flex justify-center items-center">
-              <MuiRate
-                Value={rating}
-                setValue={handleRating}
-                IsReadOnly={false}
-              />
-            </div>
-            <div className="w-full flex justify-center items-center">
-              <TextArea
-                showCount
-                maxLength={300}
-                style={{ height: 80, marginBottom: 24 }}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="최대 300글자"
-              />
-            </div>
+            <MuiRate
+              Value={rating}
+              setValue={handleRating}
+              IsReadOnly={false}
+            />
           </div>
         </ConnectModal>
       )}
@@ -78,4 +63,4 @@ const MenteeFeedbackButton = ({ data }: FinishButtonProps) => {
   );
 };
 
-export default MenteeFeedbackButton;
+export default FinishButton;
