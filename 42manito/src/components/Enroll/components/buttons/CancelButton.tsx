@@ -1,10 +1,9 @@
 import { usePatchReservationCancelMutation } from "@/RTK/Apis/Enroll";
-import { ReservationPatchCancelReqDto } from "@/Types/Reservations/ReservationPatchCancelReq.dto";
 import ConnectModal from "@/components/Connect/ConnectModal";
 import React, { useCallback, useState } from "react";
 
 interface CancelButtonProps {
-  data: ReservationPatchCancelReqDto;
+  data: number;
 }
 
 const CancelButton = ({ data }: CancelButtonProps) => {
@@ -16,9 +15,9 @@ const CancelButton = ({ data }: CancelButtonProps) => {
   };
 
   const handleYes = useCallback(() => {
-    cancel({ id: data.id });
+    cancel({ id: data });
     setOnConnectModal(false);
-  }, [cancel, data.id]);
+  }, [cancel, data]);
 
   const closeConnectModal = useCallback(() => {
     setOnConnectModal(false);

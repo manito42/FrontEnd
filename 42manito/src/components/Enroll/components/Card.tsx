@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from "react";
 import AcceptButton from "./buttons/AcceptButton";
 import CancelButton from "./buttons/CancelButton";
-import FinishButton from "./buttons/FinishButton";
+import DoneButton from "./buttons/doneButton";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 import { useGetUserQuery } from "@/RTK/Apis/User";
-import PendingButton from "./buttons/PendingButton";
+import MenteeFeedbackButton from "./buttons/menteeFeedbackButton";
+import { RootState } from "@/RTK/store";
+import { useSelector } from "react-redux";
 
 interface EnrollCardProps {
   data: ReservationDefaultDto;
@@ -17,56 +19,52 @@ const EnrollCard = ({ data, isMentor }: EnrollCardProps) => {
 
   const [acceptButton, setAcceptButton] = useState<boolean>(false);
   const [cancelButton, setCancelButton] = useState<boolean>(false);
-  const [pendingButton, setPendingButton] = useState<boolean>(false);
-  const [finishButton, setFinishButton] = useState<boolean>(false);
-
-  const {
-    data: targetUser,
-    isLoading,
-    error,
-  } = useGetUserQuery({ id: isMentor ? data.menteeId : data.mentorId });
+  const [menteeFeedbackButton, setMenteeFeedbackButton] =
+    useState<boolean>(false);
+  const [doneButton, setDoneButton] = useState<boolean>(false);
+  const owner = useSelector(
+    (state: RootState) => state.rootReducers.global.uId
+  );
+  const { data: targetUser, isLoading, error } = useGetUserQuery({ id: owner });
 
   const updateStatus = () => {
     if (isMentor) {
       if (data.status === "REQUEST" && !isLoading && targetUser) {
         setAcceptButton(true);
         setCancelButton(true);
-        setFinishButton(false);
-        setPendingButton(false);
+        setDoneButton(false);
+        setMenteeFeedbackButton(false);
         setMsg(`${targetUser.nickname} 님이 멘토링을 신청하셨습니다.`);
       } else if (data.status === "ACCEPT" && !isLoading && targetUser) {
         setAcceptButton(false);
-        setCancelButton(false);
-        setFinishButton(true);
-        setPendingButton(false);
+        setCancelButton(true);
+        setDoneButton(false);
+        setMenteeFeedbackButton(false);
         setMsg(`${targetUser.nickname} 님과 멘토링이 진행중입니다.`);
-      } else if (data.status === "PENDING" && !isLoading && targetUser) {
+      } else if (
+        data.status === "MENTEE_FEEDBACK" &&
+        !isLoading &&
+        targetUser
+      ) {
         setAcceptButton(false);
         setCancelButton(false);
-        setFinishButton(false);
-        setPendingButton(false);
-        setMsg(`${targetUser.nickname} 님이 피드백을 작성중입니다.`);
+        setDoneButton(true);
+        setMenteeFeedbackButton(false);
+        setMsg(`${targetUser.nickname} 님이 피드백을 작성하셨습니다.`);
       }
     } else {
+      // 멘티
       if (data.status === "REQUEST" && !isLoading && targetUser) {
         setAcceptButton(false);
         setCancelButton(true);
-        setFinishButton(false);
-        setPendingButton(false);
+        setDoneButton(false);
         setMsg(`${targetUser.nickname} 님에게 멘토링을 신청하셨습니다.`);
       } else if (data.status === "ACCEPT" && !isLoading && targetUser) {
         setAcceptButton(false);
         setCancelButton(false);
-        setFinishButton(true);
+        setDoneButton(false);
+        setMenteeFeedbackButton(true);
         setMsg(`${targetUser.nickname} 님과 멘토링이 진행중입니다.`);
-      } else if (data.status === "PENDING" && !isLoading && targetUser) {
-        setAcceptButton(false);
-        setCancelButton(false);
-        setFinishButton(false);
-        setPendingButton(true);
-        setMsg(
-          `${targetUser.nickname} 님과의 멘토링에 대한 피드백을 작성해주세요.`
-        );
       }
     }
   };
@@ -79,8 +77,8 @@ const EnrollCard = ({ data, isMentor }: EnrollCardProps) => {
     return () => {
       setAcceptButton(false);
       setCancelButton(false);
-      setFinishButton(false);
-      setPendingButton(false);
+      setDoneButton(false);
+      setMenteeFeedbackButton(false);
     };
   });
 
@@ -100,17 +98,17 @@ const EnrollCard = ({ data, isMentor }: EnrollCardProps) => {
         )}
         {cancelButton && (
           <div className="mx-1">
-            <CancelButton data={data} />
+            <CancelButton data={data.id} />
           </div>
         )}
-        {finishButton && (
+        {doneButton && (
           <div className="mx-1">
-            <FinishButton data={data.id} />
+            <DoneButton data={data.id} />
           </div>
         )}
-        {pendingButton && (
+        {menteeFeedbackButton && (
           <div className="mx-1">
-            <PendingButton data={data.id} />
+            <MenteeFeedbackButton data={data.id} />
           </div>
         )}
       </div>
