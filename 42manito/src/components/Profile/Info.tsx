@@ -3,11 +3,10 @@ import TypeIt from "typeit-react";
 
 interface props {
   nickname: string;
-  description: string;
   count: number;
 }
 
-export default function ProfileInfo({ nickname, description, count }: props) {
+export default function ProfileInfo({ nickname, count }: props) {
   return (
     <div className="mx-10">
       <div className="" id="Count">
@@ -35,7 +34,6 @@ export default function ProfileInfo({ nickname, description, count }: props) {
       <div className="text-5xl font-bold flex justify-center items-center flex-col">
         {nickname}
       </div>
-      <div className="text-2xl mt-14">{description}</div>
     </div>
   );
 }
