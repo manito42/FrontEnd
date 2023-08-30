@@ -86,6 +86,7 @@ const Enroll = () => {
       getActiveMenteeEnrollment({ take: 12, page: 0, id: Owner });
       setMentorPage(1);
       setMenteePage(1);
+      console.log("getActiveMentorEnrollment");
     }
     return () => {
       dispatch(initReservations());

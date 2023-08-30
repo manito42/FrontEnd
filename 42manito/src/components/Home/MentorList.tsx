@@ -28,7 +28,6 @@ export default function HomeMentorList({
       className="overflow-none overscroll-y-none overflow-hidden"
     >
       <Enroll />
-      <Divider className="divider" />
       <div className="home-space" />
       <div className="mentor-cards-container">
         {allMentor.map((mentor) => (
