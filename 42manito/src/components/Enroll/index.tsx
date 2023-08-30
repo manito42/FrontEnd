@@ -18,12 +18,7 @@ import {
 } from "@/RTK/Slices/Enroll";
 
 // TODO: 엔롤 테스트해봐야함
-
-interface props {
-  viewProfileTypo: boolean;
-}
-
-const Enroll = ({ viewProfileTypo }: props) => {
+const Enroll = () => {
   const [mentorHasMore, setMentorHasMore] = useState(true);
   const [menteeHasMore, setMenteeHasMore] = useState(true);
   const [menteePage, setMenteePage] = useState(0);
@@ -173,7 +168,6 @@ const Enroll = ({ viewProfileTypo }: props) => {
         </div>
       </div>
       <Divider className="dark:bg-slate-400 bg-slate-500" />
-      <div className="">{!viewProfileTypo && <ProfileTypo />}</div>
     </div>
   );
 };
