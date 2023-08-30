@@ -35,7 +35,6 @@ export default function UserProfile() {
               <ProfileImage src={OwnerData.profileImage} />
               <ProfileInfo
                 nickname={OwnerData.nickname}
-                description={OwnerData.mentorProfile.description}
                 count={OwnerData.mentorProfile.mentoringCount}
               />
             </div>
