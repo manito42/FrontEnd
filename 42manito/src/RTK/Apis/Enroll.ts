@@ -69,7 +69,7 @@ export const enrollApi = createApi({
         };
       },
     }),
-    // 처음 멘토링 신청을 보낼때
+    /** 처음 멘토링 신청을 보낼때 */
     postReservationRequest: builder.mutation<
       ReservationDefaultDto,
       ReservationPostDto
@@ -89,6 +89,7 @@ export const enrollApi = createApi({
       },
       invalidatesTags: [{ type: "Enroll", id: "LIST" }],
     }),
+    /** 멘토가 멘토링 수락 */
     patchReservationAccept: builder.mutation<
       ReservationDefaultDto,
       ReservationPatchAcceptDto
@@ -101,6 +102,7 @@ export const enrollApi = createApi({
       },
       invalidatesTags: [{ type: "Enroll", id: "LIST" }],
     }),
+    /** 예약 취소 */
     patchReservationCancel: builder.mutation<
       ReservationDefaultDto,
       ReservationPatchCancelReqDto
@@ -113,22 +115,8 @@ export const enrollApi = createApi({
       },
       invalidatesTags: [{ type: "Enroll", id: "LIST" }],
     }),
-    // mentor가 완료버튼을 누르면 하는 곳
-    patchReservationPending: builder.mutation<
-      ReservationDefaultDto,
-      ReservationPatchMentorCompletionDto
-    >({
-      query: (args: ReservationPatchMentorCompletionDto) => {
-        return {
-          url: `/reservations/${args.id}/mentor_completion`,
-          method: "PATCH",
-          data: { rating: args.rating },
-        };
-      },
-      invalidatesTags: [{ type: "Enroll", id: "LIST" }],
-    }),
     // mentee가 피드백 버튼을 누르면 하는 곳
-    patchReservationComplete: builder.mutation<
+    patchReservationMenteeFeedback: builder.mutation<
       ReservationDefaultDto,
       ReservationPatchMenteeCompletionDto
     >({
@@ -137,6 +125,19 @@ export const enrollApi = createApi({
           url: `/reservations/${args.id}/mentee_completion`,
           method: "PATCH",
           data: { rating: args.rating, content: args.content },
+        };
+      },
+      invalidatesTags: [{ type: "Enroll", id: "LIST" }],
+    }),
+    patchReservationDone: builder.mutation<
+      ReservationDefaultDto,
+      ReservationPatchMentorCompletionDto
+    >({
+      query: (args: ReservationPatchMentorCompletionDto) => {
+        return {
+          url: `/reservations/${args.id}/mentor_completion`,
+          method: "PATCH",
+          data: { rating: args.rating },
         };
       },
       invalidatesTags: [{ type: "Enroll", id: "LIST" }],
@@ -152,6 +153,6 @@ export const {
   usePostReservationRequestMutation,
   usePatchReservationAcceptMutation,
   usePatchReservationCancelMutation,
-  usePatchReservationPendingMutation,
-  usePatchReservationCompleteMutation,
+  usePatchReservationMenteeFeedbackMutation,
+  usePatchReservationDoneMutation,
 } = enrollApi;

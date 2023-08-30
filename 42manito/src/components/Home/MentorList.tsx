@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Divider, Spin } from "antd";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import dynamic from "next/dynamic";
+import Enroll from "../Enroll";
 
 interface props {
   allMentor: MentorProfileDto[];
@@ -26,8 +27,7 @@ export default function HomeMentorList({
       loader={<Spin />}
       className="overflow-none overscroll-y-none overflow-hidden"
     >
-      <Typo />
-      <Divider className="divider" />
+      <Enroll />
       <div className="home-space" />
       <div className="mentor-cards-container">
         {allMentor.map((mentor) => (
