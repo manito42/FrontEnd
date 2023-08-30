@@ -38,7 +38,8 @@ export default function ProfileUpdate() {
     },
     { skip: userId === undefined }
   );
-  const [UserUpdate, {}] = useSetUserUpdateMutation();
+  const [UserUpdate, { data: updateData, isLoading: updateLoading }] =
+    useSetUserUpdateMutation();
   const [
     hashtagPost,
     { data: hashtagData, isLoading: hashtagLoading, isError: hashtagError },
@@ -56,21 +57,27 @@ export default function ProfileUpdate() {
 
   const updateButtonHandler = () => {
     if (UserData) {
-      const form: MentorProfilePatchReqDto = {
-        id: Number(userId as string),
-      };
+      const form: MentorProfilePatchReqDto = new Object();
+
+      form.hashtags = formData.hashtags;
       if (shortDescription.length !== 0) {
         form.shortDescription = shortDescription;
       }
       if (Description.length !== 0) {
         form.description = Description;
       }
-      if (formData.hashtags.length !== 0) {
-        form.hashtags = formData.hashtags;
-      }
       if (selectedValue.length !== 0) {
+        if (selectedValue === "study") {
+          form.categories = [{ id: 1, name: "DEVELOPMENT" }];
+        }
+        if (selectedValue === "hobby") {
+          form.categories = [{ id: 2, name: "HOBBY" }];
+        }
       }
-      UserUpdate(form);
+      UserUpdate({
+        id: Number(userId as string),
+        profile: form,
+      });
     }
   };
 
@@ -96,6 +103,12 @@ export default function ProfileUpdate() {
     }
   }, [UserData, dispatch]);
 
+  useEffect(() => {
+    if (updateData) {
+      route.push(`/Profile/${userId}`);
+    }
+  }, [route, updateData, updateLoading, userId]);
+
   return (
     <Layout>
       <section className="app-container pt-32">
@@ -115,8 +128,8 @@ export default function ProfileUpdate() {
                 className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 type="radio"
                 name="manito"
-                value="develop"
-                checked={selectedValue === "develop"} // 선택 여부 확인
+                value="study"
+                checked={selectedValue === "study"} // 선택 여부 확인
                 onChange={handleRadioChange}
               />
               <label className="text-3xl font-bold">Develop.</label>
@@ -172,7 +185,6 @@ export default function ProfileUpdate() {
                 추가
               </Button>
             </div>
-            duiv
           </div>
           <div className="w-full my-8">
             <div className="w-full text-3xl font-bold mb-5">짧은 소개글.</div>
