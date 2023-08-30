@@ -53,18 +53,20 @@ export const userApi = createApi({
       },
       invalidatesTags: [{ type: "User", id: "LIST" }],
     }),
-    setUserUpdate: builder.mutation<MentorProfileDto, MentorProfilePatchReqDto>(
-      {
-        query: (args: MentorProfilePatchReqDto) => {
-          return {
-            url: `/mentor_profiles/${args.id}`,
-            data: args,
-            method: "PATCH",
-          };
-        },
-        invalidatesTags: [{ type: "User", id: "LIST" }],
-      }
-    ),
+    setUserUpdate: builder.mutation<
+      MentorProfileDto,
+      { id: number; profile: MentorProfilePatchReqDto }
+    >({
+      query: (args: { id: number; profile: MentorProfilePatchReqDto }) => {
+        console.log(args);
+        return {
+          url: `/mentor_profiles/${args.id}`,
+          data: args.profile,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: [{ type: "User", id: "LIST" }],
+    }),
     postHashtag: builder.mutation<HashtagResponseDto, HashtagPostDto>({
       query: (args: HashtagPostDto) => {
         return {
