@@ -58,7 +58,6 @@ export const userApi = createApi({
       { id: number; profile: MentorProfilePatchReqDto }
     >({
       query: (args: { id: number; profile: MentorProfilePatchReqDto }) => {
-        console.log(args);
         return {
           url: `/mentor_profiles/${args.id}`,
           data: args.profile,
