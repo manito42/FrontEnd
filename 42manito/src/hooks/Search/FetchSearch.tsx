@@ -45,7 +45,7 @@ export const useFetchSearch = () => {
       dispatch(initSearchResult());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchKeyword]);
 
   return { searchMentors, hasMore, fetchMoreData };
 };

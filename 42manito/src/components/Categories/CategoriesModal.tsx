@@ -95,7 +95,8 @@ const CategoryModal = ({ onClose, categoryId }: props) => {
         </button>
         <div className="px-4">
           <div
-            className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[95vw] md:w-[90vw] h-[80vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10"
+            className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[95vw] md:w-[90vw] h-[80vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overscroll-x-hidden overflow-y-auto"
+
             ref={scrollContainerRef}
             id="scrollableDiv"
           >
