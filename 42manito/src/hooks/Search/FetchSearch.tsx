@@ -38,7 +38,8 @@ export const useFetchSearch = () => {
   }, [data, dispatch, isLoading]);
 
   useEffect(() => {
-    fetchMoreData();
+    setPage(0);
+
     return () => {
       setPage(0);
       setHasMore(true);
@@ -46,6 +47,10 @@ export const useFetchSearch = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchKeyword]);
+
+  useEffect(() => {
+    if (page === 0) fetchMoreData();
+  }, [fetchMoreData, page]);
 
   return { searchMentors, hasMore, fetchMoreData };
 };
