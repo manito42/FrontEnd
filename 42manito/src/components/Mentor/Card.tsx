@@ -33,7 +33,7 @@ const MentorCard = ({ data }: props) => {
             <span className="user-nickname">{data.user.nickname}</span>
           </div>
           <div>
-            <span className="user-short-description">
+            <span className="user-short-description line-clamp-3 md:line-clamp-4 whitespace-pre-wrap overflow-hidden">
               {data.shortDescription}
             </span>
           </div>
