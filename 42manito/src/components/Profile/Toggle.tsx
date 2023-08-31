@@ -25,7 +25,7 @@ export default function ManitoToggle() {
   }, [owner, userDate]);
 
   useEffect(() => {
-    if (userLoading && userDate) {
+    if (userDate !== undefined && userLoading === false) {
       setIsHide(userDate.mentorProfile.isHide);
     }
   }, [userDate, userLoading]);
