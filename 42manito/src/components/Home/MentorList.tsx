@@ -31,7 +31,7 @@ export default function HomeMentorList({
       <div className="home-space" />
       <div className="mentor-cards-container">
         {allMentor.map((mentor) => (
-          <MentorCard data={mentor} key={mentor.id} />
+          <MentorCard data={mentor} key={mentor.user.id} />
         ))}
       </div>
     </InfiniteScroll>
