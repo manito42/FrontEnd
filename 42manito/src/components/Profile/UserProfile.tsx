@@ -59,7 +59,7 @@ export default function UserProfile() {
                 <ManitoToggle />
               </div>
               <div className="h-[1px] bg-slate-800 dark:bg-slate-50 w-full my-8" />
-              <div>
+              <div className="whitespace-pre-wrap">
                 {OwnerData.mentorProfile.shortDescription ??
                   "짧은 소개글이 없습니다."}
               </div>
@@ -68,7 +68,7 @@ export default function UserProfile() {
           <div className="w-full my-10">
             <div className="w-full text-3xl font-bold">소개글.</div>
             <div className="h-[1px] bg-slate-800 dark:bg-slate-50 w-full my-8" />
-            <div>
+            <div className="whitespace-pre-wrap">
               {OwnerData.mentorProfile.description ?? "소개글이 없습니다."}
             </div>
           </div>
