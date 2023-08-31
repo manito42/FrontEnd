@@ -21,6 +21,7 @@ export default function SearchMentorList({
       next={fetchMoreData}
       hasMore={hasMore}
       loader={<Spin />}
+      height={"80vh"}
     >
       <div className="mentor-cards-container">
         {searchMentors.map((mentor) => (
