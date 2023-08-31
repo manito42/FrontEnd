@@ -100,6 +100,8 @@ export default function ProfileUpdate() {
       dispatch(
         ProfileUpdateSlice.actions.setHashtags(UserData.mentorProfile.hashtags)
       );
+      setDescription(UserData.mentorProfile.description);
+      setShortDescription(UserData.mentorProfile.shortDescription);
     }
   }, [UserData, dispatch]);
 
