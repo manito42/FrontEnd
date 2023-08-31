@@ -1,7 +1,4 @@
-import {
-  usePatchReservationDoneMutation,
-  usePatchReservationPendingMutation,
-} from "@/RTK/Apis/Enroll";
+import { usePatchReservationDoneMutation } from "@/RTK/Apis/Enroll";
 import { ReservationPatchMentorCompletionDto } from "@/Types/Reservations/ReservationPatchMentorCompletion.dto";
 import ConnectModal from "@/components/Connect/ConnectModal";
 import MuiRate from "@/components/Global/MuiRate";
@@ -27,7 +24,7 @@ const DoneButton = ({ data }: FinishButtonProps) => {
       Done({ id: data, rating: rating });
       setOnConnectModal(false);
     }
-  }, [data, pending, rating]);
+  }, [Done, data, rating]);
 
   const closeConnectModal = useCallback(() => {
     setOnConnectModal(false);
