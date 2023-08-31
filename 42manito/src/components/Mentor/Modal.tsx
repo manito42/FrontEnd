@@ -126,7 +126,7 @@ const MentorModal = () => {
               <div className="mentor-modal-bottom-contents">
                 <div className="mentor-description-container">
                   <div className="w-full lg:w-9/12 px-4">
-                    <p className="mentor-description">
+                    <p className="mentor-description whitespace-pre-wrap">
                       {currMentorState.currMentor.description}
                     </p>
                   </div>
