@@ -168,8 +168,8 @@ export default function ProfileUpdate() {
                 checked={selectedValue === "hobby"} // 선택 여부 확인
                 onChange={handleRadioChange}
               />
-              <label className="text-3xl font-bold">Hobby.</label>
-              <ManitoLottieAnimation size="medium" animationData={Hobby} />
+              <label className="text-3xl font-bold mb-5">Hobby.</label>
+              <ManitoLottieAnimation size="small" animationData={Hobby} />
             </div>
           </div>
           <div className="flex w-full flex-col">
