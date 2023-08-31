@@ -18,6 +18,7 @@ export const useFetchSearch = () => {
   const dispatch = useAppDispatch();
 
   const fetchMoreData = () => {
+    console.log(searchKeyword);
     if (searchKeyword) {
       SearchMutation({
         search_string: searchKeyword as string,
@@ -45,7 +46,7 @@ export const useFetchSearch = () => {
       dispatch(initSearchResult());
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchKeyword]);
 
   return { searchMentors, hasMore, fetchMoreData };
 };
