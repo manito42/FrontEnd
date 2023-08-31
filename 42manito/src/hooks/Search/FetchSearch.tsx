@@ -18,7 +18,6 @@ export const useFetchSearch = () => {
   const dispatch = useAppDispatch();
 
   const fetchMoreData = () => {
-    console.log(searchKeyword);
     if (searchKeyword) {
       SearchMutation({
         search_string: searchKeyword as string,
