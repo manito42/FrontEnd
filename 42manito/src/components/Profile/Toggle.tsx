@@ -22,7 +22,13 @@ export default function ManitoToggle() {
     if (userDate) {
       setIsHide(userDate.mentorProfile.isHide);
     }
-  }, [owner]);
+  }, [owner, userDate]);
+
+  useEffect(() => {
+    if (userLoading && userDate) {
+      setIsHide(userDate.mentorProfile.isHide);
+    }
+  }, [userDate, userLoading]);
 
   return (
     <div className="items-center justify-center flex flex-col">
