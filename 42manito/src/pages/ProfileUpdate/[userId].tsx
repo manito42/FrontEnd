@@ -100,6 +100,8 @@ export default function ProfileUpdate() {
       dispatch(
         ProfileUpdateSlice.actions.setHashtags(UserData.mentorProfile.hashtags)
       );
+      setDescription(UserData.mentorProfile.description);
+      setShortDescription(UserData.mentorProfile.shortDescription);
     }
   }, [UserData, dispatch]);
 
@@ -175,7 +177,7 @@ export default function ProfileUpdate() {
                 maxLength={20}
                 value={hashTagName}
                 onChange={(e) => setHashTagName(e.target.value)}
-                className="m-10 h-10 w-full"
+                className="m-10 h-10 w-full whitespace-pre-wrap"
               />
               <Button
                 onClick={() => hashtagPostHandler()}
@@ -198,6 +200,7 @@ export default function ProfileUpdate() {
               }}
               onChange={(e) => setShortDescription(e.target.value.slice(0, 50))}
               placeholder="최대 50글자"
+              className="whitespace-pre-wrap"
             />
           </div>
           <div className="w-full my-8">
@@ -208,7 +211,7 @@ export default function ProfileUpdate() {
               value={Description}
               maxLength={2000}
               style={{
-                height: 80,
+                height: 160,
                 marginBottom: 24,
               }}
               onChange={(e) => setDescription(e.target.value.slice(0, 2000))}
