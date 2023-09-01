@@ -1,5 +1,6 @@
 import { HashtagResponseDto } from "@/Types/Hashtags/HashtagResponse.dto";
 import React from "react";
+import { useRouter } from "next/router";
 
 interface props {
   hashtag: HashtagResponseDto[];
@@ -14,12 +15,12 @@ export default function ProfileHashtag({ hashtag }: props) {
       <div className="flex flex-wrap justify-center w-full my-3">
         {hashtag.length > 0 &&
           hashtag.map((aTag) => (
-            <h6
-              className="m-2 p-[0.5vw] rounded-md bg-sky-200 dark:bg-sky-700 "
+            <button
+              className="whitespace-nowrap m-2 text-sm rounded-full px-[0.5em] py-[0.2em] bg-sky-300 dark:bg-sky-800"
               key={aTag.id}
             >
               {aTag.name}
-            </h6>
+            </button>
           ))}
       </div>
     </div>

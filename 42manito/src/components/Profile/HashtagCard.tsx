@@ -8,7 +8,7 @@ interface props {
 const HashtagCard = ({ hashtag, children }: props) => {
   return (
     <div className="flex flex-row mr-3">
-      <h6 className="whitespace-nowrap m-2 p-[0.5vw] rounded-md bg-sky-200 dark:bg-sky-700 ">
+      <h6 className="whitespace-nowrap m-2 px-[0.5em] py-[0.2em] rounded-full bg-sky-200 dark:bg-sky-700 ">
         {hashtag}
       </h6>
       {children && children}
