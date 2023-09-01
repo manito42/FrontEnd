@@ -126,7 +126,7 @@ export default function ProfileUpdate() {
         <div className="flex flex-wrap items-center justify-center w-[60vw] mt-14">
           <div className="mt-3 flex flex-col w-[90%]">
             <div className="flex flex-row flex-wrap justify-between">
-              <div className="w-full text-3xl font-bold">카테고린</div>
+              <div className="w-full text-3xl font-bold">카테고리</div>
               <div className="flex flex-col md:flex-row my-3 overflow-y-auto mt-5">
                 {allCategories &&
                   allCategories.map((category, index) => (
