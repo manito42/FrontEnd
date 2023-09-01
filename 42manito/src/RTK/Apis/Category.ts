@@ -1,5 +1,5 @@
+import { CategoriesResponseDto } from "@/Types/Categories/CategoriesResponse.dto";
 import { HomeGetCategoryDto } from "@/Types/Homes/HomeGetCategory.dto";
-import { HomeResponseDto } from "@/Types/Homes/HomeResponse.dto";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
@@ -21,7 +21,16 @@ export const categoryApi = createApi({
         };
       },
     }),
+    getCategories: builder.query<CategoriesResponseDto[], void>({
+      query: () => {
+        return {
+          url: `/categories`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetCategoryMentorsMutation } = categoryApi;
+export const { useGetCategoryMentorsMutation, useGetCategoriesQuery } =
+  categoryApi;

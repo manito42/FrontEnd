@@ -44,6 +44,9 @@ export const ProfileUpdateSlice = createSlice({
     setCategories(state, action: PayloadAction<CategoriesResponseDto[]>) {
       state.categories = action.payload;
     },
+    addCategory(state, action: PayloadAction<HashtagResponseDto>) {
+      state.categories.push(action.payload);
+    },
     setDisabled(state, action: PayloadAction<boolean>) {
       state.disabled = action.payload;
     },
@@ -52,7 +55,12 @@ export const ProfileUpdateSlice = createSlice({
     },
     deleteOneHashtag(state, action: PayloadAction<string>) {
       state.hashtags = state.hashtags.filter(
-        (hashtag) => hashtag.name !== action.payload
+        (hashtag) => hashtag.name !== action.payload,
+      );
+    },
+    deleteOneCategory(state, action: PayloadAction<string>) {
+      state.categories = state.categories.filter(
+        (category) => category.name !== action.payload,
       );
     },
     deleteAll(state) {
