@@ -1,4 +1,4 @@
-import React, { ComponentProps } from "react";
+import React from "react";
 
 interface props {
   hashtag: string;
@@ -7,8 +7,8 @@ interface props {
 
 const HashtagCard = ({ hashtag, children }: props) => {
   return (
-    <div className="flex flex-row mx-3">
-      <h6 className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 ">
+    <div className="flex flex-row mr-3">
+      <h6 className="whitespace-nowrap m-2 p-[0.5vw] rounded-md bg-sky-200 dark:bg-sky-700 ">
         {hashtag}
       </h6>
       {children && children}
