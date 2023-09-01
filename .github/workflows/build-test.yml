@@ -35,7 +35,9 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --immutable --immutable-cache --check-cache
+        run: |
+          yarn policies set-version
+          yarn install --immutable --immutable-cache --check-cache
         working-directory: ${{ env.working-directory }}
       - name: build
         run: yarn run build
