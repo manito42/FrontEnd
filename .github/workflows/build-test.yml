@@ -1,0 +1,40 @@
+# Dependency Install, Build, Start를 여기서 다합니다.
+name: Build Bot
+on:
+  pull_request:
+    branches:
+      - dev
+
+env:
+  NEXT_PUBLIC_DEV_URL: "https://api.dev.42manito.com"
+
+jobs:
+  deploy:
+    permissions:
+      id-token: write
+      contents: write
+
+    name: Build Check Application
+    runs-on: ubuntu-22.04
+    steps:
+      # 레포지토리로 이동합니다.
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.16.0
+      - name: Working Directory
+        run: cd 42manito
+      - name: Create Env
+        run: echo "NEXT_PUBLIC_DEV_URL=${{ env.NEXT_PUBLIC_DEV_URL }}" >> .env
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}.
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: build
+        run: yarn run build
