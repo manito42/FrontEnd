@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - dev
+      - deploy
+      - deploytest
 
 env:
   NEXT_PUBLIC_DEV_URL: "https://api.dev.42manito.com"
