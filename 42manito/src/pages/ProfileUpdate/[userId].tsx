@@ -127,7 +127,7 @@ export default function ProfileUpdate() {
           <div className="mt-3 flex flex-col w-[90%]">
             <div className="flex flex-row flex-wrap justify-between">
               <div className="w-full text-3xl font-bold">카테고리</div>
-              <div className="flex flex-col md:flex-row my-3 overflow-y-auto mt-5">
+              <div className="flex flex-col md:flex-row my-3 overflow-y-auto mt-1">
                 {allCategories &&
                   allCategories.map((category, index) => (
                     <CategoryCard
@@ -156,7 +156,7 @@ export default function ProfileUpdate() {
             </div>
             <div className="flex w-full flex-col">
               <div className="w-full text-3xl font-bold mt-5">관심 분야</div>
-              <div className="flex flex-row my-3 overflow-x-auto mt-5">
+              <div className="flex flex-row my-3 overflow-x-auto mt-1">
                 {formData &&
                   formData.hashtags.map((hashtag, index) => (
                     <HashtagCard hashtag={hashtag.name} key={index}>
@@ -175,7 +175,7 @@ export default function ProfileUpdate() {
                     </HashtagCard>
                   ))}
               </div>
-              <div className="flex flex-row w-full justify-between items-center my-2">
+              <div className="flex flex-row w-full justify-between items-center mt-1">
                 <TextArea
                   placeholder="Hashtag (3글자 이상, 한영, 숫자): ex) frontend"
                   maxLength={20}
