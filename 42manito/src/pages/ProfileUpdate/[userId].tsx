@@ -187,7 +187,8 @@ export default function ProfileUpdate() {
                   onPressEnter={(e) => {
                     hashtagPostHandler();
                   }}
-                  className="mr-3 w-full whitespace-pre-wrap"
+                  className="mr-3 resize-none h-0.5 w-full whitespace-pre-wrap"
+                  style={{ height: 16 }}
                 />
                 <Button
                   onClick={() => hashtagPostHandler()}
