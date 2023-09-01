@@ -44,7 +44,7 @@ export default function UserProfile() {
               categories={OwnerData.mentorProfile.categories}
             />
             <ProfileHashtag hashtag={OwnerData.mentorProfile.hashtags} />
-            <div className="flex flex-wrap w-full items-center justify-center w-[50vw] mb-10">
+            <div className="flex flex-wrap items-center justify-center w-[50vw] mb-10">
               <div className="text-3xl font-bold">소개글</div>
               <div className="h-[1px] bg-slate-800 dark:bg-slate-50 w-full my-8" />
               <DescriptionComponent
