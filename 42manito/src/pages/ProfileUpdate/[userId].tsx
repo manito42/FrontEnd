@@ -184,7 +184,7 @@ export default function ProfileUpdate() {
               </div>
               <div className="flex flex-row w-full justify-between items-center mb-5">
                 <TextArea
-                  placeholder="Hashtag (3글자 이상, 한영, 숫자): ex) frontend"
+                  placeholder="ex) frontend"
                   maxLength={20}
                   value={hashTagName}
                   onChange={(e) => {
