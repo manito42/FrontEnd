@@ -32,6 +32,7 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+        working-directory: ${{ env.working-directory }}
       - uses: actions/cache@v3
         id: cache
         with:
