@@ -28,7 +28,11 @@ function DescriptionComponent({ description }: props) {
 
   const linkedDescription = linkifyReact(description);
 
-  return <div className="w-full whitespace-pre-wrap">{linkedDescription}</div>;
+  return (
+    <div className="whitespace-pre-wrap w-[50vw] break-words">
+      {linkedDescription}
+    </div>
+  );
 }
 
 export default DescriptionComponent;
