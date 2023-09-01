@@ -124,7 +124,7 @@ export default function ProfileUpdate() {
     <Layout>
       <section className="app-container pt-32">
         <div
-          className="flex flex-wrap flex-col items-center justify-center mt-14 mb-14
+          className="flex flex-wrap flex-col items-center justify-center mt-5 mb-14
              w-[80vw] rounded-2xl bg-gray-100 dark:bg-gray-900
             drop-shadow-2xl"
         >
