@@ -51,7 +51,7 @@ export default function ProfileUpdate() {
 
     if (
       !doesHashtagExist &&
-      hashTagName.length >= 2 &&
+      hashTagName.length > 2 &&
       !regex.test(hashTagName)
     ) {
       // 입력된 해시태그가 위의 조건들을 만족하면 새로운 해시태그 추가
