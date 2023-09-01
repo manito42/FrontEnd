@@ -7,6 +7,7 @@ import ProfileHashtag from "@/components/Profile/Hashtag";
 import { useProfilePage } from "@/hooks/Profile/Page";
 import { useRouter } from "next/router";
 import ManitoToggle from "./Toggle";
+import DescriptionComponent from "@/components/Profile/Description";
 
 export default function UserProfile() {
   const { OwnerData, OwnerLoading } = useProfilePage();
@@ -46,9 +47,9 @@ export default function UserProfile() {
             <div className="flex flex-wrap w-full items-center justify-center w-[50vw] mb-10">
               <div className="text-3xl font-bold">소개글</div>
               <div className="h-[1px] bg-slate-800 dark:bg-slate-50 w-full my-8" />
-              <div className="w-full whitespace-pre-wrap">
-                {OwnerData.mentorProfile.description ?? "소개글이 없습니다."}
-              </div>
+              <DescriptionComponent
+                description={OwnerData.mentorProfile.description}
+              />
             </div>
             <div className="flex flex-col justify-between item- mb-10">
               <div className="m-3">
