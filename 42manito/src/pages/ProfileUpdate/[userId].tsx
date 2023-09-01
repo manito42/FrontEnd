@@ -123,10 +123,17 @@ export default function ProfileUpdate() {
   return (
     <Layout>
       <section className="app-container pt-32">
-        <div className="flex flex-wrap items-center justify-center w-[60vw] mt-14">
-          <div className="mt-3 flex flex-col w-[90%]">
+        <div
+          className="flex flex-wrap flex-col items-center justify-center mt-14 mb-14
+             w-[80vw] rounded-2xl bg-gray-100 dark:bg-gray-900
+            drop-shadow-2xl"
+        >
+          <div className="text-3xl font-bold justify-center items-center mt-10">
+            프로필 변경하기
+          </div>
+          <div className="mt-10 flex flex-col w-[80%]">
             <div className="flex flex-row flex-wrap justify-between">
-              <div className="w-full text-3xl font-bold">카테고리</div>
+              <div className="w-full text-2xl font-bold">카테고리</div>
               <div className="flex flex-col md:flex-row my-3 overflow-y-auto mt-1">
                 {allCategories &&
                   allCategories.map((category, index) => (
@@ -155,7 +162,7 @@ export default function ProfileUpdate() {
               </div>
             </div>
             <div className="flex w-full flex-col">
-              <div className="w-full text-3xl font-bold mt-5">관심 분야</div>
+              <div className="w-full text-2xl font-bold mt-5">관심 분야</div>
               <div className="flex flex-row my-3 overflow-x-auto mt-1">
                 {formData &&
                   formData.hashtags.map((hashtag, index) => (
@@ -175,7 +182,7 @@ export default function ProfileUpdate() {
                     </HashtagCard>
                   ))}
               </div>
-              <div className="flex flex-row w-full justify-between items-center mt-1">
+              <div className="flex flex-row w-full justify-between items-center mb-5">
                 <TextArea
                   placeholder="Hashtag (3글자 이상, 한영, 숫자): ex) frontend"
                   maxLength={20}
@@ -200,7 +207,7 @@ export default function ProfileUpdate() {
               </div>
             </div>
             <div className="w-full mt-5">
-              <div className="w-full text-3xl font-bold mb-5">짧은 소개글</div>
+              <div className="w-full text-2xl font-bold mb-5">짧은 소개글</div>
               <TextArea
                 showCount
                 maxLength={50}
@@ -217,21 +224,22 @@ export default function ProfileUpdate() {
               />
             </div>
             <div className="w-full mt-5">
-              <div className="w-full text-3xl font-bold mb-5">소개글</div>
+              <div className="w-full text-2xl font-bold mb-5">소개글</div>
               <TextArea
                 placeholder="최대2000"
                 showCount
-                value={Description}
                 maxLength={2000}
+                value={Description}
                 style={{
                   height: 160,
                   marginBottom: 24,
                 }}
+                className="whitespace-pre-wrap"
                 onChange={(e) => setDescription(e.target.value.slice(0, 2000))}
               />
             </div>
           </div>
-          <div className="flex w-full justify-center mt-3 mb-5">
+          <div className="flex flex-row mt-3 mb-10 space-x-4">
             <Button
               className="text-xs  md:text-s bg-gray-500 hover:bg-gray-600 active:bg-gray-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
               type="button"

@@ -29,7 +29,12 @@ function DescriptionComponent({ description }: props) {
   const linkedDescription = linkifyReact(description);
 
   return (
-    <div className="whitespace-pre-wrap w-[50vw] break-words">
+    <div
+      className="whitespace-pre-wrap w-[100%] break-words
+      px-6 py-4 rounded-2xl
+      bg-gray-100 dark:bg-gray-800
+      shadow-sm"
+    >
       {linkedDescription}
     </div>
   );

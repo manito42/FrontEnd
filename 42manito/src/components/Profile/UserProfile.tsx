@@ -26,7 +26,11 @@ export default function UserProfile() {
     <Layout>
       {OwnerData && !OwnerLoading && (
         <div className="app-container pt-32">
-          <div className="flex flex-wrap flex-col items-center justify-center mt-5 mb-12 w-[70vw] rounded-2xl bg-gray-200">
+          <div
+            className="flex flex-wrap flex-col items-center justify-center mt-5 mb-12
+            w-[80vw] rounded-2xl bg-gray-100 dark:bg-gray-900
+            drop-shadow-2xl"
+          >
             <div className="md:flex flex-wrap w-full items-center justify-center mt-12">
               <ProfileImage src={OwnerData.profileImage} />
               <ProfileInfo
@@ -34,7 +38,13 @@ export default function UserProfile() {
                 count={OwnerData.mentorProfile.mentoringCount}
               />
             </div>
-            <div className="flex flex-wrap items-center justify-center w-[50vw] mt-10 mb-14">
+            <div
+              className="flex flex-wrap justify-center
+                w-[80%] break-all px-3 py-4
+                mt-10 mb-14
+                rounded-2xl bg-gray-100 dark:bg-gray-800
+                shadow-sm"
+            >
               {OwnerData.mentorProfile.shortDescription ??
                 "짧은 소개글이 없습니다."}
             </div>
@@ -42,7 +52,7 @@ export default function UserProfile() {
               categories={OwnerData.mentorProfile.categories}
             />
             <ProfileHashtag hashtag={OwnerData.mentorProfile.hashtags} />
-            <div className="flex flex-wrap flex-col items-center justify-center w-[60vw] mb-10">
+            <div className="flex flex-wrap flex-col items-center justify-center w-[80%] mb-10">
               <div className="text-3xl font-bold">소개글</div>
               <div className="h-[1px] bg-slate-800 dark:bg-slate-50 w-[40vw] my-8" />
               <DescriptionComponent
