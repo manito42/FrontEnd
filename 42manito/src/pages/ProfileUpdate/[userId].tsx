@@ -43,13 +43,24 @@ export default function ProfileUpdate() {
   ] = usePostHashtagMutation();
 
   const hashtagPostHandler = () => {
-    if (hashTagName.length < 3) return;
-    if (formData.hashtags.filter((a) => a.name === hashTagName).length > 0) {
+    const doesHashtagExist = formData.hashtags.some(
+      (hashtag) => hashtag.name === hashTagName,
+    );
+    // 정규 표현식으로 영어(a-z, A-Z), 한글(가-힣), 숫자(0-9)를 제외한 모든 문자 찾기
+    const regex = /[^a-zA-Z0-9가-힣]/g;
+
+    if (
+      !doesHashtagExist &&
+      hashTagName.length >= 2 &&
+      !regex.test(hashTagName)
+    ) {
+      // 입력된 해시태그가 위의 조건들을 만족하면 새로운 해시태그 추가
+      hashtagPost({ name: hashTagName });
       setHashTagName("");
-      return;
+    } else if (regex.test(hashTagName)) {
+      alert("3글자 이상의 한글, 영어, 숫자만 추가 가능합니다.");
+      setHashTagName("");
     }
-    hashtagPost({ name: hashTagName });
-    setHashTagName("");
   };
 
   const updateButtonHandler = () => {
@@ -111,16 +122,16 @@ export default function ProfileUpdate() {
         <div className="flex flex-wrap items-center justify-center w-[60vw] mt-14">
           <div className="mt-3 flex flex-col w-[90%]">
             <div className="flex flex-row flex-wrap justify-between">
-              <div className="w-full text-3xl font-bold">카테고리</div>
+              <div className="w-full text-3xl font-bold">카테고린</div>
               <div className="flex flex-col md:flex-row my-3 overflow-y-auto mt-5">
                 {allCategories &&
                   allCategories.map((category, index) => (
                     <CategoryCard
                       category={category.name}
                       active={
-                        formData.categories.filter(
+                        formData.categories.some(
                           (cat) => category.name === cat.name,
-                        ).length === 1
+                        ) as boolean
                       }
                       onClick={(isActive: boolean) => {
                         if (isActive)
@@ -140,7 +151,7 @@ export default function ProfileUpdate() {
               </div>
             </div>
             <div className="flex w-full flex-col">
-              <div className="w-full text-3xl font-bold mt-5">해시태그</div>
+              <div className="w-full text-3xl font-bold mt-5">관심 분야</div>
               <div className="flex flex-row my-3 overflow-x-auto mt-5">
                 {formData &&
                   formData.hashtags.map((hashtag, index) => (
