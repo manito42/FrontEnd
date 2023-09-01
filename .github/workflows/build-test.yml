@@ -7,6 +7,7 @@ on:
 
 env:
   NEXT_PUBLIC_DEV_URL: "https://api.dev.42manito.com"
+  working-directory: ./42manito
 
 jobs:
   deploy:
@@ -23,10 +24,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.16.0
-      - name: Working Directory
-        run: cd 42manito
       - name: Create Env
         run: echo "NEXT_PUBLIC_DEV_URL=${{ env.NEXT_PUBLIC_DEV_URL }}" >> .env
+        working-directory: ${{ env.working-directory }}
       - uses: actions/cache@v3
         with:
           path: '**/node_modules'
@@ -36,5 +36,7 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --immutable --immutable-cache --check-cache
+        working-directory: ${{ env.working-directory }}
       - name: build
         run: yarn run build
+        working-directory: ${{ env.working-directory }}
