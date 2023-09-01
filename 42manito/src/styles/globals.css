@@ -356,6 +356,30 @@ p {
   }
 }
 
+.ant-input {
+  @apply  dark:bg-slate-800
+          dark:text-slate-200
+          dark:border-slate-800
+          dark:placeholder-slate-200
+          dark:focus:placeholder-slate-200
+          dark:focus:border-sky-800
+          dark:hover:border-sky-800
+}
+
+.ant-input-show-count,
+.ant-input-affix-wrapper
+{
+  @apply  dark:bg-slate-800
+        dark:text-slate-200
+        dark:border-slate-800
+        dark:placeholder-slate-200
+        dark:hover:placeholder-slate-200
+        dark:hover:border-sky-800
+}
+
+.ant-input-affix-wrapper-focused {
+  @apply dark:border-sky-800;
+}
 .ant-input-data-count {
   @apply text-slate-800 dark:text-slate-200;
 }
