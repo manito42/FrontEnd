@@ -40,7 +40,6 @@ jobs:
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          yarn policies set-version 3.6.1
           yarn install --immutable --immutable-cache --check-cache
         working-directory: ${{ env.working-directory }}
       - name: build
