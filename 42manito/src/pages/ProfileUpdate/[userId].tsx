@@ -63,6 +63,10 @@ export default function ProfileUpdate() {
     }
   };
 
+  const cancelButtonHandler = () => {
+    route.back();
+  };
+
   const updateButtonHandler = () => {
     if (UserData) {
       const form: MentorProfilePatchReqDto = {};
@@ -227,6 +231,13 @@ export default function ProfileUpdate() {
             </div>
           </div>
           <div className="flex w-full justify-center mt-3 mb-5">
+            <Button
+              className="text-xs  md:text-s bg-gray-500 hover:bg-gray-600 active:bg-gray-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+              type="button"
+              onClick={() => cancelButtonHandler()}
+            >
+              취소
+            </Button>
             <Button
               className="text-xs  md:text-s bg-pink-500 hover:bg-pink-600 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
               type="button"
