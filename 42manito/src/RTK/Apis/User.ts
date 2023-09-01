@@ -1,4 +1,3 @@
-import { HashtagGetDto } from "@/Types/Hashtags/HashtagGet.dto";
 import { HashtagPostDto } from "@/Types/Hashtags/HashtagPost.dto";
 import { HashtagResponseDto } from "@/Types/Hashtags/HashtagResponse.dto";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";

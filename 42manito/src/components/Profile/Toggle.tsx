@@ -7,11 +7,11 @@ export default function ManitoToggle() {
   const [isHide, setIsHide] = useState(false);
   const [setIsHideMutation, {}] = useSetIsHideMutation();
   const owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId
+    (state: RootState) => state.rootReducers.global.uId,
   );
   const { data: userDate, isLoading: userLoading } = useGetUserQuery(
     { id: owner },
-    { skip: owner === undefined }
+    { skip: owner === undefined },
   );
 
   const changeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,8 +31,8 @@ export default function ManitoToggle() {
   }, [userDate, userLoading]);
 
   return (
-    <div className="items-center justify-center flex flex-col">
-      <div className="text-2xl font-bold">공개하기</div>
+    <div className="items-center justify-center flex flex-row">
+      <div className="text-xl font-bold mr-3">프로필 공개하기</div>
       <label className="relative inline-flex items-center cursor-pointer">
         <input
           type="checkbox"

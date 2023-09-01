@@ -8,10 +8,10 @@ interface props {
 
 export default function ProfileInfo({ nickname, count }: props) {
   return (
-    <div className="mx-10">
+    <div className="md:mx-10">
       <div className="" id="Count">
-        <div className="flex justify-center py-4 lg:pt-4 pt-8">
-          <div className="mr-4 p-3 text-center">
+        <div className="flex flex-col justify-center">
+          <div className="p-3 text-center">
             <TypeIt
               options={{
                 loop: false,
@@ -26,13 +26,13 @@ export default function ProfileInfo({ nickname, count }: props) {
             </TypeIt>
 
             <span className="text-xl text-slate-600 dark:text-slate-400">
-              Total.
+              Total
             </span>
           </div>
+          <div className="text-4xl font-bold flex justify-center items-center flex-col">
+            {nickname}
+          </div>
         </div>
-      </div>
-      <div className="text-5xl font-bold flex justify-center items-center flex-col">
-        {nickname}
       </div>
     </div>
   );
