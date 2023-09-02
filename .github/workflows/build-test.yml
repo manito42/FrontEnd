@@ -1,0 +1,50 @@
+# Dependency Install, Build, Start를 여기서 다합니다.
+name: Build Bot
+on:
+  pull_request:
+    branches:
+      - dev
+      - deploy
+      - deploytest
+
+env:
+  NEXT_PUBLIC_DEV_URL: "https://api.dev.42manito.com"
+  working-directory: ./42manito
+
+jobs:
+  deploy:
+    permissions:
+      id-token: write
+      contents: write
+
+    name: Build Check Application
+    runs-on: ubuntu-22.04
+    steps:
+      # 레포지토리로 이동합니다.
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.16.0
+      - name: Create Env
+        run: echo "NEXT_PUBLIC_DEV_URL=${{ env.NEXT_PUBLIC_DEV_URL }}" >> .env
+        working-directory: ${{ env.working-directory }}
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+        working-directory: ${{ env.working-directory }}
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}.
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          yarn install --check-cache
+        working-directory: ${{ env.working-directory }}
+      - name: build
+        run: yarn run build
+        working-directory: ${{ env.working-directory }}
