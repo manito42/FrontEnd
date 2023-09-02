@@ -46,6 +46,11 @@ export default function ProfileUpdate() {
     const doesHashtagExist = formData.hashtags.some(
       (hashtag) => hashtag.name === hashTagName,
     );
+    if (formData.hashtags.length <= 5) {
+      alert("관심 분야는 5개까지만 추가 가능합니다.");
+      setHashTagName("");
+      return;
+    }
     // 정규 표현식으로 영어(a-z, A-Z), 한글(가-힣), 숫자(0-9)를 제외한 모든 문자 찾기
     const regex = /[^a-zA-Z0-9가-힣]/g;
 
