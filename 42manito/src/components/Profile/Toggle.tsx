@@ -31,8 +31,8 @@ export default function ManitoToggle() {
   }, [userDate, userLoading]);
 
   return (
-    <div className="items-center justify-center flex flex-row">
-      <div className="text-xl font-bold mr-3">프로필 공개하기</div>
+    <div className="items-center justify-center flex flex-row mb-5">
+      <div className="text-lg font-bold mr-3 mb-0.5">프로필 공개하기</div>
       <label className="relative inline-flex items-center cursor-pointer">
         <input
           type="checkbox"

@@ -18,7 +18,7 @@ const CategoryCard = ({ category, active, onClick, children }: props) => {
     <div className="flex flex-row mr-3">
       <h6
         onClick={handleClick}
-        className={`whitespace-nowrap m-2 p-[0.5vw] rounded-md focus:outline-none focus:ring focus:ring-rose-300 
+        className={`whitespace-nowrap m-2 text-sm rounded-full px-[0.5em] py-[0.2em] focus:outline-none focus:ring focus:ring-rose-300 
         ${
           isActive
             ? "bg-rose-300 dark:bg-rose-500 ring ring-rose-800"
