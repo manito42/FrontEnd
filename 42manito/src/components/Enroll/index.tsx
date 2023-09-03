@@ -18,6 +18,7 @@ import {
 } from "@/RTK/Slices/Enroll";
 import {useFetchHome} from "@/hooks/Home/FetchHome";
 import Image from "next/image";
+import RequestsWrapper from "@/components/Reservation/RequestsWrapper";
 
 // TODO: 엔롤 테스트해봐야함
 const Enroll = () => {
@@ -95,28 +96,12 @@ const Enroll = () => {
     };
   }, []);
 
-  const { allMentor, fetchMoreData, hasMore } = useFetchHome();
-
   return (
     <div className="w-[90vw] md:w-full flex flex-col">
       <Divider className="dark:bg-slate-400 bg-slate-500" />
       <div className="flex flex-wrap md:justify-around my-16 w-full">
-        <div className="flex-1 flex flex-row md:flex-col justify-center lg:flex items-center mt-16 lg:mt-0 h-[25vh] w-full lg:w-[50%]">
-          <div className="flex flex-row overflow-x-auto">
-            {allMentor.map((data) => (
-                // eslint-disable-next-line react/jsx-key
-                <div>
-                  <Image
-                      className="mentor-image-container"
-                      src={data.user.profileImage}
-                      alt="cover image"
-                      width={100}
-                      height={100}
-                      quality={80}
-                  />
-                </div>
-            ))}
-          </div>
+        <div className="flex-1 flex flex-row md:flex-col justify-center lg:flex items-center mt-16 lg:mt-0 h-[50vh] w-full lg:w-[50%]">
+          <RequestsWrapper />
           {/*{menteeList && (*/}
           {/*  <InfiniteScroll*/}
           {/*    dataLength={menteeList.length}*/}
