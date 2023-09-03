@@ -16,6 +16,8 @@ import {
   setMenteeReservations,
   setMentorReservations,
 } from "@/RTK/Slices/Enroll";
+import {useFetchHome} from "@/hooks/Home/FetchHome";
+import Image from "next/image";
 
 // TODO: 엔롤 테스트해봐야함
 const Enroll = () => {
@@ -93,79 +95,41 @@ const Enroll = () => {
     };
   }, []);
 
+  const { allMentor, fetchMoreData, hasMore } = useFetchHome();
+
   return (
     <div className="w-[90vw] md:w-full flex flex-col">
       <Divider className="dark:bg-slate-400 bg-slate-500" />
       <div className="flex flex-wrap md:justify-around my-16 w-full">
-        <div className="flex-1 flex flex-row md:flex-col justify-center lg:flex items-center h-[50vh] w-full lg:w-[50%]">
-          <div className="text-4xl">
-            <TypeIt
-              options={{
-                loop: false,
-                speed: 70,
-                waitUntilVisible: true,
-                cursor: false,
-              }}
-              getBeforeInit={(instance) => {
-                instance
-                  .type("Mentee?")
-                  .pause(500)
-                  .delete(3)
-                  .pause(500)
-                  .type("or.");
-
-                return instance;
-              }}
-            />
+        <div className="flex-1 flex flex-row md:flex-col justify-center lg:flex items-center mt-16 lg:mt-0 h-[25vh] w-full lg:w-[50%]">
+          <div className="flex flex-row overflow-x-auto">
+            {allMentor.map((data) => (
+                // eslint-disable-next-line react/jsx-key
+                <div>
+                  <Image
+                      className="mentor-image-container"
+                      src={data.user.profileImage}
+                      alt="cover image"
+                      width={100}
+                      height={100}
+                      quality={80}
+                  />
+                </div>
+            ))}
           </div>
-          {mentorList && (
-            <InfiniteScroll
-              dataLength={mentorList.length}
-              next={fetchMoreMentorData}
-              hasMore={mentorHasMore}
-              loader={<Spin />}
-              className="overflow-y-auto w-full mx-10"
-            >
-              {mentorList.map((data) => (
-                <EnrollCard data={data} key={data.id} isMentor={true} />
-              ))}
-            </InfiniteScroll>
-          )}
-        </div>
-        <div className="flex-1 flex flex-row md:flex-col justify-center lg:flex items-center mt-16 lg:mt-0 h-[50vh] w-full lg:w-[50%]">
-          <div className="text-4xl">
-            <TypeIt
-              options={{
-                loop: false,
-                speed: 70,
-                waitUntilVisible: true,
-                cursor: false,
-              }}
-              getBeforeInit={(instance) => {
-                instance
-                  .type(`Mentor?`)
-                  .pause(500)
-                  .delete(3)
-                  .pause(500)
-                  .type("ee.");
-
-                return instance;
-              }}
-            />
-          </div>
-          {menteeList && (
-            <InfiniteScroll
-              dataLength={menteeList.length}
-              next={fetchMoreMenteeData}
-              hasMore={menteeHasMore}
-              loader={<Spin />}
-              className="overflow-y-auto w-full mx-10"
-            >
-              {menteeList.map((data) => (
-                <EnrollCard data={data} key={data.id} isMentor={false} />
-              ))}
-            </InfiniteScroll>
-          )}
+          {/*{menteeList && (*/}
+          {/*  <InfiniteScroll*/}
+          {/*    dataLength={menteeList.length}*/}
+          {/*    next={fetchMoreMenteeData}*/}
+          {/*    hasMore={menteeHasMore}*/}
+          {/*    loader={<Spin />}*/}
+          {/*    className="overflow-y-auto w-full mx-10"*/}
+          {/*  >*/}
+          {/*    {menteeList.map((data) => (*/}
+          {/*      <EnrollCard data={data} key={data.id} isMentor={false} />*/}
+          {/*    ))}*/}
+          {/*  </InfiniteScroll>*/}
+          {/*)}*/}
         </div>
       </div>
       <Divider className="dark:bg-slate-400 bg-slate-500" />
