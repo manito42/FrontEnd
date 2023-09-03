@@ -39,12 +39,24 @@ export const ProfileUpdateSlice = createSlice({
       state.hashtags = action.payload;
     },
     addHashtag(state, action: PayloadAction<HashtagResponseDto>) {
+      if (
+        state.hashtags.some((hashtag) => hashtag.name === action.payload.name)
+      ) {
+        return;
+      }
       state.hashtags.push(action.payload);
     },
     setCategories(state, action: PayloadAction<CategoriesResponseDto[]>) {
       state.categories = action.payload;
     },
     addCategory(state, action: PayloadAction<HashtagResponseDto>) {
+      if (
+        state.categories.some(
+          (category) => category.name === action.payload.name,
+        )
+      ) {
+        return;
+      }
       state.categories.push(action.payload);
     },
     setDisabled(state, action: PayloadAction<boolean>) {
@@ -75,6 +87,9 @@ export const {
   setIntro,
   setHashtags,
   setCategories,
+  addCategory,
+  addHashtag,
+  deleteOneHashtag,
   setDisabled,
   setViewConnectModal,
 } = ProfileUpdateSlice.actions;
