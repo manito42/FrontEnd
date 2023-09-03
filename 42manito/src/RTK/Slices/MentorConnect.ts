@@ -1,4 +1,3 @@
-import { HashtagResponseDto } from "@/Types/Hashtags/HashtagResponse.dto";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface hashtagType {
@@ -7,11 +6,13 @@ interface hashtagType {
 
 interface MentorConnectTypes {
   hashtags: hashtagType[];
+  categoryId: number;
   message: string;
 }
 
 const InitialState: MentorConnectTypes = {
   hashtags: [],
+  categoryId: 0,
   message: "",
 };
 
@@ -24,8 +25,14 @@ export const MentorConnectSlice = createSlice({
     },
     deleteHashtag(state, action: PayloadAction<number>) {
       state.hashtags = state.hashtags.filter(
-        (hashtag) => hashtag.id !== action.payload
+        (hashtag) => hashtag.id !== action.payload,
       );
+    },
+    setCategoryId(state, action: PayloadAction<number>) {
+      state.categoryId = action.payload;
+    },
+    deleteCategoryId(state) {
+      state.categoryId = 0;
     },
     setMessage(state, action: PayloadAction<string>) {
       state.message = action.payload;
@@ -36,5 +43,11 @@ export const MentorConnectSlice = createSlice({
   },
 });
 
-export const { setHashtags, setMessage, deleteHashtag, initMentorConnect } =
-  MentorConnectSlice.actions;
+export const {
+  setHashtags,
+  setMessage,
+  deleteHashtag,
+  initMentorConnect,
+  deleteCategoryId,
+  setCategoryId,
+} = MentorConnectSlice.actions;

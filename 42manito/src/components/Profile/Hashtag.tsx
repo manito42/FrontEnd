@@ -4,31 +4,29 @@ import { useRouter } from "next/router";
 
 interface props {
   hashtag: HashtagResponseDto[];
+  onClick?: (hashtag: string) => void;
 }
 
-export default function ProfileHashtag({ hashtag }: props) {
+export default function ProfileHashtag({ hashtag, onClick }: props) {
   const router = useRouter();
-  const handleClick = (hashtag: string) => {
-    router.push(`/Search/${hashtag}`);
-  };
+  const handleClick = onClick
+    ? onClick
+    : (hashtag: string) => {
+        router.push(`/Search/${hashtag}`);
+      };
 
   return (
-    <div className="flex flex-col justify-start items-center w-[50vw] overflow-y-auto mb-10">
-      <span className="text-3xl font-bold text-slate-800 dark:text-slate-200">
-        관심분야
-      </span>
-      <div className="flex flex-wrap justify-center w-full my-3">
-        {hashtag.length > 0 &&
-          hashtag.map((aTag) => (
-            <button
-              className="whitespace-nowrap m-2 text-sm rounded-full px-[0.5em] py-[0.2em] bg-sky-300 dark:bg-sky-800"
-              key={aTag.id}
-              onClick={() => handleClick(aTag.name)}
-            >
-              {aTag.name}
-            </button>
-          ))}
-      </div>
+    <div className="ProfileTagListWrapper">
+      {hashtag.length > 0 &&
+        hashtag.map((aTag) => (
+          <button
+            className="ProfileTag ProfileHashtagTag"
+            key={aTag.id}
+            onClick={() => handleClick(aTag.name)}
+          >
+            {aTag.name}
+          </button>
+        ))}
     </div>
   );
 }

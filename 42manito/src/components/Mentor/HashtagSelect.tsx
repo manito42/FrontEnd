@@ -1,10 +1,9 @@
 import { Select, Tag } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { HashtagResponseDto } from "@/Types/Hashtags/HashtagResponse.dto";
 import type { CustomTagProps } from "rc-select/lib/BaseSelect";
-import { RootState, useAppDispatch } from "@/RTK/store";
-import { deleteHashtag, setHashtags } from "@/RTK/Slices/MentorConnect";
-import { useSelector } from "react-redux";
+import { useAppDispatch } from "@/RTK/store";
+import { setHashtags } from "@/RTK/Slices/MentorConnect";
 
 interface props {
   hashtag: HashtagResponseDto[];
@@ -19,7 +18,6 @@ const tagRender = (props: CustomTagProps) => {
 
   return (
     <Tag
-      color={"blue"}
       onMouseDown={onPreventMouseDown}
       closable={closable}
       onClose={() => onClose(value.id)}
@@ -30,12 +28,8 @@ const tagRender = (props: CustomTagProps) => {
   );
 };
 
-export default function MentorConnectSelect({ hashtag }: props) {
+export default function ConnectHashtagSelect({ hashtag }: props) {
   const dispatch = useAppDispatch();
-  const onClose = (selectedValue: number) => {
-    // hashtag 삭제
-    dispatch(deleteHashtag(selectedValue));
-  };
 
   const handleChange = (value: Array<number>) => {
     const selectedHashtags = hashtag.filter((tag) => value.includes(tag.id));
@@ -49,7 +43,6 @@ export default function MentorConnectSelect({ hashtag }: props) {
   return (
     <Select
       mode="multiple"
-      showArrow
       tagRender={tagRender}
       onChange={handleChange}
       style={{ width: "100%" }}

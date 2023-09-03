@@ -1,0 +1,141 @@
+.ProfileWrapper {
+  @apply flex
+                items-center justify-center;
+}
+
+.ProfileContainer {
+  @apply flex flex-col
+                items-center justify-center
+                mt-5 mb-5
+                w-[80vw] md:w-[60vw] lg:w-[50vw] xl:w-[40vw]
+                rounded-2xl bg-gray-100 dark:bg-gray-900
+                drop-shadow-xl;
+}
+
+.ProfileImageNameContainer {
+  @apply md:flex flex-wrap w-full items-center justify-center mt-12;
+}
+
+.profile-info-wrapper {
+}
+
+.profile-info-container {
+  @apply flex flex-col justify-center mt-5;
+}
+
+.ShortDescriptionContainer {
+  @apply flex
+                justify-center
+                w-[80%]
+                break-all
+                px-3 py-4
+                mt-10 mb-10
+                rounded-2xl bg-gray-50 dark:bg-gray-800
+                shadow-sm;
+}
+
+.ProfileTagWrapper {
+  @apply flex flex-col
+                justify-start items-center
+                md:w-[60vw]
+                overflow-y-auto mb-5;
+}
+
+.ProfileTitle {
+  @apply text-3xl
+    font-bold
+    text-slate-800
+    dark:text-slate-200;
+}
+
+.ProfileHeader {
+  @apply text-2xl
+                font-bold
+                text-slate-800
+                dark:text-slate-200;
+}
+
+.ProfileTagListWrapper {
+  @apply flex flex-wrap
+                justify-center
+                w-[50vw]
+                my-2;
+}
+
+.ProfileTag {
+  @apply whitespace-nowrap
+            m-2
+            text-sm
+            font-bold
+            rounded-full px-3 py-1;
+}
+
+.ProfileCategoryTag {
+  @apply bg-rose-300 dark:bg-rose-700;
+}
+
+.ProfileHashtagTag {
+  @apply bg-sky-300 dark:bg-sky-700;
+}
+
+.ProfileDescriptionWrapper {
+  @apply flex flex-col
+                items-center justify-center
+                w-[80%] mb-5;
+}
+
+.ProfileDescriptionSplitBar {
+  @apply h-[1px]
+                bg-slate-800
+                dark:bg-slate-50
+                w-[40%]
+                mt-2 mb-5;
+}
+
+.ProfileImageWrapper {
+  @apply flex justify-center items-center;
+}
+
+.ProfileImage {
+  @apply object-cover
+                w-[30vw] h-[30vw]
+                md:w-[32vh] md:h-[32vh] mt-10;
+}
+
+.ProfileDescription {
+  @apply whitespace-pre-wrap w-[100%] break-words
+    px-6 py-4 rounded-2xl
+    bg-gray-50 dark:bg-gray-800
+shadow-sm;
+}
+
+.profile-update-hashtag-input-wrapper {
+  @apply flex justify-center items-center mb-5 w-full;
+  .profile-update-hashtag-input-btn {
+    @apply bg-pink-500 hover:bg-pink-600 ml-2 text-sm font-bold text-white py-1 px-2 rounded;
+  }
+  width: min(30%, max-content);
+}
+
+.ProfileSmall {
+  @apply text-xs
+                text-slate-400
+                dark:text-slate-400;
+}
+
+.profile-category-card-wrapper {
+  @apply flex flex-row mr-3;
+}
+
+.profile-category-card {
+  @apply whitespace-nowrap m-2 text-sm rounded-full px-4 py-2 focus:outline-none focus:ring focus:ring-rose-300
+  font-bold;
+}
+
+.profile-category-card-off {
+  @apply bg-rose-300 dark:bg-rose-500 ring ring-rose-800;
+}
+
+.profile-category-card-on {
+  @apply bg-gray-300 dark:bg-gray-400;
+}
