@@ -10,29 +10,29 @@
           dark:border-gray-200/50
           dark:hover:shadow-gray-400/40;
 
-  & .mentor-image-container {
+  .mentor-image-container {
     @apply rounded-t-xl object-cover flex w-full h-[45%];
   }
 
-  & .mentor-card-content {
+  .mentor-card-content {
     @apply w-full flex-col justify-center items-center p-2 md:p-5;
 
-    & .user-nickname-container {
+    .user-nickname-container {
       @apply w-full relative my-3 truncate;
 
-      & .user-nickname {
+      .user-nickname {
         @apply text-xl font-bold;
       }
     }
 
-    & .user-short-description {
+    .user-short-description {
       @apply text-lg py-3;
     }
 
-    & .hashtag-container {
+    .hashtag-container {
       @apply flex-wrap justify-center items-center py-3;
 
-      & .hashtags-font {
+      .hashtags-font {
         @apply text-blue-500 text-sm;
       }
     }
@@ -42,69 +42,18 @@
 /* mentor modal */
 
 .mentor-modal-container {
-  @apply fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center w-[100vw] px-5 md:px-20 h-[100vh] flex;
+  @apply fixed inset-0
+            bg-black bg-opacity-25
+            backdrop-blur-sm
+            flex justify-center items-center
+            w-[100vw];
 
-  & .mentor-modal-section {
-    @apply relative py-16 h-[100vh] top-24 md:top-32;
+  .mentor-modal-section {
+    @apply fixed h-[100vh] overflow-y-scroll;
 
-    & .close-btn {
-      @apply text-white text-5xl absolute top-0 right-5 -mb-5;
-    }
-
-    & .mentor-image-container {
-      @apply relative z-[100] flex justify-center items-center;
-
-      & .mentor-image {
-        @apply shadow-xl rounded-full align-middle border-none -mb-10 md:-m-16 lg:ml-6 ml-1 object-cover w-[13vh] h-[13vh] md:w-[13vw] md:h-[13vw];
-      }
-    }
-  }
-
-  & .mentor-modal-content {
-    @apply relative flex flex-col break-words bg-white dark:bg-slate-700 w-[95vw] md:w-[90vw] h-[50vh] md:h-[65vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overflow-y-scroll min-h-[55vh] max-w-[60vw];
-
-    & .mentor-modal-top-contents {
-      @apply flex flex-wrap justify-center;
-
-      & .connect-btn-container {
-        @apply w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center;
-
-        & .connect-btn {
-          @apply bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150;
-        }
-      }
-
-      & .mentoring-count-container {
-        @apply w-full lg:w-4/12 px-4 lg:order-1;
-      }
-    }
-
-    & .mentor-nickname-container {
-      @apply text-center mt-28;
-
-      & .mentor-nickname {
-        @apply text-4xl font-semibold leading-normal;
-      }
-    }
-
-    & .mentor-modal-bottom-contents {
-      @apply mt-10 py-10 border-t dark:border-slate-300  border-slate-700 text-center;
-
-      & .mentor-description-container {
-        @apply flex flex-wrap justify-center;
-
-        & .mentor-description {
-          @apply mb-4 text-lg leading-relaxed;
-        }
-      }
-
-      & .mentor-hashtag-container {
-        @apply flex flex-wrap items-start mt-2 m-auto w-full;
-
-        & .mentor-hashtag {
-          @apply px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 mt-2;
-        }
-      }
+    .close-btn {
+      @apply text-black dark:text-white absolute top-0 right-0 m-7 text-3xl;
+      z-index: 1;
     }
   }
 }
@@ -115,4 +64,16 @@
 
 .mentor-modal {
   animation: slideIn 0.3s ease-in;
+}
+
+.connect-btn-container {
+  @apply flex justify-center items-center w-full mb-5;
+
+  .connect-btn {
+    @apply rounded-full
+            py-2 px-5
+            bg-blue-500
+            text-white text-lg
+            hover:bg-blue-600;
+  }
 }

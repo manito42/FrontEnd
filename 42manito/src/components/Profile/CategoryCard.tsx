@@ -15,15 +15,11 @@ const CategoryCard = ({ category, active, onClick, children }: props) => {
   };
 
   return (
-    <div className="flex flex-row mr-3">
+    <div className="profile-category-card-wrapper">
       <h6
         onClick={handleClick}
-        className={`whitespace-nowrap m-2 text-sm rounded-full px-[0.5em] py-[0.2em] focus:outline-none focus:ring focus:ring-rose-300 
-        ${
-          isActive
-            ? "bg-rose-300 dark:bg-rose-500 ring ring-rose-800"
-            : "bg-gray-300 dark:bg-gray-400"
-        }`}
+        className={`profile-category-card
+        ${isActive ? "profile-category-card-off" : "profile-category-card-on"}`}
       >
         {category}
       </h6>
