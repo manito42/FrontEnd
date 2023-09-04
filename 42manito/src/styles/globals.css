@@ -113,7 +113,7 @@ p {
 }
 
 .app-container {
-  @apply p-2 md:px-10 flex flex-wrap flex-col md:flex-row w-[100vw] items-center justify-center;
+  @apply p-2 md:px-10 flex flex-wrap flex-col md:flex-row items-center justify-center;
 }
 
 /* animation */

@@ -18,7 +18,7 @@ export default function UserProfile({ UserId, additions }: props) {
   }
 
   return (
-    <div>
+    <>
       {UserData && !UserLoading && (
         <div className="ProfileContainer">
           <div className="ProfileImageNameConatiner">
@@ -49,6 +49,6 @@ export default function UserProfile({ UserId, additions }: props) {
           {additions ? additions : <></>}
         </div>
       )}
-    </div>
+    </>
   );
 }

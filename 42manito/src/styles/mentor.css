@@ -45,11 +45,10 @@
   @apply fixed inset-0
             bg-black bg-opacity-25
             backdrop-blur-sm
-            flex justify-center items-center
-            w-[100vw];
+            flex justify-center overflow-y-auto;
 
   .mentor-modal-section {
-    @apply fixed h-[100vh] overflow-y-scroll;
+    @apply fixed overflow-y-scroll;
 
     .close-btn {
       @apply text-black dark:text-white absolute top-0 right-0 m-7 text-3xl;

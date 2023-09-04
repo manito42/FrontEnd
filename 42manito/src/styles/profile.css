@@ -7,13 +7,13 @@
   @apply flex flex-col
                 items-center justify-center
                 mt-5 mb-5
-                w-[80vw] md:w-[60vw] lg:w-[50vw] xl:w-[40vw]
+                w-[90vmin] md:w-[600px]
                 rounded-2xl bg-gray-100 dark:bg-gray-900
                 drop-shadow-xl;
 }
 
 .ProfileImageNameContainer {
-  @apply md:flex flex-wrap w-full items-center justify-center mt-12;
+  @apply flex-wrap w-full items-center justify-center mt-12;
 }
 
 .profile-info-wrapper {
@@ -37,7 +37,6 @@
 .ProfileTagWrapper {
   @apply flex flex-col
                 justify-start items-center
-                md:w-[60vw]
                 overflow-y-auto mb-5;
 }
 
@@ -58,7 +57,6 @@
 .ProfileTagListWrapper {
   @apply flex flex-wrap
                 justify-center
-                w-[50vw]
                 my-2;
 }
 
@@ -99,7 +97,7 @@
 .ProfileImage {
   @apply object-cover
                 w-[30vw] h-[30vw]
-                md:w-[32vh] md:h-[32vh] mt-10;
+                md:w-[200px] md:h-[200px] mt-10;
 }
 
 .ProfileDescription {
