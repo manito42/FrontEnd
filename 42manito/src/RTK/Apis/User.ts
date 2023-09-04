@@ -74,6 +74,14 @@ export const userApi = createApi({
         };
       },
     }),
+    getMentorProfile: builder.query<MentorProfileDto, { id: number }>({
+      query: ({ id }) => {
+        return {
+          url: `/mentor_profiles/${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
@@ -83,4 +91,5 @@ export const {
   useSetUserUpdateMutation,
   usePostHashtagMutation,
   useSetIsHideMutation,
+  useGetMentorProfileQuery,
 } = userApi;
