@@ -2,6 +2,6 @@
   @apply h-auto;
 
   & .mentor-cards-container {
-    @apply w-[95vw] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 md:gap-10 p-0 md:p-5 md:w-[80vw];
+    @apply w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 md:gap-10 p-0 md:p-5;
   }
 }

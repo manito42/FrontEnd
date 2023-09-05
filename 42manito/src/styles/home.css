@@ -1,15 +1,63 @@
 .home {
-  @apply h-auto w-full;
+  @apply w-[90%] md:w-[600px] lg:w-[900px]
+  flex-col justify-center items-center;
+}
 
-  & .divider {
-    @apply dark:bg-slate-400 bg-slate-500;
-  }
+.home-text-header {
+  @apply text-2xl font-bold mt-5 px-5;
+}
 
-  & .home-space {
-    @apply my-[20vh];
-  }
+.home-text-detail {
+  @apply text-base font-light px-5 text-gray-500;
+}
 
-  & .mentor-cards-container {
-    @apply w-[95vw] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 md:gap-10 p-0 md:p-5 md:w-[80vw];
-  }
+.home-search-bar {
+  @apply py-3 flex justify-center items-center w-full;
+}
+
+.temp-spacer {
+  @apply mt-12;
+}
+
+.home-category-list-wrapper {
+  @apply w-full flex justify-center items-center;
+}
+
+.home-category-container {
+  @apply flex flex-wrap flex-row justify-center items-center my-6
+          text-center overflow-ellipsis;
+}
+
+.home-category-icon {
+  @apply px-3 py-1 mx-2 my-1
+    rounded-full
+    border-2 border-gray-300 dark:border-slate-700
+    text-gray-500 dark:text-slate-200
+    text-lg font-bold;
+}
+
+.home-category-icon:hover {
+  @apply text-green-300 dark:text-green-300
+  border-green-300 dark:border-green-300;
+}
+.home-category-icon.active {
+  @apply text-green-500 dark:text-green-500
+    border-green-500 dark:border-green-500;
+}
+
+.home-mentor-profile-container {
+  @apply flex flex-row flex-wrap justify-center items-start;
+}
+
+.home-mentor-profile-list {
+  @apply w-[90%] md:w-[600px] lg:w-[900px];
+}
+
+.home-mentor-profile-footer {
+  @apply w-full flex justify-center items-center mb-5;
+}
+.home-mentor-profile-footer-text {
+  @apply text-gray-400 dark:text-slate-200
+    text-sm font-light
+    cursor-pointer hover:text-sky-500 dark:hover:text-sky-400;
 }
