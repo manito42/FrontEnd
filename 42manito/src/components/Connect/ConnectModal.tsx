@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "@/RTK/store";
+import ConnectHashtagSelect from "@/components/Mentor/HashtagSelect";
+import { Input } from "antd";
+import { setMessage } from "@/RTK/Slices/MentorConnect";
+import ConnectCategorySelect from "@/components/Mentor/CategorySelect";
 
 interface Props {
   message: string;
@@ -10,7 +16,10 @@ interface Props {
 const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
   const [focus, setFocus] = useState(false);
   const [disabled, setDisabled] = useState(false);
-
+  const currentMentorState = useSelector(
+    (state: RootState) => state.rootReducers.currMentor,
+  );
+  const dispatch = useAppDispatch();
   const handleFocusOut = () => {
     setFocus(true);
     setTimeout(() => {
@@ -27,42 +36,50 @@ const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
 
   return (
     <div
-      className="connect-container"
+      className="ConnectWrapper"
       id="wrapper"
       onClick={(e) => e.stopPropagation()}
     >
       <section
-        className={`connect-section ${focus && "close-connect-modal"}`}
+        className={`connect-modal-section ${focus && "close-connect-modal"}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="connect-container">
-          <div className="connect-content">
-            <button className="close-btn" onClick={onClose}>
-              X
+          <div className="connect-title mt-5">멘토링 요청</div>
+          <div className="connect-content-wrapper">
+            <div className="connect-header"> 카테고리</div>
+            <ConnectCategorySelect
+              categories={currentMentorState.currMentor.categories}
+            />
+            <div className="connect-header"> 해시태그</div>
+            <ConnectHashtagSelect
+              hashtag={currentMentorState.currMentor.hashtags}
+            />
+            <div className="connect-header">요청 메시지</div>
+            <Input.TextArea
+              showCount
+              maxLength={1000}
+              style={{ height: 80, marginBottom: 24 }}
+              onChange={(e) => dispatch(setMessage(e.target.value))}
+              placeholder="최대 1000글자"
+              className="w-full max-w-[500px]"
+            />
+          </div>
+          <div className="connect-btn-wrapper">
+            <button
+              className="connect-approve-btn connect-btn"
+              type="button"
+              onClick={handleConnect}
+            >
+              Connect
             </button>
-            <div className="max-h-[70vh] overflow-y-auto">
-              <div className="text-center mt-5">
-                {children}
-                <h3 className="message">{message}</h3>
-              </div>
-              <div className="connect-btn-container">
-                <button
-                  className="connect-btn"
-                  type="button"
-                  onClick={handleConnect}
-                  disabled={disabled}
-                >
-                  Yes
-                </button>
-                <button
-                  className="connect-btn"
-                  type="button"
-                  onClick={handleFocusOut}
-                >
-                  No
-                </button>
-              </div>
-            </div>
+            <button
+              className="connect-cancel-btn connect-btn"
+              type="button"
+              onClick={handleFocusOut}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </section>

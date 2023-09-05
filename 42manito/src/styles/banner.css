@@ -1,0 +1,23 @@
+/* Top Banner */
+.top-banner-wrapper {
+  @apply relative flex flex-wrap w-full h-[250px] bg-black
+    justify-center;
+  background-image: url("../../public/banner.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.top-banner-container {
+  @apply flex flex-col justify-end
+    ml-10 mb-10 w-[90%] lg:w-[900px]
+    text-white;
+}
+
+.top-banner-title {
+  @apply font-bold text-2xl;
+}
+
+.top-banner-description {
+  @apply font-light text-lg;
+}

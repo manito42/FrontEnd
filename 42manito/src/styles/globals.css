@@ -1,13 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import "./profile.css";
 @import "./home.css";
-/* @import "./about.css"; */
 @import "./mentor.css";
 @import "./animation.css";
 @import "./connect.css";
 @import "./search.css";
+@import "./reservation.css";
+@import "./cardhashtag.css";
+@import "./banner.css";
+
+/* @import "./about.css"; */
 
 ::-webkit-scrollbar {
   width: 2px; /* 스크롤바의 너비 설정 */
@@ -109,11 +113,6 @@ p {
 .btn-drawer:hover {
   @apply text-indigo-500 transition-all scale-x-110 scale-y-110;
 }
-
-.app-container {
-  @apply p-2 md:px-10 flex flex-wrap flex-col md:flex-row w-[100vw] items-center justify-center;
-}
-
 /* animation */
 
 .fade-in {
@@ -356,25 +355,25 @@ p {
   }
 }
 
+/* INPUT CSS */
 .ant-input {
-  @apply  dark:bg-slate-800
+  @apply dark:bg-slate-800
           dark:text-slate-200
           dark:border-slate-800
           dark:placeholder-slate-200
           dark:focus:placeholder-slate-200
           dark:focus:border-sky-800
-          dark:hover:border-sky-800
+          dark:hover:border-sky-800;
 }
 
 .ant-input-show-count,
-.ant-input-affix-wrapper
-{
-  @apply  dark:bg-slate-800
+.ant-input-affix-wrapper {
+  @apply dark:bg-slate-800
         dark:text-slate-200
         dark:border-slate-800
         dark:placeholder-slate-200
         dark:hover:placeholder-slate-200
-        dark:hover:border-sky-800
+        dark:hover:border-sky-800;
 }
 
 .ant-input-affix-wrapper-focused {
@@ -382,4 +381,53 @@ p {
 }
 .ant-input-data-count {
   @apply text-slate-800 dark:text-slate-200;
+}
+
+.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(
+    .ant-pagination-size-changer
+  ):hover
+  .ant-select-selector,
+.ant-select-multiple.ant-select-show-arrow .ant-select-selector,
+.ant-select.ant-select-show-arrow .ant-select-selector,
+.ant-select-multiple.ant-select-allow-clear .ant-select-selector {
+  @apply dark:bg-slate-800
+            dark:text-slate-200
+            dark:border-slate-800
+            dark:placeholder-slate-200
+            dark:focus:placeholder-slate-200
+            dark:focus:border-sky-800
+            dark:hover:border-sky-800;
+}
+.ant-select-selection-overflow {
+  @apply dark:bg-slate-800
+                dark:text-slate-200
+                dark:border-slate-800
+                dark:placeholder-slate-200
+                dark:hover:placeholder-slate-200
+                dark:hover:border-sky-800;
+}
+
+.ant-tag {
+  @apply dark:bg-sky-800
+            dark:text-slate-200
+            dark:placeholder-slate-200
+            dark:focus:placeholder-slate-200
+            dark:border-sky-800
+            dark:hover:border-sky-800;
+}
+
+.ant-select-selection-search,
+.ant-select-selection-item,
+.ant-select-selection-content,
+.ant-select-selection-item-remove {
+  @apply dark:text-slate-200 dark:bg-slate-800;
+}
+
+.ant-select-selection-placeholder {
+  @apply dark:text-slate-200;
+}
+
+/* main wrapper */
+.app-container {
+  @apply flex flex-col justify-center items-center bg-gray-50 dark:bg-slate-800;
 }

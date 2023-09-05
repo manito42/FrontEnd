@@ -7,14 +7,14 @@ interface props {
 
 export default function ProfileImage({ src }: props) {
   return (
-    <div className="flex justify-center items-center">
+    <div className="ProfileImageWrapper">
       <Image
         alt="ProfileImage"
         src={src}
         width={200}
         height={200}
         quality={100}
-        className="object-cover w-[15vh] h-[15vh] md:w-[15vw] md:h-[15vw]"
+        className="ProfileImage"
         style={{ borderRadius: "50%" }}
       />
     </div>

@@ -11,8 +11,9 @@ export const homeApi = createApi({
   endpoints: (builder) => ({
     getMentors: builder.mutation<HomeResponseDto[], HomeGetAllDto>({
       query: (args: HomeGetAllDto) => {
+        const setCategoryQuery = args.category_id ? `/${args.category_id}` : "";
         return {
-          url: `/home?take=${args.take}&page=${args.page}`,
+          url: `/home${setCategoryQuery}?take=${args.take}&page=${args.page}`,
           method: "GET",
         };
       },
