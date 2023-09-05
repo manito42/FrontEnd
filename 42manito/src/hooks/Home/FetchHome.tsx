@@ -1,34 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 import { useGetMentorsMutation } from "@/RTK/Apis/Home";
 import { setAllMentor } from "@/RTK/Slices/Home";
 
-export const useFetchHome = () => {
+export const useFetchHome = (categoryId?: number | undefined) => {
   const allMentor = useSelector(
-    (state: RootState) => state.rootReducers.home.allMentor
+    (state: RootState) => state.rootReducers.home.allMentor,
   );
   const dispatch = useDispatch();
-  const [page, setPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+  const [getMentors, { data: mentors, isLoading, error }] =
+    useGetMentorsMutation();
 
-  const [getMentors, { data, isLoading, error }] = useGetMentorsMutation();
-
-  const fetchMoreData = () => {
-    getMentors({ take: 12, page: page });
-    setPage(page + 1);
+  const fetchNewCategory = () => {
+    getMentors({ take: 12, page: 0, category_id: categoryId });
   };
 
   useEffect(() => {
-    if (data && !error) {
-      if (data.length % 12 !== 0 || data.length === 0) {
-        setHasMore(false);
-      } else {
-        dispatch(setAllMentor(data));
-      }
+    if (mentors && !error) {
+      dispatch(setAllMentor(mentors));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
-  return { allMentor, fetchMoreData, hasMore };
+  return { allMentor, fetchNewCategory };
 };

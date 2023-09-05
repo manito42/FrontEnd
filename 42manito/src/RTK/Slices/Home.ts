@@ -4,21 +4,27 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface homeStateType {
   zoomOut: boolean;
   openConnectModal: boolean;
-  allMentor: MentorProfileDto[];
+  allMentor: MentorProfileDto[] | undefined;
 }
 
 const InitialState: homeStateType = {
   zoomOut: false,
   openConnectModal: false,
-  allMentor: [],
+  allMentor: undefined,
 };
 
 export const HomeSlice = createSlice({
   name: "Home",
   initialState: InitialState,
   reducers: {
-    setAllMentor(state, action: PayloadAction<MentorProfileDto[]>) {
+    addAllMentor(state, action: PayloadAction<MentorProfileDto[]>) {
+      if (state.allMentor === undefined) {
+        state.allMentor = [];
+      }
       state.allMentor = [...state.allMentor, ...action.payload];
+    },
+    setAllMentor(state, action: PayloadAction<MentorProfileDto[]>) {
+      state.allMentor = [...action.payload];
     },
     handleZoomOut(state, action: PayloadAction<boolean>) {
       state.zoomOut = action.payload;
@@ -30,7 +36,7 @@ export const HomeSlice = createSlice({
       state.openConnectModal = false;
     },
     initAllMentor(state) {
-      state.allMentor = [];
+      state.allMentor = undefined;
     },
     initState(state) {
       state = InitialState;
@@ -39,6 +45,7 @@ export const HomeSlice = createSlice({
 });
 
 export const {
+  addAllMentor,
   setAllMentor,
   handleZoomOut,
   openConnectModal,

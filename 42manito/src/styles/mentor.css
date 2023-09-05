@@ -1,42 +1,41 @@
 @import "./animation.css";
 
 .mentor-card {
-  @apply rounded-xl w-full
-          transition duration-300 transform border border-gray-300
-          sm:scale-100
-          scale-[0.8]
-          sm:hover:scale-105
-          hover:shadow-lg
-          dark:border-gray-200/50
-          dark:hover:shadow-gray-400/40;
+  @apply flex flex-col items-start
+        w-[250px] h-[150px]
+        bg-gray-100 border border-gray-200
+        dark:bg-slate-600  dark:border-slate-700
+        rounded-xl m-2 shadow-sm;
+}
 
-  .mentor-image-container {
-    @apply rounded-t-xl object-cover flex w-full h-[45%];
-  }
+.mentor-card-profile-info {
+  @apply flex flex-row justify-start items-center w-[100%] h-[60%] px-2 mt-2;
+}
 
-  .mentor-card-content {
-    @apply w-full flex-col justify-center items-center p-2 md:p-5;
+.mentor-card-hashtags {
+  @apply h-[40%] w-[100%]
+        flex flex-wrap flex-row overflow-hidden justify-end items-center px-2 mt-2;
+}
 
-    .user-nickname-container {
-      @apply w-full relative my-3 truncate;
-
-      .user-nickname {
-        @apply text-xl font-bold;
-      }
-    }
-
-    .user-short-description {
-      @apply text-lg py-3;
-    }
-
-    .hashtag-container {
-      @apply flex-wrap justify-center items-center py-3;
-
-      .hashtags-font {
-        @apply text-blue-500 text-sm;
-      }
-    }
-  }
+.mentor-card-image-holder {
+  @apply w-[35%] h-[100%]  flex justify-center items-center;
+}
+.mentor-card-image {
+  @apply w-[60px] h-[60px] rounded-full object-cover;
+}
+.mentor-card-texts {
+  @apply flex flex-col w-[65%] h-[100%] px-3 mt-2;
+}
+.mentor-card-nickname {
+  @apply h-[35%] text-base font-bold truncate overflow-ellipsis
+        text-gray-800 dark:text-slate-200;
+}
+.mentor-card-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  @apply h-[65%] flex-wrap text-xs font-light  overflow-hidden
+    text-gray-500 dark:text-slate-200;
 }
 
 /* mentor modal */

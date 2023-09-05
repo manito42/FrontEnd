@@ -23,23 +23,20 @@ const Profile = () => {
   ) : (
     <Layout>
       <div className="ProfileWrapper">
-        <UserProfile
-          UserId={Number(uid)}
-          additions={
-            <div className="flex flex-col justify-between items-center mb-10">
-              <div className="m-3">
-                <ManitoToggle />
-              </div>
-              <button
-                className="text-xs md:text-[1vw] md:h-[3vw] bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow w-full px-4 py-1 rounded outline-none focus:outline-none sm:mr-2 mb-2 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => updateButtonHandler()}
-              >
-                수정하기
-              </button>
+        <UserProfile UserId={Number(uid)}>
+          <div className="flex flex-col justify-between items-center mb-10">
+            <div className="m-3">
+              <ManitoToggle />
             </div>
-          }
-        />
+            <button
+              className="text-xs md:text-[1vw] md:h-[3vw] bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow w-full px-4 py-1 rounded outline-none focus:outline-none sm:mr-2 mb-2 ease-linear transition-all duration-150"
+              type="button"
+              onClick={() => updateButtonHandler()}
+            >
+              수정하기
+            </button>
+          </div>
+        </UserProfile>
       </div>
     </Layout>
   );

@@ -8,10 +8,10 @@ import { useProfileDetailModal } from "@/hooks/Profile/Component";
 
 interface props {
   UserId: number;
-  additions?: any;
+  children?: React.ReactNode;
 }
 
-export default function UserProfile({ UserId, additions }: props) {
+export default function UserProfile({ UserId, children }: props) {
   const { UserData, UserLoading } = useProfileDetailModal(UserId);
   if (typeof window === "undefined") {
     return <div>로딩 중...</div>; // 로딩 표시를 보여주셔도 되고, 아무것도 보여주지 않으셔도 됩니다.
@@ -43,7 +43,7 @@ export default function UserProfile({ UserId, additions }: props) {
             <div className="ProfileHeader mb-5">소개글</div>
             <DescriptionComponent description={UserData.description} />
           </div>
-          {additions ? additions : <></>}
+          {children}
         </div>
       )}
     </>

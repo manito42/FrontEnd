@@ -82,23 +82,20 @@ const MentorModal = () => {
           X
         </button>
         {
-          <UserProfile
-            UserId={userId}
-            additions={
-              <div className="connect-btn-container">
-                {Owner !== 0 &&
-                  Owner !== currentMentorState.currMentor.user.id && (
-                    <button
-                      className="connect-btn"
-                      type="button"
-                      onClick={() => handleConnectOpen()}
-                    >
-                      Connect
-                    </button>
-                  )}
-              </div>
-            }
-          />
+          <UserProfile UserId={userId}>
+            <div className="connect-btn-container">
+              {Owner !== 0 &&
+                Owner !== currentMentorState.currMentor.user.id && (
+                  <button
+                    className="connect-btn"
+                    type="button"
+                    onClick={() => handleConnectOpen()}
+                  >
+                    Connect
+                  </button>
+                )}
+            </div>
+          </UserProfile>
         }
       </section>
       {currentMentorState.openConnectModal && (
