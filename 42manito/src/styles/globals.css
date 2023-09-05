@@ -1,13 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "./profile.css";
 @import "./home.css";
 @import "./mentor.css";
 @import "./animation.css";
 @import "./connect.css";
 @import "./search.css";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "./reservation.css";
+@import "./cardhashtag.css";
+@import "./banner.css";
 
 /* @import "./about.css"; */
 
@@ -111,11 +113,6 @@ p {
 .btn-drawer:hover {
   @apply text-indigo-500 transition-all scale-x-110 scale-y-110;
 }
-
-.app-container {
-  @apply p-2 md:px-10 flex flex-wrap flex-col md:flex-row w-[100vw] items-center justify-center;
-}
-
 /* animation */
 
 .fade-in {
@@ -358,6 +355,7 @@ p {
   }
 }
 
+/* INPUT CSS */
 .ant-input {
   @apply dark:bg-slate-800
           dark:text-slate-200
@@ -427,4 +425,9 @@ p {
 
 .ant-select-selection-placeholder {
   @apply dark:text-slate-200;
+}
+
+/* main wrapper */
+.app-container {
+  @apply flex flex-col justify-center items-center bg-gray-50 dark:bg-slate-800;
 }
