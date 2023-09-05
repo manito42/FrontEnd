@@ -8,8 +8,10 @@ import { useSelector } from "react-redux";
 import { useFetchSearch } from "@/hooks/Search/FetchSearch";
 
 const Search: React.FC = () => {
+  const router = useRouter();
+  const { searchKeyword } = router.query;
   const currMentorState = useSelector(
-    (state: RootState) => state.rootReducers.currMentor
+    (state: RootState) => state.rootReducers.currMentor,
   );
   const { searchMentors, hasMore, fetchMoreData } = useFetchSearch();
 
@@ -32,21 +34,30 @@ const Search: React.FC = () => {
     }
   }, [currMentorState.openMentorModal]);
 
+  const notExist = (
+    <div className="flex items-center justify-center">검색결과가 없습니다.</div>
+  );
+
   return (
     <>
       <Layout>
-        <div className="app-container search">
-          {searchMentors.length <= 0 ? (
-            <span>검색결과가 없습니다.</span>
-          ) : (
-            <SearchMentorList
-              searchMentors={searchMentors}
-              fetchMoreData={fetchMoreData}
-              hasMore={hasMore}
-            />
-          )}
-          {currMentorState.openMentorModal &&
-            currMentorState.currMentor.user && <MentorModal />}
+        <div className="app-container">
+          <div className="search-header-text">
+            <span className="text-gray-400">{`"${searchKeyword}"`} </span>
+            {"  검색 결과"}
+          </div>
+          <div className="search-container">
+            {searchMentors.length == 0 && notExist}{" "}
+            {searchMentors.length > 0 && (
+              <SearchMentorList
+                searchMentors={searchMentors}
+                fetchMoreData={fetchMoreData}
+                hasMore={hasMore}
+              />
+            )}
+            {currMentorState.openMentorModal &&
+              currMentorState.currMentor.user && <MentorModal />}
+          </div>
         </div>
         <button
           onClick={scrollToTop}
