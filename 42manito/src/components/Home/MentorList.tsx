@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { Spin } from "antd";
 
 interface props {
-  allMentor: MentorProfileDto[];
+  allMentor: MentorProfileDto[] | undefined;
 }
 
 const MentorCard = dynamic(() => import("@/components/Mentor/Card"));
