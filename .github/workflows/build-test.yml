@@ -1,6 +1,11 @@
 # Dependency Install, Build, Start를 여기서 다합니다.
 name: Build Bot
 on:
+  push:
+    branches:
+      - dev
+      - deploy
+      - deploytest
   pull_request:
     branches:
       - dev
@@ -41,9 +46,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          yarn install --check-cache
+          yarn
         working-directory: ${{ env.working-directory }}
       - name: build
         run: yarn run build

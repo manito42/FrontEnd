@@ -47,11 +47,10 @@
             flex justify-center overflow-y-auto;
 
   .mentor-modal-section {
-    @apply fixed overflow-y-scroll;
+    @apply overflow-y-scroll;
 
     .close-btn {
-      @apply text-black dark:text-white absolute top-0 right-0 m-7 text-3xl;
-      z-index: 1;
+      @apply text-gray-600 hover:text-red-500 dark:text-gray-400 mb-5 text-base;
     }
   }
 }

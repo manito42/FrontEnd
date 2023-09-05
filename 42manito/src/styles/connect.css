@@ -9,7 +9,8 @@
 }
 
 .ConnectWrapper {
-  @apply flex
+  @apply fixed  inset-0 z-[101] bg-black bg-opacity-50 backdrop-blur-sm
+            flex
             items-center justify-center;
 }
 
