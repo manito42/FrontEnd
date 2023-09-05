@@ -43,6 +43,7 @@ export default function Home() {
     return () => {
       dispatch(initAllMentor());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId, dispatch]);
 
   const scrollToTop = () => {
@@ -82,12 +83,16 @@ export default function Home() {
           </div>
         </div>
         <div className="home-mentor-profile-list">
-          <HomeMentorList allMentor={allMentor} />
-        </div>
-        <div className="home-mentor-profile-footer">
-          <Link href="/Categories" className="home-mentor-profile-footer-text">
-            {"더 많은 멘토 보기 >>"}{" "}
-          </Link>
+          <HomeMentorList allMentor={allMentor}>
+            <div className="home-mentor-profile-footer">
+              <Link
+                href="/Categories"
+                className="home-mentor-profile-footer-text"
+              >
+                {"더 많은 멘토 보기 >>"}{" "}
+              </Link>
+            </div>
+          </HomeMentorList>
         </div>
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />
