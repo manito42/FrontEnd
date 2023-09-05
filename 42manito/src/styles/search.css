@@ -1,7 +1,11 @@
-.search {
-  @apply h-auto;
+.search-header-text {
+  @apply text-lg font-bold text-gray-800 dark:text-slate-200 m-5 whitespace-pre;
+}
 
-  & .mentor-cards-container {
-    @apply w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 md:gap-10 p-0 md:p-5;
-  }
+.search-container {
+  @apply flex flex-col items-center justify-center w-[80%] md:w-[900px];
+}
+
+.mentor-cards-container {
+  @apply flex flex-wrap justify-center items-center w-full;
 }
