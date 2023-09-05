@@ -10,7 +10,7 @@ export interface ErrorResponse {
 
 export const BaseQuery =
   (
-    { baseUrl }: { baseUrl: string } = { baseUrl: "" }
+    { baseUrl }: { baseUrl: string } = { baseUrl: "" },
   ): BaseQueryFn<
     {
       url: string;
@@ -54,8 +54,6 @@ export const BaseQuery =
         alert("서버에 오류가 발생했습니다.");
       } else if (err.status === 503) {
         alert("서버가 점검중입니다.");
-      } else {
-        alert("알 수 없는 오류가 발생했습니다.");
       }
 
       return {
