@@ -4,9 +4,6 @@ import React from "react";
 
 const RequestsWrapper = () => {
     const { allMentor, fetchMoreData, hasMore } = useFetchHome();
-  let testArr: number[];
-  // @ts-ignore
-  testArr = [...Array(100).keys()];
 
     return (
         <div className="overflow-x-scroll overflow-y-hidden whitespace-nowrap
