@@ -21,9 +21,6 @@ const MentorModal = () => {
   const connectState = useSelector(
     (state: RootState) => state.rootReducers.mentorConnect,
   );
-  const openMentorModal = useSelector(
-    (state: RootState) => state.rootReducers.currMentor.openMentorModal,
-  );
   const openConnectModal = useSelector(
     (state: RootState) => state.rootReducers.currMentor.openConnectModal,
   );

@@ -113,7 +113,6 @@ p {
 .btn-drawer:hover {
   @apply text-indigo-500 transition-all scale-x-110 scale-y-110;
 }
-
 /* animation */
 
 .fade-in {
