@@ -1,6 +1,11 @@
 # Dependency Install, Build, Start를 여기서 다합니다.
 name: Build Bot
 on:
+  push:
+    branches:
+      - dev
+      - deploy
+      - deploytest
   pull_request:
     branches:
       - dev
