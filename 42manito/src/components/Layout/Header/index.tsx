@@ -39,9 +39,7 @@ export default function Header() {
             href="/"
             className="flex title-font font-medium items-center mb-4 md:mb-0"
           >
-            <span className=" text-4xl hover:scale-105 hover:text-indigo-500">
-              42Manito
-            </span>
+            <span className=" text-2xl hover:text-indigo-500">42Manito</span>
           </Link>
           <div className="my-1 flex justify-center">
             <SearchInput />

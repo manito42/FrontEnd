@@ -1,5 +1,5 @@
 header {
-  @apply bg-bg_color-200 dark:bg-bg_color-900;
+  @apply bg-bg_color-200 dark:bg-bg_color-900 pt-2 md:pt-0;
   .layout-header {
     @apply text-bg_color-600
         w-full
@@ -7,7 +7,7 @@ header {
   }
 
   .layout-header-container {
-    @apply mx-auto py-5 flex flex-wrap
+    @apply mx-auto py-2 flex flex-wrap
           flex-col md:flex-row items-center justify-between
           w-[90%] md:w-[600px] lg:w-[900px];
   }
