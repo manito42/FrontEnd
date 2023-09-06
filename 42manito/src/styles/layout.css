@@ -25,7 +25,7 @@ footer {
   @apply bg-bg_color-200 dark:bg-bg_color-900;
   @apply text-bg_color-600 dark:text-white;
   .footer-right {
-    @apply flex flex-row;
+    @apply flex flex-row sm:mr-20 xl:mr-0;
   }
 }
 
