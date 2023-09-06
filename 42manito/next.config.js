@@ -10,6 +10,9 @@ const nextConfig = {
       "cloudflare-ipfs.com",
     ],
   },
+  env: {
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+  },
   async headers() {
     return [
       {

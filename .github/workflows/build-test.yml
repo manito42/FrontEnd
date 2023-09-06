@@ -14,6 +14,7 @@ on:
 
 env:
   NEXT_PUBLIC_DEV_URL: "https://api.dev.42manito.com"
+  NEXT_PUBLIC_GA_ID: "G-LJC872ZRN3"
   working-directory: ./42manito
 
 jobs:
@@ -32,7 +33,9 @@ jobs:
         with:
           node-version: 18.16.0
       - name: Create Env
-        run: echo "NEXT_PUBLIC_DEV_URL=${{ env.NEXT_PUBLIC_DEV_URL }}" >> .env
+        run: |
+          echo "NEXT_PUBLIC_DEV_URL=${{ env.NEXT_PUBLIC_DEV_URL }}" >> .env
+          echo "NEXT_PUBLIC_GA_ID=${{ env.NEXT_PUBLIC_GA_ID }}" >> .env
         working-directory: ${{ env.working-directory }}
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
