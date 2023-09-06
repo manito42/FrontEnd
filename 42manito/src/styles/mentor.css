@@ -2,7 +2,7 @@
 
 .mentor-card {
   @apply flex flex-col items-start
-        w-[250px] h-[150px]
+        w-[280px] h-[180px]
         bg-gray-100 border border-gray-200
         dark:bg-slate-600  dark:border-slate-700
         rounded-xl m-2 shadow-sm;
@@ -21,10 +21,10 @@
   @apply w-[35%] h-[100%]  flex justify-center items-center;
 }
 .mentor-card-image {
-  @apply w-[60px] h-[60px] rounded-full object-cover;
+  @apply w-[80px] h-[80px] rounded-full object-cover;
 }
 .mentor-card-texts {
-  @apply flex flex-col w-[65%] h-[100%] px-3 mt-2;
+  @apply flex flex-col w-[65%] h-[100%] px-4 mt-4;
 }
 .mentor-card-nickname {
   @apply h-[35%] text-base font-bold truncate overflow-ellipsis

@@ -50,7 +50,7 @@
 }
 
 .home-mentor-profile-list {
-  @apply w-[90%] md:w-[600px] lg:w-[900px];
+  @apply w-[100%] md:w-[600px] lg:w-[900px];
 }
 
 .home-mentor-profile-footer {
