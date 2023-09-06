@@ -66,12 +66,12 @@ const SearchInput = ({ className }: Props) => {
           <button
             onClick={handleClick}
             type="button"
-            className="p-1.5 ml-2 text-sm font-medium rounded-lg border border-manitocolor-600
+            className="p-1.5 ml-2 text-sm font-medium rounded-lg border border-signature_color-600
                   text-white
-                  bg-manitocolor-500
-                  hover:bg-manitocolor-800
-                  focus:ring-4 focus:outline-none focus:ring-manitocolor-300
-                  dark:bg-manitocolor-600 dark:active:bg-manitocolor-800 dark:focus:ring-manitocolor-800"
+                  bg-signature_color-500
+                  hover:bg-signature_color-800
+                  focus:ring-4 focus:outline-none focus:ring-signature_color-300
+                  dark:bg-signature_color-600 dark:active:bg-signature_color-800 dark:focus:ring-signature_color-800"
             disabled={search.length === 0}
           >
             <svg

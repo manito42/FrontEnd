@@ -15,7 +15,7 @@ header {
     @apply fixed bottom-5 right-5
           flex justify-center items-center
           rounded-full
-          bg-manitocolor-500 dark:bg-manitocolor-600 hover:bg-manitocolor-600 dark:hover:bg-manitocolor-700
+          bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 dark:hover:bg-signature_color-700
           w-[4vw] h-[4vw] min-w-[55px] min-h-[55px]
           z-50;
   }

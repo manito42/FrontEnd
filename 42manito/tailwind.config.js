@@ -14,7 +14,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        manitocolor: colors.lime,
+        signature_color: colors.lime,
         bg_color: colors.neutral,
       },
       backgroundImage: {

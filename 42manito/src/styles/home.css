@@ -37,12 +37,12 @@
 }
 
 .home-category-icon:hover {
-  @apply text-manitocolor-300 dark:text-manitocolor-300
-  border-manitocolor-300 dark:border-manitocolor-300;
+  @apply text-signature_color-300 dark:text-signature_color-300
+  border-signature_color-300 dark:border-signature_color-300;
 }
 .home-category-icon.active {
-  @apply text-manitocolor-500 dark:text-manitocolor-500
-    border-manitocolor-500 dark:border-manitocolor-500;
+  @apply text-signature_color-500 dark:text-signature_color-500
+    border-signature_color-500 dark:border-signature_color-500;
 }
 
 .home-mentor-profile-container {
