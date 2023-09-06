@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider attribute="class">
         <Script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-LJC872ZRN3"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}}`}
         ></Script>
         <Script id={"google-analytics"}>
           {`
@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
   
-            gtag('config', 'G-LJC872ZRN3');
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}}');
           `}
         </Script>
         <Head>
