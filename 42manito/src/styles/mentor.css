@@ -2,18 +2,18 @@
 
 .mentor-card {
   @apply flex flex-col items-start
-        w-[280px] h-[180px]
+        w-[280px] h-[170px]
         bg-gray-100 border border-gray-200
         dark:bg-slate-600  dark:border-slate-700
         rounded-xl m-2 shadow-sm;
 }
 
 .mentor-card-profile-info {
-  @apply flex flex-row justify-start items-center w-[100%] h-[60%] px-2 mt-2;
+  @apply flex flex-row justify-start items-center w-[100%] h-[65%] px-2 mt-2;
 }
 
 .mentor-card-hashtags {
-  @apply h-[40%] w-[100%]
+  @apply h-[35%] w-[100%]
         flex flex-wrap flex-row overflow-hidden justify-end items-center px-2 mt-2;
 }
 
