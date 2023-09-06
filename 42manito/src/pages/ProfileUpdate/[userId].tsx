@@ -3,10 +3,7 @@ import {
   usePostHashtagMutation,
   useSetUserUpdateMutation,
 } from "@/RTK/Apis/User";
-import {
-  deleteOneHashtag,
-  ProfileUpdateSlice,
-} from "@/RTK/Slices/ProfileUpdate";
+import { ProfileUpdateSlice } from "@/RTK/Slices/ProfileUpdate";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { MentorProfilePatchReqDto } from "@/Types/MentorProfiles/MentorProfilePatchReq.dto";
 import { Button } from "@/common";
@@ -141,12 +138,7 @@ export default function ProfileUpdate() {
             <div className="w-[90vw] ProfileTagWrapper">
               <span className="ProfileHeader">관심분야</span>
               <span className="ProfileSmall">태그를 클릭하면 사라집니다</span>
-              <ProfileHashtag
-                hashtag={formData.hashtags}
-                onClick={(h) => {
-                  dispatch(deleteOneHashtag(h));
-                }}
-              />
+              <ProfileHashtag hashtag={formData.hashtags} />
               <HashtagUpdateInput hashtags={formData.hashtags} />
             </div>
 
