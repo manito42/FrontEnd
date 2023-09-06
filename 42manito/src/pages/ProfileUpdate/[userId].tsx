@@ -169,16 +169,16 @@ export default function ProfileUpdate() {
                 />
               </div>
             </div>
-            <div className="flex flex-row mt-3 mb-10 space-x-4">
+            <div className="profile-update-btn-wrapper">
               <Button
-                className="text-xs  md:text-s bg-bg_color-500 hover:bg-bg_color-600 active:bg-bg_color-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                className="profile-update-cancel-btn"
                 type="button"
                 onClick={() => cancelButtonHandler()}
               >
                 취소
               </Button>
               <Button
-                className="text-xs  md:text-s bg-pink-500 hover:bg-pink-600 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                className="profile-update-approve-btn"
                 type="button"
                 onClick={() => updateButtonHandler()}
               >

@@ -10,6 +10,14 @@
                 w-[90vmin] md:w-[600px]
                 rounded-2xl bg-bg_color-100 dark:bg-bg_color-900
                 drop-shadow-xl;
+
+  .profile-update-btn {
+    @apply text-xs md:text-sm
+    bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 active:bg-signature_color-600
+    uppercase text-white font-bold hover:shadow-md shadow
+    px-4 py-2 rounded outline-none focus:outline-none
+    sm:mr-2 mb-1 ease-linear transition-all duration-150;
+  }
 }
 
 .ProfileImageNameContainer {
@@ -110,7 +118,7 @@ shadow-sm;
 .profile-update-hashtag-input-wrapper {
   @apply flex justify-center items-center mb-5 w-full;
   .profile-update-hashtag-input-btn {
-    @apply bg-pink-500 hover:bg-pink-600 ml-2 text-sm font-bold text-white py-1 px-2 rounded;
+    @apply bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 ml-2 text-sm font-bold text-white py-1 px-2 rounded;
   }
   width: min(30%, max-content);
 }
@@ -136,4 +144,24 @@ shadow-sm;
 
 .profile-category-card-on {
   @apply bg-bg_color-300 dark:bg-bg_color-400;
+}
+
+.profile-update-btn-wrapper {
+  @apply flex flex-row mt-3 mb-10 space-x-4;
+  .profile-update-approve-btn {
+    @apply text-xs md:text-sm
+    bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 active:bg-signature_color-600
+    uppercase text-white font-bold hover:shadow-md shadow
+    px-4 py-2 rounded outline-none focus:outline-none
+    sm:mr-2 mb-1 ease-linear transition-all duration-150;
+  }
+
+  .profile-update-cancel-btn {
+    @apply text-xs md:text-sm
+    bg-bg_color-500 dark:bg-bg_color-500 hover:bg-bg_color-300 active:bg-bg_color-600
+    uppercase text-white font-bold
+    hover:shadow-md shadow
+    px-4 py-2 rounded outline-none
+    focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150;
+  }
 }
