@@ -10,6 +10,7 @@
 @import "./reservation.css";
 @import "./cardhashtag.css";
 @import "./banner.css";
+@import "./layout.css";
 
 /* @import "./about.css"; */
 
@@ -49,15 +50,15 @@ h1,
 h3,
 h4,
 h5 {
-  @apply text-slate-600 dark:text-slate-400;
+  @apply text-neutral-600 dark:text-neutral-400;
 }
 
 h2 {
-  @apply dark:text-slate-300 text-slate-800;
+  @apply dark:text-neutral-300 text-neutral-800;
 }
 
 h6 {
-  @apply dark:text-slate-200 text-slate-800;
+  @apply dark:text-neutral-200 text-neutral-800;
 }
 
 .truncate {
@@ -70,28 +71,23 @@ h6 {
 
 :where(.css-dev-only-do-not-override-txh9fw).ant-input-textarea-show-count
   .ant-input-data-count {
-  @apply dark:text-slate-200 text-slate-800;
-}
-
-footer {
-  @apply text-gray-600 dark:text-white
-    bg-gray-100 dark:bg-slate-600/20;
+  @apply dark:text-neutral-200 text-neutral-800;
 }
 
 a {
-  @apply text-slate-600 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-50;
+  @apply text-neutral-600 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-50;
 }
 
 p {
-  @apply text-slate-800 dark:text-slate-200;
+  @apply text-neutral-800 dark:text-neutral-200;
 }
 
 .bg-primary {
-  @apply bg-white dark:bg-slate-800;
+  @apply bg-white dark:bg-neutral-800;
 }
 
 .header {
-  @apply text-gray-600 bg-gray-100 dark:bg-gray-900 w-full md:fixed md:z-[9999];
+  @apply text-neutral-600 bg-neutral-100 dark:bg-neutral-900 w-full md:fixed md:z-[9999];
 }
 
 .btn-project {
@@ -99,11 +95,7 @@ p {
 }
 
 .svg {
-  @apply fill-slate-500 dark:fill-slate-400;
-}
-
-.svg:hover {
-  @apply fill-indigo-500;
+  @apply fill-neutral-50;
 }
 
 .btn-drawer {
@@ -127,20 +119,20 @@ p {
 
 .enroll-card {
   @apply flex flex-col m-10 rounded-xl p-5
-  transition duration-300 transform border border-gray-300
+  transition duration-300 transform border border-neutral-300
             hover:scale-105
             hover:shadow-lg
-            dark:border-gray-200/50
-            dark:hover:shadow-gray-400/40;
+            dark:border-neutral-200/50
+            dark:hover:shadow-neutral-400/40;
 }
 
 .feedback-card {
   @apply w-full flex flex-wrap rounded-xl
-  transition duration-300 transform border border-gray-300
+  transition duration-300 transform border border-neutral-300
             hover:scale-105
             hover:shadow-lg
-            dark:border-gray-200/50
-            dark:hover:shadow-gray-400/40;
+            dark:border-neutral-200/50
+            dark:hover:shadow-neutral-400/40;
 }
 
 .close-modal {
@@ -357,22 +349,22 @@ p {
 
 /* INPUT CSS */
 .ant-input {
-  @apply dark:bg-slate-800
-          dark:text-slate-200
-          dark:border-slate-800
-          dark:placeholder-slate-200
-          dark:focus:placeholder-slate-200
+  @apply dark:bg-neutral-800
+          dark:text-neutral-200
+          dark:border-neutral-800
+          dark:placeholder-neutral-200
+          dark:focus:placeholder-neutral-200
           dark:focus:border-sky-800
           dark:hover:border-sky-800;
 }
 
 .ant-input-show-count,
 .ant-input-affix-wrapper {
-  @apply dark:bg-slate-800
-        dark:text-slate-200
-        dark:border-slate-800
-        dark:placeholder-slate-200
-        dark:hover:placeholder-slate-200
+  @apply dark:bg-neutral-800
+        dark:text-neutral-200
+        dark:border-neutral-800
+        dark:placeholder-neutral-200
+        dark:hover:placeholder-neutral-200
         dark:hover:border-sky-800;
 }
 
@@ -380,7 +372,7 @@ p {
   @apply dark:border-sky-800;
 }
 .ant-input-data-count {
-  @apply text-slate-800 dark:text-slate-200;
+  @apply text-neutral-800 dark:text-neutral-200;
 }
 
 .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(
@@ -390,28 +382,28 @@ p {
 .ant-select-multiple.ant-select-show-arrow .ant-select-selector,
 .ant-select.ant-select-show-arrow .ant-select-selector,
 .ant-select-multiple.ant-select-allow-clear .ant-select-selector {
-  @apply dark:bg-slate-800
-            dark:text-slate-200
-            dark:border-slate-800
-            dark:placeholder-slate-200
-            dark:focus:placeholder-slate-200
+  @apply dark:bg-neutral-800
+            dark:text-neutral-200
+            dark:border-neutral-800
+            dark:placeholder-neutral-200
+            dark:focus:placeholder-neutral-200
             dark:focus:border-sky-800
             dark:hover:border-sky-800;
 }
 .ant-select-selection-overflow {
-  @apply dark:bg-slate-800
-                dark:text-slate-200
-                dark:border-slate-800
-                dark:placeholder-slate-200
-                dark:hover:placeholder-slate-200
+  @apply dark:bg-neutral-800
+                dark:text-neutral-200
+                dark:border-neutral-800
+                dark:placeholder-neutral-200
+                dark:hover:placeholder-neutral-200
                 dark:hover:border-sky-800;
 }
 
 .ant-tag {
   @apply dark:bg-sky-800
-            dark:text-slate-200
-            dark:placeholder-slate-200
-            dark:focus:placeholder-slate-200
+            dark:text-neutral-200
+            dark:placeholder-neutral-200
+            dark:focus:placeholder-neutral-200
             dark:border-sky-800
             dark:hover:border-sky-800;
 }
@@ -420,15 +412,15 @@ p {
 .ant-select-selection-item,
 .ant-select-selection-content,
 .ant-select-selection-item-remove {
-  @apply dark:text-slate-200 dark:bg-slate-800;
+  @apply dark:text-neutral-200 dark:bg-neutral-800;
 }
 
 .ant-select-selection-placeholder {
-  @apply dark:text-slate-200;
+  @apply dark:text-neutral-200;
 }
 
 /* main wrapper */
 .app-container {
-  @apply flex flex-col justify-start items-center bg-gray-50 dark:bg-slate-800
+  @apply flex flex-col justify-start items-center bg-neutral-50 dark:bg-neutral-800
     min-h-screen;
 }
