@@ -29,7 +29,7 @@ const Profile = () => {
               <ManitoToggle />
             </div>
             <button
-              className="text-xs md:text-[1vw] md:h-[3vw] bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow w-full px-4 py-1 rounded outline-none focus:outline-none sm:mr-2 mb-2 ease-linear transition-all duration-150"
+              className="profile-update-btn"
               type="button"
               onClick={() => updateButtonHandler()}
             >

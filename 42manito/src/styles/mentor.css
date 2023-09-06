@@ -3,8 +3,8 @@
 .mentor-card {
   @apply flex flex-col items-start
         w-[280px] h-[170px]
-        bg-gray-100 border border-gray-200
-        dark:bg-slate-600  dark:border-slate-700
+        bg-bg_color-100 border border-bg_color-200
+        dark:bg-bg_color-600  dark:border-bg_color-700
         rounded-xl m-2 shadow-sm;
 }
 
@@ -28,14 +28,14 @@
 }
 .mentor-card-nickname {
   @apply h-[35%] text-base font-bold truncate overflow-ellipsis
-        text-gray-800 dark:text-slate-200;
+        text-bg_color-800 dark:text-bg_color-200;
 }
 .mentor-card-description {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   @apply h-[65%] flex-wrap text-xs font-light  overflow-hidden
-    text-gray-500 dark:text-slate-200;
+    text-bg_color-500 dark:text-bg_color-200;
 }
 
 /* mentor modal */
@@ -44,13 +44,14 @@
   @apply fixed inset-0
             bg-black bg-opacity-25
             backdrop-blur-sm
-            flex justify-center overflow-y-auto;
+            flex justify-center overflow-y-auto
+            z-[50];
 
   .mentor-modal-section {
     @apply overflow-y-scroll;
 
     .close-btn {
-      @apply text-gray-600 hover:text-red-500 dark:text-gray-400 mb-5 text-base;
+      @apply text-bg_color-600 hover:text-red-500 dark:text-bg_color-400 mb-5 text-base;
     }
   }
 }

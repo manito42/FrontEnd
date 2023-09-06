@@ -3,7 +3,10 @@ import {
   usePostHashtagMutation,
   useSetUserUpdateMutation,
 } from "@/RTK/Apis/User";
-import { ProfileUpdateSlice } from "@/RTK/Slices/ProfileUpdate";
+import {
+  deleteOneHashtag,
+  ProfileUpdateSlice,
+} from "@/RTK/Slices/ProfileUpdate";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { MentorProfilePatchReqDto } from "@/Types/MentorProfiles/MentorProfilePatchReq.dto";
 import { Button } from "@/common";
@@ -138,7 +141,12 @@ export default function ProfileUpdate() {
             <div className="w-[90vw] ProfileTagWrapper">
               <span className="ProfileHeader">관심분야</span>
               <span className="ProfileSmall">태그를 클릭하면 사라집니다</span>
-              <ProfileHashtag hashtag={formData.hashtags} />
+              <ProfileHashtag
+                hashtag={formData.hashtags}
+                onClick={(h) => {
+                  dispatch(deleteOneHashtag(h));
+                }}
+              />
               <HashtagUpdateInput hashtags={formData.hashtags} />
             </div>
 
@@ -161,16 +169,16 @@ export default function ProfileUpdate() {
                 />
               </div>
             </div>
-            <div className="flex flex-row mt-3 mb-10 space-x-4">
+            <div className="profile-update-btn-wrapper">
               <Button
-                className="text-xs  md:text-s bg-gray-500 hover:bg-gray-600 active:bg-gray-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                className="profile-update-cancel-btn"
                 type="button"
                 onClick={() => cancelButtonHandler()}
               >
                 취소
               </Button>
               <Button
-                className="text-xs  md:text-s bg-pink-500 hover:bg-pink-600 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                className="profile-update-approve-btn"
                 type="button"
                 onClick={() => updateButtonHandler()}
               >

@@ -1,6 +1,8 @@
 /**
  * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
  */
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,6 +13,10 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        signature_color: colors.lime,
+        bg_color: colors.neutral,
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

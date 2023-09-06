@@ -9,13 +9,13 @@
 /** card hashtag */
 .card-hashtag-container {
   @apply px-3 py-1 mx-1
-    rounded-full my-4 text-center
+    rounded-full my-4 text-center border-2 border-signature_color-500 dark:border-signature_color-600
     overflow-hidden;
 }
 
 .card-hashtag-name {
   @apply truncate overflow-hidden
-    text-gray-900 dark:text-slate-200 text-xs;
+    text-bg_color-900 dark:text-bg_color-200 text-xs;
 }
 
 /** define all colors */
@@ -32,7 +32,7 @@
 }
 
 .block-color-green {
-  @apply bg-green-200 dark:bg-green-800;
+  @apply bg-signature_color-200 dark:bg-signature_color-800;
 }
 
 .block-color-blue {
@@ -52,11 +52,15 @@
 }
 
 .block-color-gray {
-  @apply bg-gray-200 dark:bg-gray-800;
+  @apply bg-bg_color-200 dark:bg-gray-800;
+}
+
+.block-color-neutral {
+  @apply bg-bg_color-200 dark:bg-bg_color-800;
 }
 
 .block-color-slate {
-  @apply bg-slate-200 dark:bg-slate-800;
+  @apply bg-bg_color-200 dark:bg-bg_color-800;
 }
 
 .block-color-rose {

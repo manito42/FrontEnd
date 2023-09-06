@@ -43,7 +43,7 @@ const Search: React.FC = () => {
       <Layout>
         <div className="app-container">
           <div className="search-header-text">
-            <span className="text-gray-400">{`"${searchKeyword}"`} </span>
+            <span className="text-bg_color-400">{`"${searchKeyword}"`} </span>
             {"  검색 결과"}
           </div>
           <div className="search-container">

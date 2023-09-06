@@ -45,7 +45,7 @@
 //             <span className="w-full mt-3 flex justify-center text-xl font-bold">
 //               {data.menteeId}
 //             </span>
-//             <span className="w-full mt-3 flex justify-end text-gray-600 dark:text-gray-400">
+//             <span className="w-full mt-3 flex justify-end text-bg_color-600 dark:text-bg_color-400">
 //               {date}
 //             </span>
 //           </div>
