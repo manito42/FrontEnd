@@ -3,7 +3,7 @@ header {
   .layout-header {
     @apply text-bg_color-600
         w-full
-        z-[9999];
+        z-[10];
   }
 
   .layout-header-container {
