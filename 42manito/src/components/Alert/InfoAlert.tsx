@@ -29,7 +29,7 @@ const InfoAlert = ({ msg, isAlert, close }: Props) => {
           />
           <div>
             <button
-              className="border-blue-400 bg-white hover:bg-gray-50 mt-4 border rounded font-bold w-[60px] h-[40px]"
+              className="border-blue-400 bg-white hover:bg-neutral-50 mt-4 border rounded font-bold w-[60px] h-[40px]"
               onClick={close}
             >
               <p>확인</p>

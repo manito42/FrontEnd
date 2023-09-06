@@ -8,7 +8,7 @@
 }
 
 .home-text-detail {
-  @apply text-base font-light px-5 text-gray-500;
+  @apply text-base font-light px-5 text-neutral-500;
 }
 
 .home-search-bar {
@@ -31,18 +31,18 @@
 .home-category-icon {
   @apply px-3 py-1 mx-2 my-1
     rounded-full
-    border-2 border-gray-300 dark:border-slate-700
-    text-gray-500 dark:text-slate-200
+    border-2 border-neutral-300 dark:border-neutral-700
+    text-neutral-500 dark:text-neutral-200
     text-lg font-bold;
 }
 
 .home-category-icon:hover {
-  @apply text-green-300 dark:text-green-300
-  border-green-300 dark:border-green-300;
+  @apply text-manitocolor-300 dark:text-manitocolor-300
+  border-manitocolor-300 dark:border-manitocolor-300;
 }
 .home-category-icon.active {
-  @apply text-green-500 dark:text-green-500
-    border-green-500 dark:border-green-500;
+  @apply text-manitocolor-500 dark:text-manitocolor-500
+    border-manitocolor-500 dark:border-manitocolor-500;
 }
 
 .home-mentor-profile-container {
@@ -57,7 +57,7 @@
   @apply w-full flex justify-center items-center mb-5;
 }
 .home-mentor-profile-footer-text {
-  @apply text-gray-400 dark:text-slate-200
+  @apply text-neutral-400 dark:text-neutral-200
     text-sm font-light
     cursor-pointer hover:text-sky-500 dark:hover:text-sky-400;
 }

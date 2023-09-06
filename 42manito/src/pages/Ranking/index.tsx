@@ -36,7 +36,7 @@ const Ranking: React.FC = () => {
             </div>
           </div>
 
-          <Divider className="bg-slate-700 dark:bg-slate-200" />
+          <Divider className="bg-neutral-700 dark:bg-neutral-200" />
           <div
             id="Month."
             className="w-full flex flex-col justify-center items-center"

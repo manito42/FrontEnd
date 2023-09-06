@@ -25,25 +25,25 @@ const Typo = () => {
             cursor: false,
           }}
         >
-          <span className="text-4xl sm:text-5xl lg:text-7xl text-slate-800 dark:text-slate-200">
+          <span className="text-4xl sm:text-5xl lg:text-7xl text-neutral-800 dark:text-neutral-200">
             {"내 "}
           </span>
           <span className="text-4xl sm:text-6xl lg:text-8xl text-pink-600">
             {TypoPoint1}
           </span>
-          <span className="text-4xl sm:text-5xl lg:text-7xl text-slate-800 dark:text-slate-200">
+          <span className="text-4xl sm:text-5xl lg:text-7xl text-neutral-800 dark:text-neutral-200">
             {"과 "}
           </span>
           <span className="text-4xl sm:text-6xl lg:text-8xl text-pink-600">
             {TypoPoint2}
           </span>
-          <span className="text-4xl sm:text-5xl lg:text-7xl text-slate-800 dark:text-slate-200">
+          <span className="text-4xl sm:text-5xl lg:text-7xl text-neutral-800 dark:text-neutral-200">
             {"을 "}
           </span>
           <span className="text-4xl sm:text-6xl lg:text-8xl text-pink-600">
             {TypoPoint3}
           </span>
-          <span className="text-4xl sm:text-5xl lg:text-7xl text-slate-800 dark:text-slate-200">
+          <span className="text-4xl sm:text-5xl lg:text-7xl text-neutral-800 dark:text-neutral-200">
             {"하고, "}
           </span>
         </TypeIt>
@@ -61,13 +61,13 @@ const Typo = () => {
           <span className="text-4xl sm:text-6xl lg:text-8xl text-pink-600">
             {TypoPoint4}
           </span>
-          <span className="text-4xl sm:text-5xl lg:text-7xl text-slate-800 dark:text-slate-200">
+          <span className="text-4xl sm:text-5xl lg:text-7xl text-neutral-800 dark:text-neutral-200">
             {"와 "}
           </span>
           <span className="text-4xl sm:text-6xl lg:text-8xl text-pink-600">
             {TypoPoint5}
           </span>
-          <span className="text-4xl sm:text-5xl lg:text-7xl text-slate-800 dark:text-slate-200">
+          <span className="text-4xl sm:text-5xl lg:text-7xl text-neutral-800 dark:text-neutral-200">
             {"하세요!"}
           </span>
         </TypeIt>
@@ -84,13 +84,13 @@ const Typo = () => {
             cursor: true,
           }}
         >
-          <span className="text-2xl sm:text-3xl lg:text-5xl text-slate-800 dark:text-slate-200">
+          <span className="text-2xl sm:text-3xl lg:text-5xl text-neutral-800 dark:text-neutral-200">
             {"지금 바로 멘토링 "}
           </span>
           <span className="text-3xl sm:text-4xl lg:text-6xl text-indigo-600">
             {"신청"}
           </span>
-          <span className="text-2xl sm:text-3xl lg:text-5xl text-slate-800 dark:text-slate-200 mr-10">
+          <span className="text-2xl sm:text-3xl lg:text-5xl text-neutral-800 dark:text-neutral-200 mr-10">
             {"하세요!"}
           </span>
         </TypeIt>

@@ -26,9 +26,9 @@
             items-center justify-center
             w-[70vw]  md:w-[80%]
             rounded-2xl
-            bg-gray-100 dark:bg-gray-900
+            bg-neutral-100 dark:bg-neutral-900
             dark:border-2
-            dark:border-gray-800
+            dark:border-neutral-800
             drop-shadow-2xl;
   .connect-content-wrapper {
     @apply w-[80%];
@@ -44,7 +44,7 @@
   }
 
   .connect-cancel-btn {
-    @apply bg-gray-800 dark:bg-gray-400
+    @apply bg-neutral-800 dark:bg-neutral-400
         active:bg-pink-600
         text-white font-bold text-xs;
   }
@@ -59,15 +59,15 @@
     @apply text-xl
         mt-5
         font-bold
-        text-slate-800
-        dark:text-slate-200;
+        text-neutral-800
+        dark:text-neutral-200;
   }
   .connect-header {
     @apply text-lg
         ml-1
         font-bold
-        text-slate-800
-        dark:text-slate-200
+        text-neutral-800
+        dark:text-neutral-200
         mt-5 mb-2;
   }
 }
@@ -86,7 +86,7 @@
 /*      }*/
 
 /*      & .connect-content {*/
-/*        @apply relative flex flex-col min-w-0 break-words bg-white dark:bg-slate-600 w-full mb-6 shadow-xl rounded-lg max-w-[600px];*/
+/*        @apply relative flex flex-col min-w-0 break-words bg-white dark:bg-neutral-600 w-full mb-6 shadow-xl rounded-lg max-w-[600px];*/
 
 /*        & .message {*/
 /*          @apply text-3xl font-semibold leading-normal;*/

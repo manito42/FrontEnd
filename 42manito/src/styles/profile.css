@@ -8,7 +8,7 @@
                 items-center justify-center
                 mt-5 mb-5
                 w-[90vmin] md:w-[600px]
-                rounded-2xl bg-gray-100 dark:bg-gray-900
+                rounded-2xl bg-neutral-100 dark:bg-neutral-900
                 drop-shadow-xl;
 }
 
@@ -30,7 +30,7 @@
                 break-all
                 px-3 py-4
                 mt-10 mb-10
-                rounded-2xl bg-gray-50 dark:bg-gray-800
+                rounded-2xl bg-neutral-50 dark:bg-neutral-800
                 shadow-sm;
 }
 
@@ -43,15 +43,15 @@
 .ProfileTitle {
   @apply text-3xl
     font-bold
-    text-slate-800
-    dark:text-slate-200;
+    text-neutral-800
+    dark:text-neutral-200;
 }
 
 .ProfileHeader {
   @apply text-2xl
                 font-bold
-                text-slate-800
-                dark:text-slate-200;
+                text-neutral-800
+                dark:text-neutral-200;
 }
 
 .ProfileTagListWrapper {
@@ -84,8 +84,8 @@
 
 .ProfileDescriptionSplitBar {
   @apply h-[1px]
-                bg-slate-800
-                dark:bg-slate-50
+                bg-neutral-800
+                dark:bg-neutral-50
                 w-[40%]
                 mt-2 mb-5;
 }
@@ -103,7 +103,7 @@
 .ProfileDescription {
   @apply whitespace-pre-wrap w-[100%] break-words
     px-6 py-4 rounded-2xl
-    bg-gray-50 dark:bg-gray-800
+    bg-neutral-50 dark:bg-neutral-800
 shadow-sm;
 }
 
@@ -117,8 +117,8 @@ shadow-sm;
 
 .ProfileSmall {
   @apply text-xs
-                text-slate-400
-                dark:text-slate-400;
+                text-neutral-400
+                dark:text-neutral-400;
 }
 
 .profile-category-card-wrapper {
@@ -135,5 +135,5 @@ shadow-sm;
 }
 
 .profile-category-card-on {
-  @apply bg-gray-300 dark:bg-gray-400;
+  @apply bg-neutral-300 dark:bg-neutral-400;
 }

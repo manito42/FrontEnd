@@ -51,7 +51,7 @@ const Feedback = () => {
           <p>Loading...</p>
         ) : (
           <div className="w-full p-10 md:p-26">
-            <span className="flex text-4xl font-bold text-slate-800 dark:text-slate-200 my-10">
+            <span className="flex text-4xl font-bold text-neutral-800 dark:text-neutral-200 my-10">
               FeedbackLog.
             </span>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">

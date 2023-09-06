@@ -41,7 +41,7 @@ const SearchInput = ({ className }: Props) => {
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 aria-hidden="true"
-                className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                className="w-5 h-5 text-neutral-500 dark:text-neutral-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ const SearchInput = ({ className }: Props) => {
               value={search}
               type="text"
               id="simple-search"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-1.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-1.5  dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search"
               required
             />
@@ -66,7 +66,12 @@ const SearchInput = ({ className }: Props) => {
           <button
             onClick={handleClick}
             type="button"
-            className="p-1.5 ml-2 text-sm font-medium text-white bg-pink-600 rounded-lg border border-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-500 dark:active:bg-pink-600 dark:focus:ring-pink-800"
+            className="p-1.5 ml-2 text-sm font-medium rounded-lg border border-manitocolor-600
+                  text-white
+                  bg-manitocolor-500
+                  hover:bg-manitocolor-800
+                  focus:ring-4 focus:outline-none focus:ring-manitocolor-300
+                  dark:bg-manitocolor-600 dark:active:bg-manitocolor-800 dark:focus:ring-manitocolor-800"
             disabled={search.length === 0}
           >
             <svg

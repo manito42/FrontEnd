@@ -95,7 +95,7 @@ const Enroll = () => {
 
   return (
     <div className="w-[90vw] md:w-full flex flex-col">
-      <Divider className="dark:bg-slate-400 bg-slate-500" />
+      <Divider className="dark:bg-neutral-400 bg-neutral-500" />
       <div className="flex flex-wrap md:justify-around my-16 w-full">
         <div className="flex-1 flex flex-row md:flex-col justify-center lg:flex items-center h-[50vh] w-full lg:w-[50%]">
           <div className="text-4xl">
@@ -168,7 +168,7 @@ const Enroll = () => {
           )}
         </div>
       </div>
-      <Divider className="dark:bg-slate-400 bg-slate-500" />
+      <Divider className="dark:bg-neutral-400 bg-neutral-500" />
     </div>
   );
 };
