@@ -67,14 +67,17 @@ export default function Home() {
             {OwnerId !== 0 && (
               <div className="home-reservation-request-wrapper">
                 <div className="home-text-header">대기 중인 멘토링</div>
+                <div className="home-text-detail">
+                  멘토링 요청들을 확인해보세요
+                </div>
                 <ReservationRequests />
               </div>
             )}
           </div>
-          <div className="home-text-header">멘토를 찾아보세요!</div>
+          <div className="home-text-header">당신을 기다리는 멘토들</div>
           <div className="home-category-wrapper">
             <div className="home-text-detail">
-              원하는 영역의 멘토를 골라보세요!
+              원하는 영역의 멘토를 골라보세요
             </div>
             <CategoryIconList
               categories={Categories}
