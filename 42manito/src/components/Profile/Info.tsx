@@ -12,10 +12,10 @@ export default function ProfileInfo({ nickname, count }: props) {
         <div className="profile-info-container">
           {count !== undefined ? (
             <div className="p-3 text-center">
-              <span className="text-3xl font-bold block uppercase tracking-wide text-neutral-800 dark:text-neutral-200">
+              <span className="text-3xl font-bold block uppercase tracking-wide text-bg_color-800 dark:text-bg_color-200">
                 {count}
               </span>
-              <span className="text-xl text-neutral-600 dark:text-neutral-400">
+              <span className="text-xl text-bg_color-600 dark:text-bg_color-400">
                 Total
               </span>
             </div>

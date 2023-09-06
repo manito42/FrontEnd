@@ -8,7 +8,7 @@
                 items-center justify-center
                 mt-5 mb-5
                 w-[90vmin] md:w-[600px]
-                rounded-2xl bg-neutral-100 dark:bg-neutral-900
+                rounded-2xl bg-bg_color-100 dark:bg-bg_color-900
                 drop-shadow-xl;
 }
 
@@ -30,7 +30,7 @@
                 break-all
                 px-3 py-4
                 mt-10 mb-10
-                rounded-2xl bg-neutral-50 dark:bg-neutral-800
+                rounded-2xl bg-bg_color-50 dark:bg-bg_color-800
                 shadow-sm;
 }
 
@@ -43,15 +43,15 @@
 .ProfileTitle {
   @apply text-3xl
     font-bold
-    text-neutral-800
-    dark:text-neutral-200;
+    text-bg_color-800
+    dark:text-bg_color-200;
 }
 
 .ProfileHeader {
   @apply text-2xl
                 font-bold
-                text-neutral-800
-                dark:text-neutral-200;
+                text-bg_color-800
+                dark:text-bg_color-200;
 }
 
 .ProfileTagListWrapper {
@@ -84,8 +84,8 @@
 
 .ProfileDescriptionSplitBar {
   @apply h-[1px]
-                bg-neutral-800
-                dark:bg-neutral-50
+                bg-bg_color-800
+                dark:bg-bg_color-50
                 w-[40%]
                 mt-2 mb-5;
 }
@@ -103,7 +103,7 @@
 .ProfileDescription {
   @apply whitespace-pre-wrap w-[100%] break-words
     px-6 py-4 rounded-2xl
-    bg-neutral-50 dark:bg-neutral-800
+    bg-bg_color-50 dark:bg-bg_color-800
 shadow-sm;
 }
 
@@ -117,8 +117,8 @@ shadow-sm;
 
 .ProfileSmall {
   @apply text-xs
-                text-neutral-400
-                dark:text-neutral-400;
+                text-bg_color-400
+                dark:text-bg_color-400;
 }
 
 .profile-category-card-wrapper {
@@ -135,5 +135,5 @@ shadow-sm;
 }
 
 .profile-category-card-on {
-  @apply bg-neutral-300 dark:bg-neutral-400;
+  @apply bg-bg_color-300 dark:bg-bg_color-400;
 }

@@ -41,7 +41,7 @@ const SearchInput = ({ className }: Props) => {
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 aria-hidden="true"
-                className="w-5 h-5 text-neutral-500 dark:text-neutral-400"
+                className="w-5 h-5 text-bg_color-500 dark:text-bg_color-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ const SearchInput = ({ className }: Props) => {
               value={search}
               type="text"
               id="simple-search"
-              className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-1.5  dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-bg_color-50 border border-bg_color-300 text-bg_color-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-1.5  dark:bg-bg_color-700 dark:border-bg_color-600 dark:placeholder-bg_color-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search"
               required
             />

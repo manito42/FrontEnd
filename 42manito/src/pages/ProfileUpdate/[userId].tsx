@@ -171,7 +171,7 @@ export default function ProfileUpdate() {
             </div>
             <div className="flex flex-row mt-3 mb-10 space-x-4">
               <Button
-                className="text-xs  md:text-s bg-neutral-500 hover:bg-neutral-600 active:bg-neutral-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                className="text-xs  md:text-s bg-bg_color-500 hover:bg-bg_color-600 active:bg-bg_color-600 uppercase text-white font-bold hover:shadow-md shadow px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => cancelButtonHandler()}
               >

@@ -15,6 +15,7 @@ module.exports = {
     extend: {
       colors: {
         manitocolor: colors.lime,
+        bg_color: colors.neutral,
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

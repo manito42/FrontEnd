@@ -50,15 +50,15 @@ h1,
 h3,
 h4,
 h5 {
-  @apply text-neutral-600 dark:text-neutral-400;
+  @apply text-bg_color-600 dark:text-bg_color-400;
 }
 
 h2 {
-  @apply dark:text-neutral-300 text-neutral-800;
+  @apply dark:text-bg_color-300 text-bg_color-800;
 }
 
 h6 {
-  @apply dark:text-neutral-200 text-neutral-800;
+  @apply dark:text-bg_color-200 text-bg_color-800;
 }
 
 .truncate {
@@ -71,23 +71,23 @@ h6 {
 
 :where(.css-dev-only-do-not-override-txh9fw).ant-input-textarea-show-count
   .ant-input-data-count {
-  @apply dark:text-neutral-200 text-neutral-800;
+  @apply dark:text-bg_color-200 text-bg_color-800;
 }
 
 a {
-  @apply text-neutral-600 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-50;
+  @apply text-bg_color-600 hover:text-bg_color-700 dark:text-bg_color-400 dark:hover:text-bg_color-50;
 }
 
 p {
-  @apply text-neutral-800 dark:text-neutral-200;
+  @apply text-bg_color-800 dark:text-bg_color-200;
 }
 
 .bg-primary {
-  @apply bg-white dark:bg-neutral-800;
+  @apply bg-white dark:bg-bg_color-800;
 }
 
 .header {
-  @apply text-neutral-600 bg-neutral-100 dark:bg-neutral-900 w-full md:fixed md:z-[9999];
+  @apply text-bg_color-600 bg-bg_color-100 dark:bg-bg_color-900 w-full md:fixed md:z-[9999];
 }
 
 .btn-project {
@@ -95,7 +95,7 @@ p {
 }
 
 .svg {
-  @apply fill-neutral-50;
+  @apply fill-bg_color-50;
 }
 
 .btn-drawer {
@@ -119,20 +119,20 @@ p {
 
 .enroll-card {
   @apply flex flex-col m-10 rounded-xl p-5
-  transition duration-300 transform border border-neutral-300
+  transition duration-300 transform border border-bg_color-300
             hover:scale-105
             hover:shadow-lg
-            dark:border-neutral-200/50
-            dark:hover:shadow-neutral-400/40;
+            dark:border-bg_color-200/50
+            dark:hover:shadow-bg_color-400/40;
 }
 
 .feedback-card {
   @apply w-full flex flex-wrap rounded-xl
-  transition duration-300 transform border border-neutral-300
+  transition duration-300 transform border border-bg_color-300
             hover:scale-105
             hover:shadow-lg
-            dark:border-neutral-200/50
-            dark:hover:shadow-neutral-400/40;
+            dark:border-bg_color-200/50
+            dark:hover:shadow-bg_color-400/40;
 }
 
 .close-modal {
@@ -349,22 +349,22 @@ p {
 
 /* INPUT CSS */
 .ant-input {
-  @apply dark:bg-neutral-800
-          dark:text-neutral-200
-          dark:border-neutral-800
-          dark:placeholder-neutral-200
-          dark:focus:placeholder-neutral-200
+  @apply dark:bg-bg_color-800
+          dark:text-bg_color-200
+          dark:border-bg_color-800
+          dark:placeholder-bg_color-200
+          dark:focus:placeholder-bg_color-200
           dark:focus:border-sky-800
           dark:hover:border-sky-800;
 }
 
 .ant-input-show-count,
 .ant-input-affix-wrapper {
-  @apply dark:bg-neutral-800
-        dark:text-neutral-200
-        dark:border-neutral-800
-        dark:placeholder-neutral-200
-        dark:hover:placeholder-neutral-200
+  @apply dark:bg-bg_color-800
+        dark:text-bg_color-200
+        dark:border-bg_color-800
+        dark:placeholder-bg_color-200
+        dark:hover:placeholder-bg_color-200
         dark:hover:border-sky-800;
 }
 
@@ -372,7 +372,7 @@ p {
   @apply dark:border-sky-800;
 }
 .ant-input-data-count {
-  @apply text-neutral-800 dark:text-neutral-200;
+  @apply text-bg_color-800 dark:text-bg_color-200;
 }
 
 .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(
@@ -382,28 +382,28 @@ p {
 .ant-select-multiple.ant-select-show-arrow .ant-select-selector,
 .ant-select.ant-select-show-arrow .ant-select-selector,
 .ant-select-multiple.ant-select-allow-clear .ant-select-selector {
-  @apply dark:bg-neutral-800
-            dark:text-neutral-200
-            dark:border-neutral-800
-            dark:placeholder-neutral-200
-            dark:focus:placeholder-neutral-200
+  @apply dark:bg-bg_color-800
+            dark:text-bg_color-200
+            dark:border-bg_color-800
+            dark:placeholder-bg_color-200
+            dark:focus:placeholder-bg_color-200
             dark:focus:border-sky-800
             dark:hover:border-sky-800;
 }
 .ant-select-selection-overflow {
-  @apply dark:bg-neutral-800
-                dark:text-neutral-200
-                dark:border-neutral-800
-                dark:placeholder-neutral-200
-                dark:hover:placeholder-neutral-200
+  @apply dark:bg-bg_color-800
+                dark:text-bg_color-200
+                dark:border-bg_color-800
+                dark:placeholder-bg_color-200
+                dark:hover:placeholder-bg_color-200
                 dark:hover:border-sky-800;
 }
 
 .ant-tag {
   @apply dark:bg-sky-800
-            dark:text-neutral-200
-            dark:placeholder-neutral-200
-            dark:focus:placeholder-neutral-200
+            dark:text-bg_color-200
+            dark:placeholder-bg_color-200
+            dark:focus:placeholder-bg_color-200
             dark:border-sky-800
             dark:hover:border-sky-800;
 }
@@ -412,15 +412,15 @@ p {
 .ant-select-selection-item,
 .ant-select-selection-content,
 .ant-select-selection-item-remove {
-  @apply dark:text-neutral-200 dark:bg-neutral-800;
+  @apply dark:text-bg_color-200 dark:bg-bg_color-800;
 }
 
 .ant-select-selection-placeholder {
-  @apply dark:text-neutral-200;
+  @apply dark:text-bg_color-200;
 }
 
 /* main wrapper */
 .app-container {
-  @apply flex flex-col justify-start items-center bg-neutral-50 dark:bg-neutral-800
+  @apply flex flex-col justify-start items-center bg-bg_color-50 dark:bg-bg_color-800
     min-h-screen;
 }

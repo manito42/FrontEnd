@@ -8,7 +8,7 @@
 }
 
 .home-text-detail {
-  @apply text-base font-light px-5 text-neutral-500;
+  @apply text-base font-light px-5 text-bg_color-500;
 }
 
 .home-search-bar {
@@ -31,8 +31,8 @@
 .home-category-icon {
   @apply px-3 py-1 mx-2 my-1
     rounded-full
-    border-2 border-neutral-300 dark:border-neutral-700
-    text-neutral-500 dark:text-neutral-200
+    border-2 border-bg_color-300 dark:border-bg_color-700
+    text-bg_color-500 dark:text-bg_color-200
     text-lg font-bold;
 }
 
@@ -57,7 +57,7 @@
   @apply w-full flex justify-center items-center mb-5;
 }
 .home-mentor-profile-footer-text {
-  @apply text-neutral-400 dark:text-neutral-200
+  @apply text-bg_color-400 dark:text-bg_color-200
     text-sm font-light
     cursor-pointer hover:text-sky-500 dark:hover:text-sky-400;
 }

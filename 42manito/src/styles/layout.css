@@ -1,7 +1,7 @@
 header {
-  @apply bg-neutral-200 dark:bg-neutral-900;
+  @apply bg-bg_color-200 dark:bg-bg_color-900;
   .layout-header {
-    @apply text-neutral-600
+    @apply text-bg_color-600
         w-full
         z-[9999];
   }
@@ -22,8 +22,8 @@ header {
 }
 
 footer {
-  @apply bg-neutral-200 dark:bg-neutral-900;
-  @apply text-neutral-600 dark:text-white;
+  @apply bg-bg_color-200 dark:bg-bg_color-900;
+  @apply text-bg_color-600 dark:text-white;
   .footer-right {
     @apply flex flex-row;
   }

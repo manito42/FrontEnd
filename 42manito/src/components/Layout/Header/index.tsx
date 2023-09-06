@@ -47,7 +47,7 @@ export default function Header() {
             <SearchInput />
           </div>
           <Drawer
-            className="dark:bg-neutral-600 px-4 fade-in md:pt-10"
+            className="dark:bg-bg_color-600 px-4 fade-in md:pt-10"
             placement="right"
             closable={false}
             onClose={onClose}

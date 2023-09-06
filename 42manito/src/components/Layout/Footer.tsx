@@ -10,11 +10,11 @@ export default function Footer() {
           <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
             <Link
               href="/"
-              className="flex title-font font-medium items-center md:justify-start justify-center text-neutral-900"
+              className="flex title-font font-medium items-center md:justify-start justify-center text-bg_color-900"
             >
               <span className="ml-3 text-xl">42Manito</span>
             </Link>
-            <span className="text-sm text-neutral-500 sm:ml-6 sm:mt-0 mt-4 text-center">
+            <span className="text-sm text-bg_color-500 sm:ml-6 sm:mt-0 mt-4 text-center">
               42Manito ©2023
             </span>
             <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
@@ -23,7 +23,7 @@ export default function Footer() {
                   href="https://github.com/manito42"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-neutral-500"
+                  className="text-bg_color-500"
                 >
                   <svg
                     fill="currentColor"

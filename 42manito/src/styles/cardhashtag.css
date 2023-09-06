@@ -15,7 +15,7 @@
 
 .card-hashtag-name {
   @apply truncate overflow-hidden
-    text-neutral-900 dark:text-neutral-200 text-xs;
+    text-bg_color-900 dark:text-bg_color-200 text-xs;
 }
 
 /** define all colors */
@@ -52,15 +52,15 @@
 }
 
 .block-color-gray {
-  @apply bg-neutral-200 dark:bg-gray-800;
+  @apply bg-bg_color-200 dark:bg-gray-800;
 }
 
 .block-color-neutral {
-  @apply bg-neutral-200 dark:bg-neutral-800;
+  @apply bg-bg_color-200 dark:bg-bg_color-800;
 }
 
 .block-color-slate {
-  @apply bg-neutral-200 dark:bg-neutral-800;
+  @apply bg-bg_color-200 dark:bg-bg_color-800;
 }
 
 .block-color-rose {

@@ -41,7 +41,7 @@ export default function Sidebar({ onClose }: props) {
       <Link href="/Categories" onClick={onClose}>
         <p className="sidebar-text sidebar-text-btn">Category</p>
       </Link>
-      <Divider className="dark:bg-neutral-400 bg-neutral-500 my-16" />
+      <Divider className="dark:bg-bg_color-400 bg-bg_color-500 my-16" />
       {Owner === 0 && (
         <button
           id="42AuthSignIn"

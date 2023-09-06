@@ -1,5 +1,5 @@
 .search-header-text {
-  @apply text-lg font-bold text-neutral-800 dark:text-neutral-200 m-5 whitespace-pre;
+  @apply text-lg font-bold text-bg_color-800 dark:text-bg_color-200 m-5 whitespace-pre;
 }
 
 .search-container {

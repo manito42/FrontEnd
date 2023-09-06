@@ -31,7 +31,7 @@ const ErrorAlert = ({ msg, isAlert, close }: Props) => {
           <span className="font-bold">Error:</span>
           <span className="ml-1">{msg}</span>
         </p>
-        <button className="border-red-400 bg-white hover:bg-neutral-50 px-4 py-2 mt-4 border rounded font-bold">
+        <button className="border-red-400 bg-white hover:bg-bg_color-50 px-4 py-2 mt-4 border rounded font-bold">
           확인
         </button>
       </div>

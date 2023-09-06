@@ -7,7 +7,7 @@
 }
 
 .modal-content {
-  @apply relative flex flex-col break-words bg-white dark:bg-neutral-700 w-[95vw] md:w-[90vw] h-[50vh] md:h-[65vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overflow-y-scroll min-h-[55vh] max-w-[60vw];
+  @apply relative flex flex-col break-words bg-white dark:bg-bg_color-700 w-[95vw] md:w-[90vw] h-[50vh] md:h-[65vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overflow-y-scroll min-h-[55vh] max-w-[60vw];
 }
 
 .close-modal {

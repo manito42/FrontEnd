@@ -48,7 +48,7 @@ const Category = () => {
             <HappyDevelopAnimation />
             <div className="w-full flex justify-start">
               <span
-                className="text-4xl dark:text-white text-neutral-800 font-bold mt-4 hover:scale-110 hover:text-indigo-500"
+                className="text-4xl dark:text-white text-bg_color-800 font-bold mt-4 hover:scale-110 hover:text-indigo-500"
                 onClick={() => {
                   onOpen(1);
                 }}
@@ -61,7 +61,7 @@ const Category = () => {
             <PandaSingAnimation />
             <div className="w-full flex justify-end">
               <span
-                className="text-4xl dark:text-white text-neutral-800 font-bold mt-4 hover:scale-110 hover:text-indigo-500"
+                className="text-4xl dark:text-white text-bg_color-800 font-bold mt-4 hover:scale-110 hover:text-indigo-500"
                 onClick={() => {
                   onOpen(2);
                 }}
