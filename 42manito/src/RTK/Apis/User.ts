@@ -81,6 +81,7 @@ export const userApi = createApi({
           method: "GET",
         };
       },
+      providesTags: [{ type: "User", id: "LIST" }],
     }),
   }),
 });
