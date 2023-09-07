@@ -40,6 +40,10 @@ const MentorModal = () => {
   };
 
   const handleConnectOpen = () => {
+    if (Owner === 0) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
     dispatch(initMentorConnect());
     dispatch(CurrMentorSlice.actions.openConnectModal());
   };
@@ -91,7 +95,7 @@ const MentorModal = () => {
           {
             <UserProfile UserId={userId}>
               <div className="connect-btn-container">
-                {Owner !== 0 &&
+                {
                   Owner !== currentMentorState.currMentor.user.id && (
                     <button
                       className="connect-btn"
