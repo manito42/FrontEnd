@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import dynamic from "next/dynamic";
-import { initAllMentor, setAllMentor } from "@/RTK/Slices/Home";
+import { initAllMentor } from "@/RTK/Slices/Home";
 import { signIn } from "@/RTK/Slices/Global";
 import { useMentorModal } from "@/hooks/Mentor/MentorModal";
 import { useFetchHome } from "@/hooks/Home/FetchHome";
@@ -70,8 +70,6 @@ export default function Home() {
   const handleCategoryClick = (categoryId: number) => {
     setCategoryId(categoryId);
   };
-
-  console.log(newMentor, hasMore);
 
   // 아직 테스트해야할게 많음 특히 Auth, ProfileUpdate
   return (
