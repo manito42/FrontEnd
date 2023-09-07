@@ -61,7 +61,8 @@ export default function Home() {
         setMentorList([...mentorList, ...newMentor]);
       }
     }
-  }, [newMentor]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newMentor, isLoading]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
