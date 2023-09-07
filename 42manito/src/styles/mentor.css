@@ -8,6 +8,10 @@
         rounded-xl m-2 shadow-sm;
 }
 
+.mentor-cards-container {
+  @apply flex flex-wrap justify-center items-center w-full mb-10;
+}
+
 .mentor-card-profile-info {
   @apply flex flex-row justify-start items-center w-[100%] h-[65%] px-2 mt-2;
 }

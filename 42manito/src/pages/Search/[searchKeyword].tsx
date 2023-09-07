@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useFetchSearch } from "@/hooks/Search/FetchSearch";
+import SearchInput from "@/components/Search/SearchInput";
 
 const Search: React.FC = () => {
   const router = useRouter();
@@ -42,7 +43,10 @@ const Search: React.FC = () => {
     <>
       <Layout>
         <div className="app-container">
-          <div className="search-header-text">
+          <div className="search-input-wrapper">
+            <SearchInput />
+          </div>
+          <div className="search-header-text items-center">
             <span className="text-bg_color-400">{`"${searchKeyword}"`} </span>
             {"  검색 결과"}
           </div>

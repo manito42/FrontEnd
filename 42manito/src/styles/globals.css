@@ -11,7 +11,6 @@
 @import "./cardhashtag.css";
 @import "./banner.css";
 @import "./layout.css";
-
 /* @import "./about.css"; */
 
 ::-webkit-scrollbar {
@@ -417,10 +416,4 @@ p {
 
 .ant-select-selection-placeholder {
   @apply dark:text-bg_color-200;
-}
-
-/* main wrapper */
-.app-container {
-  @apply flex flex-col justify-start items-center bg-bg_color-50 dark:bg-bg_color-800
-    min-h-screen;
 }
