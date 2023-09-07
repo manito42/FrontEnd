@@ -7,12 +7,14 @@ import { useSelector } from "react-redux";
 import Sidebar from "./components/Sidebar";
 import { SignIn } from "@/utils/SignIn";
 import {LockOutlined, UnlockOutlined, UnorderedListOutlined} from "@ant-design/icons";
+import Loading from "@/components/Global/Loading";
 
 export default function Header() {
   const [visible, setVisible] = useState(false);
   const Owner = useSelector(
     (state: RootState) => state.rootReducers.global.uId,
   );
+  const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
 
   const handleSingOut = async () => {
@@ -56,6 +58,7 @@ export default function Header() {
                 className="layout-btn"
                 onClick={() => {
                   onClose();
+                  setLoading(true);
                   return SignIn();
                 }}
               >
@@ -85,6 +88,8 @@ export default function Header() {
           </Drawer>
         </div>
       </header>
+      {loading && (
+        <Loading/>)}
     </>
   );
 }
