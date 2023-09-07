@@ -1,7 +1,6 @@
 import { signOut } from "@/RTK/Slices/Global";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { SignIn } from "@/utils/SignIn";
-import { Divider } from "antd";
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -42,7 +41,6 @@ export default function Sidebar({ onClose }: props) {
           <p className="sidebar-text sidebar-text-btn">Profile</p>
         </Link>
       )}
-      <Divider className="dark:bg-bg_color-400 bg-bg_color-500 my-16" />
       {Owner === 0 && (
         <button
           id="42AuthSignIn"
