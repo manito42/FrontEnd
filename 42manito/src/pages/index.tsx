@@ -95,7 +95,7 @@ export default function Home() {
           <div className="home-text-header">당신을 기다리는 멘토들</div>
           <div className="home-category-wrapper">
             <div className="home-text-detail">
-              원하는 영역의 멘토를 골라보세요
+              원하는 영역의 멘토를 찾아보세요
             </div>
             <CategoryIconList
               categories={Categories}
