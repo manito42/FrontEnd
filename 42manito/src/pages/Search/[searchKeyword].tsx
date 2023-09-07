@@ -65,7 +65,7 @@ const Search: React.FC = () => {
         </div>
         <button
           onClick={scrollToTop}
-          className="fixed bottom-5 right-5 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold z-50"
+          className="fixed bottom-5 right-5 rounded-full bg-signature_color-500 hover:bg-signature_color-600 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold z-50"
         >
           ↑
         </button>

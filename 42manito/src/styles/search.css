@@ -6,5 +6,5 @@
 }
 
 .search-container {
-  @apply flex flex-col items-center justify-center w-[80%] md:w-[900px];
+  @apply flex flex-col items-center justify-center w-[80%] md:w-[600px] lg:w-[900px] mx-auto;
 }
