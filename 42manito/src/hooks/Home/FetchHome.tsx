@@ -16,7 +16,6 @@ export const useFetchHome = (categoryId?: number | undefined) => {
   };
 
   const fetchMoreData = () => {
-    console.log("fetchMoreData");
     getMentors({ take: 12, page: page + 1, category_id: categoryId });
     setPage(page + 1);
   };

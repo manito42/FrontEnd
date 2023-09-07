@@ -11,6 +11,7 @@
 @import "./cardhashtag.css";
 @import "./banner.css";
 @import "./layout.css";
+@import "./loading.css";
 /* @import "./about.css"; */
 
 ::-webkit-scrollbar {
