@@ -16,6 +16,7 @@ export const useFetchHome = (categoryId?: number | undefined) => {
   };
 
   const fetchMoreData = () => {
+    console.log("fetchMoreData");
     getMentors({ take: 12, page: page + 1, category_id: categoryId });
     setPage(page + 1);
   };
@@ -27,5 +28,5 @@ export const useFetchHome = (categoryId?: number | undefined) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
-  return { newMentor, isLoading, fetchNewCategory, fetchMoreData };
+  return { newMentor, fetchNewCategory, fetchMoreData };
 };

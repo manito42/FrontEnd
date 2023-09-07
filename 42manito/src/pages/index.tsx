@@ -27,9 +27,11 @@ export default function Home() {
   const [categoryId, setCategoryId] = React.useState<number>(0);
   const { data: Categories } = useGetCategoriesQuery();
   const currMentorState = useMentorModal();
-  const { newMentor, isLoading, fetchNewCategory, fetchMoreData } =
+  const { newMentor, fetchNewCategory, fetchMoreData } =
     useFetchHome(categoryId);
-  const [mentorList, setMentorList] = useState<MentorProfileDto[]>([]);
+  const [mentorList, setMentorList] = useState<MentorProfileDto[] | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
     if (OwnerId === 0) {
@@ -44,16 +46,17 @@ export default function Home() {
   }, [OwnerId, dispatch]);
 
   useEffect(() => {
-    fetchNewCategory();
     setHasMore(true);
+    fetchNewCategory();
+    setMentorList(undefined);
     return () => {
-      setMentorList([]);
+      setMentorList(undefined);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryId, dispatch]);
+  }, [categoryId]);
 
   useEffect(() => {
-    if (newMentor && !isLoading) {
+    if (newMentor) {
       if (newMentor.length < 12) {
         setHasMore(false);
       }
@@ -64,7 +67,7 @@ export default function Home() {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newMentor, isLoading]);
+  }, [newMentor]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -74,7 +77,6 @@ export default function Home() {
     setCategoryId(categoryId);
   };
 
-  console.log(hasMore);
   return (
     <Layout>
       <div className="app-container">
@@ -107,7 +109,7 @@ export default function Home() {
         </div>
         <div className="home-mentor-profile-list">
           {mentorList === undefined && (
-            <div className="mentor-cards-container h-[300px]">
+            <div className="mentor-cards-container">
               <Spin />
             </div>
           )}
@@ -123,12 +125,13 @@ export default function Home() {
               dataLength={mentorList.length}
               next={fetchMoreData}
               hasMore={hasMore}
+              scrollThreshold={0.9}
+              style={{ overflow: "hidden" }}
               loader={
-                <div className="mentor-cards-container h-[300px]">
+                <div className="flex justify-center">
                   <Spin />
                 </div>
               }
-              height={"100%"}
             >
               <div className="mentor-cards-container">
                 {mentorList.map((mentor) => (
