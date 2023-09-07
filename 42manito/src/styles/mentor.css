@@ -9,7 +9,7 @@
 }
 
 .mentor-cards-container {
-  @apply flex flex-wrap justify-center items-center w-full mb-10;
+  @apply flex flex-wrap justify-center items-start w-full mb-10 min-h-[300px];
 }
 
 .mentor-card-profile-info {

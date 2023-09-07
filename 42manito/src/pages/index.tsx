@@ -59,6 +59,8 @@ export default function Home() {
       }
       if (mentorList) {
         setMentorList([...mentorList, ...newMentor]);
+      } else {
+        setMentorList(newMentor);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -72,7 +74,7 @@ export default function Home() {
     setCategoryId(categoryId);
   };
 
-  // 아직 테스트해야할게 많음 특히 Auth, ProfileUpdate
+  console.log(hasMore);
   return (
     <Layout>
       <div className="app-container">
@@ -104,10 +106,16 @@ export default function Home() {
           </div>
         </div>
         <div className="home-mentor-profile-list">
-          {mentorList === undefined && <Spin />}
+          {mentorList === undefined && (
+            <div className="mentor-cards-container h-[300px]">
+              <Spin />
+            </div>
+          )}
           {mentorList && mentorList.length === 0 && (
             <div className="mentor-cards-container mt-10 mb-20">
-              {"해당 영역의 멘토가 존재하지 않습니다."}
+              <div className="flex justify-center items-center w-full">
+                해당 영역의 멘토가 존재하지 않습니다.
+              </div>
             </div>
           )}
           {mentorList && mentorList.length !== 0 && (
@@ -115,7 +123,11 @@ export default function Home() {
               dataLength={mentorList.length}
               next={fetchMoreData}
               hasMore={hasMore}
-              loader={<Spin />}
+              loader={
+                <div className="mentor-cards-container h-[300px]">
+                  <Spin />
+                </div>
+              }
               height={"100%"}
             >
               <div className="mentor-cards-container">
