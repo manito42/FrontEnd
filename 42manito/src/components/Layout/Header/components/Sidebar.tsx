@@ -8,9 +8,10 @@ import SearchInput from "@/components/Search/SearchInput";
 
 interface props {
   onClose: () => void;
+  onSignIn: () => void;
 }
 
-export default function Sidebar({ onClose }: props) {
+export default function Sidebar({ onClose, onSignIn }: props) {
   const Owner = useSelector(
     (state: RootState) => state.rootReducers.global.uId,
   );
@@ -46,6 +47,7 @@ export default function Sidebar({ onClose }: props) {
           id="42AuthSignIn"
           onClick={() => {
             onClose();
+            onSignIn();
             return SignIn();
           }}
         >

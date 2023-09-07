@@ -33,6 +33,9 @@ export default function Header() {
   const onClose = () => {
     setVisible(false);
   };
+  const handleLoading = () => {
+    setLoading(true);
+  }
 
   useEffect(() => {
     if (Owner === 0) {
@@ -84,7 +87,7 @@ export default function Header() {
             onClose={onClose}
             open={visible}
           >
-            <Sidebar onClose={onClose} />
+            <Sidebar onClose={onClose} onSignIn={handleLoading} />
           </Drawer>
         </div>
       </header>
