@@ -1,18 +1,20 @@
 import Layout from "../components/Layout/Layout";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import dynamic from "next/dynamic";
 import { initAllMentor } from "@/RTK/Slices/Home";
 import { signIn } from "@/RTK/Slices/Global";
-import HomeMentorList from "@/components/Home/MentorList";
 import { useMentorModal } from "@/hooks/Mentor/MentorModal";
 import { useFetchHome } from "@/hooks/Home/FetchHome";
 import ReservationRequests from "@/components/Home/ReservationRequests";
 import TopBanner from "@/components/Global/TopBanner";
 import { useGetCategoriesQuery } from "@/RTK/Apis/Category";
 import CategoryIconList from "@/components/Home/CategoryIconList";
-import Link from "next/link";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { Spin } from "antd";
+import MentorCard from "@/components/Mentor/Card";
+import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 
 const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
@@ -21,10 +23,15 @@ export default function Home() {
   const OwnerId = useSelector(
     (state: RootState) => state.rootReducers.global.uId,
   );
+  const [hasMore, setHasMore] = React.useState<boolean>(true);
   const [categoryId, setCategoryId] = React.useState<number>(0);
   const { data: Categories } = useGetCategoriesQuery();
   const currMentorState = useMentorModal();
-  const { allMentor, fetchNewCategory } = useFetchHome(categoryId);
+  const { newMentor, fetchNewCategory, fetchMoreData } =
+    useFetchHome(categoryId);
+  const [mentorList, setMentorList] = useState<MentorProfileDto[] | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
     if (OwnerId === 0) {
@@ -39,12 +46,28 @@ export default function Home() {
   }, [OwnerId, dispatch]);
 
   useEffect(() => {
+    setHasMore(true);
     fetchNewCategory();
+    setMentorList(undefined);
     return () => {
-      dispatch(initAllMentor());
+      setMentorList(undefined);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryId, dispatch]);
+  }, [categoryId]);
+
+  useEffect(() => {
+    if (newMentor) {
+      if (newMentor.length < 12) {
+        setHasMore(false);
+      }
+      if (mentorList) {
+        setMentorList([...mentorList, ...newMentor]);
+      } else {
+        setMentorList(newMentor);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newMentor]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -54,7 +77,6 @@ export default function Home() {
     setCategoryId(categoryId);
   };
 
-  // 아직 테스트해야할게 많음 특히 Auth, ProfileUpdate
   return (
     <Layout>
       <div className="app-container">
@@ -77,7 +99,7 @@ export default function Home() {
           <div className="home-text-header">당신을 기다리는 멘토들</div>
           <div className="home-category-wrapper">
             <div className="home-text-detail">
-              원하는 영역의 멘토를 골라보세요
+              원하는 영역의 멘토를 찾아보세요
             </div>
             <CategoryIconList
               categories={Categories}
@@ -86,20 +108,51 @@ export default function Home() {
           </div>
         </div>
         <div className="home-mentor-profile-list">
-          <HomeMentorList allMentor={allMentor}>
-            <div className="home-mentor-profile-footer">
-              <Link
-                href="/Categories"
-                className="home-mentor-profile-footer-text"
-              >
-                {"더 많은 멘토 보기 >>"}{" "}
-              </Link>
+          {mentorList === undefined && (
+            <div className="mentor-cards-container">
+              <Spin />
             </div>
-          </HomeMentorList>
+          )}
+          {mentorList && mentorList.length === 0 && (
+            <div className="mentor-cards-container mt-10 mb-20">
+              <div className="flex justify-center items-center w-full">
+                해당 영역의 멘토가 존재하지 않습니다.
+              </div>
+            </div>
+          )}
+          {mentorList && mentorList.length !== 0 && (
+            <InfiniteScroll
+              dataLength={mentorList.length}
+              next={fetchMoreData}
+              hasMore={hasMore}
+              scrollThreshold={0.9}
+              style={{ overflow: "hidden" }}
+              loader={
+                <div className="flex justify-center">
+                  <Spin />
+                </div>
+              }
+            >
+              <div className="mentor-cards-container">
+                {mentorList.map((mentor) => (
+                  <MentorCard data={mentor} key={mentor.id} />
+                ))}
+              </div>
+            </InfiniteScroll>
+          )}
         </div>
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />
         )}
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-5 right-5 rounded-full
+                bg-signature_color-500 dark:bg-signature_color-600
+                hover:bg-signature_color-600 dark:hover:bg-signature_color-500
+                text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold z-50"
+        >
+          ↑
+        </button>
       </div>
     </Layout>
   );

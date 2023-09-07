@@ -1,22 +1,20 @@
 header {
-  @apply bg-bg_color-200 dark:bg-bg_color-900 pt-2 md:pt-0;
+  @apply bg-bg_color-200 dark:bg-bg_color-900 md:pt-0;
+
   .layout-header {
-    @apply text-bg_color-600
+    @apply text-bg_color-600 grow
         w-full
         z-[10];
   }
 
   .layout-header-container {
-    @apply mx-auto py-2 flex flex-wrap
-          flex-col md:flex-row items-center justify-between
+    @apply mx-auto py-2 flex flex-wrap relative
+          flex-row items-center justify-center
           w-[90%] md:w-[600px] lg:w-[900px];
   }
   .layout-sidebar-btn {
-    @apply fixed bottom-5 right-5
-          flex justify-center items-center
-          rounded-full
-          bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 dark:hover:bg-signature_color-700
-          w-[4vw] h-[4vw] min-w-[55px] min-h-[55px]
+    @apply flex justify-center items-center
+          w-[1vw] h-[1vw] min-w-[35px] min-h-[35px]
           z-50;
   }
 }
@@ -39,4 +37,17 @@ footer {
 
 .sidebar-text-btn:hover {
   @apply text-indigo-500 transition-all scale-x-110 scale-y-110;
+}
+
+.layout {
+  @apply min-h-screen flex flex-col justify-between items-stretch;
+}
+
+.svg-side-bar {
+  @apply fill-bg_color-900 dark:fill-bg_color-200;
+}
+
+/* main wrapper */
+.app-container {
+  @apply flex flex-col justify-start items-center bg-bg_color-50 dark:bg-bg_color-800 grow;
 }

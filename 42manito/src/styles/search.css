@@ -1,11 +1,10 @@
+.search-input-wrapper {
+  @apply mt-5;
+}
 .search-header-text {
   @apply text-lg font-bold text-bg_color-800 dark:text-bg_color-200 m-5 whitespace-pre;
 }
 
 .search-container {
-  @apply flex flex-col items-center justify-center w-[80%] md:w-[900px];
-}
-
-.mentor-cards-container {
-  @apply flex flex-wrap justify-center items-center w-full;
+  @apply flex flex-col items-center justify-center w-[80%] md:w-[600px] lg:w-[900px] mx-auto;
 }

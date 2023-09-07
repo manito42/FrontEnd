@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useFetchSearch } from "@/hooks/Search/FetchSearch";
+import SearchInput from "@/components/Search/SearchInput";
 
 const Search: React.FC = () => {
   const router = useRouter();
@@ -42,7 +43,10 @@ const Search: React.FC = () => {
     <>
       <Layout>
         <div className="app-container">
-          <div className="search-header-text">
+          <div className="search-input-wrapper">
+            <SearchInput />
+          </div>
+          <div className="search-header-text items-center">
             <span className="text-bg_color-400">{`"${searchKeyword}"`} </span>
             {"  검색 결과"}
           </div>
@@ -61,7 +65,7 @@ const Search: React.FC = () => {
         </div>
         <button
           onClick={scrollToTop}
-          className="fixed bottom-5 right-5 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold z-50"
+          className="fixed bottom-5 right-5 rounded-full bg-signature_color-500 hover:bg-signature_color-600 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold z-50"
         >
           ↑
         </button>
