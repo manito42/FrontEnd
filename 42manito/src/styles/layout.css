@@ -1,5 +1,6 @@
 header {
-  @apply bg-bg_color-200 dark:bg-bg_color-900 pt-2 md:pt-0;
+  @apply bg-bg_color-200 dark:bg-bg_color-900 md:pt-0;
+
   .layout-header {
     @apply text-bg_color-600 grow
         w-full
