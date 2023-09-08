@@ -1,23 +1,30 @@
 /* Top Banner */
 .top-banner-wrapper {
-  @apply relative flex flex-wrap w-full h-[250px] bg-black
-    justify-center;
-  background-image: url("../../public/banner.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  @apply relative flex flex-wrap w-full h-[300px]
+  border-t border-b border-bg_color-200 dark:border-bg_color-900
+  justify-center;
 }
 
 .top-banner-container {
-  @apply flex flex-col justify-end
-    ml-10 mb-10 w-[90%] lg:w-[900px]
-    text-white;
+  @apply flex flex-col md:flex-row-reverse justify-between
+    w-[90%] lg:w-[900px]
 }
 
+.top-banner-left {
+  @apply ml-10 mb-10 flex flex-col justify-end
+    cursor-pointer
+}
+.top-banner-right{
+  @apply flex items-center justify-center h-full;
+}
+
+.top-banner-head {
+  @apply font-light text-sm;
+}
 .top-banner-title {
-  @apply font-bold text-2xl;
+  @apply font-bold text-2xl mb-1;
 }
 
 .top-banner-description {
-  @apply font-light text-lg;
+  @apply font-light text-base;
 }

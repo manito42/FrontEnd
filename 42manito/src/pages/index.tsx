@@ -77,13 +77,23 @@ export default function Home() {
     setCategoryId(categoryId);
   };
 
+  // 별도로 운영자가 밖에서 들고와서  완리할 수 있게 해두면 좋을 것 같음
+  const banner = {
+    head: "가이드",
+    title: "마니또가 처음이신가요?",
+    description: "가이드와 함께 멘토링을 시작해보세요!",
+    link: "/Guide",
+    backgroundColor: "bg-signature_color-500",
+    textColor: "text-white",
+    image: "/guide.png",
+    license:
+      "https://kor.pngtree.com/freepng/meb-map-guide_4462396.html' 의 PNG 이미지 kor.pngtree.com",
+  };
+
   return (
     <Layout>
       <div className="app-container">
-        <TopBanner
-          title="42를 위한 멘토링 플랫폼"
-          description="42 마니또 (임시 배너 입니다. 다른 컴포넌트 들어올 수도 있습니다.)"
-        />
+        <TopBanner banner={banner} />
         <div className="home">
           <div className="temp-spacer">
             {OwnerId !== 0 && (
