@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "@/RTK/store";
+import CardHashtag from "@/components/Global/CardHashtag";
 
 const RequestsWrapper = () => {
     const Mentor = useSelector(
@@ -27,24 +28,24 @@ const RequestsWrapper = () => {
             {"<"}
           </div>
           <div className="overflow-x-scroll overflow-y-hidden whitespace-nowrap
-                              w-[55vw] bg-[#475569] flex-nowrap flex-row
+                              w-[55vw] h-50 flex-nowrap flex-row
                               justify-center items-center" id="scroll">
               {!Mentor ? "" : Mentor.map((data, index) => (
-                  <div key={index} className="h-[35vh] w-[175px] lg:w-[225px] mt-[3.5rem]
+                  <div key={index} className="h-40 w-30 lg:w-36 mt-[1rem]
                                                 mx-5 rounded-xl bg-[#374151] inline-block
                                                 shadow-2xl">
                       <div className="flex flex-row justify-between mt-4">
-                          <div className="w-[50px] bg-amber-400 inline-block text-center rounded-2xl ml-4">
-                              멘토
+                          <div className="w-12 h-5 bg-amber-400 text-center rounded-2xl ml-4">
+                            <span>멘토</span>
                           </div>
-                          <div className="w-[50px] bg-green-600 inline-block text-center rounded-2xl mr-4">
-                              진행중
+                          <div className="w-12 h-5 bg-green-600 text-center rounded-2xl mr-4">
+                            <span>진행중</span>
                           </div>
                       </div>
                       <div className="flex justify-center items-center">
                           <div className="relative z-[100] -top-5 flex justify-center items-center">
                               {data ? <Image
-                                  className="shadow-xl rounded-full align-middle border-none m-[4rem] md:mt-20 lg:mx-6 lg:mt-[4rem] object-cover w-[13vh] h-[13vh] md:w-[8vw] md:h-[8vw]"
+                                  className="shadow-xl rounded-full align-middle border-none m-[4rem] md:mt-20 lg:mx-6 lg:mt-10 object-cover w-[13vh] h-[13vh] md:w-10 md:h-10"
                                   src={data.user.profileImage}
                                   alt="..."
                                   width={100}
@@ -57,16 +58,22 @@ const RequestsWrapper = () => {
                               {data ? data.user.nickname : ""}
                           </div>
                       </div>
-                      <div className="flex flex-row mb-4 mt-2">
-                          <div>
-                              a
-                          </div>
-                          <div>
-                              b
-                          </div>
-                          <div>
-                              c
-                          </div>
+                      <div className="flex flex-row mb-1 -mt-3">
+                        {data.hashtags.length > 0
+                            ? data.hashtags.map((hashtag) => (
+                                <CardHashtag
+                                    name={hashtag.name}
+                                    key={hashtag.id}
+                                    color={"sky"}
+                                />
+                            ))
+                            : data.categories.map((hashtag) => (
+                                <CardHashtag
+                                    name={hashtag.name}
+                                    key={hashtag.id}
+                                    color={"sky"}
+                                />
+                            ))}
                       </div>
                   </div>
               ))}
