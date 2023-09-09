@@ -23,12 +23,12 @@ const RequestsWrapper = () => {
       }
     }, [scrollNumber])
     return (
-        <div className="flex justify-between">
-          <div className="w-100px h-100px z-10 relative" onClick={() => setScrollNumber(scrollNumber - 400)}>
+        <div className="flex justify-between -ml-12">
+          <div className="z-10 relative top-16 right-5 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold" onClick={() => setScrollNumber(scrollNumber - 400)}>
             {"<"}
           </div>
           <div className="overflow-x-scroll overflow-y-hidden whitespace-nowrap
-                              w-[55vw] h-50 flex-nowrap flex-row
+                              w-[52rem] h-50 flex-nowrap flex-row
                               justify-center items-center" id="scroll">
               {!Mentor ? "" : Mentor.map((data, index) => (
                   <div key={index} className="h-40 w-30 lg:w-36 mt-[1rem]
@@ -78,7 +78,7 @@ const RequestsWrapper = () => {
                   </div>
               ))}
             </div>
-          <div className="w-100px h-100px z-10 relative" onClick={() => setScrollNumber(scrollNumber + 400)}>
+          <div className="w-100px h-100px z-10 relative top-16 left-5 text-white text-center w-[4vw] h-[4vw] min-w-[55px] min-h-[55px] text-4xl font-bold" onClick={() => setScrollNumber(scrollNumber + 400)}>
             {">"}
           </div>
         </div>
