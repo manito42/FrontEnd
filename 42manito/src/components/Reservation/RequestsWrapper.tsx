@@ -1,7 +1,5 @@
-import { useFetchHome } from "@/hooks/Home/FetchHome";
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
-import {MentorProfileDto} from "@/Types/MentorProfiles/MentorProfile.dto";
 import {useSelector} from "react-redux";
 import {RootState} from "@/RTK/store";
 
@@ -11,26 +9,25 @@ const RequestsWrapper = () => {
     );
     const [scrollNumber, setScrollNumber] = useState(0);
     useEffect(() => {
-        const scrollbar = document.getElementById("scroll");
-      if (scrollNumber < 0)
-        setScrollNumber(0);
-      else if (scrollNumber > scrollbar.scrollWidth)
-        setScrollNumber(scrollbar.scrollWidth);
-      else
-        scrollbar.scrollLeft = scrollNumber;
-      console.log(scrollNumber);
-      console.log(scrollbar.scrollWidth)
+      const scrollbar = document.getElementById("scroll");
+      if (scrollbar){
+        if (scrollNumber < 0)
+          setScrollNumber(0);
+        else if (scrollNumber > scrollbar.scrollWidth)
+          setScrollNumber(scrollbar.scrollWidth);
+        else
+          scrollbar.scrollLeft = scrollNumber;
+        console.log(scrollNumber);
+        console.log(scrollbar.scrollWidth)
+      }
     }, [scrollNumber])
     return (
-        <>
-          <div className="bg-red-500 w-100px h-100px" onClick={() => setScrollNumber(scrollNumber + 400)}>
-            RightButton
-          </div>
-          <div className="bg-blue-500 w-100px h-100px" onClick={() => setScrollNumber(scrollNumber - 400)}>
-            LeftButton
+        <div className="flex justify-between">
+          <div className="w-100px h-100px z-10 relative" onClick={() => setScrollNumber(scrollNumber - 400)}>
+            {"<"}
           </div>
           <div className="overflow-x-scroll overflow-y-hidden whitespace-nowrap
-                              w-[80vw] h-[50vh] bg-[#475569] flex-nowrap flex-row
+                              w-[55vw] bg-[#475569] flex-nowrap flex-row
                               justify-center items-center" id="scroll">
               {!Mentor ? "" : Mentor.map((data, index) => (
                   <div key={index} className="h-[35vh] w-[175px] lg:w-[225px] mt-[3.5rem]
@@ -74,7 +71,10 @@ const RequestsWrapper = () => {
                   </div>
               ))}
             </div>
-        </>
+          <div className="w-100px h-100px z-10 relative" onClick={() => setScrollNumber(scrollNumber + 400)}>
+            {">"}
+          </div>
+        </div>
 );
 };
 
