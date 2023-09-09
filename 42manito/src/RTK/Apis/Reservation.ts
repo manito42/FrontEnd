@@ -1,5 +1,4 @@
-import { EnrollReqDto } from "@/Types/Enroll/EnrollReq.dto";
-import { EnrollResDto } from "@/Types/Enroll/EnrollRes.dto";
+import { UserReservationReqDto } from "@/Types/UserReservation/UserReservationReqDto";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 import { ReservationPatchAcceptDto } from "@/Types/Reservations/ReservationPatchAccept.dto";
 import { ReservationPatchCancelReqDto } from "@/Types/Reservations/ReservationPatchCancelReq.dto";
@@ -8,20 +7,33 @@ import { ReservationPatchMentorCompletionDto } from "@/Types/Reservations/Reserv
 import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
+import { UserReservationResDto } from "@/Types/UserReservation/UserReservationResDto";
 
-export const enrollApi = createApi({
-  reducerPath: "enrollApi",
+export const reservationApi = createApi({
+  reducerPath: "reservationApi",
   baseQuery: BaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_DEV_URL}`,
   }),
-  tagTypes: ["Enroll"],
+  tagTypes: ["Reservation"],
   endpoints: (builder) => ({
-    // enroll REQUEST, ACCEPT, PENDING 만 가져오기
-    getActiveMentorEnrollment: builder.mutation<
-      ReservationDefaultDto[],
-      EnrollReqDto
+    // request = REQUEST, ACCEPT, MENTEE_CHECKED
+    getRequestReservations: builder.query<
+      UserReservationResDto,
+      { id: number }
     >({
-      query: (args: EnrollReqDto) => {
+      query: ({ id }) => {
+        return {
+          url: `/users/${id}/reservations/request`,
+          method: "GET",
+        };
+      },
+    }),
+    // active = NOT DONE, NOT CANCEL
+    getActiveReservation: builder.query<
+      UserReservationResDto,
+      UserReservationReqDto
+    >({
+      query: (args: UserReservationReqDto) => {
         return {
           url: `/users/${args.id}/reservations?take=${args.take}&page=${
             args.page
@@ -30,11 +42,11 @@ export const enrollApi = createApi({
         };
       },
     }),
-    getActiveMenteeEnrollment: builder.mutation<
-      ReservationDefaultDto[],
-      EnrollReqDto
+    getActiveMenteeReservation: builder.query<
+      UserReservationResDto,
+      UserReservationReqDto
     >({
-      query: (args: EnrollReqDto) => {
+      query: (args: UserReservationReqDto) => {
         return {
           url: `/users/${args.id}/reservations?take=${args.take}&page=${
             args.page
@@ -43,11 +55,11 @@ export const enrollApi = createApi({
         };
       },
     }),
-    getAllMentorEnrollment: builder.mutation<
-      ReservationDefaultDto[],
-      EnrollReqDto
+    getAllMentorReservation: builder.query<
+      UserReservationResDto,
+      UserReservationReqDto
     >({
-      query: (args: EnrollReqDto) => {
+      query: (args: UserReservationReqDto) => {
         return {
           url: `/users/${args.id}/reservations?take=${args.take}&page=${
             args.page
@@ -56,11 +68,11 @@ export const enrollApi = createApi({
         };
       },
     }),
-    getAllMenteeEnrollment: builder.mutation<
-      ReservationDefaultDto[],
-      EnrollReqDto
+    getAllMenteeReservation: builder.query<
+      UserReservationResDto,
+      UserReservationReqDto
     >({
-      query: (args: EnrollReqDto) => {
+      query: (args: UserReservationReqDto) => {
         return {
           url: `/users/${args.id}/reservations?take=${args.take}&page=${
             args.page
@@ -87,7 +99,7 @@ export const enrollApi = createApi({
           },
         };
       },
-      invalidatesTags: [{ type: "Enroll", id: "LIST" }],
+      invalidatesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     /** 멘토가 멘토링 수락 */
     patchReservationAccept: builder.mutation<
@@ -100,7 +112,7 @@ export const enrollApi = createApi({
           method: "PATCH",
         };
       },
-      invalidatesTags: [{ type: "Enroll", id: "LIST" }],
+      invalidatesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     /** 예약 취소 */
     patchReservationCancel: builder.mutation<
@@ -113,7 +125,7 @@ export const enrollApi = createApi({
           method: "PATCH",
         };
       },
-      invalidatesTags: [{ type: "Enroll", id: "LIST" }],
+      invalidatesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     // mentee가 피드백 버튼을 누르면 하는 곳
     patchReservationMenteeFeedback: builder.mutation<
@@ -127,7 +139,7 @@ export const enrollApi = createApi({
           data: { rating: args.rating, content: args.content },
         };
       },
-      invalidatesTags: [{ type: "Enroll", id: "LIST" }],
+      invalidatesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     patchReservationDone: builder.mutation<
       ReservationDefaultDto,
@@ -140,19 +152,20 @@ export const enrollApi = createApi({
           data: { rating: args.rating },
         };
       },
-      invalidatesTags: [{ type: "Enroll", id: "LIST" }],
+      invalidatesTags: [{ type: "Reservation", id: "LIST" }],
     }),
   }),
 });
 
 export const {
-  useGetActiveMentorEnrollmentMutation,
-  useGetActiveMenteeEnrollmentMutation,
-  useGetAllMenteeEnrollmentMutation,
-  useGetAllMentorEnrollmentMutation,
+  useGetRequestReservationsQuery,
+  useGetActiveReservationQuery,
+  useGetActiveMenteeReservationQuery,
+  useGetAllMenteeReservationQuery,
+  useGetAllMentorReservationQuery,
   usePostReservationRequestMutation,
   usePatchReservationAcceptMutation,
   usePatchReservationCancelMutation,
   usePatchReservationMenteeFeedbackMutation,
   usePatchReservationDoneMutation,
-} = enrollApi;
+} = reservationApi;

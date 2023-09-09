@@ -1,4 +1,4 @@
-export interface EnrollReqDto {
+export interface UserReservationReqDto {
   id: number; // Uid
   take?: number;
   page?: number;

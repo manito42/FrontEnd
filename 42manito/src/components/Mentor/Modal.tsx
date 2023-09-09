@@ -2,7 +2,7 @@ import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-import { usePostReservationRequestMutation } from "@/RTK/Apis/Enroll";
+import { usePostReservationRequestMutation } from "@/RTK/Apis/Reservation";
 import { initMentorConnect } from "@/RTK/Slices/MentorConnect";
 import ConnectModal from "../Connect/ConnectModal";
 import UserProfile from "@/components/Profile/UserProfile";
@@ -95,16 +95,15 @@ const MentorModal = () => {
           {
             <UserProfile UserId={userId}>
               <div className="connect-btn-container">
-                {
-                  Owner !== currentMentorState.currMentor.user.id && (
-                    <button
-                      className="connect-btn"
-                      type="button"
-                      onClick={() => handleConnectOpen()}
-                    >
-                      멘토링 요청
-                    </button>
-                  )}
+                {Owner !== currentMentorState.currMentor.user.id && (
+                  <button
+                    className="connect-btn"
+                    type="button"
+                    onClick={() => handleConnectOpen()}
+                  >
+                    멘토링 요청
+                  </button>
+                )}
               </div>
               <button className="close-btn" onClick={handleZoomOut}>
                 닫기

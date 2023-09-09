@@ -1,0 +1,8 @@
+export const enum ReservationStatus {
+  REQUEST = "REQUEST",
+  ACCEPT = "ACCEPT",
+  CANCEL = "CANCEL",
+  MENTEE_CHECKED = "MENTEE_CHECKED",
+  MENTEE_FEEDBACK = "MENTEE_FEEDBACK",
+  DONE = "DONE",
+}

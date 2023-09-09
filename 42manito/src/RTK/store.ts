@@ -5,7 +5,7 @@ import { rootReducer } from "./rootReducer";
 import { homeApi } from "./Apis/Home";
 import { categoryApi } from "./Apis/Category";
 import { authApi } from "./Apis/Auth";
-import { enrollApi } from "./Apis/Enroll";
+import { reservationApi } from "./Apis/Reservation";
 import { searchApi } from "./Apis/Search";
 import signInMiddleware from "./Middleware/signInMiddleware";
 import { hashtagApi } from "@/RTK/Apis/Hashtag";
@@ -19,7 +19,7 @@ export const makeServerStore = () => {
       [hashtagApi.reducerPath]: hashtagApi.reducer,
       [categoryApi.reducerPath]: categoryApi.reducer,
       [authApi.reducerPath]: authApi.reducer,
-      [enrollApi.reducerPath]: enrollApi.reducer,
+      [reservationApi.reducerPath]: reservationApi.reducer,
       [searchApi.reducerPath]: searchApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
@@ -29,7 +29,7 @@ export const makeServerStore = () => {
         .concat(hashtagApi.middleware)
         .concat(categoryApi.middleware)
         .concat(authApi.middleware)
-        .concat(enrollApi.middleware)
+        .concat(reservationApi.middleware)
         .concat(searchApi.middleware)
         .prepend(signInMiddleware),
   });
