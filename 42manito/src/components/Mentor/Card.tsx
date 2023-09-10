@@ -22,7 +22,7 @@ const MentorCard = ({ data }: props) => {
 
   return (
     <>
-      <div className="mentor-card" onClick={() => openMentorModal(data)}>
+      <div className="mentor-card card" onClick={() => openMentorModal(data)}>
         <div className="mentor-card-profile-info">
           <div className="mentor-card-image-holder">
             <Image

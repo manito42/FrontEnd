@@ -418,3 +418,9 @@ p {
 .ant-select-selection-placeholder {
   @apply dark:text-bg_color-200;
 }
+
+/* card color */
+.card {
+  @apply bg-bg_color-100 border border-bg_color-200
+          dark:bg-bg_color-600  dark:border-bg_color-700
+}
