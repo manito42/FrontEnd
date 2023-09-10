@@ -7,7 +7,7 @@ import { initAllMentor } from "@/RTK/Slices/Home";
 import { signIn } from "@/RTK/Slices/Global";
 import { useMentorModal } from "@/hooks/Mentor/MentorModal";
 import { useFetchHome } from "@/hooks/Home/FetchHome";
-import ReservationRequests from "@/components/Home/ReservationRequests";
+import ReservationRequests from "@/components/Home/Reservation/ReservationRequests";
 import TopBanner from "@/components/Global/TopBanner";
 import { useGetCategoriesQuery } from "@/RTK/Apis/Category";
 import CategoryIconList from "@/components/Home/CategoryIconList";

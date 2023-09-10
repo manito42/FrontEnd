@@ -1,14 +1,84 @@
 .reservation-requests-wrapper {
-  @apply flex justify-center items-center
-        w-[100%] md:w-full md:px-5 py-5;
+  @apply flex flex-row overflow-x-scroll justify-center items-center
+        w-[100%]  md:px-5 py-5;
+    .reservation-requests-scroll {
+        @apply flex flex-row justify-between
+            z-10;
+    }
 }
 
 .reservation-requests-container {
-  @apply flex
-        h-[200px]
+  @apply flex flex-row overflow-x-scroll scroll-smooth
+        justify-start
+        items-center
+        h-[280px]
         w-[90%] md:w-full
         bg-bg_color-50 dark:bg-bg_color-700
         border
         border-bg_color-300 dark:border-bg_color-700
         rounded-xl;
+}
+
+.reservation-card {
+    @apply flex flex-col justify-center items-center
+        min-w-[160px] h-[250px] px-2 py-4 mx-[10px]
+        rounded-xl shadow-lg;
+}
+
+.reservation-card-status-container {
+    @apply flex flex-wrap flex-row justify-center items-center
+        overflow-hidden
+        w-[95%] h-[20%];
+    .reservation-card-status {
+        @apply rounded-full px-3 py-1
+        text-xs text-white text-center
+        mb-2;
+    }
+    /* status */
+    .REQUEST {
+        @apply bg-red-400 dark:bg-red-500;
+    }
+    .ACCEPT,
+    .MENTEE_CHECKED{
+        @apply bg-green-500 dark:bg-green-600;
+    }
+    .CANCEL {
+        @apply bg-neutral-400 dark:bg-neutral-700;
+    }
+    .MENTEE_FEEDBACK {
+        @apply bg-purple-500 dark:bg-purple-600;
+    }
+    .DONE {
+        @apply bg-neutral-500 dark:bg-neutral-800;
+    }
+}
+
+.reservation-card-user-info {
+    @apply flex flex-col justify-center items-center
+        w-[90%] h-[60%];
+
+    .reservation-card-image-holder {
+        @apply w-[100%] flex justify-center items-center;
+    }
+
+    .reservation-card-image {
+        @apply w-[80px] h-[80px] rounded-full object-cover
+            mb-2;
+    }
+
+    .reservation-card-nickname {
+        @apply flex items-center justify-center
+            w-[100%] h-[20%]
+            text-base font-bold truncate overflow-ellipsis
+            text-bg_color-800 dark:text-bg_color-200;
+    }
+    .reservation-card-role {
+        @apply text-black dark:text-white
+            font-light text-xs;
+    }
+}
+
+.reservation-card-hashtags {
+    @apply  flex flex-wrap flex-row h-[20%]
+            overflow-hidden justify-center items-center px-2;
 }
