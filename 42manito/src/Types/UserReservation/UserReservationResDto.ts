@@ -1,6 +1,6 @@
 import { ReservationDefaultDto } from "../Reservations/ReservationDefault.dto";
 
-export interface EnrollResDto {
+export interface UserReservationResDto {
   menteeReservations: ReservationDefaultDto[];
   mentorReservations: ReservationDefaultDto[];
 }
