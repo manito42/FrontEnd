@@ -16,6 +16,7 @@ const Category = () => {
   );
 
   const onOpen = (id: number) => {
+    window.history.pushState(null, "");
     setIsVisible(true);
     setCategoryId(id);
   };
@@ -38,6 +39,15 @@ const Category = () => {
         htmlElement.style.overflowY = "unset";
       }
     }
+
+    window.onpopstate = () => {
+      if (isVisible) onClose();
+      else window.history.back();
+    };
+
+    return () => {
+      window.onpopstate = null;
+    };
   }, [isVisible]);
 
   return (

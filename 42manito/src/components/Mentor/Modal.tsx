@@ -1,32 +1,35 @@
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { RootState, useAppDispatch } from "@/RTK/store";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { usePostReservationRequestMutation } from "@/RTK/Apis/Reservation";
 import { initMentorConnect } from "@/RTK/Slices/MentorConnect";
 import ConnectModal from "../Connect/ConnectModal";
 import UserProfile from "@/components/Profile/UserProfile";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
+import { useConnectModal } from "@/hooks/Mentor/ConnectModal";
 
 const MentorModal = () => {
   const [closeAnimation, setCloseAnimation] = useState(false);
   const dispatch = useAppDispatch();
   const currentMentorState = useSelector(
-    (state: RootState) => state.rootReducers.currMentor,
+    (state: RootState) => state.rootReducers.currMentor
   );
 
   const userId = currentMentorState.currMentor.user.id;
   const Owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const connectState = useSelector(
-    (state: RootState) => state.rootReducers.mentorConnect,
+    (state: RootState) => state.rootReducers.mentorConnect
   );
-  const openConnectModal = useSelector(
-    (state: RootState) => state.rootReducers.currMentor.openConnectModal,
-  );
+  //const openConnectModal = useSelector(
+  //  (state: RootState) => state.rootReducers.currMentor.openConnectModal
+  //);
+  const openConnectModal = useConnectModal();
 
   const [postReservation] = usePostReservationRequestMutation();
+
   const handleZoomOut = () => {
     if (openConnectModal) {
       dispatch(CurrMentorSlice.actions.closeConnectModal());

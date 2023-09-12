@@ -1,9 +1,10 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import Image from "next/image";
-import { useAppDispatch } from "@/RTK/store";
+import { RootState, useAppDispatch } from "@/RTK/store";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import CardHashtag from "@/components/Global/CardHashtag";
+import { useSelector } from "react-redux";
 
 interface props {
   data: MentorProfileDto;

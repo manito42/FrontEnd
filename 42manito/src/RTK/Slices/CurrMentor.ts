@@ -6,6 +6,7 @@ interface currMentorType {
   openMentorModal: boolean;
   zoomOut: boolean;
   openConnectModal: boolean;
+  modalStack: string[];
 }
 
 const InitialState: currMentorType = {
@@ -13,6 +14,7 @@ const InitialState: currMentorType = {
   openMentorModal: false,
   zoomOut: false,
   openConnectModal: false,
+  modalStack: [],
 };
 
 export const CurrMentorSlice = createSlice({
@@ -24,18 +26,49 @@ export const CurrMentorSlice = createSlice({
     },
     openMentorModal(state) {
       state.openMentorModal = true;
+      state.modalStack.push("mentor");
+      window.history.pushState(null, "");
     },
     closeMentorModal(state) {
-      state.openMentorModal = false;
+      if (state.openMentorModal) {
+        state.openMentorModal = false;
+        const index = state.modalStack.lastIndexOf("mentor");
+        if (index !== -1) {
+          state.modalStack.splice(index, 1);
+        }
+      }
     },
     handleZoomOut(state, action: PayloadAction<boolean>) {
       state.zoomOut = action.payload;
     },
     openConnectModal(state) {
       state.openConnectModal = true;
+      state.modalStack.push("connect");
+      window.history.pushState(null, "");
     },
     closeConnectModal(state) {
-      state.openConnectModal = false;
+      if (state.openConnectModal) {
+        state.openConnectModal = false;
+        const index = state.modalStack.lastIndexOf("connect");
+        if (index !== -1) {
+          state.modalStack.splice(index, 1);
+        }
+      }
+    },
+    handlePopState(state, action: PayloadAction<PopStateEvent>) {
+      if (state.modalStack.length > 0) {
+        const lastModal = state.modalStack.pop();
+        console.log("Closing modal:", lastModal); // Add this line
+
+        if (lastModal === "mentor") {
+          state.openMentorModal = false;
+        } else if (lastModal === "connect") {
+          state.openConnectModal = false;
+        }
+
+        // Prevent the default back action
+        window.history.pushState(null, "");
+      }
     },
     deleteMentor(state) {
       state = InitialState;

@@ -21,7 +21,7 @@ const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 export default function Home() {
   const dispatch = useAppDispatch();
   const OwnerId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const [hasMore, setHasMore] = React.useState<boolean>(true);
   const [categoryId, setCategoryId] = React.useState<number>(0);
@@ -30,7 +30,7 @@ export default function Home() {
   const { newMentor, fetchNewCategory, fetchMoreData } =
     useFetchHome(categoryId);
   const [mentorList, setMentorList] = useState<MentorProfileDto[] | undefined>(
-    undefined,
+    undefined
   );
 
   useEffect(() => {
