@@ -26,7 +26,7 @@ export default function Home() {
   const [hasMore, setHasMore] = React.useState<boolean>(true);
   const [categoryId, setCategoryId] = React.useState<number>(0);
   const { data: Categories } = useGetCategoriesQuery();
-  const currMentorState = useMentorModal();
+  const { currMentorState } = useMentorModal();
   const { newMentor, fetchNewCategory, fetchMoreData } =
     useFetchHome(categoryId);
   const [mentorList, setMentorList] = useState<MentorProfileDto[] | undefined>(

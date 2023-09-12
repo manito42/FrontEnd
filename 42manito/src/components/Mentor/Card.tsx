@@ -5,6 +5,8 @@ import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import CardHashtag from "@/components/Global/CardHashtag";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { useModalOpenClose } from "@/hooks/Mentor/modalOpenClose";
 
 interface props {
   data: MentorProfileDto;
@@ -14,11 +16,13 @@ const MentorCard = ({ data }: props) => {
   const dispatch = useAppDispatch();
   const { nickname, profileImage } = data.user;
   const { shortDescription, hashtags, categories } = data;
+  const router = useRouter();
+  const { handleMentorModalOpen } = useModalOpenClose();
 
   const openMentorModal = (data: MentorProfileDto) => {
     dispatch(CurrMentorSlice.actions.deleteMentor());
     dispatch(CurrMentorSlice.actions.setMentor(data));
-    dispatch(CurrMentorSlice.actions.openMentorModal());
+    handleMentorModalOpen();
   };
 
   return (

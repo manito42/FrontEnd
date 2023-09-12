@@ -1,13 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { useRouter } from "next/router";
+import { useModalOpenClose } from "./modalOpenClose";
 
 export const useMentorModal = () => {
   const currMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
   const dispatch = useDispatch();
+  const router = useRouter();
+  const isConnectModalOpen = currMentorState.openConnectModal;
+  const isOpen = currMentorState.openMentorModal;
+  const [closeAnimation, setCloseAnimation] = useState(false);
+  const {
+    handleMentorModalOpen,
+    handleMentorModalClose,
+    handleConnectModalClose,
+  } = useModalOpenClose();
 
   useEffect(() => {
     const htmlElement = document.querySelector("html");
@@ -24,14 +35,28 @@ export const useMentorModal = () => {
     }
   }, [currMentorState.openMentorModal, dispatch]);
 
+  const handleZoomOut = () => {
+    console.log("handleZoomOut");
+    if (isConnectModalOpen) {
+      handleConnectModalClose();
+      return;
+    }
+    setCloseAnimation(true);
+    setTimeout(() => {
+      setCloseAnimation(false);
+      handleMentorModalClose();
+    }, 300);
+  };
+
   useEffect(() => {
-    const handlePopStateEvent = (event: PopStateEvent) => {
-      dispatch(CurrMentorSlice.actions.handlePopState(event));
-    };
-    window.addEventListener("popstate", handlePopStateEvent);
+    if (router.query.mentorModal === "true" && !isOpen) {
+      handleMentorModalOpen();
+    }
 
-    return () => window.removeEventListener("popstate", handlePopStateEvent);
-  }, []);
+    if (router.query.mentorModal !== "true" && isOpen) {
+      handleZoomOut();
+    }
+  }, [router.query.mentorModal]);
 
-  return currMentorState;
+  return { currMentorState, handleZoomOut, closeAnimation };
 };

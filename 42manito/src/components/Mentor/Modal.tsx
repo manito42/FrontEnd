@@ -1,6 +1,6 @@
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { RootState, useAppDispatch } from "@/RTK/store";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { use, useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { usePostReservationRequestMutation } from "@/RTK/Apis/Reservation";
 import { initMentorConnect } from "@/RTK/Slices/MentorConnect";
@@ -8,6 +8,8 @@ import ConnectModal from "../Connect/ConnectModal";
 import UserProfile from "@/components/Profile/UserProfile";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { useConnectModal } from "@/hooks/Mentor/ConnectModal";
+import { useRouter } from "next/router";
+import { useModalOpenClose } from "@/hooks/Mentor/modalOpenClose";
 
 const MentorModal = () => {
   const [closeAnimation, setCloseAnimation] = useState(false);
@@ -23,22 +25,24 @@ const MentorModal = () => {
   const connectState = useSelector(
     (state: RootState) => state.rootReducers.mentorConnect
   );
-  //const openConnectModal = useSelector(
-  //  (state: RootState) => state.rootReducers.currMentor.openConnectModal
-  //);
-  const openConnectModal = useConnectModal();
+  const { openConnectModal } = useConnectModal();
+  const {
+    handleConnectModalOpen,
+    handleMentorModalClose,
+    handleConnectModalClose,
+  } = useModalOpenClose();
 
   const [postReservation] = usePostReservationRequestMutation();
 
   const handleZoomOut = () => {
     if (openConnectModal) {
-      dispatch(CurrMentorSlice.actions.closeConnectModal());
+      handleConnectModalClose();
       return;
     }
     setCloseAnimation(true);
     setTimeout(() => {
       setCloseAnimation(false);
-      dispatch(CurrMentorSlice.actions.closeMentorModal());
+      handleMentorModalClose();
     }, 300);
   };
 
@@ -48,12 +52,8 @@ const MentorModal = () => {
       return;
     }
     dispatch(initMentorConnect());
-    dispatch(CurrMentorSlice.actions.openConnectModal());
+    handleConnectModalOpen();
   };
-
-  const handleConnectClose = useCallback(() => {
-    dispatch(CurrMentorSlice.actions.closeConnectModal());
-  }, [dispatch]);
 
   const handleYes = async () => {
     if (
@@ -78,7 +78,7 @@ const MentorModal = () => {
           alert("예약이 실패하였습니다.");
         }
       }
-      handleConnectClose();
+      handleConnectModalClose();
     }
   };
 
@@ -118,7 +118,7 @@ const MentorModal = () => {
       {currentMentorState.openConnectModal && (
         <ConnectModal
           message="멘토에게 커넥트 요청을 보내시겠습니까?"
-          onClose={handleConnectClose}
+          onClose={handleConnectModalClose}
           handleYes={handleYes}
         />
       )}
