@@ -41,8 +41,8 @@ export const useModalOpenClose = () => {
     const scrollPosition =
       document.documentElement.scrollTop || document.body.scrollTop || 0;
     const newQuery = { ...router.query };
-    delete newQuery.mentorModal;
     console.log(newQuery.mentorModal);
+    delete newQuery.mentorModal;
 
     router
       .replace({
