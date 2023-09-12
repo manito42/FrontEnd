@@ -25,13 +25,14 @@ export const useConnectModal = () => {
   };
 
   useEffect(() => {
-    if (router.query.connectModal === "true" && !openConnectModal) {
-      handleConnectModalOpen();
+    if (openConnectModal) {
+      window.addEventListener("popstate", handleZoomOut);
     }
-    if (router.query.connectModal !== "true" && openConnectModal) {
-      handleZoomOut();
-    }
-  }, [router.query.connectModal]);
+
+    return () => {
+      window.removeEventListener("popstate", handleZoomOut);
+    };
+  }, [openConnectModal]);
 
   return { openConnectModal, handleZoomOut };
 };

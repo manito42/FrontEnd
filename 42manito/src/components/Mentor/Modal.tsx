@@ -8,7 +8,6 @@ import ConnectModal from "../Connect/ConnectModal";
 import UserProfile from "@/components/Profile/UserProfile";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { useConnectModal } from "@/hooks/Mentor/ConnectModal";
-import { useRouter } from "next/router";
 import { useModalOpenClose } from "@/hooks/Mentor/modalOpenClose";
 
 const MentorModal = () => {
