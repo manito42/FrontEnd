@@ -10,16 +10,15 @@ export const useConnectModal = () => {
     (state: RootState) => state.rootReducers.currMentor
   );
   const dispatch = useDispatch();
-  const router = useRouter();
   const openConnectModal = currMentorState.openConnectModal;
-  const [closeAnimation, setCloseAnimation] = useState(false);
-  const { handleConnectModalOpen, handleConnectModalClose } =
-    useModalOpenClose();
+  const { handleConnectModalClose } = useModalOpenClose();
 
   const handleZoomOut = () => {
-    if (currMentorState.openMentorModal) {
+    dispatch(CurrMentorSlice.actions.handleFocus(true));
+    setTimeout(() => {
+      dispatch(CurrMentorSlice.actions.handleFocus(false));
       handleConnectModalClose();
-    }
+    }, 200);
   };
 
   useEffect(() => {
@@ -30,7 +29,7 @@ export const useConnectModal = () => {
         window.removeEventListener("popstate", handleZoomOut);
       };
     }
-  }, [openConnectModal, dispatch]);
+  }, [openConnectModal]);
 
   return { openConnectModal };
 };

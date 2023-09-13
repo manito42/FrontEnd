@@ -22,11 +22,7 @@ const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
     (state: RootState) => state.rootReducers.currMentor
   );
   const dispatch = useAppDispatch();
-  const {
-    handleConnectModalOpen,
-    handleMentorModalClose,
-    handleConnectModalClose,
-  } = useModalOpenClose();
+  const { handleConnectModalClose } = useModalOpenClose();
 
   const handleFocusOut = () => {
     setFocus(true);
@@ -50,7 +46,9 @@ const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
       onClick={(e) => e.stopPropagation()}
     >
       <section
-        className={`connect-modal-section ${focus && "close-connect-modal"}`}
+        className={`connect-modal-section ${
+          (focus || currentMentorState.focus) && "close-connect-modal"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="connect-container">

@@ -12,8 +12,7 @@ export const useMentorModal = () => {
   const dispatch = useDispatch();
   const isConnectModalOpen = currMentorState.openConnectModal;
   const isOpen = currMentorState.openMentorModal;
-  const { handleMentorModalClose, handleConnectModalClose } =
-    useModalOpenClose();
+  const { handleMentorModalClose } = useModalOpenClose();
 
   useEffect(() => {
     const htmlElement = document.querySelector("html");
@@ -31,7 +30,9 @@ export const useMentorModal = () => {
   }, [currMentorState.openMentorModal, dispatch]);
 
   const handleZoomOut = () => {
+    dispatch(CurrMentorSlice.actions.handleZoomOut(true));
     setTimeout(() => {
+      dispatch(CurrMentorSlice.actions.handleZoomOut(false));
       handleMentorModalClose();
     }, 300);
   };
@@ -44,7 +45,7 @@ export const useMentorModal = () => {
         window.removeEventListener("popstate", handleZoomOut);
       };
     }
-  }, [isOpen, isConnectModalOpen, dispatch]);
+  }, [isOpen, isConnectModalOpen]);
 
   return { currMentorState };
 };
