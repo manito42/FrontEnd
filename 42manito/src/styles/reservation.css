@@ -139,8 +139,8 @@
                 items-center justify-center
                 px-4 py-1.5
                 text-sm mx-3
-                text-white bg-neutral-300
-                hover:bg-neutral-400
+                text-white bg-neutral-400
+                hover:bg-neutral-300
                 rounded-full;
         }
         .reservation-next-button {
@@ -148,8 +148,8 @@
             items-center justify-center
             px-4 py-1.5
             text-sm mx-3
-            text-white bg-signature_color-400
-            hover:bg-signature_color-500
+            text-white bg-signature_color-500
+            hover:bg-signature_color-400
             rounded-full;
         }
     }
