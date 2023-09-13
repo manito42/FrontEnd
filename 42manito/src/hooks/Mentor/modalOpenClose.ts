@@ -5,17 +5,17 @@ export const useModalOpenClose = () => {
   const dispatch = useDispatch();
 
   const handleMentorModalOpen = () => {
-    window.history.pushState(null, "", "");
+    window.history.pushState({ modal: "mentor" }, "", "");
     dispatch(CurrMentorSlice.actions.openMentorModal());
-  };
-
-  const handleConnectModalOpen = () => {
-    window.history.pushState(null, "", "");
-    dispatch(CurrMentorSlice.actions.openConnectModal());
   };
 
   const handleMentorModalClose = () => {
     dispatch(CurrMentorSlice.actions.closeMentorModal());
+  };
+
+  const handleConnectModalOpen = () => {
+    window.history.pushState({ modal: "connect" }, "", "");
+    dispatch(CurrMentorSlice.actions.openConnectModal());
   };
 
   const handleConnectModalClose = () => {
