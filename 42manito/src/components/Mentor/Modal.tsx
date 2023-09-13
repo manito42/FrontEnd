@@ -39,6 +39,7 @@ const MentorModal = () => {
       return;
     }
     setCloseAnimation(true);
+    window.history.back();
     setTimeout(() => {
       setCloseAnimation(false);
       handleMentorModalClose();

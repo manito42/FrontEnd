@@ -17,22 +17,20 @@ export const useConnectModal = () => {
     useModalOpenClose();
 
   const handleZoomOut = () => {
-    setCloseAnimation(true);
-    setTimeout(() => {
-      setCloseAnimation(false);
+    if (currMentorState.openMentorModal) {
       handleConnectModalClose();
-    }, 200);
+    }
   };
 
   useEffect(() => {
     if (openConnectModal) {
       window.addEventListener("popstate", handleZoomOut);
+
+      return () => {
+        window.removeEventListener("popstate", handleZoomOut);
+      };
     }
+  }, [openConnectModal, dispatch]);
 
-    return () => {
-      window.removeEventListener("popstate", handleZoomOut);
-    };
-  }, [openConnectModal]);
-
-  return { openConnectModal, handleZoomOut };
+  return { openConnectModal };
 };

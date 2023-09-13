@@ -5,6 +5,8 @@ import ConnectHashtagSelect from "@/components/Mentor/HashtagSelect";
 import { Input } from "antd";
 import { setMessage } from "@/RTK/Slices/MentorConnect";
 import ConnectCategorySelect from "@/components/Mentor/CategorySelect";
+import { useModalOpenClose } from "@/hooks/Mentor/modalOpenClose";
+import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 
 interface Props {
   message: string;
@@ -17,14 +19,21 @@ const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
   const [focus, setFocus] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const currentMentorState = useSelector(
-    (state: RootState) => state.rootReducers.currMentor,
+    (state: RootState) => state.rootReducers.currMentor
   );
   const dispatch = useAppDispatch();
+  const {
+    handleConnectModalOpen,
+    handleMentorModalClose,
+    handleConnectModalClose,
+  } = useModalOpenClose();
+
   const handleFocusOut = () => {
     setFocus(true);
+    window.history.back();
     setTimeout(() => {
-      onClose();
       setFocus(false);
+      handleConnectModalClose();
     }, 200);
   };
 
