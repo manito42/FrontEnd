@@ -22,7 +22,7 @@
 .reservation-card {
     @apply flex flex-col justify-center items-center
     min-w-[160px] h-[250px] px-2 py-4 mx-[10px]
-    rounded-xl shadow-lg;
+    rounded-xl shadow-sm;
 }
 
 .reservation-card-user-info {
