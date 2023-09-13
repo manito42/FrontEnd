@@ -15,6 +15,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Spin } from "antd";
 import MentorCard from "@/components/Mentor/Card";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
+import ReservationModal from "@/components/Reservation/modal/ReservationModal";
 
 const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
@@ -31,6 +32,12 @@ export default function Home() {
     useFetchHome(categoryId);
   const [mentorList, setMentorList] = useState<MentorProfileDto[] | undefined>(
     undefined,
+  );
+  const isModalOpen = useSelector(
+    (state: RootState) => state.rootReducers.reservation.isModalOpen,
+  );
+  const selectedReservation = useSelector(
+    (state: RootState) => state.rootReducers.reservation.selectedReservation,
   );
 
   useEffect(() => {
@@ -154,6 +161,7 @@ export default function Home() {
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />
         )}
+        {isModalOpen && selectedReservation !== null && <ReservationModal />}
         <button
           onClick={scrollToTop}
           className="fixed bottom-5 right-5 rounded-full

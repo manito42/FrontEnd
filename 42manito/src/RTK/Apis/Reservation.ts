@@ -8,6 +8,7 @@ import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
 import { UserReservationResDto } from "@/Types/UserReservation/UserReservationResDto";
+import { ReservationPatchMenteeCheckReqDto } from "@/Types/Reservations/ReservationPatchMenteeCheckReq.dto";
 
 export const reservationApi = createApi({
   reducerPath: "reservationApi",
@@ -22,11 +23,13 @@ export const reservationApi = createApi({
       { id: number }
     >({
       query: ({ id }) => {
+        console.log("getRequestReservations");
         return {
           url: `/users/${id}/reservations/request`,
           method: "GET",
         };
       },
+      providesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     // active = NOT DONE, NOT CANCEL
     getActiveReservation: builder.query<
@@ -41,6 +44,7 @@ export const reservationApi = createApi({
           method: "GET",
         };
       },
+      providesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     getActiveMenteeReservation: builder.query<
       UserReservationResDto,
@@ -54,6 +58,7 @@ export const reservationApi = createApi({
           method: "GET",
         };
       },
+      providesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     getAllMentorReservation: builder.query<
       UserReservationResDto,
@@ -67,6 +72,7 @@ export const reservationApi = createApi({
           method: "GET",
         };
       },
+      providesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     getAllMenteeReservation: builder.query<
       UserReservationResDto,
@@ -80,6 +86,7 @@ export const reservationApi = createApi({
           method: "GET",
         };
       },
+      providesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     /** 처음 멘토링 신청을 보낼때 */
     postReservationRequest: builder.mutation<
@@ -127,6 +134,19 @@ export const reservationApi = createApi({
       },
       invalidatesTags: [{ type: "Reservation", id: "LIST" }],
     }),
+    /** 멘티 확인 */
+    patchReservationMenteeCheck: builder.mutation<
+      ReservationDefaultDto,
+      ReservationPatchMenteeCheckReqDto
+    >({
+      query: (args: ReservationPatchCancelReqDto) => {
+        return {
+          url: `/reservations/${args.id}/check`,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: [{ type: "Reservation", id: "LIST" }],
+    }),
     // mentee가 피드백 버튼을 누르면 하는 곳
     patchReservationMenteeFeedback: builder.mutation<
       ReservationDefaultDto,
@@ -166,6 +186,7 @@ export const {
   usePostReservationRequestMutation,
   usePatchReservationAcceptMutation,
   usePatchReservationCancelMutation,
+  usePatchReservationMenteeCheckMutation,
   usePatchReservationMenteeFeedbackMutation,
   usePatchReservationDoneMutation,
 } = reservationApi;

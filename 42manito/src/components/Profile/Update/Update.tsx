@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useReducer, useRef, useState } from "react";
+import React, { memo, useRef } from "react";
 import { Input } from "antd";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { useSelector } from "react-redux";
@@ -18,7 +18,7 @@ const ProfileUpdate = ({ onClose, data }: props) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
   const state = useSelector(
-    (state: RootState) => state.rootReducers.profileUpdate
+    (state: RootState) => state.rootReducers.profileUpdate,
   );
 
   const handleZoomOut = () => {
@@ -58,7 +58,7 @@ const ProfileUpdate = ({ onClose, data }: props) => {
       id="wrapper"
     >
       <section
-        className={`relative py-16 mentor-modal h-[80vh] ${
+        className={`relative py-16 open-modal h-[80vh] ${
           state.zoomOut && "close-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -112,8 +112,8 @@ const ProfileUpdate = ({ onClose, data }: props) => {
                       onChange={(e) =>
                         dispatch(
                           ProfileUpdateSlice.actions.setShortIntro(
-                            e.target.value
-                          )
+                            e.target.value,
+                          ),
                         )
                       }
                       placeholder="최대 50글자"
@@ -144,7 +144,7 @@ const ProfileUpdate = ({ onClose, data }: props) => {
                       style={{ height: 80, marginBottom: 24 }}
                       onChange={(e) =>
                         dispatch(
-                          ProfileUpdateSlice.actions.setIntro(e.target.value)
+                          ProfileUpdateSlice.actions.setIntro(e.target.value),
                         )
                       }
                       placeholder="최대 1000글자"

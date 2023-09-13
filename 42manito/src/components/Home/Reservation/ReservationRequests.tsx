@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useGetRequestReservationsQuery } from "@/RTK/Apis/Reservation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
-import ReservationCard from "@/components/Reservation/ReservationCard";
-import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
+import ReservationCard from "@/components/Reservation/card/ReservationCard";
 import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
+import { setReservationRequests } from "@/RTK/Slices/Reservation";
+import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 
 interface props {}
 
@@ -13,18 +14,18 @@ export default function ReservationRequests({}: props) {
     (state: RootState) => state.rootReducers.global.uId,
   );
   const { data: response } = useGetRequestReservationsQuery({ id: userId });
-  const [reservations, setReservations] = useState<ReservationDefaultDto[]>([]);
-  // test
+  const [reservations, setReservationRequests] = useState<
+    ReservationDefaultDto[] | null
+  >(null);
 
   useEffect(() => {
     if (response) {
-      setReservations([
+      setReservationRequests([
         ...response.menteeReservations,
         ...response.mentorReservations,
       ]);
     }
   }, [response]);
-
   const onLeftClick = () => {
     if (!reservations) return;
     const elem = document.getElementsByClassName(
@@ -39,7 +40,6 @@ export default function ReservationRequests({}: props) {
     )[0];
     elem.scrollLeft += elem.clientWidth;
   };
-
   return (
     <>
       <div className="reservation-requests-wrapper">
