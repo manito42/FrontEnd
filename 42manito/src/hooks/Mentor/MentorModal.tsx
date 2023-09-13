@@ -27,7 +27,7 @@ export const useMentorModal = () => {
         htmlElement.style.overflowY = "unset";
       }
     }
-  }, [currMentorState.openMentorModal, dispatch]);
+  }, [currMentorState.openMentorModal]);
 
   const handleZoomOut = () => {
     dispatch(CurrMentorSlice.actions.handleZoomOut(true));
