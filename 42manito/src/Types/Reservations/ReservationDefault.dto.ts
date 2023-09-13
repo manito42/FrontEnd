@@ -1,13 +1,15 @@
 import { HashtagResponseDto } from "../Hashtags/HashtagResponse.dto";
+import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
+import { CategoriesResponseDto } from "@/Types/Categories/CategoriesResponse.dto";
 
 export interface ReservationDefaultDto {
   id: number;
   mentorId: number;
   menteeId: number;
-  categoryId: number;
+  category: CategoriesResponseDto;
   requestMessage: string;
-  status: string; // REQUEST, ACCEPT, PENDING, COMPLETE, CANCEL
-  metnorFeedback: {
+  status: ReservationStatus;
+  mentorFeedback: {
     id: number;
     menteeId: number;
     mentorId: number;

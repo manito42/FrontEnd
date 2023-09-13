@@ -95,7 +95,8 @@ const CategoryModal = ({ onClose, categoryId }: props) => {
         </button>
         <div className="px-4">
           <div
-            className="relative flex flex-col break-words bg-white dark:bg-slate-700 w-[95vw] md:w-[90vw] h-[80vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overflow-y-scroll"
+            className="relative flex flex-col break-words bg-white dark:bg-bg_color-700 w-[95vw] md:w-[90vw] h-[80vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overscroll-x-hidden overflow-y-auto"
+
             ref={scrollContainerRef}
             id="scrollableDiv"
           >
@@ -105,6 +106,7 @@ const CategoryModal = ({ onClose, categoryId }: props) => {
               hasMore={hasMore}
               loader={<Spin></Spin>}
               scrollableTarget="scrollableDiv"
+              height={"70vh"}
             >
               <div className="w-[90vw] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 md:gap-10 p-0 md:p-5 md:w-[80vw]">
                 {categoriesMentors.map((mentor) => (

@@ -5,6 +5,7 @@ interface currMentorType {
   currMentor: MentorProfileDto;
   openMentorModal: boolean;
   zoomOut: boolean;
+  focus: boolean;
   openConnectModal: boolean;
 }
 
@@ -12,6 +13,7 @@ const InitialState: currMentorType = {
   currMentor: {} as MentorProfileDto,
   openMentorModal: false,
   zoomOut: false,
+  focus: false,
   openConnectModal: false,
 };
 
@@ -28,14 +30,17 @@ export const CurrMentorSlice = createSlice({
     closeMentorModal(state) {
       state.openMentorModal = false;
     },
-    handleZoomOut(state, action: PayloadAction<boolean>) {
-      state.zoomOut = action.payload;
-    },
     openConnectModal(state) {
       state.openConnectModal = true;
     },
     closeConnectModal(state) {
       state.openConnectModal = false;
+    },
+    handleZoomOut(state, action: PayloadAction<boolean>) {
+      state.zoomOut = action.payload;
+    },
+    handleFocus(state, action: PayloadAction<boolean>) {
+      state.focus = action.payload;
     },
     deleteMentor(state) {
       state = InitialState;

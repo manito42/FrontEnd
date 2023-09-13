@@ -8,34 +8,98 @@
   animation: zoonOut 0.2s ease-in;
 }
 
+.ConnectWrapper {
+  @apply fixed  inset-0 z-[100] bg-black bg-opacity-50 backdrop-blur-sm
+            flex
+            items-center justify-center;
+}
+
+.connect-modal-section {
+  @apply flex fixed h-[100vh]
+            items-center justify-center
+            w-[80vw] max-w-screen-md
+            overflow-y-scroll;
+}
+
 .connect-container {
-  @apply fixed inset-0 z-[101] bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center min-w-[100vw];
+  @apply flex flex-col
+            items-center justify-center
+            w-[70vw]  md:w-[80%]
+            rounded-2xl
+            bg-bg_color-100 dark:bg-bg_color-900
+            dark:border-2
+            dark:border-bg_color-800
+            drop-shadow-2xl;
+  .connect-content-wrapper {
+    @apply w-[80%];
+  }
 
-  & .connect-section {
-    @apply relative py-16 mt-24 connect-modal w-full;
+  .connect-btn-wrapper {
+    @apply flex flex-row mt-5 mb-5 space-x-[10vw];
+  }
 
-    & .connect-container {
-      @apply px-4;
+  .connect-btn {
+    @apply px-4 py-2
+        rounded-full;
+  }
 
-      & .close-btn {
-        @apply text-white text-5xl w-full flex justify-end p-5;
-      }
+  .connect-cancel-btn {
+    @apply bg-bg_color-800 dark:bg-bg_color-400
+        active:bg-pink-600
+        text-white font-bold text-xs;
+  }
 
-      & .connect-content {
-        @apply relative flex flex-col min-w-0 break-words bg-white dark:bg-slate-600 w-full mb-6 shadow-xl rounded-lg max-w-[600px];
+  .connect-approve-btn {
+    @apply bg-sky-400 dark:bg-sky-500
+        active:bg-pink-600
+        text-white font-bold text-sm;
+  }
 
-        & .message {
-          @apply text-3xl font-semibold leading-normal;
-        }
-
-        & .connect-btn-container {
-          @apply flex flex-row m-5 justify-center items-center;
-
-          & .connect-btn {
-            @apply bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 mx-7;
-          }
-        }
-      }
-    }
+  .connect-title {
+    @apply text-xl
+        mt-5
+        font-bold
+        text-bg_color-800
+        dark:text-bg_color-200;
+  }
+  .connect-header {
+    @apply text-lg
+        ml-1
+        font-bold
+        text-bg_color-800
+        dark:text-bg_color-200
+        mt-5 mb-2;
   }
 }
+
+/*.connect-container {*/
+/*  @apply fixed inset-0 z-[101] bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center min-w-[100vw];*/
+
+/*  & .connect-section {*/
+/*    @apply relative py-16 mt-24 connect-modal w-full;*/
+
+/*    & .connect-container {*/
+/*      @apply px-4;*/
+
+/*      & .close-btn {*/
+/*        @apply text-white text-5xl w-full flex justify-end p-5;*/
+/*      }*/
+
+/*      & .connect-content {*/
+/*        @apply relative flex flex-col min-w-0 break-words bg-white dark:bg-bg_color-600 w-full mb-6 shadow-xl rounded-lg max-w-[600px];*/
+
+/*        & .message {*/
+/*          @apply text-3xl font-semibold leading-normal;*/
+/*        }*/
+
+/*        & .connect-btn-container {*/
+/*          @apply flex flex-row m-5 justify-center items-center;*/
+
+/*          & .connect-btn {*/
+/*            @apply bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 mx-7;*/
+/*          }*/
+/*        }*/
+/*      }*/
+/*    }*/
+/*  }*/
+/*}*/

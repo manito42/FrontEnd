@@ -3,25 +3,26 @@ import React from "react";
 
 interface props {
   hashtag: HashtagResponseDto[];
+  onClick?: (hashtag: string) => void;
 }
 
-export default function ProfileHashtag({ hashtag }: props) {
+export default function ProfileHashtag({ hashtag, onClick }: props) {
+  const handleClick = onClick ? onClick : (hashtag: string) => {};
+
   return (
-    <div className="flex flex-col justify-between items-center md:ml-24 w-[40vh] h-[40vh] overflow-y-auto">
-      <span className="text-3xl font-bold text-slate-800 dark:text-slate-200">
-        해시태그.
-      </span>
-      <div className="flex flex-wrap w-full">
-        {hashtag.length > 0 &&
-          hashtag.map((aTag) => (
-            <h6
-              className="m-3 p-3 rounded-md bg-sky-200 dark:bg-sky-700 "
-              key={aTag.id}
-            >
-              {aTag.name}
-            </h6>
-          ))}
-      </div>
+    <div className="ProfileTagListWrapper">
+      {hashtag.length > 0 &&
+        hashtag.map((aTag) => (
+          <button
+            className="ProfileTag ProfileHashtagTag"
+            key={aTag.id}
+            onClick={() => {
+              handleClick(aTag.name);
+            }}
+          >
+            {aTag.name}
+          </button>
+        ))}
     </div>
   );
 }

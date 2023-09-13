@@ -1,7 +1,10 @@
-.search {
-  @apply h-auto;
+.search-input-wrapper {
+  @apply mt-5;
+}
+.search-header-text {
+  @apply text-lg font-bold text-bg_color-800 dark:text-bg_color-200 m-5 whitespace-pre;
+}
 
-  & .mentor-cards-container {
-    @apply w-[95vw] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 md:gap-10 p-0 md:p-5 md:w-[80vw];
-  }
+.search-container {
+  @apply flex flex-col items-center justify-center w-[80%] md:w-[600px] lg:w-[900px] mx-auto;
 }

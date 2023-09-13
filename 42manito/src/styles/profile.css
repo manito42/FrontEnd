@@ -1,0 +1,167 @@
+.ProfileWrapper {
+  @apply flex
+                items-center justify-center;
+}
+
+.ProfileContainer {
+  @apply flex flex-col
+                items-center justify-center
+                mt-5 mb-5
+                w-[90vmin] md:w-[600px]
+                rounded-2xl bg-bg_color-100 dark:bg-bg_color-900
+                drop-shadow-xl;
+
+  .profile-update-btn {
+    @apply text-xs md:text-sm
+    bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 active:bg-signature_color-600
+    uppercase text-white font-bold hover:shadow-md shadow
+    px-4 py-2 rounded outline-none focus:outline-none
+    sm:mr-2 mb-1 ease-linear transition-all duration-150;
+  }
+}
+
+.ProfileImageNameContainer {
+  @apply flex-wrap w-full items-center justify-center mt-12;
+}
+
+.profile-info-wrapper {
+}
+
+.profile-info-container {
+  @apply flex flex-col justify-center mt-5;
+}
+
+.ShortDescriptionContainer {
+  @apply flex
+                justify-center
+                w-[80%]
+                break-all
+                px-3 py-4
+                mt-10 mb-10
+                rounded-2xl bg-bg_color-50 dark:bg-bg_color-800
+                shadow-sm;
+}
+
+.ProfileTagWrapper {
+  @apply flex flex-col
+                justify-start items-center
+                overflow-y-auto mb-5;
+}
+
+.ProfileTitle {
+  @apply text-3xl
+    font-bold
+    text-bg_color-800
+    dark:text-bg_color-200;
+}
+
+.ProfileHeader {
+  @apply text-2xl
+                font-bold
+                text-bg_color-800
+                dark:text-bg_color-200;
+}
+
+.ProfileTagListWrapper {
+  @apply flex flex-wrap
+                justify-center
+                my-2;
+}
+
+.ProfileTag {
+  @apply whitespace-nowrap
+            m-2
+            text-sm
+            font-bold
+            rounded-full px-3 py-1;
+}
+
+.ProfileCategoryTag {
+  @apply bg-rose-300 dark:bg-rose-700;
+}
+
+.ProfileHashtagTag {
+  @apply bg-sky-300 dark:bg-sky-700;
+}
+
+.ProfileDescriptionWrapper {
+  @apply flex flex-col
+                items-center justify-center
+                w-[80%] mb-5;
+}
+
+.ProfileDescriptionSplitBar {
+  @apply h-[1px]
+                bg-bg_color-800
+                dark:bg-bg_color-50
+                w-[40%]
+                mt-2 mb-5;
+}
+
+.ProfileImageWrapper {
+  @apply flex justify-center items-center;
+}
+
+.ProfileImage {
+  @apply object-cover
+                w-[30vw] h-[30vw]
+                md:w-[200px] md:h-[200px] mt-10;
+}
+
+.ProfileDescription {
+  @apply whitespace-pre-wrap w-[100%] break-words
+    px-6 py-4 rounded-2xl
+    bg-bg_color-50 dark:bg-bg_color-800
+shadow-sm;
+}
+
+.profile-update-hashtag-input-wrapper {
+  @apply flex justify-center items-center mb-5 w-full;
+  .profile-update-hashtag-input-btn {
+    @apply bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 ml-2 text-sm font-bold text-white py-1 px-2 rounded;
+  }
+  width: min(30%, max-content);
+}
+
+.ProfileSmall {
+  @apply text-xs
+                text-bg_color-400
+                dark:text-bg_color-400;
+}
+
+.profile-category-card-wrapper {
+  @apply flex flex-row mr-3;
+}
+
+.profile-category-card {
+  @apply whitespace-nowrap m-2 text-sm rounded-full px-4 py-2 focus:outline-none focus:ring focus:ring-rose-300
+  font-bold;
+}
+
+.profile-category-card-off {
+  @apply bg-rose-300 dark:bg-rose-500 ring ring-rose-800;
+}
+
+.profile-category-card-on {
+  @apply bg-bg_color-300 dark:bg-bg_color-400;
+}
+
+.profile-update-btn-wrapper {
+  @apply flex flex-row mt-3 mb-10 space-x-4;
+  .profile-update-approve-btn {
+    @apply text-xs md:text-sm
+    bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 active:bg-signature_color-600
+    uppercase text-white font-bold hover:shadow-md shadow
+    px-4 py-2 rounded outline-none focus:outline-none
+    sm:mr-2 mb-1 ease-linear transition-all duration-150;
+  }
+
+  .profile-update-cancel-btn {
+    @apply text-xs md:text-sm
+    bg-bg_color-500 dark:bg-bg_color-500 hover:bg-bg_color-300 active:bg-bg_color-600
+    uppercase text-white font-bold
+    hover:shadow-md shadow
+    px-4 py-2 rounded outline-none
+    focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150;
+  }
+}

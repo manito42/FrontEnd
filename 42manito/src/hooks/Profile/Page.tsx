@@ -3,7 +3,6 @@ import { RootState, useAppDispatch } from "@/RTK/store";
 import { useRouter } from "next/router";
 import { useGetUserQuery } from "@/RTK/Apis/User";
 import { useEffect } from "react";
-import { signIn } from "@/RTK/Slices/Global";
 
 export const useProfilePage = () => {
   const router = useRouter();
@@ -11,11 +10,11 @@ export const useProfilePage = () => {
   const dispatch = useAppDispatch();
 
   const ownerId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId
+    (state: RootState) => state.rootReducers.global.uId,
   );
   const { data: OwnerData, isLoading: OwnerLoading } = useGetUserQuery(
     { id: ownerId },
-    { skip: ownerId === 0 }
+    { skip: ownerId === 0 },
   );
 
   const isBrowser = typeof window !== "undefined";
@@ -26,5 +25,5 @@ export const useProfilePage = () => {
     }
   }, [ownerId, userId, isBrowser, router, dispatch]);
 
-  return { OwnerData, OwnerLoading };
+  return { UserData: OwnerData, UserLoading: OwnerLoading };
 };

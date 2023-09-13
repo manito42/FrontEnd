@@ -39,10 +39,25 @@ export const ProfileUpdateSlice = createSlice({
       state.hashtags = action.payload;
     },
     addHashtag(state, action: PayloadAction<HashtagResponseDto>) {
+      if (
+        state.hashtags.some((hashtag) => hashtag.name === action.payload.name)
+      ) {
+        return;
+      }
       state.hashtags.push(action.payload);
     },
     setCategories(state, action: PayloadAction<CategoriesResponseDto[]>) {
       state.categories = action.payload;
+    },
+    addCategory(state, action: PayloadAction<HashtagResponseDto>) {
+      if (
+        state.categories.some(
+          (category) => category.name === action.payload.name,
+        )
+      ) {
+        return;
+      }
+      state.categories.push(action.payload);
     },
     setDisabled(state, action: PayloadAction<boolean>) {
       state.disabled = action.payload;
@@ -52,7 +67,12 @@ export const ProfileUpdateSlice = createSlice({
     },
     deleteOneHashtag(state, action: PayloadAction<string>) {
       state.hashtags = state.hashtags.filter(
-        (hashtag) => hashtag.name !== action.payload
+        (hashtag) => hashtag.name !== action.payload,
+      );
+    },
+    deleteOneCategory(state, action: PayloadAction<string>) {
+      state.categories = state.categories.filter(
+        (category) => category.name !== action.payload,
       );
     },
     deleteAll(state) {
@@ -67,6 +87,9 @@ export const {
   setIntro,
   setHashtags,
   setCategories,
+  addCategory,
+  addHashtag,
+  deleteOneHashtag,
   setDisabled,
   setViewConnectModal,
 } = ProfileUpdateSlice.actions;

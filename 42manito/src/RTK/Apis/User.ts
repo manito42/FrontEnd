@@ -1,4 +1,3 @@
-import { HashtagGetDto } from "@/Types/Hashtags/HashtagGet.dto";
 import { HashtagPostDto } from "@/Types/Hashtags/HashtagPost.dto";
 import { HashtagResponseDto } from "@/Types/Hashtags/HashtagResponse.dto";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
@@ -75,6 +74,15 @@ export const userApi = createApi({
         };
       },
     }),
+    getMentorProfile: builder.query<MentorProfileDto, { id: number }>({
+      query: ({ id }) => {
+        return {
+          url: `/mentor_profiles/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: [{ type: "User", id: "LIST" }],
+    }),
   }),
 });
 
@@ -84,4 +92,5 @@ export const {
   useSetUserUpdateMutation,
   usePostHashtagMutation,
   useSetIsHideMutation,
+  useGetMentorProfileQuery,
 } = userApi;

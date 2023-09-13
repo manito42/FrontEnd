@@ -16,17 +16,25 @@ export default function SearchMentorList({
   hasMore,
 }: props) {
   return (
-    <InfiniteScroll
-      dataLength={searchMentors.length}
-      next={fetchMoreData}
-      hasMore={hasMore}
-      loader={<Spin />}
-    >
-      <div className="mentor-cards-container">
-        {searchMentors.map((mentor) => (
-          <MentorCard data={mentor} key={mentor.id} />
-        ))}
-      </div>
-    </InfiniteScroll>
+    <>
+      <InfiniteScroll
+        dataLength={searchMentors.length}
+        next={fetchMoreData}
+        hasMore={hasMore}
+        scrollThreshold={0.9}
+        style={{ overflow: "hidden" }}
+        loader={
+          <div className="flex justify-center">
+            <Spin />
+          </div>
+        }
+      >
+        <div className="mentor-cards-container">
+          {searchMentors.map((mentor) => (
+            <MentorCard data={mentor} key={mentor.id} />
+          ))}
+        </div>
+      </InfiniteScroll>
+    </>
   );
 }
