@@ -26,7 +26,7 @@ const CategoryModal = ({ onClose, categoryId }: props) => {
   const [getMentors, { data, isLoading, error }] =
     useGetCategoryMentorsMutation();
   const categoriesMentors = useSelector(
-    (state: RootState) => state.rootReducers.category.categoryMentors
+    (state: RootState) => state.rootReducers.category.categoryMentors,
   );
   const dispatch = useAppDispatch();
 
@@ -83,7 +83,7 @@ const CategoryModal = ({ onClose, categoryId }: props) => {
     >
       <section
         className={`relative py-16  h-[100vh] md:top-[5.4em]   ${
-          zoomOut ? "close-modal" : "mentor-modal"
+          zoomOut ? "close-modal" : "open-modal"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
@@ -96,7 +96,6 @@ const CategoryModal = ({ onClose, categoryId }: props) => {
         <div className="px-4">
           <div
             className="relative flex flex-col break-words bg-white dark:bg-bg_color-700 w-[95vw] md:w-[90vw] h-[80vh] md:mb-6 shadow-xl rounded-lg p-3 md:p-10 overscroll-x-hidden overflow-y-auto"
-
             ref={scrollContainerRef}
             id="scrollableDiv"
           >

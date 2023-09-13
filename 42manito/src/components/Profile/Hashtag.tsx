@@ -20,7 +20,7 @@ export default function ProfileHashtag({ hashtag, onClick }: props) {
               handleClick(aTag.name);
             }}
           >
-            {aTag.name}
+            {`#${aTag.name}`}
           </button>
         ))}
     </div>
