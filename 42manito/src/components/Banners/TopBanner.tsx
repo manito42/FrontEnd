@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { BannerDto } from "@/Types/Banners/Banner.dto";
-import { clear } from "console";
 
 interface props {
   banner: BannerDto[];
@@ -15,24 +14,24 @@ export default function TopBanner({ banner }: props) {
   const handleBannerClick = () => {
     router.push(banner[currentIndex].link);
   };
-  var timerId: any;
-  const timer = 5000; // 임의로 넣어뒀습니다
+  const [bannerTimerId, setBannerTimerId] = useState<NodeJS.Timeout>();
+  const timer = 3000; // 임의로 넣어뒀습니다
 
   const autoPlay = () => {
-    timerId = setTimeout(() => {
-      console.log(currentIndex);
+    const timerId = setTimeout(() => {
       if (currentIndex === banner.length - 1) {
         setCurrentIndex(0);
       } else {
         setCurrentIndex(currentIndex + 1);
       }
     }, timer);
+    setBannerTimerId(timerId);
   };
 
   useEffect(autoPlay, [currentIndex]);
 
   const handleBannerCircleClick = (index: number) => {
-    clearTimeout(timerId);
+    clearTimeout(bannerTimerId);
     setCurrentIndex(index);
   };
 
