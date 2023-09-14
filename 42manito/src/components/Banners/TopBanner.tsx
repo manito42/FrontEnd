@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { BannerDto } from "@/Types/Banners/Banner.dto";
+import { clear } from "console";
 
 interface props {
   banner: BannerDto[];
@@ -27,6 +28,12 @@ export default function TopBanner({ banner }: props) {
     }, timer);
     setBannerTimerId(timerId);
   };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(bannerTimerId);
+    };
+  }, []);
 
   useEffect(autoPlay, [currentIndex]);
 
@@ -65,6 +72,7 @@ export default function TopBanner({ banner }: props) {
             {banner.map((banner, index) => {
               return (
                 <div
+                  key={index}
                   className={`banner-circle ${
                     index === currentIndex ? "bg-white" : "bg-gray-300"
                   }`}
