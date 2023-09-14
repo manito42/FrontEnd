@@ -1,31 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useGetRequestReservationsQuery } from "@/RTK/Apis/Reservation";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/RTK/store";
+import React from "react";
 import ReservationCard from "@/components/Reservation/card/ReservationCard";
 import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
-import { setReservationRequests } from "@/RTK/Slices/Reservation";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 
-interface props {}
+interface props {
+  reservations: ReservationDefaultDto[];
+  emptyMsg?: string;
+}
 
-export default function ReservationRequests({}: props) {
-  const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
-  );
-  const { data: response } = useGetRequestReservationsQuery({ id: userId });
-  const [reservations, setReservationRequests] = useState<
-    ReservationDefaultDto[] | null
-  >(null);
-
-  useEffect(() => {
-    if (response) {
-      setReservationRequests([
-        ...response.menteeReservations,
-        ...response.mentorReservations,
-      ]);
-    }
-  }, [response]);
+export default function ReservationLists({ reservations, emptyMsg }: props) {
   const onLeftClick = () => {
     if (!reservations) return;
     const elem = document.getElementsByClassName(
@@ -49,10 +32,13 @@ export default function ReservationRequests({}: props) {
           onClick={onLeftClick}
         />
         <div className="reservation-requests-container">
-          {reservations &&
+          {reservations.length > 0 &&
             reservations.map((reservation, idx) => (
               <ReservationCard key={idx} reservation={reservation} />
             ))}
+          {reservations.length == 0 && (
+            <div className="reservation-requests-empty">{emptyMsg}</div>
+          )}
         </div>
         <CaretRightOutlined
           className="reservation-requests-scroll"

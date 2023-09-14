@@ -17,6 +17,11 @@
             border-bg_color-300 dark:border-bg_color-700
             rounded-xl;
     }
+    .reservation-requests-empty {
+        @apply flex flex-wrap justify-center items-center
+            text-bg_color-500 dark:text-bg_color-400
+            w-[100%];
+    }
 }
 
 .reservation-card {
