@@ -5,21 +5,26 @@ import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.d
 
 interface props {
   reservations: ReservationDefaultDto[];
+  name: string;
   emptyMsg?: string;
 }
 
-export default function ReservationLists({ reservations, emptyMsg }: props) {
+export default function ReservationLists({
+  reservations,
+  name,
+  emptyMsg,
+}: props) {
   const onLeftClick = () => {
     if (!reservations) return;
     const elem = document.getElementsByClassName(
-      "reservation-requests-container",
+      `reservation-requests-container ${name}`,
     )[0];
     elem.scrollLeft -= elem.clientWidth;
   };
   const onRightClick = () => {
     if (!reservations) return;
     const elem = document.getElementsByClassName(
-      "reservation-requests-container",
+      `reservation-requests-container ${name}`,
     )[0];
     elem.scrollLeft += elem.clientWidth;
   };
@@ -31,7 +36,7 @@ export default function ReservationLists({ reservations, emptyMsg }: props) {
           style={{ fontSize: "20px" }}
           onClick={onLeftClick}
         />
-        <div className="reservation-requests-container">
+        <div className={`reservation-requests-container ${name}`}>
           {reservations.length > 0 &&
             reservations.map((reservation, idx) => (
               <ReservationCard key={idx} reservation={reservation} />

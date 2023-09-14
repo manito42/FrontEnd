@@ -129,6 +129,7 @@ export default function Home() {
                 </div>
                 <ReservationLists
                   reservations={reservations}
+                  name={"home-request"}
                   emptyMsg={"대기 중인 멘토링이 없습니다 🥲"}
                 />
               </div>
