@@ -11,10 +11,9 @@ interface props {
 // 추후 여러 배너를 받을 수 있는 형태로 수정이 필요함.
 export default function TopBanner({ banner }: props) {
   const router = useRouter();
-  const BannerData = banner;
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleBannerClick = () => {
-    router.push(BannerData[currentIndex].link);
+    router.push(banner[currentIndex].link);
   };
   var timerId: any;
   const timer = 5000; // 임의로 넣어뒀습니다
@@ -22,7 +21,7 @@ export default function TopBanner({ banner }: props) {
   const autoPlay = () => {
     timerId = setTimeout(() => {
       console.log(currentIndex);
-      if (currentIndex === BannerData.length - 1) {
+      if (currentIndex === banner.length - 1) {
         setCurrentIndex(0);
       } else {
         setCurrentIndex(currentIndex + 1);
@@ -40,16 +39,14 @@ export default function TopBanner({ banner }: props) {
   return (
     <>
       <div
-        className={`top-banner-wrapper ${BannerData[currentIndex].backgroundColor} ${BannerData[currentIndex].textColor}`}
+        className={`top-banner-wrapper ${banner[currentIndex].backgroundColor} ${banner[currentIndex].textColor}`}
       >
         <div className="top-banner-container">
           <div className="top-banner-right" onClick={handleBannerClick}>
             <Image
-              src={BannerData[currentIndex].image}
+              src={banner[currentIndex].image}
               alt={
-                BannerData[currentIndex].license
-                  ? BannerData[currentIndex].license
-                  : ""
+                banner[currentIndex].license ? banner[currentIndex].license : ""
               }
               width={200}
               height={200}
@@ -57,20 +54,16 @@ export default function TopBanner({ banner }: props) {
             />
           </div>
           <div className="top-banner-left" onClick={handleBannerClick}>
-            <div className="top-banner-head">
-              {BannerData[currentIndex].head}
-            </div>
-            <div className="top-banner-title">
-              {BannerData[currentIndex].title}
-            </div>
+            <div className="top-banner-head">{banner[currentIndex].head}</div>
+            <div className="top-banner-title">{banner[currentIndex].title}</div>
             <div className="top-banner-description">
-              {BannerData[currentIndex].description}
+              {banner[currentIndex].description}
             </div>
           </div>
         </div>
         <div className="banner-circles-wrapper">
           <div className="banner-circles-container ">
-            {BannerData.map((banner, index) => {
+            {banner.map((banner, index) => {
               return (
                 <div
                   className={`banner-circle ${
