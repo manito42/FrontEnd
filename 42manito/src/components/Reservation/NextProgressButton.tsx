@@ -61,6 +61,7 @@ export default function NextProgressButton({
         return;
       case ReservationStatus.MENTEE_CHECKED:
         return;
+      /* 리뷰 등록에 대해서 별도의 모달이 필요함*/
       case ReservationStatus.MENTEE_FEEDBACK:
         return (
           <Button
@@ -98,6 +99,7 @@ export default function NextProgressButton({
             확인
           </Button>
         );
+      /* 리뷰 등록에 대해서 별도의 모달이 필요함*/
       case ReservationStatus.MENTEE_CHECKED:
         return (
           <Button
