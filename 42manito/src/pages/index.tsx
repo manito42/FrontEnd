@@ -8,7 +8,7 @@ import { signIn } from "@/RTK/Slices/Global";
 import { useMentorModal } from "@/hooks/Mentor/MentorModal";
 import { useFetchHome } from "@/hooks/Home/FetchHome";
 import ReservationLists from "@/components/Reservation/ReservationLists";
-import TopBanner from "@/components/Global/TopBanner";
+import TopBanner from "@/components/Banners/TopBanner";
 import { useGetCategoriesQuery } from "@/RTK/Apis/Category";
 import CategoryIconList from "@/components/Home/CategoryIconList";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -18,6 +18,7 @@ import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import ReservationModal from "@/components/Reservation/modal/ReservationModal";
 import { useGetRequestReservationsQuery } from "@/RTK/Apis/Reservation";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
+import { BannersData } from "@/components/Banners/Banners";
 
 const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
@@ -103,17 +104,7 @@ export default function Home() {
   };
 
   // 별도로 운영자가 밖에서 들고와서  완리할 수 있게 해두면 좋을 것 같음
-  const banner = {
-    head: "가이드",
-    title: "마니또가 처음이신가요?",
-    description: "가이드와 함께 멘토링을 시작해보세요!",
-    link: "/Guide",
-    backgroundColor: "bg-signature_color-500",
-    textColor: "text-white",
-    image: "/guide.png",
-    license:
-      "https://kor.pngtree.com/freepng/meb-map-guide_4462396.html' 의 PNG 이미지 kor.pngtree.com",
-  };
+  const banner = BannersData;
 
   return (
     <Layout>

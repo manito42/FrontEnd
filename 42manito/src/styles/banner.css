@@ -7,14 +7,14 @@
 
 .top-banner-container {
   @apply flex flex-col md:flex-row-reverse justify-between
-    w-[90%] lg:w-[900px]
+    w-[90%] lg:w-[900px];
 }
 
 .top-banner-left {
   @apply ml-10 mb-10 flex flex-col justify-end
-    cursor-pointer
+    cursor-pointer;
 }
-.top-banner-right{
+.top-banner-right {
   @apply flex items-center justify-center h-full;
 }
 
@@ -27,4 +27,16 @@
 
 .top-banner-description {
   @apply font-light text-base;
+}
+
+.banner-circles-wrapper {
+  @apply absolute bottom-1.5;
+}
+
+.banner-circles-container {
+  @apply flex w-full mx-auto;
+}
+
+.banner-circle {
+  @apply w-2 h-2 rounded-2xl mx-1;
 }
