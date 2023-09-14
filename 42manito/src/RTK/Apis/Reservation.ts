@@ -38,9 +38,7 @@ export const reservationApi = createApi({
     >({
       query: (args: UserReservationReqDto) => {
         return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${
-            args.page
-          }&active=${true}&as_mentor=${true}&as_mentee=${false}`,
+          url: `/users/${args.id}/reservations?take=${args.take}&page=${args.page}&active=${args.active}&as_mentor=${args.as_mentor}&as_mentee=${args.as_mentee}`,
           method: "GET",
         };
       },
