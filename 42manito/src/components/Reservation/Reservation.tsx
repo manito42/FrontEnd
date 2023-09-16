@@ -2,13 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetUserQuery } from "@/RTK/Apis/User";
 import ProfileImage from "@/components/Profile/Image";
 import React from "react";
-import { UserDefaultDto } from "@/Types/Users/UserDefault.dto";
 import CardHashtag from "@/components/Global/CardHashtag";
-import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 import DescriptionComponent from "@/components/Profile/Description";
 import {
   getStatus,
-  ReservationRole,
+  ReservationUserRole,
 } from "@/components/Reservation/getReservationStatus";
 import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { Button } from "@/common";
@@ -16,38 +14,37 @@ import NextProgressButton from "@/components/Reservation/NextProgressButton";
 import { usePatchReservationCancelMutation } from "@/RTK/Apis/Reservation";
 import { setSelectedReservation } from "@/RTK/Slices/Reservation";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
+import { RootState } from "@/RTK/store";
 
 interface props {
   children?: React.ReactNode;
 }
 export default function Reservation({ children }: props) {
-  const reservation: ReservationDefaultDto = useSelector(
-    (state: RootState) => state.rootReducers.reservation.selectedReservation,
-  );
   const userId = useSelector(
     (state: RootState) => state.rootReducers.global.uId,
+  );
+  const reservation = useSelector(
+    (state: RootState) => state.rootReducers.reservation.selectedReservation,
   );
   const targetUserId =
     userId === reservation.mentorId
       ? reservation.menteeId
       : reservation.mentorId;
-  const { data: targetUser }: { data: UserDefaultDto } = useGetUserQuery({
+  const { data: targetUser } = useGetUserQuery({
     id: targetUserId,
   });
   const status = reservation.status;
   const targetUserRole =
     targetUserId === reservation.mentorId
-      ? ReservationRole.Mentor
-      : ReservationRole.Mentee;
+      ? ReservationUserRole.mentor
+      : ReservationUserRole.mentee;
   const myRole =
-    targetUserRole === ReservationRole.Mentor
-      ? ReservationRole.Mentee
-      : ReservationRole.Mentor;
-  const [patchCancelReservation] = usePatchReservationCancelMutation({
-    id: reservation.id,
-  });
+    targetUserRole === ReservationUserRole.mentor
+      ? ReservationUserRole.mentee
+      : ReservationUserRole.mentor;
+  const [patchCancelReservation] = usePatchReservationCancelMutation();
   const dispatch = useDispatch();
-  const handleCancelReservation = async (msg?, errorMsg?) => {
+  const handleCancelReservation = async (msg?: string, errorMsg?: string) => {
     try {
       const data = await patchCancelReservation({
         id: reservation.id,
@@ -77,7 +74,7 @@ export default function Reservation({ children }: props) {
               {targetUser.nickname}
             </div>
             <div className="reservation-user-role">
-              {targetUserRole === ReservationRole.Mentor ? "멘토" : "멘티"}
+              {targetUserRole === ReservationUserRole.mentor ? "멘토" : "멘티"}
             </div>
           </div>
           <div className="reservation-info">
@@ -108,7 +105,9 @@ export default function Reservation({ children }: props) {
                 />
               )}
             {reservation.menteeFeedback && (
-              <DescriptionComponent description={reservation.menteeFeedback} />
+              <DescriptionComponent
+                description={reservation.menteeFeedback.content}
+              />
             )}
           </div>
           <div className="reservation-buttons">
@@ -121,7 +120,7 @@ export default function Reservation({ children }: props) {
             }
             {/* 내가 멘티일 경우 수락 이후 취소 불가*/}
             {(status === ReservationStatus.REQUEST ||
-              (myRole === ReservationRole.Mentor &&
+              (myRole === ReservationUserRole.mentor &&
                 status === ReservationStatus.ACCEPT)) && (
               <Button
                 className="reservation-cancel-button"
@@ -132,7 +131,7 @@ export default function Reservation({ children }: props) {
                   );
                 }}
               >
-                {myRole === ReservationRole.Mentor &&
+                {myRole === ReservationUserRole.mentor &&
                 status === ReservationStatus.REQUEST
                   ? "거절하기"
                   : "취소하기"}

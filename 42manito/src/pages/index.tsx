@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import dynamic from "next/dynamic";
-import { initAllMentor } from "@/RTK/Slices/Home";
-import { signIn } from "@/RTK/Slices/Global";
 import { useMentorModal } from "@/hooks/Mentor/MentorModal";
 import { useFetchHome } from "@/hooks/Home/FetchHome";
 import ReservationLists from "@/components/Reservation/ReservationLists";
@@ -16,9 +14,9 @@ import { Spin } from "antd";
 import MentorCard from "@/components/Mentor/Card";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import ReservationModal from "@/components/Reservation/modal/ReservationModal";
-import { useGetRequestReservationsQuery } from "@/RTK/Apis/Reservation";
-import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 import { BannersData } from "@/components/Banners/Banners";
+import { ReservationRole } from "@/Types/Reservations/ReservationRole";
+import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 
 const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
@@ -42,34 +40,12 @@ export default function Home() {
   const selectedReservation = useSelector(
     (state: RootState) => state.rootReducers.reservation.selectedReservation,
   );
-  const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
-  );
-  const { data: response } = useGetRequestReservationsQuery({ id: userId });
-  const [reservations, setReservationRequests] = useState<
-    ReservationDefaultDto[]
-  >([]);
-
-  useEffect(() => {
-    if (response) {
-      setReservationRequests([
-        ...response.menteeReservations,
-        ...response.mentorReservations,
-      ]);
-    }
-  }, [response]);
-
-  useEffect(() => {
-    if (OwnerId === 0) {
-      const id = localStorage.getItem("uid");
-      if (id !== null) {
-        dispatch(signIn(Number(id)));
-      }
-    }
-    return () => {
-      dispatch(initAllMentor());
-    };
-  }, [OwnerId, dispatch]);
+  const requestQuery = {
+    take: 100,
+    page: 0,
+    role: ReservationRole.ALL,
+    status: [ReservationStatus.REQUEST, ReservationStatus.ACCEPT],
+  };
 
   useEffect(() => {
     setHasMore(true);
@@ -104,12 +80,10 @@ export default function Home() {
   };
 
   // 별도로 운영자가 밖에서 들고와서  완리할 수 있게 해두면 좋을 것 같음
-  const banner = BannersData;
-
   return (
     <Layout>
       <div className="app-container">
-        <TopBanner banner={banner} />
+        <TopBanner banner={BannersData} />
         <div className="home">
           <div className="temp-spacer">
             {!!userId && (
@@ -119,7 +93,7 @@ export default function Home() {
                   멘토링 요청들을 확인해보세요
                 </div>
                 <ReservationLists
-                  reservations={reservations}
+                  query={requestQuery}
                   name={"home-request"}
                   emptyMsg={"대기 중인 멘토링이 없습니다 🥲"}
                 />

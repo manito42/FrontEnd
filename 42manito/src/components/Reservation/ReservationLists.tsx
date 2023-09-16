@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReservationCard from "@/components/Reservation/card/ReservationCard";
 import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
+import { useGetReservationsQuery } from "@/RTK/Apis/Reservation";
+import { useSelector } from "react-redux";
+import { RootState } from "@/RTK/store";
+import { IReservationGetReqQuery } from "@/Types/Reservations/ReservationGetReq.dto";
 
 interface props {
-  reservations: ReservationDefaultDto[];
+  query: IReservationGetReqQuery;
   name: string;
   emptyMsg?: string;
 }
 
-export default function ReservationLists({
-  reservations,
-  name,
-  emptyMsg,
-}: props) {
+export default function ReservationLists({ query, name, emptyMsg }: props) {
+  const userId = useSelector(
+    (state: RootState) => state.rootReducers.global.uId,
+  );
+  // uid must be set
+  const { data: response } = useGetReservationsQuery({
+    id: userId as number,
+    query: query,
+  });
+  const [reservations, setReservationRequests] = useState<
+    ReservationDefaultDto[]
+  >([]);
+
+  useEffect(() => {
+    if (response) {
+      setReservationRequests(response.content);
+    }
+  }, [response]);
+
   const onLeftClick = () => {
     if (!reservations) return;
     const elem = document.getElementsByClassName(
