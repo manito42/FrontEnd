@@ -38,13 +38,11 @@ export default function Sidebar({ onClose, onSignIn }: props) {
       <Link href="/Mentorings" onClick={onClose}>
         <p className="sidebar-text sidebar-text-btn">Mentorings</p>
       </Link>
-      {
-        !!uid(
-          <Link href={`/Profile/${uid}`} onClick={onClose}>
-            <p className="sidebar-text sidebar-text-btn">Profile</p>
-          </Link>,
-        )
-      }
+      {!!uid && (
+        <Link href={`/Profile/${uid}`} onClick={onClose}>
+          <p className="sidebar-text sidebar-text-btn">Profile</p>
+        </Link>
+      )}
       {!uid && (
         <button
           id="42AuthSignIn"
