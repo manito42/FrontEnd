@@ -30,7 +30,11 @@ export default function NextProgressButton({
   const [patchMenteeFeedbackReservation] =
     usePatchReservationMenteeFeedbackMutation();
   const dispatch = useDispatch();
-  const handlePatchReservation = async (patchFunc, msg?, errorMsg?) => {
+  const handlePatchReservation = async (
+    patchFunc: any,
+    msg?: string,
+    errorMsg?: string,
+  ) => {
     try {
       const data = await patchFunc(req).unwrap();
       dispatch(setSelectedReservation(data));
