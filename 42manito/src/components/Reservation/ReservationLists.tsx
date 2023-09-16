@@ -5,26 +5,50 @@ import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.d
 import { useGetReservationsQuery } from "@/RTK/Apis/Reservation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
-import { IReservationGetReqQuery } from "@/Types/Reservations/ReservationGetReq.dto";
+import { ReservationRole } from "@/Types/Reservations/ReservationRole";
+import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
+import { Pagination } from "@mui/material";
 
 interface props {
-  query: IReservationGetReqQuery;
+  take?: number;
+  role?: ReservationRole;
+  status?: ReservationStatus[];
   name: string;
   emptyMsg?: string;
+  pagination?: boolean;
 }
 
-export default function ReservationLists({ query, name, emptyMsg }: props) {
+export default function ReservationLists({
+  take = 10,
+  role = ReservationRole.ALL,
+  status = [
+    ReservationStatus.REQUEST,
+    ReservationStatus.ACCEPT,
+    ReservationStatus.MENTEE_CHECKED,
+    ReservationStatus.MENTEE_FEEDBACK,
+    ReservationStatus.DONE,
+    ReservationStatus.CANCEL,
+  ],
+  name,
+  emptyMsg,
+  pagination,
+}: props) {
   const userId = useSelector(
     (state: RootState) => state.rootReducers.global.uId,
   );
-  // uid must be set
-  const { data: response } = useGetReservationsQuery({
-    id: userId as number,
-    query: query,
-  });
   const [reservations, setReservationRequests] = useState<
     ReservationDefaultDto[]
   >([]);
+  const [page, setPage] = useState<number>(0);
+  const { data: response } = useGetReservationsQuery({
+    id: userId as number,
+    query: {
+      take: take,
+      role: role,
+      status: status,
+      page: page,
+    },
+  });
 
   useEffect(() => {
     if (response) {
@@ -46,6 +70,7 @@ export default function ReservationLists({ query, name, emptyMsg }: props) {
     )[0];
     elem.scrollLeft += elem.clientWidth;
   };
+
   return (
     <>
       <div className="reservation-requests-wrapper">
@@ -69,6 +94,20 @@ export default function ReservationLists({ query, name, emptyMsg }: props) {
           onClick={onRightClick}
         />
       </div>
+      {pagination && response !== undefined && (
+        <div className="reservation-requests-pagination">
+          <Pagination
+            defaultPage={1}
+            page={page + 1}
+            showFirstButton={true}
+            showLastButton={true}
+            count={response.page.totalPage + 1}
+            onChange={(e, page) => {
+              setPage(page - 1);
+            }}
+          />
+        </div>
+      )}
     </>
   );
 }

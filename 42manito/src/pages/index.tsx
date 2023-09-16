@@ -93,7 +93,9 @@ export default function Home() {
                   멘토링 요청들을 확인해보세요
                 </div>
                 <ReservationLists
-                  query={requestQuery}
+                  take={requestQuery.take}
+                  role={requestQuery.role}
+                  status={requestQuery.status}
                   name={"home-request"}
                   emptyMsg={"대기 중인 멘토링이 없습니다 🥲"}
                 />
@@ -148,7 +150,7 @@ export default function Home() {
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />
         )}
-        {isModalOpen && selectedReservation !== null && <ReservationModal />}
+        {isModalOpen && <ReservationModal />}
         <button
           onClick={scrollToTop}
           className="fixed bottom-5 right-5 rounded-full

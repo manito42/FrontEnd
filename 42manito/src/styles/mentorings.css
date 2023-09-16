@@ -1,5 +1,5 @@
 .mentoring-wrapper {
-    @apply w-[90%] md:w-[600px] lg:w-[900px]
+    @apply w-[90%] md:w-[600px] lg:w-[900px] mb-10
     flex-col justify-center items-center;
 
     .mentoring-title {

@@ -26,37 +26,10 @@ const Mentoring = () => {
   ];
   const router = useRouter();
   const uid = useSelector((state: RootState) => state.rootReducers.global.uId);
-  const [requestReservationPage, setRequestReservationPage] = useState(0);
-  const [activeReservationPage, setActiveReservationPage] = useState(0);
-  const [inactiveReservationPage, setInactiveReservationPage] = useState(0);
   const [role, setRole] = useState<ReservationRole>(ReservationRole.ALL);
   const isModalOpen = useSelector(
     (state: RootState) => state.rootReducers.reservation.isModalOpen,
   );
-  const selectedReservation = useSelector(
-    (state: RootState) => state.rootReducers.reservation.selectedReservation,
-  );
-  const requestQuery = {
-    take: 100,
-    page: requestReservationPage,
-    role: role,
-    status: [ReservationStatus.REQUEST, ReservationStatus.ACCEPT],
-  };
-  const activeQuery = {
-    take: 10,
-    page: activeReservationPage,
-    role: role,
-    status: [
-      ReservationStatus.MENTEE_FEEDBACK,
-      ReservationStatus.MENTEE_CHECKED,
-    ],
-  };
-  const inActiveQuery = {
-    take: 10,
-    page: inactiveReservationPage,
-    role: role,
-    status: [ReservationStatus.DONE, ReservationStatus.CANCEL],
-  };
   const handleRoleSelect = (id: string) => {
     if (id === "mentor") {
       setRole(ReservationRole.MENTOR);
@@ -123,26 +96,47 @@ const Mentoring = () => {
               </div>
               <div className="mentoring-text-header">대기 중인 멘토링</div>
               <ReservationLists
-                query={requestQuery}
+                take={10}
+                role={role}
+                status={[ReservationStatus.REQUEST, ReservationStatus.ACCEPT]}
                 name={"request"}
-                emptyMsg={"대기중인 멘토링이 없습니다 🥲"}
+                emptyMsg={"대기 중인 멘토링이 없습니다 🥲"}
+                pagination={true}
               />
               <div className="mentoring-text-header">진행 중인 멘토링</div>
               <ReservationLists
-                query={activeQuery}
+                take={10}
+                role={role}
+                status={[
+                  ReservationStatus.MENTEE_CHECKED,
+                  ReservationStatus.MENTEE_FEEDBACK,
+                ]}
                 name={"active"}
-                emptyMsg={"진행중인 멘토링이 없습니다 🥲"}
+                emptyMsg={"진행 중인 멘토링이 없습니다 🥲"}
+                pagination={true}
               />
-              <div className="mentoring-text-header">완료된 멘토링</div>
+              <div className="mentoring-text-header">완료한 멘토링</div>
               <ReservationLists
-                query={inActiveQuery}
-                name={"inactive"}
-                emptyMsg={"완료된 멘토링이 없습니다 🥲"}
+                take={10}
+                role={role}
+                status={[ReservationStatus.DONE]}
+                name={"done"}
+                emptyMsg={"완료한 멘토링이 없습니다 🥲"}
+                pagination={true}
+              />
+              <div className="mentoring-text-header">취소한 멘토링</div>
+              <ReservationLists
+                take={10}
+                role={role}
+                status={[ReservationStatus.CANCEL]}
+                name={"cancel"}
+                emptyMsg={"취소한 멘토링이 없습니다 😀"}
+                pagination={true}
               />
             </div>
           )}
         </div>
-        {isModalOpen && selectedReservation !== null && <ReservationModal />}
+        {isModalOpen && <ReservationModal />}
       </Layout>
     </>
   );
