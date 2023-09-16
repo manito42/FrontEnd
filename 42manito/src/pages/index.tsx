@@ -24,7 +24,7 @@ const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const OwnerId = useSelector(
+  const userId = useSelector(
     (state: RootState) => state.rootReducers.global.uId,
   );
   const [hasMore, setHasMore] = React.useState<boolean>(true);
@@ -112,7 +112,7 @@ export default function Home() {
         <TopBanner banner={banner} />
         <div className="home">
           <div className="temp-spacer">
-            {OwnerId !== 0 && (
+            {!!userId && (
               <div className="home-reservation-request-wrapper">
                 <div className="home-text-header">대기 중인 멘토링</div>
                 <div className="home-text-detail">
