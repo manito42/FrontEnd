@@ -22,13 +22,13 @@ const ProfileTypo = () => {
   const [setMentor, { data, isLoading, error }] = useSetMentorAcceptMutation();
   const Owner = useSelector((state: RootState) => state.rootReducers.global);
   const { data: Userdata, isLoading: UserIsLoading } = useGetUserQuery({
-    id: Owner.uId,
+    id: Owner.uId as number,
   });
 
   const handleAccept = () => {
     if (Owner.uId !== 0 && Userdata) {
       setMentor({
-        id: Owner.uId,
+        id: Owner.uId as number,
       });
     }
   };
