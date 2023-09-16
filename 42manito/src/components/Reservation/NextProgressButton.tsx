@@ -4,7 +4,7 @@ import {
   usePatchReservationMenteeCheckMutation,
   usePatchReservationMenteeFeedbackMutation,
 } from "@/RTK/Apis/Reservation";
-import { ReservationRole } from "@/components/Reservation/getReservationStatus";
+import { ReservationUserRole } from "@/components/Reservation/getReservationStatus";
 import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { Button } from "@/common";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { setSelectedReservation } from "@/RTK/Slices/Reservation";
 
 interface props {
-  role: ReservationRole;
+  role: ReservationUserRole;
   status: ReservationStatus;
   reservationId: number;
 }
@@ -40,7 +40,7 @@ export default function NextProgressButton({
     }
   };
 
-  if (role === ReservationRole.Mentor) {
+  if (role === ReservationUserRole.mentor) {
     switch (status) {
       case ReservationStatus.REQUEST:
         return (

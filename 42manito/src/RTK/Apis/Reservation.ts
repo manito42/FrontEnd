@@ -7,8 +7,10 @@ import { ReservationPatchMentorCompletionDto } from "@/Types/Reservations/Reserv
 import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
-import { UserReservationResDto } from "@/Types/UserReservation/UserReservationResDto";
 import { ReservationPatchMenteeCheckReqDto } from "@/Types/Reservations/ReservationPatchMenteeCheckReq.dto";
+import { ReservationGetResDto } from "@/Types/Reservations/ReservationGetRes.dto";
+import { ReservationGetReqDto } from "@/Types/Reservations/ReservationGetReq.dto";
+import { ObjectToURLString } from "@/utils/ObjectToURLString";
 
 export const reservationApi = createApi({
   reducerPath: "reservationApi",
@@ -18,69 +20,11 @@ export const reservationApi = createApi({
   tagTypes: ["Reservation"],
   endpoints: (builder) => ({
     // request = REQUEST, ACCEPT, MENTEE_CHECKED
-    getRequestReservations: builder.query<
-      UserReservationResDto,
-      { id: number }
-    >({
-      query: ({ id }) => {
-        console.log("getRequestReservations");
+    getReservations: builder.query<ReservationGetResDto, ReservationGetReqDto>({
+      query: (request: ReservationGetReqDto) => {
+        const query = ObjectToURLString(request.query);
         return {
-          url: `/users/${id}/reservations/request`,
-          method: "GET",
-        };
-      },
-      providesTags: [{ type: "Reservation", id: "LIST" }],
-    }),
-    // active = NOT DONE, NOT CANCEL
-    getActiveReservation: builder.query<
-      UserReservationResDto,
-      UserReservationReqDto
-    >({
-      query: (args: UserReservationReqDto) => {
-        return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${args.page}&active=${args.active}&as_mentor=${args.as_mentor}&as_mentee=${args.as_mentee}`,
-          method: "GET",
-        };
-      },
-      providesTags: [{ type: "Reservation", id: "LIST" }],
-    }),
-    getActiveMenteeReservation: builder.query<
-      UserReservationResDto,
-      UserReservationReqDto
-    >({
-      query: (args: UserReservationReqDto) => {
-        return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${
-            args.page
-          }&active=${true}&as_mentor=${false}&as_mentee=${true}`,
-          method: "GET",
-        };
-      },
-      providesTags: [{ type: "Reservation", id: "LIST" }],
-    }),
-    getAllMentorReservation: builder.query<
-      UserReservationResDto,
-      UserReservationReqDto
-    >({
-      query: (args: UserReservationReqDto) => {
-        return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${
-            args.page
-          }&as_mentor=${true}&as_mentee=${false}&active=${false}`,
-          method: "GET",
-        };
-      },
-      providesTags: [{ type: "Reservation", id: "LIST" }],
-    }),
-    getAllMenteeReservation: builder.query<
-      UserReservationResDto,
-      UserReservationReqDto
-    >({
-      query: (args: UserReservationReqDto) => {
-        return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${
-            args.page
-          }&as_mentor=${false}&as_mentee=${true}&active=${false}`,
+          url: `/users/${request.id}/reservations${query}`,
           method: "GET",
         };
       },
@@ -176,11 +120,7 @@ export const reservationApi = createApi({
 });
 
 export const {
-  useGetRequestReservationsQuery,
-  useGetActiveReservationQuery,
-  useGetActiveMenteeReservationQuery,
-  useGetAllMenteeReservationQuery,
-  useGetAllMentorReservationQuery,
+  useGetReservationsQuery,
   usePostReservationRequestMutation,
   usePatchReservationAcceptMutation,
   usePatchReservationCancelMutation,

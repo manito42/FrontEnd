@@ -1,14 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
+import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 
 interface currMentorType {
   isModalOpen: boolean;
-  selectedReservation: ReservationDefaultDto | null;
+  selectedReservation: ReservationDefaultDto;
 }
 
 const InitialState: currMentorType = {
   isModalOpen: false,
-  selectedReservation: null,
+  selectedReservation: {
+    id: 0,
+    mentorId: 0,
+    menteeId: 0,
+    category: {
+      id: 0,
+      name: "",
+    },
+    requestMessage: "",
+    status: ReservationStatus.ACCEPT,
+    hashtags: [],
+    mentorFeedback: null,
+    menteeFeedback: null,
+    createdAt: "",
+    updatedAt: "",
+  },
 };
 
 export const ReservationSlice = createSlice({

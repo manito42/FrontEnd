@@ -8,7 +8,7 @@ import Image from "next/image";
 import { openReservationModal } from "@/RTK/Slices/Reservation";
 import {
   getStatus,
-  ReservationRole,
+  ReservationUserRole,
 } from "@/components/Reservation/getReservationStatus";
 
 interface props {
@@ -22,7 +22,9 @@ export default function ReservationCard({ reservation }: props) {
   );
   const targetUserId = userId === mentorId ? menteeId : mentorId;
   const role =
-    targetUserId === mentorId ? ReservationRole.Mentor : ReservationRole.Mentee;
+    targetUserId === mentorId
+      ? ReservationUserRole.mentor
+      : ReservationUserRole.mentee;
   const { data: targetUser } = useGetUserQuery({ id: targetUserId });
   const dispatch = useDispatch();
   const handleClick = () => {
@@ -52,7 +54,7 @@ export default function ReservationCard({ reservation }: props) {
               {targetUser.nickname}
             </div>
             <div className="reservation-card-role">
-              {role === ReservationRole.Mentor ? "멘토" : "멘티"}
+              {role === ReservationUserRole.mentor ? "멘토" : "멘티"}
             </div>
           </div>
           <div className="reservation-card-hashtags">

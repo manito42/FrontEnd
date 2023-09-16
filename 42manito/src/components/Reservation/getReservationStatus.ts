@@ -1,12 +1,12 @@
 // ROLE: 카드 내 대상의 ROLE 을 뜻함.
 
-export const enum ReservationRole {
-  Mentor = "mentor",
-  Mentee = "mentee",
+export const enum ReservationUserRole {
+  mentor = "mentor",
+  mentee = "mentee",
 }
 
-export function getStatus(role: ReservationRole, status: string) {
-  if (role === ReservationRole.Mentee) {
+export function getStatus(role: ReservationUserRole, status: string) {
+  if (role === ReservationUserRole.mentee) {
     switch (status) {
       case "REQUEST":
         return "요청";
