@@ -2,10 +2,10 @@ import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { ReservationRole } from "@/Types/Reservations/ReservationRole";
 
 export interface IReservationGetReqQuery {
-  take?: number;
-  page?: number;
-  role?: ReservationRole;
-  status?: ReservationStatus[];
+  take: number;
+  page: number;
+  role: ReservationRole;
+  status: ReservationStatus[];
 }
 
 export class ReservationGetReqDto {
