@@ -21,7 +21,6 @@ import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
 export default function Home() {
-  const dispatch = useAppDispatch();
   const userId = useSelector(
     (state: RootState) => state.rootReducers.global.uId,
   );
@@ -36,9 +35,6 @@ export default function Home() {
   );
   const isModalOpen = useSelector(
     (state: RootState) => state.rootReducers.reservation.isModalOpen,
-  );
-  const selectedReservation = useSelector(
-    (state: RootState) => state.rootReducers.reservation.selectedReservation,
   );
   const requestQuery = {
     take: 100,
