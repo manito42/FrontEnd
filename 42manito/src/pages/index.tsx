@@ -1,7 +1,7 @@
 import Layout from "../components/Layout/Layout";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "@/RTK/store";
+import { RootState } from "@/RTK/store";
 import dynamic from "next/dynamic";
 import { useMentorModal } from "@/hooks/Mentor/MentorModal";
 import { useFetchHome } from "@/hooks/Home/FetchHome";
