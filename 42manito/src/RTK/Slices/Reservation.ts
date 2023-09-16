@@ -36,8 +36,7 @@ export const ReservationSlice = createSlice({
       state.isModalOpen = true;
     },
     closeReservationModal(state) {
-      state.isModalOpen = false;
-      state.selectedReservation = null;
+      state = InitialState;
     },
     setSelectedReservation(state, action) {
       state.selectedReservation = action.payload;
