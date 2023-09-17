@@ -1,0 +1,32 @@
+.mentoring-wrapper {
+    @apply w-[90%] md:w-[600px] lg:w-[900px] mb-10
+    flex-col justify-center items-center;
+
+    .mentoring-title {
+        @apply flex justify-center text-3xl font-bold mt-5 px-5;
+    }
+    .mentoring-text-header {
+        @apply text-2xl font-bold mt-5 ml-5
+    }
+
+    .mentoring-text-detail {
+        @apply text-base font-light px-5 text-bg_color-500;
+    }
+    .mentoring-select-role {
+        @apply flex flex-row justify-center items-center mt-5 md:ml-9;
+        .mentoring-select-role-header {
+            @apply border-2 rounded-full px-4 py-1 mr-5
+                cursor-pointer text-lg;
+        }
+        .active-role {
+            @apply text-bg_color-800 font-bold border-signature_color-500;
+        }
+        .inactive-role {
+            @apply text-bg_color-400 border-bg_color-300;
+        }
+    }
+
+    .mentoring-select-role-detail {
+        @apply text-base font-light mr-5
+    }
+}

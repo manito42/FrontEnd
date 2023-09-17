@@ -1,54 +1,18 @@
 import React from "react";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 import { useGetUserQuery } from "@/RTK/Apis/User";
 import CardHashtag from "@/components/Global/CardHashtag";
 import Image from "next/image";
+import { openReservationModal } from "@/RTK/Slices/Reservation";
+import {
+  getStatus,
+  ReservationUserRole,
+} from "@/components/Reservation/getReservationStatus";
 
 interface props {
   reservation: ReservationDefaultDto;
-}
-
-const enum Role {
-  Mentor = "mentor",
-  Mentee = "mentee",
-}
-
-// ROLE: 카드 내 대상의 ROLE 을 뜻함.
-function getStatus(role: Role, status: string) {
-  if (role === Role.Mentee) {
-    switch (status) {
-      case "REQUEST":
-        return "요청";
-      case "ACCEPT":
-        return "확인중";
-      case "MENTEE_CHECKED":
-        return "진행중";
-      case "MENTEE_FEEDBACK":
-        return "피드백";
-      case "DONE":
-        return "완료";
-      case "CANCEL":
-        return "취소";
-    }
-  } else {
-    switch (status) {
-      case "REQUEST":
-        return "수락 대기";
-      case "ACCEPT":
-        return "수락";
-      case "MENTEE_CHECKED":
-        return "진행중";
-      case "MENTEE_FEEDBACK":
-        return "피드백";
-      case "DONE":
-        return "완료";
-      case "CANCEL":
-        return "취소";
-    }
-  }
-  return `{role} ${status}`;
 }
 
 export default function ReservationCard({ reservation }: props) {
@@ -57,15 +21,22 @@ export default function ReservationCard({ reservation }: props) {
     (state: RootState) => state.rootReducers.global.uId,
   );
   const targetUserId = userId === mentorId ? menteeId : mentorId;
-  const role = userId === mentorId ? Role.Mentee : Role.Mentor;
+  const role =
+    targetUserId === mentorId
+      ? ReservationUserRole.mentor
+      : ReservationUserRole.mentee;
   const { data: targetUser } = useGetUserQuery({ id: targetUserId });
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(openReservationModal(reservation));
+  };
 
   return (
     <>
       {targetUser && (
-        <div className="reservation-card card">
-          <div className={`reservation-card-status-container`}>
-            <div className={`reservation-card-status ${status}`}>
+        <div className="reservation-card card" onClick={handleClick}>
+          <div className={`reservation-status-container`}>
+            <div className={`reservation-status ${status}`}>
               {getStatus(role, status)}
             </div>
           </div>
@@ -83,7 +54,7 @@ export default function ReservationCard({ reservation }: props) {
               {targetUser.nickname}
             </div>
             <div className="reservation-card-role">
-              {role === Role.Mentor ? "멘토" : "멘티"}
+              {role === ReservationUserRole.mentor ? "멘토" : "멘티"}
             </div>
           </div>
           <div className="reservation-card-hashtags">

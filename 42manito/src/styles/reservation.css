@@ -1,3 +1,8 @@
+.reservation-requests-pagination{
+    @apply flex flex-row justify-center items-center
+        w-[100%]
+}
+
 .reservation-requests-wrapper {
   @apply flex flex-row overflow-x-scroll justify-center items-center
         w-[100%]  md:px-5 py-5;
@@ -5,31 +10,172 @@
         @apply flex flex-row justify-between
             z-10;
     }
-}
 
-.reservation-requests-container {
-  @apply flex flex-row overflow-x-scroll scroll-smooth
-        justify-start
-        items-center
-        h-[280px]
-        w-[90%] md:w-full
-        bg-bg_color-50 dark:bg-bg_color-700
-        border
-        border-bg_color-300 dark:border-bg_color-700
-        rounded-xl;
+    .reservation-requests-container {
+      @apply flex flex-row overflow-x-scroll scroll-smooth
+            justify-start
+            items-center
+            h-[280px]
+            w-[90%] md:w-full
+            bg-bg_color-50 dark:bg-bg_color-700
+            border
+            border-bg_color-300 dark:border-bg_color-700
+            rounded-xl;
+    }
+    .reservation-requests-empty {
+        @apply flex flex-wrap justify-center items-center
+            text-bg_color-500 dark:text-bg_color-400
+            w-[100%];
+    }
 }
 
 .reservation-card {
     @apply flex flex-col justify-center items-center
-        min-w-[160px] h-[250px] px-2 py-4 mx-[10px]
-        rounded-xl shadow-lg;
+    min-w-[160px] h-[250px] px-2 py-4 mx-[10px]
+    rounded-xl shadow-sm;
 }
 
-.reservation-card-status-container {
+.reservation-card-user-info {
+        @apply flex flex-col justify-center items-center
+        w-[90%] h-[60%];
+
+    .reservation-card-image-holder {
+        @apply w-[100%] flex justify-center items-center;
+    }
+
+    .reservation-card-image {
+        @apply w-[80px] h-[80px] rounded-full object-cover
+        mb-2;
+    }
+
+    .reservation-card-nickname {
+        @apply flex items-center justify-center
+        w-[100%] h-[20%]
+        text-base font-bold truncate overflow-ellipsis
+        text-bg_color-800 dark:text-bg_color-200;
+    }
+    .reservation-card-role {
+        @apply text-black dark:text-white
+        font-light text-xs;
+    }
+
+    .reservation-card-hashtags {
+        @apply  flex flex-wrap flex-row h-[20%]
+        overflow-hidden justify-center items-center px-2;
+    }
+}
+
+/* Reservation modal */
+.reservation-modal-wrapper {
+   @apply fixed inset-0
+        bg-black bg-opacity-25
+        backdrop-blur-sm
+        flex justify-center overflow-y-auto
+        z-[50];
+    .reservation-modal-section {
+        @apply overflow-y-scroll;
+    }
+    .close-btn {
+        @apply text-bg_color-500 hover:text-red-500 dark:text-bg_color-400 text-sm;
+    }
+}
+
+/* Reservation Component */
+.reservation-container{
+    @apply flex flex-col
+        items-center justify-center
+        pt-10 pb-5 my-5
+        w-[90vmin] md:w-[600px]
+        rounded-2xl bg-bg_color-100 dark:bg-bg_color-900
+        drop-shadow-xl;
+    .reservation-header {
+        @apply flex flex-col
+            items-center justify-center
+            text-center text-2xl font-bold
+            w-[90%];
+    }
+    .reservation-title {
+        @apply flex flex-row
+            items-center justify-center
+            text-center text-lg font-bold;
+    }
+    .reservation-image-holder{
+        @apply flex flex-row
+            items-center justify-center
+            w-[100%] h-[20%]
+            -mt-5 mb-5;
+    }
+    .reservation-user-info {
+        @apply flex flex-col
+            items-center justify-center
+            w-[90%]
+            mb-5;
+        .reservation-user-info-name {
+            @apply flex flex-row
+                items-center justify-center
+                w-[100%] h-[20%] mb-1
+                text-2xl font-bold truncate overflow-ellipsis
+        }
+        .reservation-user-role {
+            @apply text-black dark:text-white
+                text-base;
+        }
+    }
+    .reservation-info {
+        @apply flex flex-col
+            items-center justify-center
+            mb-5 w-[100%];
+        .reservation-message {
+            @apply w-[70%] mt-2
+        }
+        .reservation-hashtags {
+            @apply flex flex-wrap md:flex-row
+                items-center justify-center
+                w-[100%] h-[20%]
+                overflow-hidden;
+        }
+    }
+    .reservation-feedbacks {
+        @apply flex flex-col
+            items-center justify-center
+            w-[70%];
+    }
+    .reservation-buttons {
+        @apply flex flex-row
+            items-center justify-center
+            h-[20%] mt-10;
+        .reservation-cancel-button {
+            @apply flex flex-row
+                items-center justify-center
+                px-4 py-1.5
+                text-sm mx-3
+                text-white bg-neutral-400
+                hover:bg-neutral-300
+                rounded-full;
+        }
+        .reservation-next-button {
+            @apply flex flex-row
+            items-center justify-center
+            px-4 py-1.5
+            text-sm mx-3
+            text-white bg-signature_color-500
+            hover:bg-signature_color-400
+            rounded-full;
+        }
+    }
+    .reservation-child-container {
+        @apply mt-5;
+    }
+}
+
+
+
+.reservation-status-container {
     @apply flex flex-wrap flex-row justify-center items-center
-        overflow-hidden
-        w-[95%] h-[20%];
-    .reservation-card-status {
+    overflow-hidden
+    w-[95%] h-[20%];
+    /* Reservatio Status  */
+    .reservation-status {
         @apply rounded-full px-3 py-1
         text-xs text-white text-center
         mb-2;
@@ -53,32 +199,3 @@
     }
 }
 
-.reservation-card-user-info {
-    @apply flex flex-col justify-center items-center
-        w-[90%] h-[60%];
-
-    .reservation-card-image-holder {
-        @apply w-[100%] flex justify-center items-center;
-    }
-
-    .reservation-card-image {
-        @apply w-[80px] h-[80px] rounded-full object-cover
-            mb-2;
-    }
-
-    .reservation-card-nickname {
-        @apply flex items-center justify-center
-            w-[100%] h-[20%]
-            text-base font-bold truncate overflow-ellipsis
-            text-bg_color-800 dark:text-bg_color-200;
-    }
-    .reservation-card-role {
-        @apply text-black dark:text-white
-            font-light text-xs;
-    }
-}
-
-.reservation-card-hashtags {
-    @apply  flex flex-wrap flex-row h-[20%]
-            overflow-hidden justify-center items-center px-2;
-}

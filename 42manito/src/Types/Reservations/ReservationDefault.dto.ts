@@ -17,7 +17,7 @@ export interface ReservationDefaultDto {
     rating: number;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   menteeFeedback: {
     id: number;
     menteeId: number;
@@ -27,7 +27,7 @@ export interface ReservationDefaultDto {
     content: string;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   createdAt: string;
   updatedAt: string;
   hashtags: HashtagResponseDto[];

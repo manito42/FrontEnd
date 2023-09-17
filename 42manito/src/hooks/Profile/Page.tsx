@@ -13,7 +13,7 @@ export const useProfilePage = () => {
     (state: RootState) => state.rootReducers.global.uId,
   );
   const { data: OwnerData, isLoading: OwnerLoading } = useGetUserQuery(
-    { id: ownerId },
+    { id: ownerId as number },
     { skip: ownerId === 0 },
   );
 

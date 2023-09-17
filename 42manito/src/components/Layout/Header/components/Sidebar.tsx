@@ -12,9 +12,7 @@ interface props {
 }
 
 export default function Sidebar({ onClose, onSignIn }: props) {
-  const Owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
-  );
+  const uid = useSelector((state: RootState) => state.rootReducers.global.uId);
   const dispatch = useAppDispatch();
 
   const handleSingOut = async () => {
@@ -37,12 +35,15 @@ export default function Sidebar({ onClose, onSignIn }: props) {
       <Link href="/About" onClick={onClose}>
         <p className="sidebar-text sidebar-text-btn">About</p>
       </Link>
-      {Owner !== 0 && !Number.isNaN(Owner) && (
-        <Link href={`/Profile/${Owner}`} onClick={onClose}>
+      <Link href="/Mentorings" onClick={onClose}>
+        <p className="sidebar-text sidebar-text-btn">Mentorings</p>
+      </Link>
+      {!!uid && (
+        <Link href={`/Profile/${uid}`} onClick={onClose}>
           <p className="sidebar-text sidebar-text-btn">Profile</p>
         </Link>
       )}
-      {Owner === 0 && (
+      {!uid && (
         <button
           id="42AuthSignIn"
           onClick={() => {
@@ -54,7 +55,7 @@ export default function Sidebar({ onClose, onSignIn }: props) {
           <p className="sidebar-text sidebar-text-btn">Sign In</p>
         </button>
       )}
-      {Owner !== 0 && !Number.isNaN(Owner) && (
+      {!!uid && !Number.isNaN(uid) && (
         <button id="SignOut" onClick={handleSingOut}>
           <p className="sidebar-text sidebar-text-btn">Sign Out</p>
         </button>

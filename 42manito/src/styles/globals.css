@@ -12,6 +12,7 @@
 @import "./banner.css";
 @import "./layout.css";
 @import "./loading.css";
+@import "./mentorings.css";
 /* @import "./about.css"; */
 
 ::-webkit-scrollbar {
@@ -139,7 +140,7 @@ p {
   animation: slideOut 0.3s ease-out;
 }
 
-.mentor-modal {
+.open-modal {
   animation: slideIn 0.3s ease-in;
 }
 

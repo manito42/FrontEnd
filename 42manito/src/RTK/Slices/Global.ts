@@ -1,18 +1,18 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface globalState {
-  uId: number;
+  uId: number | null;
 }
 
 const InitialState: globalState = {
-  uId: 0,
+  uId: null,
 };
 
 export const GlobalSlice = createSlice({
   name: "Global",
   initialState: InitialState,
   reducers: {
-    signIn(state, action: PayloadAction<number>) {
+    signIn(state, action: PayloadAction<number | null>) {
       state.uId = action.payload;
     },
     signOut(state) {

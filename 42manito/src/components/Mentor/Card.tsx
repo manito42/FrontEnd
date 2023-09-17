@@ -45,13 +45,9 @@ const MentorCard = ({ data }: props) => {
           </div>
         </div>
         <div className="mentor-card-hashtags">
-          {hashtags.length > 0
-            ? hashtags.map((hashtag) => (
-                <CardHashtag name={hashtag.name} key={hashtag.id} />
-              ))
-            : categories.map((hashtag) => (
-                <CardHashtag name={hashtag.name} key={hashtag.id} />
-              ))}
+          {hashtags.map((hashtag, idx) => (
+            <CardHashtag name={`#${hashtag.name}`} key={idx} />
+          ))}
         </div>
       </div>
     </>

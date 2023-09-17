@@ -6,23 +6,23 @@ import { useSelector } from "react-redux";
 export default function ManitoToggle() {
   const [isHide, setIsHide] = useState(false);
   const [setIsHideMutation, {}] = useSetIsHideMutation();
-  const owner = useSelector(
+  const userId = useSelector(
     (state: RootState) => state.rootReducers.global.uId,
   );
   const { data: userDate, isLoading: userLoading } = useGetUserQuery(
-    { id: owner },
-    { skip: owner === undefined },
+    { id: userId as number },
+    { skip: userId === undefined },
   );
 
   const changeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsHideMutation({ id: owner, isHide: !e.target.checked });
+    setIsHideMutation({ id: userId as number, isHide: !e.target.checked });
   };
 
   useEffect(() => {
     if (userDate) {
       setIsHide(userDate.mentorProfile.isHide);
     }
-  }, [owner, userDate]);
+  }, [userId, userDate]);
 
   useEffect(() => {
     if (userDate !== undefined && userLoading === false) {
