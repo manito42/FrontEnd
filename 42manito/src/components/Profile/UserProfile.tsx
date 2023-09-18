@@ -29,7 +29,9 @@ export default function UserProfile({ UserId, children }: props) {
             />
           </div>
           <div className="ShortDescriptionContainer">
-            {UserData.shortDescription ?? "짧은 소개글이 없습니다."}
+            {UserData.shortDescription.length
+              ? UserData.shortDescription
+              : "짧은 소개글이 없습니다."}
           </div>
           <div className="ProfileTagWrapper">
             <span className="ProfileHeader">멘토링 분야</span>
