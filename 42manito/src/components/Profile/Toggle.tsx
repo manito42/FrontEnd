@@ -9,7 +9,7 @@ export default function ManitoToggle() {
   const userId = useSelector(
     (state: RootState) => state.rootReducers.global.uId,
   );
-  const { data: userDate, isLoading: userLoading } = useGetUserQuery(
+  const { data: userData, isLoading: userLoading } = useGetUserQuery(
     { id: userId as number },
     { skip: userId === undefined },
   );
@@ -19,16 +19,16 @@ export default function ManitoToggle() {
   };
 
   useEffect(() => {
-    if (userDate) {
-      setIsHide(userDate.mentorProfile.isHide);
+    if (userData) {
+      setIsHide(userData.mentorProfile.isHide);
     }
-  }, [userId, userDate]);
+  }, [userId, userData]);
 
   useEffect(() => {
-    if (userDate !== undefined && userLoading === false) {
-      setIsHide(userDate.mentorProfile.isHide);
+    if (userData !== undefined && userLoading === false) {
+      setIsHide(userData.mentorProfile.isHide);
     }
-  }, [userDate, userLoading]);
+  }, [userData, userLoading]);
 
   return (
     <div className="items-center justify-center flex flex-row mb-5">
