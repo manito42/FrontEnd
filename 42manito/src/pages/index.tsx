@@ -136,8 +136,8 @@ export default function Home() {
               }
             >
               <div className="mentor-cards-container">
-                {mentorList.map((mentor) => (
-                  <MentorCard data={mentor} key={mentor.id} />
+                {mentorList.map((mentor, idx) => (
+                  <MentorCard data={mentor} key={idx} />
                 ))}
               </div>
             </InfiniteScroll>
