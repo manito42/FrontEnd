@@ -31,7 +31,7 @@ export default function HashtagUpdateInput({ hashtags }: props) {
       return;
     }
     // 정규 표현식으로 영어(a-z, A-Z), 한글(가-힣), 숫자(0-9)를 제외한 모든 문자 찾기
-    const regex = /[a-zA-Z0-9가-힣]{3,12}/g;
+    const regex = /[a-zA-Z0-9가-힣]{2,12}/g;
     const regex_invalid = /[^a-zA-Z0-9가-힣]/g;
     const invalidTest = regex_invalid.test(inputValue);
     const regexResult = inputValue.match(regex);
@@ -44,7 +44,7 @@ export default function HashtagUpdateInput({ hashtags }: props) {
       }
       hashtagPost({ name: inputValue });
     } else {
-      alert("3글자 이상의 한글, 영어, 숫자만 추가 가능합니다.");
+      alert("2글자 이상의 12자 이하의 한글, 영어, 숫자만 추가 가능합니다.");
     }
     setInputValue("");
   };

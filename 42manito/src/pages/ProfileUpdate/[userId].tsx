@@ -58,12 +58,8 @@ export default function ProfileUpdate() {
 
       form.hashtags = formData.hashtags;
       form.categories = formData.categories;
-      if (shortDescription.length !== 0) {
-        form.shortDescription = shortDescription;
-      }
-      if (Description.length !== 0) {
-        form.description = Description;
-      }
+      form.shortDescription = shortDescription;
+      form.description = Description;
       UserUpdate({
         id: Number(userId as string),
         profile: form,
