@@ -107,7 +107,7 @@ export default function TopBanner({ banner }: props) {
         <div className="right-arrow-wrapper">
           <button
             className="right-arrow-button"
-            onClick={() => sideButtonHandler("left")}
+            onClick={() => sideButtonHandler("right")}
           >
             <span className="right-arrow">{"▶️"}</span>
           </button>
