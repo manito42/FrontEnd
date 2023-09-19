@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
 import { BannerDto } from "@/Types/Banners/Banner.dto";
-import { clear } from "console";
 
 interface props {
   banner: BannerDto[];
@@ -78,7 +77,7 @@ export default function TopBanner({ banner }: props) {
             className="left-arrow-button"
             onClick={() => sideButtonHandler("left")}
           >
-            <span className="left-arrow">{"◀️"}</span>
+            <CaretLeftOutlined className="left-arrow"></CaretLeftOutlined>
           </button>
         </div>
         <div className="top-banner-container">
@@ -109,7 +108,9 @@ export default function TopBanner({ banner }: props) {
             className="right-arrow-button"
             onClick={() => sideButtonHandler("right")}
           >
-            <span className="right-arrow">{"▶️"}</span>
+            <CaretRightOutlined className="right-arrow">
+              {"▶️"}
+            </CaretRightOutlined>
           </button>
         </div>
       </div>

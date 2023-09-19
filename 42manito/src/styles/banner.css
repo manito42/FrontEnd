@@ -38,7 +38,7 @@
 }
 
 .banner-circle {
-  @apply w-3 h-3 rounded-2xl mx-1;
+  @apply w-3 h-3 rounded-2xl mx-1.5;
 }
 
 .left-arrow-wrapper {
@@ -50,7 +50,7 @@
 }
 
 .left-arrow {
-  @apply text-xl lg:text-3xl mr-0.5;
+  @apply mb-2 mr-1 text-2xl lg:text-4xl lg:mb-2 lg:mr-1;
 }
 
 .right-arrow-wrapper {
@@ -62,5 +62,5 @@
 }
 
 .right-arrow {
-  @apply text-xl lg:text-3xl ml-0.5;
+  @apply mb-2 ml-1 text-2xl lg:text-4xl lg:mb-2 lg:ml-1;
 }
