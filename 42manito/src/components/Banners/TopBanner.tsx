@@ -56,6 +56,18 @@ export default function TopBanner({ banner }: props) {
     }
   };
 
+  const bannerCircle = banner.map((banner, index) => {
+    return (
+      <div
+        key={index}
+        className={`banner-circle ${
+          index === currentIndex ? "bg-white" : "bg-gray-300"
+        }`}
+        onClick={() => handleBannerCircleClick(index)}
+      ></div>
+    );
+  });
+
   return (
     <>
       <div
@@ -90,19 +102,7 @@ export default function TopBanner({ banner }: props) {
           </div>
         </div>
         <div className="banner-circles-wrapper">
-          <div className="banner-circles-container ">
-            {banner.map((banner, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`banner-circle ${
-                    index === currentIndex ? "bg-white" : "bg-gray-300"
-                  }`}
-                  onClick={() => handleBannerCircleClick(index)}
-                ></div>
-              );
-            })}
-          </div>
+          <div className="banner-circles-container ">{bannerCircle}</div>
         </div>
         <div className="right-arrow-wrapper">
           <button
