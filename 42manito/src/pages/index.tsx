@@ -22,7 +22,7 @@ const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
 export default function Home() {
   const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const [hasMore, setHasMore] = React.useState<boolean>(true);
   const [categoryId, setCategoryId] = React.useState<number>(0);
@@ -31,10 +31,10 @@ export default function Home() {
   const { newMentor, fetchNewCategory, fetchMoreData } =
     useFetchHome(categoryId);
   const [mentorList, setMentorList] = useState<MentorProfileDto[] | undefined>(
-    undefined,
+    undefined
   );
-  const isModalOpen = useSelector(
-    (state: RootState) => state.rootReducers.reservation.isModalOpen,
+  const isReservationModalOpen = useSelector(
+    (state: RootState) => state.rootReducers.reservation.isReservationModalOpen
   );
   const requestQuery = {
     take: 100,
@@ -146,7 +146,7 @@ export default function Home() {
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />
         )}
-        {isModalOpen && <ReservationModal />}
+        {isReservationModalOpen && <ReservationModal />}
         <button
           onClick={scrollToTop}
           className="fixed bottom-5 right-5 rounded-full
