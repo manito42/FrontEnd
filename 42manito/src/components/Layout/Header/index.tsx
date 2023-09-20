@@ -17,7 +17,7 @@ export default function Header() {
   );
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
-
+  const router = useRouter();
   const handleSingOut = async () => {
     const id = localStorage.getItem("uid");
     if (id) {
@@ -62,23 +62,23 @@ export default function Header() {
             {Owner === 0 && (
               <button
                 id="42AuthSignIn"
-                className="layout-btn"
+                className="layout-btn layout-sign-btn"
                 onClick={() => {
                   onClose();
                   setLoading(true);
                   return SignIn();
                 }}
               >
-                <LockOutlined style={{ fontSize: 20 }} />
+                로그인
               </button>
             )}
             {Owner !== 0 && !Number.isNaN(Owner) && (
               <button
                 id="SignOut"
-                className="layout-btn"
+                className="layout-btn layout-sign-btn"
                 onClick={handleSingOut}
               >
-                <UnlockOutlined style={{ fontSize: 20 }} />
+                로그아웃
               </button>
             )}
           </div>
