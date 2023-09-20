@@ -18,14 +18,14 @@ export default function Header() {
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const handleSingOut = async () => {
+  const handleSingOut = () => {
     const id = localStorage.getItem("uid");
     if (id) {
-      await localStorage.removeItem("uid");
-      await localStorage.removeItem("accessToken");
+      localStorage.removeItem("uid");
+      localStorage.removeItem("accessToken");
       dispatch(signOut());
-      if (router.pathname !== "/") location.href = "/";
-      else location.reload();
+      if (router.pathname !== "/") router.push("/");
+      else router.reload();
     }
   };
 
