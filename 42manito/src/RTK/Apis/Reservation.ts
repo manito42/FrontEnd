@@ -103,7 +103,7 @@ export const reservationApi = createApi({
       },
       invalidatesTags: [{ type: "Reservation", id: "LIST" }],
     }),
-    patchReservationDone: builder.mutation<
+    patchReservationMentorFeedback: builder.mutation<
       ReservationDefaultDto,
       ReservationPatchMentorCompletionDto
     >({
@@ -126,5 +126,5 @@ export const {
   usePatchReservationCancelMutation,
   usePatchReservationMenteeCheckMutation,
   usePatchReservationMenteeFeedbackMutation,
-  usePatchReservationDoneMutation,
+  usePatchReservationMentorFeedbackMutation,
 } = reservationApi;
