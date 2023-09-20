@@ -69,8 +69,9 @@
   .connect-btn {
     @apply rounded-full
             py-2 px-5
-            bg-blue-500
-            text-white text-lg
+            mt-2
+            bg-signature_color-500
+            text-white text-base
             hover:bg-blue-600;
   }
 }
