@@ -41,7 +41,7 @@ const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
 
   return (
     <div
-      className="ConnectWrapper"
+      className="connect-wrapper"
       id="wrapper"
       onClick={(e) => e.stopPropagation()}
     >
