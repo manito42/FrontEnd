@@ -94,7 +94,7 @@ const FeedbackModal = () => {
                 name={"rating"}
                 value={rating}
                 precision={0.5}
-                onChange={(e) => setRating(Number(e.target.value))}
+                onChange={(e, newValue) => setRating(Number(newValue))}
               />
             </div>
             {reservation.menteeId === userId && (
