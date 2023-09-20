@@ -6,17 +6,14 @@ import { signIn, signOut } from "@/RTK/Slices/Global";
 import { useSelector } from "react-redux";
 import Sidebar from "./components/Sidebar";
 import { SignIn } from "@/utils/SignIn";
-import {
-  LockOutlined,
-  UnlockOutlined,
-  UnorderedListOutlined,
-} from "@ant-design/icons";
+import { UnorderedListOutlined } from "@ant-design/icons";
 import Loading from "@/components/Global/Loading";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const [visible, setVisible] = useState(false);
   const Owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
@@ -27,7 +24,8 @@ export default function Header() {
       await localStorage.removeItem("uid");
       await localStorage.removeItem("accessToken");
       dispatch(signOut());
-      location.reload();
+      if (router.pathname !== "/") location.href = "/";
+      else location.reload();
     }
   };
 
