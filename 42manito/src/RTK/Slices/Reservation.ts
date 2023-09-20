@@ -3,12 +3,14 @@ import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.d
 import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 
 interface currMentorType {
-  isModalOpen: boolean;
+  isReservationModalOpen: boolean;
+  isFeedbackModalOpen: boolean;
   selectedReservation: ReservationDefaultDto;
 }
 
 const InitialState: currMentorType = {
-  isModalOpen: false,
+  isReservationModalOpen: false,
+  isFeedbackModalOpen: false,
   selectedReservation: {
     id: 0,
     mentorId: 0,
@@ -33,10 +35,16 @@ export const ReservationSlice = createSlice({
   reducers: {
     openReservationModal(state, action) {
       state.selectedReservation = action.payload;
-      state.isModalOpen = true;
+      state.isReservationModalOpen = true;
     },
     closeReservationModal(state) {
-      state.isModalOpen = false;
+      state.isReservationModalOpen = false;
+    },
+    openFeedbackModal(state) {
+      state.isFeedbackModalOpen = true;
+    },
+    closeFeedbackModal(state) {
+      state.isFeedbackModalOpen = false;
     },
     setSelectedReservation(state, action) {
       state.selectedReservation = action.payload;
@@ -47,5 +55,7 @@ export const ReservationSlice = createSlice({
 export const {
   openReservationModal,
   closeReservationModal,
+  openFeedbackModal,
+  closeFeedbackModal,
   setSelectedReservation,
 } = ReservationSlice.actions;
