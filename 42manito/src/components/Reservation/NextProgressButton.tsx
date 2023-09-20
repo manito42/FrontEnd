@@ -6,12 +6,11 @@ import { ReservationUserRole } from "@/components/Reservation/getReservationStat
 import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { Button } from "@/common";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   openFeedbackModal,
   setSelectedReservation,
 } from "@/RTK/Slices/Reservation";
-import { RootState } from "@/RTK/store";
 
 interface props {
   role: ReservationUserRole;

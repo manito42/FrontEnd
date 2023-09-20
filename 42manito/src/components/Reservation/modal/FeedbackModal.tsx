@@ -71,6 +71,7 @@ const FeedbackModal = () => {
     if (updatedReservation) {
       dispatch(setSelectedReservation(updatedReservation));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updatedReservation]);
   const handleClose = () => {
     dispatch(closeFeedbackModal());

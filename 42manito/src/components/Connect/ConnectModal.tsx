@@ -6,7 +6,6 @@ import { Input } from "antd";
 import { setMessage } from "@/RTK/Slices/MentorConnect";
 import ConnectCategorySelect from "@/components/Mentor/CategorySelect";
 import { useModalOpenClose } from "@/hooks/Mentor/modalOpenClose";
-import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 
 interface Props {
   message: string;
