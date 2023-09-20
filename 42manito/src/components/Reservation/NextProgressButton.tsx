@@ -1,15 +1,17 @@
 import {
   usePatchReservationAcceptMutation,
-  usePatchReservationDoneMutation,
   usePatchReservationMenteeCheckMutation,
-  usePatchReservationMenteeFeedbackMutation,
 } from "@/RTK/Apis/Reservation";
 import { ReservationUserRole } from "@/components/Reservation/getReservationStatus";
 import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { Button } from "@/common";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
-import { useDispatch } from "react-redux";
-import { setSelectedReservation } from "@/RTK/Slices/Reservation";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  openFeedbackModal,
+  setSelectedReservation,
+} from "@/RTK/Slices/Reservation";
+import { RootState } from "@/RTK/store";
 
 interface props {
   role: ReservationUserRole;
@@ -24,20 +26,19 @@ export default function NextProgressButton({
 }: props) {
   const req = { id: reservationId };
   const [patchAcceptReservation] = usePatchReservationAcceptMutation();
-  const [patchDoneReservation] = usePatchReservationDoneMutation();
   const [patchMenteeCheckedReservation] =
     usePatchReservationMenteeCheckMutation();
-  const [patchMenteeFeedbackReservation] =
-    usePatchReservationMenteeFeedbackMutation();
+
   const dispatch = useDispatch();
   const handlePatchReservation = async (
+    data: any,
     patchFunc: any,
     msg?: string,
-    errorMsg?: string,
+    errorMsg?: string
   ) => {
     try {
-      const data = await patchFunc(req).unwrap();
-      dispatch(setSelectedReservation(data));
+      const res = await patchFunc(data).unwrap();
+      dispatch(setSelectedReservation(res));
       alert(msg ? msg : "Success");
     } catch (e: BaseQueryError<any>) {
       alert(errorMsg ? errorMsg : "Error");
@@ -52,9 +53,10 @@ export default function NextProgressButton({
             className={`reservation-next-button`}
             onClick={() => {
               handlePatchReservation(
+                req,
                 patchAcceptReservation,
                 "수락되었습니다.",
-                "수락에 실패하였습니다.",
+                "수락에 실패하였습니다."
               );
             }}
           >
@@ -71,11 +73,7 @@ export default function NextProgressButton({
           <Button
             className={`reservation-next-button`}
             onClick={() => {
-              handlePatchReservation(
-                patchDoneReservation,
-                "등록되었습니다.",
-                "등록에 실패하였습니다.",
-              );
+              dispatch(openFeedbackModal());
             }}
           >
             리뷰 등록
@@ -94,9 +92,10 @@ export default function NextProgressButton({
             className={`reservation-next-button`}
             onClick={() => {
               handlePatchReservation(
+                req,
                 patchMenteeCheckedReservation,
                 "확인되었습니다.",
-                "요청에 실패했습니다.",
+                "요청에 실패했습니다."
               );
             }}
           >
@@ -109,11 +108,7 @@ export default function NextProgressButton({
           <Button
             className={`reservation-next-button`}
             onClick={() => {
-              handlePatchReservation(
-                patchMenteeFeedbackReservation,
-                "등록되었습니다.",
-                "등록에 실패했습니다.",
-              );
+              dispatch(openFeedbackModal());
             }}
           >
             리뷰 등록
@@ -122,7 +117,7 @@ export default function NextProgressButton({
       case ReservationStatus.MENTEE_FEEDBACK:
         return;
       case ReservationStatus.DONE:
-        return <> </>;
+        return;
     }
   }
 }
