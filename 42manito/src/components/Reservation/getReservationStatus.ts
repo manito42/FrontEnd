@@ -15,7 +15,7 @@ export function getStatus(role: ReservationUserRole, status: string) {
       case "MENTEE_CHECKED":
         return "진행중";
       case "MENTEE_FEEDBACK":
-        return "피드백";
+        return "리뷰 대기";
       case "DONE":
         return "완료";
       case "CANCEL":
@@ -30,7 +30,7 @@ export function getStatus(role: ReservationUserRole, status: string) {
       case "MENTEE_CHECKED":
         return "진행중";
       case "MENTEE_FEEDBACK":
-        return "피드백";
+        return "리뷰 대기";
       case "DONE":
         return "완료";
       case "CANCEL":
