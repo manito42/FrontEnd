@@ -30,6 +30,15 @@ export const reservationApi = createApi({
       },
       providesTags: [{ type: "Reservation", id: "LIST" }],
     }),
+    getReservation: builder.query<ReservationDefaultDto, number>({
+      query: (id: number) => {
+        return {
+          url: `/reservations/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: [{ type: "Reservation", id: "LIST" }],
+    }),
     /** 처음 멘토링 신청을 보낼때 */
     postReservationRequest: builder.mutation<
       ReservationDefaultDto,
@@ -121,6 +130,7 @@ export const reservationApi = createApi({
 
 export const {
   useGetReservationsQuery,
+  useGetReservationQuery,
   usePostReservationRequestMutation,
   usePatchReservationAcceptMutation,
   usePatchReservationCancelMutation,
