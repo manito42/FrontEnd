@@ -94,7 +94,6 @@ const FeedbackModal = () => {
                 name={"rating"}
                 value={rating}
                 precision={0.5}
-                left
                 onChange={(e) => setRating(Number(e.target.value))}
               />
             </div>
