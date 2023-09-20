@@ -1,4 +1,3 @@
-import { UserReservationReqDto } from "@/Types/UserReservation/UserReservationReqDto";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 import { ReservationPatchAcceptDto } from "@/Types/Reservations/ReservationPatchAccept.dto";
 import { ReservationPatchCancelReqDto } from "@/Types/Reservations/ReservationPatchCancelReq.dto";
