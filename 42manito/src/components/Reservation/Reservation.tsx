@@ -15,16 +15,17 @@ import { usePatchReservationCancelMutation } from "@/RTK/Apis/Reservation";
 import { setSelectedReservation } from "@/RTK/Slices/Reservation";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { RootState } from "@/RTK/store";
+import FeedbackCard from "@/components/Reservation/feedback/FeedbackCard";
 
 interface props {
   children?: React.ReactNode;
 }
 export default function Reservation({ children }: props) {
   const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const reservation = useSelector(
-    (state: RootState) => state.rootReducers.reservation.selectedReservation,
+    (state: RootState) => state.rootReducers.reservation.selectedReservation
   );
   const targetUserId =
     userId === reservation.mentorId
@@ -99,16 +100,17 @@ export default function Reservation({ children }: props) {
               <DescriptionComponent description={"후기가 아직 없습니다."} />
             )}
             {reservation.menteeFeedback &&
+              (myRole === ReservationUserRole.mentee ||
+                reservation.status === ReservationStatus.DONE) && (
+                <FeedbackCard menteeFeedback={reservation.menteeFeedback} />
+              )}
+            {reservation.menteeFeedback &&
+              myRole === ReservationUserRole.mentor &&
               reservation.status !== ReservationStatus.DONE && (
                 <DescriptionComponent
                   description={"멘티애개 별점을 남긴 후 열람할 수 있습니다."}
                 />
               )}
-            {reservation.menteeFeedback && (
-              <DescriptionComponent
-                description={reservation.menteeFeedback.content}
-              />
-            )}
           </div>
           <div className="reservation-buttons">
             {
@@ -127,7 +129,7 @@ export default function Reservation({ children }: props) {
                 onClick={() => {
                   handleCancelReservation(
                     "취소 완료되었습니다.",
-                    "취소에 실패하였습니다.",
+                    "취소에 실패하였습니다."
                   );
                 }}
               >

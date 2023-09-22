@@ -139,6 +139,30 @@
         @apply flex flex-col
             items-center justify-center
             w-[70%];
+        .feedback-wrapper {
+           @apply whitespace-pre-wrap w-[100%] break-words
+            px-6 py-4 rounded-2xl
+            bg-bg_color-50 dark:bg-bg_color-800
+            shadow-sm;
+            .feedback-header {
+                @apply flex flex-row justify-start items-start;
+                .feedback-profile-img {
+                    @apply w-[60px] h-[60px] rounded-full object-cover;
+                }
+                .feedback-info {
+                    @apply ml-5;
+                    .feedback-mentee-name {
+                        @apply font-bold text-base ml-0.5;
+                    }
+                    .feedback-date {
+                        @apply font-light text-xs ml-0.5 text-gray-500 dark:text-gray-400 mb-1;
+                    }
+                }
+            }
+            .feedback-content {
+                @apply text-base mt-3 ml-1.5 font-light;
+            }
+        }
     }
     .reservation-buttons {
         @apply flex flex-row
@@ -166,6 +190,10 @@
     .reservation-child-container {
         @apply mt-5;
     }
+}
+
+.feedback-rating {
+    @apply flex justify-center items-center;
 }
 
 
@@ -198,4 +226,5 @@
         @apply bg-neutral-500 dark:bg-neutral-800;
     }
 }
+
 

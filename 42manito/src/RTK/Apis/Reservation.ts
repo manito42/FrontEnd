@@ -1,4 +1,3 @@
-import { UserReservationReqDto } from "@/Types/UserReservation/UserReservationReqDto";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 import { ReservationPatchAcceptDto } from "@/Types/Reservations/ReservationPatchAccept.dto";
 import { ReservationPatchCancelReqDto } from "@/Types/Reservations/ReservationPatchCancelReq.dto";
@@ -25,6 +24,15 @@ export const reservationApi = createApi({
         const query = ObjectToURLString(request.query);
         return {
           url: `/users/${request.id}/reservations${query}`,
+          method: "GET",
+        };
+      },
+      providesTags: [{ type: "Reservation", id: "LIST" }],
+    }),
+    getReservation: builder.query<ReservationDefaultDto, number>({
+      query: (id: number) => {
+        return {
+          url: `/reservations/${id}`,
           method: "GET",
         };
       },
@@ -103,7 +111,7 @@ export const reservationApi = createApi({
       },
       invalidatesTags: [{ type: "Reservation", id: "LIST" }],
     }),
-    patchReservationDone: builder.mutation<
+    patchReservationMentorFeedback: builder.mutation<
       ReservationDefaultDto,
       ReservationPatchMentorCompletionDto
     >({
@@ -121,10 +129,11 @@ export const reservationApi = createApi({
 
 export const {
   useGetReservationsQuery,
+  useGetReservationQuery,
   usePostReservationRequestMutation,
   usePatchReservationAcceptMutation,
   usePatchReservationCancelMutation,
   usePatchReservationMenteeCheckMutation,
   usePatchReservationMenteeFeedbackMutation,
-  usePatchReservationDoneMutation,
+  usePatchReservationMentorFeedbackMutation,
 } = reservationApi;
