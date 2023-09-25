@@ -108,7 +108,7 @@ export default function Reservation({ children }: props) {
               myRole === ReservationUserRole.mentor &&
               reservation.status !== ReservationStatus.DONE && (
                 <DescriptionComponent
-                  description={"멘티애개 별점을 남긴 후 열람할 수 있습니다."}
+                  description={"멘티에게 별점을 남긴 후 열람할 수 있습니다."}
                 />
               )}
           </div>
