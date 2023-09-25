@@ -9,6 +9,10 @@ import Script from "next/script";
 // 서버 측의 store에 대한 참조를 반환하는 두 가지 새로운 함수를 추가합니다.
 
 export default function App({ Component, pageProps }: AppProps) {
+  // have to fix later
+  if (typeof window !== "undefined") {
+    localStorage.setItem("theme", "light");
+  }
   return (
     <Provider store={store}>
       <ThemeProvider attribute="class">
