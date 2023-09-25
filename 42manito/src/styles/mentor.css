@@ -41,6 +41,7 @@
 
 .mentor-modal-container {
   @apply fixed inset-0
+            py-5
             bg-black bg-opacity-25
             backdrop-blur-sm
             flex justify-center overflow-y-auto

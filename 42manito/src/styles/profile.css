@@ -1,12 +1,11 @@
 .ProfileWrapper {
   @apply flex
-                items-center justify-center;
+                items-center justify-center py-5;
 }
 
 .ProfileContainer {
   @apply flex flex-col
                 items-center justify-center
-                mt-5 mb-5
                 w-[90vmin] md:w-[600px]
                 rounded-2xl bg-bg_color-100 dark:bg-bg_color-900
                 drop-shadow-xl;

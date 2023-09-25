@@ -71,7 +71,8 @@
         bg-black bg-opacity-25
         backdrop-blur-sm
         flex justify-center overflow-y-auto
-        z-[50];
+        z-[50]
+        py-5;
     .reservation-modal-section {
         @apply overflow-y-scroll h-fit;
     }
@@ -84,7 +85,7 @@
 .reservation-container{
     @apply flex flex-col
         items-center justify-center
-        pt-10 pb-5 my-5
+        py-5
         w-[90vmin] md:w-[600px]
         rounded-2xl bg-bg_color-100 dark:bg-bg_color-900
         drop-shadow-xl;
