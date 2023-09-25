@@ -73,7 +73,7 @@
         flex justify-center overflow-y-auto
         z-[50];
     .reservation-modal-section {
-        @apply overflow-y-scroll;
+        @apply overflow-y-scroll h-fit;
     }
     .close-btn {
         @apply text-bg_color-500 hover:text-red-500 dark:text-bg_color-400 text-sm;

@@ -47,7 +47,7 @@
             z-[50];
 
   .mentor-modal-section {
-    @apply overflow-y-scroll;
+    @apply overflow-y-scroll h-fit;
 
     .close-btn {
       @apply text-bg_color-600 hover:text-red-500 dark:text-bg_color-400 mb-5 text-base;
