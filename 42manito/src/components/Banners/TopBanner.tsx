@@ -108,9 +108,7 @@ export default function TopBanner({ banner }: props) {
             className="right-arrow-button"
             onClick={() => sideButtonHandler("right")}
           >
-            <CaretRightOutlined className="right-arrow">
-              {"▶️"}
-            </CaretRightOutlined>
+            <CaretRightOutlined className="right-arrow"></CaretRightOutlined>
           </button>
         </div>
       </div>
