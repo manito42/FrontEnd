@@ -1,37 +1,26 @@
-# 42Manito
+# 42 Manito Frontend
+## 배포
+- https://42manito.com (배포 버전)
+- https://dev.42manito.com (개발 버전)
+## 개발 인원
+- @gulee
+- @sungjpar
+- @soo
+- @jinkim2
+- @sangylee
 
-## "사람을 잇다." 라는 키워드 초점을 맞춰 42인들끼리 서로 이어주는 커뮤니티를 활성화 위한 서비스 입니다.
-
-<br />
-<br />
-
-## Contributor
-
-- @9utty (이건학)
-- @nyeoni (김나연)
-- @falconlee236 (이상윤)
-
-<br />
-<br />
-
-## Tech Requirement (Tech Stack)
-
-- Create-next-app
-- Next.js
+## 기술 스택
 - Typescript
-- ESlint
-- RTK
-- RTKQuery
+- Next.js
+- RTK 
+- Tailwind  
+- Storybook
+- Github Action
 
-<br />
-<br />
-
-## Script
-
-```
-npm run dev
-```
-
-```
-npm run build
+## 실행 방법
+```bash
+#loalhost:3000
+cd ./42manito
+yarn
+yarn run dev
 ```
