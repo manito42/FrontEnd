@@ -1,6 +1,6 @@
 import Link from "next/link";
-import DarkModeToggleButton from "@/components/Layout/DarkModeButton";
 import React from "react";
+// import DarkModeToggleButton from "@/components/Layout/DarkModeButton";
 
 export default function Footer() {
   return (
