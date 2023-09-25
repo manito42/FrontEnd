@@ -6,28 +6,26 @@ import { signIn, signOut } from "@/RTK/Slices/Global";
 import { useSelector } from "react-redux";
 import Sidebar from "./components/Sidebar";
 import { SignIn } from "@/utils/SignIn";
-import {
-  LockOutlined,
-  UnlockOutlined,
-  UnorderedListOutlined,
-} from "@ant-design/icons";
+import { UnorderedListOutlined } from "@ant-design/icons";
 import Loading from "@/components/Global/Loading";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const [visible, setVisible] = useState(false);
   const Owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
-
-  const handleSingOut = async () => {
+  const router = useRouter();
+  const handleSingOut = () => {
     const id = localStorage.getItem("uid");
     if (id) {
-      await localStorage.removeItem("uid");
-      await localStorage.removeItem("accessToken");
+      localStorage.removeItem("uid");
+      localStorage.removeItem("accessToken");
       dispatch(signOut());
-      location.reload();
+      if (router.pathname !== "/") router.push("/");
+      else router.reload();
     }
   };
 
@@ -64,23 +62,23 @@ export default function Header() {
             {Owner === 0 && (
               <button
                 id="42AuthSignIn"
-                className="layout-btn"
+                className="layout-btn layout-sign-btn"
                 onClick={() => {
                   onClose();
                   setLoading(true);
                   return SignIn();
                 }}
               >
-                <LockOutlined style={{ fontSize: 20 }} />
+                로그인
               </button>
             )}
             {Owner !== 0 && !Number.isNaN(Owner) && (
               <button
                 id="SignOut"
-                className="layout-btn"
+                className="layout-btn layout-sign-btn"
                 onClick={handleSingOut}
               >
-                <UnlockOutlined style={{ fontSize: 20 }} />
+                로그아웃
               </button>
             )}
           </div>
