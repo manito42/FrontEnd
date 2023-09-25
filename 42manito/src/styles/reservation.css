@@ -92,7 +92,8 @@
     .reservation-header {
         @apply flex flex-col
             items-center justify-center
-            text-center text-2xl font-bold
+            text-center text-3xl font-bold
+            mt-5
             w-[90%];
     }
     .reservation-title {
