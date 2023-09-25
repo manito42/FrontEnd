@@ -1,10 +1,9 @@
 import { signIn } from "@/RTK/Slices/Global";
 import { useAppDispatch } from "@/RTK/store";
 import Layout from "@/components/Layout/Layout";
-import Loading from "@/components/Loading";
-import { Spin } from "antd";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import Loading from "@/components/Global/Loading";
 
 export default function SignIn() {
   const router = useRouter();
