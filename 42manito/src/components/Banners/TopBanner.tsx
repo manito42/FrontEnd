@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
 import { BannerDto } from "@/Types/Banners/Banner.dto";
-import { clear } from "console";
 
 interface props {
   banner: BannerDto[];
@@ -42,11 +42,44 @@ export default function TopBanner({ banner }: props) {
     setCurrentIndex(index);
   };
 
+  const sideButtonHandler = (type: string) => {
+    clearTimeout(bannerTimerId);
+    if (type === "left") {
+      currentIndex === 0
+        ? setCurrentIndex(banner.length - 1)
+        : setCurrentIndex(currentIndex - 1);
+    } else {
+      currentIndex === banner.length - 1
+        ? setCurrentIndex(0)
+        : setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const bannerCircle = banner.map((banner, index) => {
+    return (
+      <div
+        key={index}
+        className={`banner-circle ${
+          index === currentIndex ? "bg-white" : "bg-gray-300"
+        }`}
+        onClick={() => handleBannerCircleClick(index)}
+      ></div>
+    );
+  });
+
   return (
     <>
       <div
         className={`top-banner-wrapper ${banner[currentIndex].backgroundColor} ${banner[currentIndex].textColor}`}
       >
+        <div className="left-arrow-wrapper">
+          <button
+            className="left-arrow-button"
+            onClick={() => sideButtonHandler("left")}
+          >
+            <CaretLeftOutlined className="left-arrow"></CaretLeftOutlined>
+          </button>
+        </div>
         <div className="top-banner-container">
           <div className="top-banner-right" onClick={handleBannerClick}>
             <Image
@@ -68,19 +101,15 @@ export default function TopBanner({ banner }: props) {
           </div>
         </div>
         <div className="banner-circles-wrapper">
-          <div className="banner-circles-container ">
-            {banner.map((banner, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`banner-circle ${
-                    index === currentIndex ? "bg-white" : "bg-gray-300"
-                  }`}
-                  onClick={() => handleBannerCircleClick(index)}
-                ></div>
-              );
-            })}
-          </div>
+          <div className="banner-circles-container ">{bannerCircle}</div>
+        </div>
+        <div className="right-arrow-wrapper">
+          <button
+            className="right-arrow-button"
+            onClick={() => sideButtonHandler("right")}
+          >
+            <CaretRightOutlined className="right-arrow"></CaretRightOutlined>
+          </button>
         </div>
       </div>
     </>
