@@ -1,10 +1,9 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import Image from "next/image";
-import { RootState, useAppDispatch } from "@/RTK/store";
+import { useAppDispatch } from "@/RTK/store";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import CardHashtag from "@/components/Global/CardHashtag";
-import { useModalOpenClose } from "@/hooks/Mentor/modalOpenClose";
 
 interface props {
   data: MentorProfileDto;
@@ -14,12 +13,11 @@ const MentorCard = ({ data }: props) => {
   const dispatch = useAppDispatch();
   const { nickname, profileImage } = data.user;
   const { shortDescription, hashtags, categories } = data;
-  const { handleMentorModalOpen } = useModalOpenClose();
 
   const openMentorModal = (data: MentorProfileDto) => {
     dispatch(CurrMentorSlice.actions.deleteMentor());
     dispatch(CurrMentorSlice.actions.setMentor(data));
-    handleMentorModalOpen();
+    dispatch(CurrMentorSlice.actions.openMentorModal());
   };
 
   return (
