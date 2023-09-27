@@ -9,7 +9,7 @@ export const homeApi = createApi({
     baseUrl: `${process.env.NEXT_PUBLIC_DEV_URL}`,
   }),
   endpoints: (builder) => ({
-    getMentors: builder.mutation<HomeResponseDto[], HomeGetAllDto>({
+    getMentors: builder.query<HomeResponseDto[], HomeGetAllDto>({
       query: (args: HomeGetAllDto) => {
         const setCategoryQuery = args.category_id ? `/${args.category_id}` : "";
         return {
@@ -21,4 +21,4 @@ export const homeApi = createApi({
   }),
 });
 
-export const { useGetMentorsMutation } = homeApi;
+export const { useGetMentorsQuery } = homeApi;
