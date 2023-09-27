@@ -22,10 +22,10 @@ interface props {
 }
 export default function Reservation({ children }: props) {
   const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId
+    (state: RootState) => state.rootReducers.global.uId,
   );
   const reservation = useSelector(
-    (state: RootState) => state.rootReducers.reservation.selectedReservation
+    (state: RootState) => state.rootReducers.reservation.selectedReservation,
   );
   const targetUserId =
     userId === reservation.mentorId
@@ -79,14 +79,19 @@ export default function Reservation({ children }: props) {
             </div>
           </div>
           <div className="reservation-info">
-            <div className="reservation-category my-1">
-              <div className="reservation-title -mb-1">신청 분야</div>
-              <CardHashtag name={reservation.category.name} />
-            </div>
-            <div className="reservation-title -mb-1">해시태그</div>
-            <div className="reservation-hashtags my-1">
+            <div className="reservation-title">멘토링 분야</div>
+            <CardHashtag
+              name={reservation.category.name}
+              className={"text-sm"}
+            />
+            <div className="reservation-title">관심 분야</div>
+            <div className="reservation-hashtags">
               {reservation.hashtags.map((hashtag, idx) => (
-                <CardHashtag name={`#${hashtag.name}`} key={idx} />
+                <CardHashtag
+                  name={`#${hashtag.name}`}
+                  key={idx}
+                  className={"text-sm"}
+                />
               ))}
             </div>
             <div className="reservation-title">요청 메세지</div>
@@ -94,8 +99,8 @@ export default function Reservation({ children }: props) {
               <DescriptionComponent description={reservation.requestMessage} />
             </div>
           </div>
-          <div className="reservation-title mb-2"> 멘토링 후기 </div>
-          <div className="reservation-feedbacks">
+          <div className="reservation-title"> 멘토링 후기 </div>
+          <div className="reservation-feedbacks mt-2">
             {!reservation.menteeFeedback && (
               <DescriptionComponent description={"후기가 아직 없습니다."} />
             )}
@@ -129,7 +134,7 @@ export default function Reservation({ children }: props) {
                 onClick={() => {
                   handleCancelReservation(
                     "취소 완료되었습니다.",
-                    "취소에 실패하였습니다."
+                    "취소에 실패하였습니다.",
                   );
                 }}
               >
