@@ -18,7 +18,7 @@ const ProfileUpdate = ({ onClose, data }: props) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
   const state = useSelector(
-    (state: RootState) => state.rootReducers.profileUpdate,
+    (state: RootState) => state.rootReducers.profileUpdate
   );
 
   const handleZoomOut = () => {
@@ -112,8 +112,8 @@ const ProfileUpdate = ({ onClose, data }: props) => {
                       onChange={(e) =>
                         dispatch(
                           ProfileUpdateSlice.actions.setShortIntro(
-                            e.target.value,
-                          ),
+                            e.target.value
+                          )
                         )
                       }
                       placeholder="최대 50글자"
@@ -144,7 +144,7 @@ const ProfileUpdate = ({ onClose, data }: props) => {
                       style={{ height: 80, marginBottom: 24 }}
                       onChange={(e) =>
                         dispatch(
-                          ProfileUpdateSlice.actions.setIntro(e.target.value),
+                          ProfileUpdateSlice.actions.setIntro(e.target.value)
                         )
                       }
                       placeholder="최대 1000글자"
@@ -189,13 +189,7 @@ const ProfileUpdate = ({ onClose, data }: props) => {
       >
         ↑
       </button>
-      {state.viewConnectModal && (
-        <ConnectModal
-          message={"수정하시겠습니까?"}
-          onClose={handleConnectClose}
-          handleYes={handleSubmit}
-        />
-      )}
+      {state.viewConnectModal && <ConnectModal handleYes={handleSubmit} />}
     </div>
   );
 };
