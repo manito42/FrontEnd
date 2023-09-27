@@ -86,9 +86,7 @@ const MentorModal = () => {
       >
         <section
           className={`mentor-modal-section ${
-            closeAnimation || currentMentorState.zoomOut
-              ? "close-modal"
-              : "open-modal"
+            closeAnimation ? "close-modal" : "open-modal"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
