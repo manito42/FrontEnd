@@ -17,7 +17,7 @@ import { Input } from "antd";
 
 const { TextArea } = Input;
 const FeedbackModal = () => {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(5);
   const [review, setReview] = useState("");
   const reservation = useSelector(
     (state: RootState) => state.rootReducers.reservation.selectedReservation
