@@ -152,7 +152,7 @@ export default function ProfileUpdate() {
                 <TextArea
                   placeholder="소개글을 작성해주세요"
                   showCount
-                  maxLength={2000}
+                  maxLength={1000}
                   value={Description}
                   style={{
                     marginBottom: 15,
