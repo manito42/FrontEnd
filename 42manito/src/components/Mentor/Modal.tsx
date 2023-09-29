@@ -2,7 +2,11 @@ import { RootState, useAppDispatch } from "@/RTK/store";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { usePostReservationRequestMutation } from "@/RTK/Apis/Reservation";
-import { initMentorConnect } from "@/RTK/Slices/MentorConnect";
+import {
+  MentorConnectSlice,
+  deleteHashtag,
+  initMentorConnect,
+} from "@/RTK/Slices/MentorConnect";
 import ConnectModal from "../Connect/ConnectModal";
 import UserProfile from "@/components/Profile/UserProfile";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
@@ -76,6 +80,7 @@ const MentorModal = () => {
         }
       }
       dispatch(CurrMentorSlice.actions.closeConnectModal());
+      dispatch(MentorConnectSlice.actions.resetMentorConnect());
     }
   };
 

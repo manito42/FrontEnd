@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "@/RTK/store";
+import store, { RootState, useAppDispatch } from "@/RTK/store";
 import ConnectHashtagSelect from "@/components/Mentor/HashtagSelect";
 import { Input } from "antd";
-import { setMessage } from "@/RTK/Slices/MentorConnect";
+import { MentorConnectSlice, setMessage } from "@/RTK/Slices/MentorConnect";
 import ConnectCategorySelect from "@/components/Mentor/CategorySelect";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { current } from "@reduxjs/toolkit";
 
 interface Props {
   handleYes: () => void;
@@ -33,7 +34,6 @@ const ConnectModal = ({ handleYes, children }: Props) => {
     handleYes();
     // setDisabled(false);
   };
-
   return (
     <div
       className="connect-wrapper"
@@ -45,7 +45,7 @@ const ConnectModal = ({ handleYes, children }: Props) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="connect-container">
-          <div className="connect-title mt-5"> 멘토링 요청 </div>
+          <div className="connect-title mt-5"> 멘토링 요청</div>
           <div className="connect-content-wrapper">
             <div className="connect-header"> 멘토링 분야 </div>
             <ConnectCategorySelect

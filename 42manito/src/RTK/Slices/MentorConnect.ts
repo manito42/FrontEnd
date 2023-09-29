@@ -25,7 +25,7 @@ export const MentorConnectSlice = createSlice({
     },
     deleteHashtag(state, action: PayloadAction<number>) {
       state.hashtags = state.hashtags.filter(
-        (hashtag) => hashtag.id !== action.payload,
+        (hashtag) => hashtag.id !== action.payload
       );
     },
     setCategoryId(state, action: PayloadAction<number>) {
@@ -39,6 +39,11 @@ export const MentorConnectSlice = createSlice({
     },
     initMentorConnect(state) {
       state = InitialState;
+    },
+    resetMentorConnect(state) {
+      state.hashtags = [];
+      state.categoryId = 0;
+      state.message = "";
     },
   },
 });
