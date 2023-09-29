@@ -51,7 +51,9 @@ const MentorModal = () => {
       alert("로그인이 필요합니다.");
       return;
     }
-    if (
+    if (connectState.categoryId === 0) {
+      alert("카테고리를 선택해주세요.");
+    } else if (
       connectState.message.length === 0 ||
       connectState.hashtags.length <= 0
     ) {

@@ -14,7 +14,7 @@ interface Props {
 
 const ConnectModal = ({ handleYes, children }: Props) => {
   const [focus, setFocus] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  // const [disabled, setDisabled] = useState(false);
   const currentMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
@@ -29,9 +29,9 @@ const ConnectModal = ({ handleYes, children }: Props) => {
   };
 
   const handleConnect = () => {
-    setDisabled(true);
+    // setDisabled(true);
     handleYes();
-    setDisabled(false);
+    // setDisabled(false);
   };
 
   return (
@@ -55,7 +55,7 @@ const ConnectModal = ({ handleYes, children }: Props) => {
             <ConnectHashtagSelect
               hashtag={currentMentorState.currMentor.hashtags}
             />
-            <div className="connect-header">요청 메시지</div>
+            <div className="connect-header"> 요청 메시지 </div>
             <Input.TextArea
               showCount
               maxLength={1000}
@@ -71,14 +71,14 @@ const ConnectModal = ({ handleYes, children }: Props) => {
               type="button"
               onClick={handleConnect}
             >
-              Connect
+              요청하기
             </button>
             <button
               className="connect-cancel-btn connect-btn"
               type="button"
               onClick={handleFocusOut}
             >
-              Cancel
+              취소하기
             </button>
           </div>
         </div>
