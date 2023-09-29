@@ -40,7 +40,7 @@ export default function ManitoToggle() {
   }, [userId, userData]);
 
   useEffect(() => {
-    if (userData !== undefined && userLoading === false) {
+    if (userData !== undefined && !userLoading) {
       setIsHide(userData.mentorProfile.isHide);
     }
   }, [userData, userLoading]);
