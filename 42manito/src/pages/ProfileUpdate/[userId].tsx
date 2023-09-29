@@ -150,9 +150,9 @@ export default function ProfileUpdate() {
               <div className="ProfileHeader mb-5">소개글</div>
               <div className="ProfileDescription">
                 <TextArea
-                  placeholder="최대2000"
+                  placeholder="소개글을 작성해주세요"
                   showCount
-                  maxLength={2000}
+                  maxLength={1000}
                   value={Description}
                   style={{
                     marginBottom: 15,
