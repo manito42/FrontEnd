@@ -47,11 +47,11 @@ const ConnectModal = ({ handleYes, children }: Props) => {
         <div className="connect-container">
           <div className="connect-title mt-5">멘토링 요청</div>
           <div className="connect-content-wrapper">
-            <div className="connect-header"> 카테고리</div>
+            <div className="connect-header"> 멘토링 분야 </div>
             <ConnectCategorySelect
               categories={currentMentorState.currMentor.categories}
             />
-            <div className="connect-header"> 해시태그</div>
+            <div className="connect-header"> 관심 분야 </div>
             <ConnectHashtagSelect
               hashtag={currentMentorState.currMentor.hashtags}
             />
