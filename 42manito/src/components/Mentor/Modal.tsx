@@ -52,12 +52,12 @@ const MentorModal = () => {
       return;
     }
     if (connectState.categoryId === 0) {
-      alert("카테고리를 선택해주세요.");
+      alert("멘토링 분야를 선택해주세요.");
     } else if (
       connectState.message.length === 0 ||
       connectState.hashtags.length <= 0
     ) {
-      alert("요청 메세지와 해시태그를 입력해주세요.");
+      alert("요청 메세지와 관심 분야를 입력해주세요.");
     } else {
       try {
         await postReservation({

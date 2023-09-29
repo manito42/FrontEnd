@@ -45,7 +45,7 @@ const ConnectModal = ({ handleYes, children }: Props) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="connect-container">
-          <div className="connect-title mt-5">멘토링 요청</div>
+          <div className="connect-title mt-5"> 멘토링 요청 </div>
           <div className="connect-content-wrapper">
             <div className="connect-header"> 멘토링 분야 </div>
             <ConnectCategorySelect
