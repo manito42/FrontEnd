@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Button from "./Button";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 const meta: Meta<typeof Button> = {
   title: "Button",
@@ -22,8 +23,8 @@ export const Default: Story = {
 
 export const Accept: Story = {
   args: {
-    children: "Accept",
-    accept: true,
+    children: "Button",
+    buttonType: ButtonType.ACCEPT,
   },
   parameters: {
     layout: "centered",
