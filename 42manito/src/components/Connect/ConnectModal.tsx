@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import store, { RootState, useAppDispatch } from "@/RTK/store";
+import { RootState, useAppDispatch } from "@/RTK/store";
 import ConnectHashtagSelect from "@/components/Mentor/HashtagSelect";
 import { Input } from "antd";
-import { MentorConnectSlice, setMessage } from "@/RTK/Slices/MentorConnect";
+import { setMessage } from "@/RTK/Slices/MentorConnect";
 import ConnectCategorySelect from "@/components/Mentor/CategorySelect";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
-import { current } from "@reduxjs/toolkit";
 
 interface Props {
   handleYes: () => void;
@@ -15,7 +14,6 @@ interface Props {
 
 const ConnectModal = ({ handleYes, children }: Props) => {
   const [focus, setFocus] = useState(false);
-  // const [disabled, setDisabled] = useState(false);
   const currentMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
@@ -30,9 +28,7 @@ const ConnectModal = ({ handleYes, children }: Props) => {
   };
 
   const handleConnect = () => {
-    // setDisabled(true);
     handleYes();
-    // setDisabled(false);
   };
   return (
     <div

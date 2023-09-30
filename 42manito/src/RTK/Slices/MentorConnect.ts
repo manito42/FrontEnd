@@ -40,11 +40,6 @@ export const MentorConnectSlice = createSlice({
     initMentorConnect(state) {
       state = InitialState;
     },
-    resetMentorConnect(state) {
-      state.hashtags = [];
-      state.categoryId = 0;
-      state.message = "";
-    },
   },
 });
 
