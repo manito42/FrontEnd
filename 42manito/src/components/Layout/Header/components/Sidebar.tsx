@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import SearchInput from "@/components/Search/SearchInput";
+import { VerticalRightOutlined } from "@ant-design/icons";
 
 interface props {
   onClose: () => void;
@@ -32,9 +33,6 @@ export default function Sidebar({ onClose, onSignIn }: props) {
       <Link href="/" onClick={onClose}>
         <p className="sidebar-text sidebar-text-btn">Home</p>
       </Link>
-      <Link href="/About" onClick={onClose}>
-        <p className="sidebar-text sidebar-text-btn">About</p>
-      </Link>
       <Link href="/Mentorings" onClick={onClose}>
         <p className="sidebar-text sidebar-text-btn">Mentorings</p>
       </Link>
@@ -60,6 +58,10 @@ export default function Sidebar({ onClose, onSignIn }: props) {
           <p className="sidebar-text sidebar-text-btn">Sign Out</p>
         </button>
       )}
+      <VerticalRightOutlined
+        className="sidebar-close-btn"
+        onClick={() => onClose()}
+      />
     </>
   );
 }
