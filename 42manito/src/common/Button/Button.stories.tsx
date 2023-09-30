@@ -20,13 +20,3 @@ export const Default: Story = {
     layout: "centered",
   },
 };
-
-export const Accept: Story = {
-  args: {
-    children: "Button",
-    buttonType: ButtonType.ACCEPT,
-  },
-  parameters: {
-    layout: "centered",
-  },
-};
