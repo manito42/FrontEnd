@@ -55,7 +55,12 @@ footer {
 }
 
 .sidebar-close-btn {
-  @apply scale-150 mt-24 right-16 absolute;
+  @apply scale-150 mt-24 right-10 absolute;
+}
+
+.sidebar-close-btn:hover {
+  @apply scale-[1.8] mt-24 right-10 absolute transition-all;
+  color: #6366f1; /* indigo-500*/
 }
 /* main wrapper */
 .app-container {
