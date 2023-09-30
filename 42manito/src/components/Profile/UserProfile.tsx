@@ -49,7 +49,6 @@ export default function UserProfile({ UserId, children }: props) {
                 UserData.categories.map((category, idx) => (
                   <CardHashtag
                     name={category.name}
-                    color={"signature_color"}
                     key={idx}
                     onClick={handleClick}
                     className={"text-sm"}
@@ -65,8 +64,8 @@ export default function UserProfile({ UserId, children }: props) {
                 UserData.hashtags.map((hashtag, idx) => (
                   <CardHashtag
                     name={hashtag.name}
-                    color={"signature_color"}
                     key={idx}
+                    sharp={true}
                     onClick={handleClick}
                     className={"text-sm"}
                   />

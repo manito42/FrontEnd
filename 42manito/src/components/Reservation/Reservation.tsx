@@ -12,10 +12,14 @@ import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { Button } from "@/common";
 import NextProgressButton from "@/components/Reservation/NextProgressButton";
 import { usePatchReservationCancelMutation } from "@/RTK/Apis/Reservation";
-import { setSelectedReservation } from "@/RTK/Slices/Reservation";
+import {
+  ReservationSlice,
+  setSelectedReservation,
+} from "@/RTK/Slices/Reservation";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { RootState } from "@/RTK/store";
 import FeedbackCard from "@/components/Reservation/feedback/FeedbackCard";
+import { useRouter } from "next/router";
 
 interface props {
   children?: React.ReactNode;
@@ -45,6 +49,7 @@ export default function Reservation({ children }: props) {
       : ReservationUserRole.mentor;
   const [patchCancelReservation] = usePatchReservationCancelMutation();
   const dispatch = useDispatch();
+  const router = useRouter();
   const handleCancelReservation = async (msg?: string, errorMsg?: string) => {
     try {
       const data = await patchCancelReservation({
@@ -55,6 +60,10 @@ export default function Reservation({ children }: props) {
     } catch (e: BaseQueryError<any>) {
       alert(errorMsg ? errorMsg : "Error");
     }
+  };
+  const handleClick = (name: string) => {
+    router.push(`/Search/${name}`);
+    dispatch(ReservationSlice.actions.closeReservationModal());
   };
 
   return (
@@ -82,15 +91,18 @@ export default function Reservation({ children }: props) {
             <div className="reservation-title">멘토링 분야</div>
             <CardHashtag
               name={reservation.category.name}
-              className={"text-sm"}
+              className={"text-sm bg-bg_color-50"}
+              onClick={handleClick}
             />
             <div className="reservation-title">관심 분야</div>
             <div className="reservation-hashtags">
               {reservation.hashtags.map((hashtag, idx) => (
                 <CardHashtag
-                  name={`#${hashtag.name}`}
+                  name={hashtag.name}
                   key={idx}
                   className={"text-sm"}
+                  sharp={true}
+                  onClick={handleClick}
                 />
               ))}
             </div>

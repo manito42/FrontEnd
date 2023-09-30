@@ -135,7 +135,6 @@ export default function ProfileUpdate() {
                   formData.categories.map((category, idx) => (
                     <CardHashtag
                       name={category.name}
-                      color={"signature_color"}
                       key={idx}
                       className={"text-sm"}
                     />
@@ -155,8 +154,8 @@ export default function ProfileUpdate() {
                   formData.hashtags.map((hashtag, idx) => (
                     <CardHashtag
                       name={hashtag.name}
-                      color={"signature_color"}
                       key={idx}
+                      sharp={true}
                       onClick={() => dispatch(deleteOneHashtag(hashtag.name))}
                       className={"text-sm"}
                     />
