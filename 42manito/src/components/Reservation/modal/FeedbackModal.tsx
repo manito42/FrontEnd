@@ -14,6 +14,7 @@ import {
 } from "@/RTK/Apis/Reservation";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { Input } from "antd";
+import { Button } from "@/common";
 
 const { TextArea } = Input;
 const FeedbackModal = () => {
@@ -110,20 +111,12 @@ const FeedbackModal = () => {
             )}
           </div>
           <div className="connect-btn-wrapper">
-            <button
-              className="connect-approve-btn connect-btn"
-              type="button"
-              onClick={handleYes}
-            >
-              확인
-            </button>
-            <button
-              className="connect-cancel-btn connect-btn"
-              type="button"
-              onClick={handleClose}
-            >
-              취소
-            </button>
+            <Button accept={false} onClick={() => handleClose()}>
+              취소하기
+            </Button>
+            <Button accept={true} onClick={() => handleYes()}>
+              확인하기
+            </Button>
           </div>
         </div>
       </section>
