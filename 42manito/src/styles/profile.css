@@ -9,14 +9,6 @@
                 w-[90vmin] md:w-[600px]
                 rounded-2xl bg-bg_color-100 dark:bg-bg_color-900
                 drop-shadow-xl;
-
-  .profile-update-btn {
-    @apply text-xs md:text-sm
-    bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 active:bg-signature_color-600
-    uppercase text-white font-bold hover:shadow-md shadow
-    px-4 py-2 rounded outline-none focus:outline-none
-    sm:mr-2 mb-1 ease-linear transition-all duration-150;
-  }
 }
 
 .ProfileImageNameContainer {

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Layout from "@/components/Layout/Layout";
 import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
+import { Button } from "@/common";
 
 const UserProfile = dynamic(() => import("@/components/Profile/UserProfile"), {
   ssr: false,
@@ -14,7 +15,7 @@ const Profile = () => {
   const route = useRouter();
   const uid = Number(route.query.userId);
   const loginId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const updateButtonHandler = () => {
     if (uid) {
@@ -34,13 +35,9 @@ const Profile = () => {
               <div className="m-3">
                 <ManitoToggle />
               </div>
-              <button
-                className="profile-update-btn"
-                type="button"
-                onClick={() => updateButtonHandler()}
-              >
+              <Button accept={true} onClick={() => updateButtonHandler()}>
                 수정하기
-              </button>
+              </Button>
             </div>
           )}
         </UserProfile>
