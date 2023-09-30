@@ -1,6 +1,6 @@
 .base {
   @apply text-xs md:text-sm text-white font-semibold
-  hover:shadow-md shadow px-4 py-2 mx-4 rounded-full 
+  hover:shadow-md shadow px-4 py-2 sm:mx-4 mx-3 rounded-full 
   outline-none focus:outline-none ease-linear transition-all duration-150;
 }
 
