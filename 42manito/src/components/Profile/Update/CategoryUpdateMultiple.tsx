@@ -1,6 +1,5 @@
-import { Select, Tag } from "antd";
+import { Select } from "antd";
 import React from "react";
-import type { CustomTagProps } from "rc-select/lib/BaseSelect";
 import { useAppDispatch } from "@/RTK/store";
 import { CategoriesResponseDto } from "@/Types/Categories/CategoriesResponse.dto";
 import { setCategories } from "@/RTK/Slices/ProfileUpdate";

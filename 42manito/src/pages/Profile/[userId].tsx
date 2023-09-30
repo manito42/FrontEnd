@@ -23,11 +23,11 @@ const Profile = () => {
   };
   return !uid ? (
     <Layout>
-      <div className="ProfileWrapper"></div>
+      <div className="profile-wrapper"></div>
     </Layout>
   ) : (
     <Layout>
-      <div className="ProfileWrapper">
+      <div className="profile-wrapper">
         <UserProfile UserId={Number(uid)}>
           {uid === loginId && (
             <div className="flex flex-col justify-between items-center mb-10">
