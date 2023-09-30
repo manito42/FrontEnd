@@ -3,7 +3,7 @@ import styles from "./Button.module.css";
 import { ButtonType } from "@/Types/General/ButtonType";
 
 interface ButtonProps extends ComponentProps<"button"> {
-  buttonType: ButtonType;
+  buttonType?: ButtonType;
 }
 
 export default function Button({
