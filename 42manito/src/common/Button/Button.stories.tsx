@@ -20,8 +20,12 @@ export const Default: Story = {
   },
 };
 
-export const FullWidth: Story = {
+export const Accept: Story = {
   args: {
-    children: "Button",
+    children: "Accept",
+    accept: true,
+  },
+  parameters: {
+    layout: "centered",
   },
 };
