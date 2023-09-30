@@ -20,10 +20,10 @@ const FeedbackModal = () => {
   const [rating, setRating] = useState(5);
   const [review, setReview] = useState("");
   const reservation = useSelector(
-    (state: RootState) => state.rootReducers.reservation.selectedReservation
+    (state: RootState) => state.rootReducers.reservation.selectedReservation,
   );
   const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId
+    (state: RootState) => state.rootReducers.global.uId,
   );
   const [patchMenteeFeedbackReservation] =
     usePatchReservationMenteeFeedbackMutation();
@@ -36,7 +36,7 @@ const FeedbackModal = () => {
     data: any,
     patchFunc: any,
     msg?: string,
-    errorMsg?: string
+    errorMsg?: string,
   ) => {
     try {
       const res = await patchFunc(data).unwrap();
@@ -53,7 +53,7 @@ const FeedbackModal = () => {
         { id: reservation.id, rating: Number(rating) },
         patchMentorFeedbackReservation,
         "멘토링이 성공적으로 종료되었습니다.",
-        "후기 등록 실패"
+        "후기 등록 실패",
       );
     }
     // mentee case
@@ -62,7 +62,7 @@ const FeedbackModal = () => {
         { id: reservation.id, rating: Number(rating), content: review },
         patchMenteeFeedbackReservation,
         "후기 등록 완료",
-        "후기 등록 실패"
+        "후기 등록 실패",
       );
     }
     dispatch(closeFeedbackModal());
@@ -101,7 +101,10 @@ const FeedbackModal = () => {
               <>
                 <div className="connect-header">멘토링 후기</div>
                 <TextArea
-                  className="connect-message"
+                  maxLength={300}
+                  showCount={true}
+                  className="mb-2"
+                  rows={6}
                   placeholder="멘토링 후기를 남겨주세요."
                   onChange={(e) => setReview(e.target.value)}
                   value={review}
