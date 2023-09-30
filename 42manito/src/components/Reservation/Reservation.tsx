@@ -12,20 +12,24 @@ import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { Button } from "@/common";
 import NextProgressButton from "@/components/Reservation/NextProgressButton";
 import { usePatchReservationCancelMutation } from "@/RTK/Apis/Reservation";
-import { setSelectedReservation } from "@/RTK/Slices/Reservation";
+import {
+  ReservationSlice,
+  setSelectedReservation,
+} from "@/RTK/Slices/Reservation";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { RootState } from "@/RTK/store";
 import FeedbackCard from "@/components/Reservation/feedback/FeedbackCard";
+import { useRouter } from "next/router";
 
 interface props {
   children?: React.ReactNode;
 }
 export default function Reservation({ children }: props) {
   const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId
+    (state: RootState) => state.rootReducers.global.uId,
   );
   const reservation = useSelector(
-    (state: RootState) => state.rootReducers.reservation.selectedReservation
+    (state: RootState) => state.rootReducers.reservation.selectedReservation,
   );
   const targetUserId =
     userId === reservation.mentorId
@@ -45,6 +49,7 @@ export default function Reservation({ children }: props) {
       : ReservationUserRole.mentor;
   const [patchCancelReservation] = usePatchReservationCancelMutation();
   const dispatch = useDispatch();
+  const router = useRouter();
   const handleCancelReservation = async (msg?: string, errorMsg?: string) => {
     try {
       const data = await patchCancelReservation({
@@ -55,6 +60,10 @@ export default function Reservation({ children }: props) {
     } catch (e: BaseQueryError<any>) {
       alert(errorMsg ? errorMsg : "Error");
     }
+  };
+  const handleClick = (name: string) => {
+    router.push(`/Search/${name}`);
+    dispatch(ReservationSlice.actions.closeReservationModal());
   };
 
   return (
@@ -79,14 +88,22 @@ export default function Reservation({ children }: props) {
             </div>
           </div>
           <div className="reservation-info">
-            <div className="reservation-category my-1">
-              <div className="reservation-title -mb-1">신청 분야</div>
-              <CardHashtag name={reservation.category.name} />
-            </div>
-            <div className="reservation-title -mb-1">해시태그</div>
-            <div className="reservation-hashtags my-1">
+            <div className="reservation-title">멘토링 분야</div>
+            <CardHashtag
+              name={reservation.category.name}
+              className={"text-sm bg-bg_color-50"}
+              onClick={handleClick}
+            />
+            <div className="reservation-title">관심 분야</div>
+            <div className="reservation-hashtags">
               {reservation.hashtags.map((hashtag, idx) => (
-                <CardHashtag name={`#${hashtag.name}`} key={idx} />
+                <CardHashtag
+                  name={hashtag.name}
+                  key={idx}
+                  className={"text-sm"}
+                  sharp={true}
+                  onClick={handleClick}
+                />
               ))}
             </div>
             <div className="reservation-title">요청 메세지</div>
@@ -94,8 +111,8 @@ export default function Reservation({ children }: props) {
               <DescriptionComponent description={reservation.requestMessage} />
             </div>
           </div>
-          <div className="reservation-title mb-2"> 멘토링 후기 </div>
-          <div className="reservation-feedbacks">
+          <div className="reservation-title"> 멘토링 후기 </div>
+          <div className="reservation-feedbacks mt-2">
             {!reservation.menteeFeedback && (
               <DescriptionComponent description={"후기가 아직 없습니다."} />
             )}
@@ -129,7 +146,7 @@ export default function Reservation({ children }: props) {
                 onClick={() => {
                   handleCancelReservation(
                     "취소 완료되었습니다.",
-                    "취소에 실패하였습니다."
+                    "취소에 실패하였습니다.",
                   );
                 }}
               >
