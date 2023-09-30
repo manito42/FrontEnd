@@ -15,6 +15,7 @@ import {
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { Input } from "antd";
 import { Button } from "@/common";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 const { TextArea } = Input;
 const FeedbackModal = () => {
@@ -111,10 +112,13 @@ const FeedbackModal = () => {
             )}
           </div>
           <div className="connect-btn-wrapper">
-            <Button accept={false} onClick={() => handleClose()}>
+            <Button
+              buttonType={ButtonType.CANCLE}
+              onClick={() => handleClose()}
+            >
               취소하기
             </Button>
-            <Button accept={true} onClick={() => handleYes()}>
+            <Button buttonType={ButtonType.ACCEPT} onClick={() => handleYes()}>
               확인하기
             </Button>
           </div>

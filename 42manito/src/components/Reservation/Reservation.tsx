@@ -16,6 +16,7 @@ import { setSelectedReservation } from "@/RTK/Slices/Reservation";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { RootState } from "@/RTK/store";
 import FeedbackCard from "@/components/Reservation/feedback/FeedbackCard";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 interface props {
   children?: React.ReactNode;
@@ -118,7 +119,7 @@ export default function Reservation({ children }: props) {
               (myRole === ReservationUserRole.mentor &&
                 status === ReservationStatus.ACCEPT)) && (
               <Button
-                accept={false}
+                buttonType={ButtonType.CANCLE}
                 onClick={() => {
                   handleCancelReservation(
                     "취소 완료되었습니다.",

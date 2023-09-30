@@ -22,6 +22,7 @@ import ProfileCategories from "@/components/Profile/Categories";
 import ProfileHashtag from "@/components/Profile/Hashtag";
 import CategoryUpdateMultiple from "@/components/Profile/Update/CategoryUpdateMultiple";
 import HashtagUpdateInput from "@/components/Profile/Update/HashtagUpdateInput";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 const { TextArea } = Input;
 
@@ -167,14 +168,14 @@ export default function ProfileUpdate() {
             </div>
             <div className="profile-update-btn-wrapper">
               <Button
-                accept={false}
+                buttonType={ButtonType.CANCLE}
                 type="button"
                 onClick={() => cancelButtonHandler()}
               >
                 취소하기
               </Button>
               <Button
-                accept={true}
+                buttonType={ButtonType.ACCEPT}
                 type="button"
                 onClick={() => updateButtonHandler()}
               >

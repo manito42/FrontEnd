@@ -8,6 +8,7 @@ import UserProfile from "@/components/Profile/UserProfile";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { Button } from "@/common";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 const MentorModal = () => {
   const [closeAnimation, setCloseAnimation] = useState(false);
@@ -94,7 +95,10 @@ const MentorModal = () => {
           {
             <UserProfile UserId={mentorId}>
               <div className="connect-btn-container">
-                <Button accept={true} onClick={() => handleConnectOpen()}>
+                <Button
+                  buttonType={ButtonType.ACCEPT}
+                  onClick={() => handleConnectOpen()}
+                >
                   멘토링 요청
                 </Button>
               </div>

@@ -6,6 +6,7 @@ import Layout from "@/components/Layout/Layout";
 import { useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 import { Button } from "@/common";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 const UserProfile = dynamic(() => import("@/components/Profile/UserProfile"), {
   ssr: false,
@@ -35,7 +36,10 @@ const Profile = () => {
               <div className="m-3">
                 <ManitoToggle />
               </div>
-              <Button accept={true} onClick={() => updateButtonHandler()}>
+              <Button
+                buttonType={ButtonType.ACCEPT}
+                onClick={() => updateButtonHandler()}
+              >
                 수정하기
               </Button>
             </div>

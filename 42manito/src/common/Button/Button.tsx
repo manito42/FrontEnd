@@ -1,16 +1,22 @@
 import { ComponentProps } from "react";
 import styles from "./Button.module.css";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 interface ButtonProps extends ComponentProps<"button"> {
-  accept?: boolean;
+  buttonType: ButtonType;
 }
 
-export default function Button({ children, accept, ...props }: ButtonProps) {
-  const acceptClass = accept
-    ? styles["button-accept"]
-    : styles["button-reject"];
+export default function Button({
+  children,
+  buttonType,
+  ...props
+}: ButtonProps) {
+  const buttonTypeClass =
+    buttonType === ButtonType.ACCEPT
+      ? styles["button-accept"]
+      : styles["button-reject"];
   return (
-    <button className={`${styles.base} ${acceptClass}`} {...props}>
+    <button className={`${styles.base} ${buttonTypeClass}`} {...props}>
       {children}
     </button>
   );
