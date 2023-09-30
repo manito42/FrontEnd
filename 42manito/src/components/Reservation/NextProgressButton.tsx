@@ -49,7 +49,7 @@ export default function NextProgressButton({
       case ReservationStatus.REQUEST:
         return (
           <Button
-            className={`reservation-next-button`}
+            accept={true}
             onClick={() => {
               handlePatchReservation(
                 req,
@@ -70,7 +70,7 @@ export default function NextProgressButton({
       case ReservationStatus.MENTEE_FEEDBACK:
         return (
           <Button
-            className={`reservation-next-button`}
+            accept={true}
             onClick={() => {
               dispatch(openFeedbackModal());
             }}
@@ -88,7 +88,7 @@ export default function NextProgressButton({
       case ReservationStatus.ACCEPT:
         return (
           <Button
-            className={`reservation-next-button`}
+            accept={true}
             onClick={() => {
               handlePatchReservation(
                 req,
@@ -105,7 +105,7 @@ export default function NextProgressButton({
       case ReservationStatus.MENTEE_CHECKED:
         return (
           <Button
-            className={`reservation-next-button`}
+            accept={true}
             onClick={() => {
               dispatch(openFeedbackModal());
             }}
