@@ -33,13 +33,13 @@ export default function ProfileUpdate() {
   const { data: allCategories, isLoading, error } = useGetCategoriesQuery();
   const dispatch = useAppDispatch();
   const formData = useSelector(
-    (state: RootState) => state.rootReducers.profileUpdate,
+    (state: RootState) => state.rootReducers.profileUpdate
   );
   const { data: UserData, isLoading: UserLoading } = useGetUserQuery(
     {
       id: Number(userId as string),
     },
-    { skip: userId === undefined },
+    { skip: userId === undefined }
   );
   const [UserUpdate, { data: updateData, isLoading: updateLoading }] =
     useSetUserUpdateMutation();
@@ -77,19 +77,19 @@ export default function ProfileUpdate() {
     if (UserData) {
       dispatch(
         ProfileUpdateSlice.actions.setShortIntro(
-          UserData.mentorProfile.shortDescription,
-        ),
+          UserData.mentorProfile.shortDescription
+        )
       );
       dispatch(
-        ProfileUpdateSlice.actions.setIntro(UserData.mentorProfile.description),
+        ProfileUpdateSlice.actions.setIntro(UserData.mentorProfile.description)
       );
       dispatch(
-        ProfileUpdateSlice.actions.setHashtags(UserData.mentorProfile.hashtags),
+        ProfileUpdateSlice.actions.setHashtags(UserData.mentorProfile.hashtags)
       );
       dispatch(
         ProfileUpdateSlice.actions.setCategories(
-          UserData.mentorProfile.categories,
-        ),
+          UserData.mentorProfile.categories
+        )
       );
       setDescription(UserData.mentorProfile.description);
       setShortDescription(UserData.mentorProfile.shortDescription);
@@ -167,14 +167,14 @@ export default function ProfileUpdate() {
             </div>
             <div className="profile-update-btn-wrapper">
               <Button
-                className="profile-update-cancel-btn"
+                accept={false}
                 type="button"
                 onClick={() => cancelButtonHandler()}
               >
-                취소
+                취소하기
               </Button>
               <Button
-                className="profile-update-approve-btn"
+                accept={true}
                 type="button"
                 onClick={() => updateButtonHandler()}
               >
