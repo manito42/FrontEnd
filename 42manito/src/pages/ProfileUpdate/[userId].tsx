@@ -176,9 +176,7 @@ export default function ProfileUpdate() {
                     marginBottom: 15,
                     height: 200,
                   }}
-                  onChange={(e) =>
-                    setDescription(e.target.value.slice(0, 2000))
-                  }
+                  onChange={(e) => setDescription(e.target.value)}
                   className="whitespace-pre-wrap"
                 />
               </div>
