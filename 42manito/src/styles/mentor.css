@@ -66,13 +66,4 @@
 
 .connect-btn-container {
   @apply flex justify-center items-center w-full mb-5;
-
-  .connect-btn {
-    @apply rounded-full
-            py-2 px-5
-            mt-2
-            bg-signature_color-500
-            text-white text-base
-            hover:bg-blue-600;
-  }
 }
