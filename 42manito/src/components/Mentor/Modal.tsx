@@ -92,15 +92,17 @@ const MentorModal = () => {
         >
           {
             <UserProfile UserId={mentorId}>
-              <div className="connect-btn-container">
-                <button
-                  className="connect-btn"
-                  type="button"
-                  onClick={() => handleConnectOpen()}
-                >
-                  멘토링 요청
-                </button>
-              </div>
+              {userId !== mentorId &&
+                <div className="connect-btn-container">
+                  <button
+                    className="connect-btn"
+                    type="button"
+                    onClick={() => handleConnectOpen()}
+                  >
+                    멘토링 요청
+                  </button>
+                </div>
+              }
               <button className="close-btn" onClick={handleZoomOut}>
                 닫기
               </button>
