@@ -4,16 +4,37 @@ import { useAppDispatch } from "@/RTK/store";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import CardHashtag from "@/components/Global/CardHashtag";
+import { HashtagResponseDto } from "@/Types/Hashtags/HashtagResponse.dto";
 
 interface props {
   data: MentorProfileDto;
 }
 
+/*
+ * hashtag 가 card 를 범람하지 않도록 하기 위함.
+ * 더 나은 방법이 있따면 해당 방법으로 변경할 것.
+ * */
+const sliceHashtags = (hashtags: HashtagResponseDto[], limit: number) => {
+  let acc = 0;
+  let slicedHashtags: HashtagResponseDto[] = [];
+  for (const hashtag of hashtags) {
+    if (acc >= limit) {
+      break;
+    }
+    if (acc + hashtag.name.length > limit) {
+      continue;
+    }
+    acc += hashtag.name.length + 4;
+    slicedHashtags.push(hashtag);
+  }
+  return slicedHashtags;
+};
+
 const MentorCard = ({ data }: props) => {
   const dispatch = useAppDispatch();
   const { nickname, profileImage } = data.user;
-  const { shortDescription, hashtags, categories } = data;
-
+  const { shortDescription, hashtags } = data;
+  const slicedHashtags = sliceHashtags(hashtags, 29);
   const openMentorModal = (data: MentorProfileDto) => {
     dispatch(CurrMentorSlice.actions.deleteMentor());
     dispatch(CurrMentorSlice.actions.setMentor(data));
@@ -43,7 +64,7 @@ const MentorCard = ({ data }: props) => {
           </div>
         </div>
         <div className="mentor-card-hashtags">
-          {hashtags.map((hashtag, idx) => (
+          {slicedHashtags.map((hashtag, idx) => (
             <CardHashtag name={`#${hashtag.name}`} key={idx} />
           ))}
         </div>
