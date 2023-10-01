@@ -10,7 +10,11 @@ export const MobileNav = ({ showSidebar }: Props) => {
   return (
     <div className="layout-mobile-container">
       <div className="flex">
-        <button onClick={showSidebar} className="layout-btn">
+        <button
+          onClick={showSidebar}
+          className="layout-btn"
+          style={{ justifyContent: "start" }}
+        >
           <UnorderedListOutlined style={{ fontSize: 20 }} />
         </button>
         <Link href="/" className="layout-mobile-link-container">

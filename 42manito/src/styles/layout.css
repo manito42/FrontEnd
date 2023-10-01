@@ -2,8 +2,7 @@ header {
   @apply bg-bg_color-200 dark:bg-bg_color-900 md:pt-0;
 
   .layout-header {
-    @apply text-bg_color-600 grow
-        w-full;
+    @apply text-bg_color-600 grow w-full;
   }
 
   .layout-header-container {
@@ -18,8 +17,7 @@ header {
 
   .layout-btn {
     @apply flex justify-center items-center
-          min-w-[60px] min-h-[35px]
- my-1;
+          min-w-[70px] min-h-[35px] my-1;
   }
   .layout-sign-btn {
     @apply border border-solid border-bg_color-300 py-1 px-2
@@ -65,7 +63,7 @@ footer {
 }
 
 .sidebar-text {
-  @apply text-xl px-3 mt-10 m-5;
+  @apply text-xl px-3 mt-10 m-5 text-bg_color-600;
 }
 
 .sidebar-text-btn {
