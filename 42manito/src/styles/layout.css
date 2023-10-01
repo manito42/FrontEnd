@@ -18,8 +18,7 @@ header {
           z-50 my-1;
   }
   .layout-sign-btn {
-    @apply
-      border border-solid border-bg_color-300 py-1 px-2
+    @apply border border-solid border-bg_color-300 py-1 px-2
       font-light
       rounded
       text-sm
