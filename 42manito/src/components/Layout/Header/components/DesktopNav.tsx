@@ -28,7 +28,7 @@ export const DesktopNav = ({ Owner }: Props) => {
           </Link>
         )}
         <div className="absolute right-20">
-          <SearchInput />
+          <SearchInput btnVisible={false} />
         </div>
       </div>
     </div>
