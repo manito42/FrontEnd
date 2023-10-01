@@ -6,6 +6,8 @@ import { Input } from "antd";
 import { setMessage } from "@/RTK/Slices/MentorConnect";
 import ConnectCategorySelect from "@/components/Mentor/CategorySelect";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { Button } from "@/common";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 interface Props {
   handleYes: () => void;
@@ -62,20 +64,19 @@ const ConnectModal = ({ handleYes, children }: Props) => {
             />
           </div>
           <div className="connect-btn-wrapper">
-            <button
-              className="connect-approve-btn connect-btn"
-              type="button"
-              onClick={handleConnect}
-            >
-              요청하기
-            </button>
-            <button
-              className="connect-cancel-btn connect-btn"
-              type="button"
-              onClick={handleFocusOut}
+            <Button
+              buttonType={ButtonType.CANCLE}
+              onClick={() => handleFocusOut()}
             >
               취소하기
-            </button>
+            </Button>
+            <Button
+              buttonType={ButtonType.ACCEPT}
+              onClick={() => handleConnect()}
+            >
+              요청하기
+            </Button>
+
           </div>
         </div>
       </section>

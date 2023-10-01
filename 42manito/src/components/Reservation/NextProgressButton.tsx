@@ -5,6 +5,7 @@ import {
 import { ReservationUserRole } from "@/components/Reservation/getReservationStatus";
 import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { Button } from "@/common";
+import { ButtonType } from "@/Types/General/ButtonType";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { useDispatch } from "react-redux";
 import {
@@ -49,7 +50,7 @@ export default function NextProgressButton({
       case ReservationStatus.REQUEST:
         return (
           <Button
-            className={`reservation-next-button`}
+            buttonType={ButtonType.ACCEPT}
             onClick={() => {
               handlePatchReservation(
                 req,
@@ -70,7 +71,7 @@ export default function NextProgressButton({
       case ReservationStatus.MENTEE_FEEDBACK:
         return (
           <Button
-            className={`reservation-next-button`}
+            buttonType={ButtonType.ACCEPT}
             onClick={() => {
               dispatch(openFeedbackModal());
             }}
@@ -88,7 +89,7 @@ export default function NextProgressButton({
       case ReservationStatus.ACCEPT:
         return (
           <Button
-            className={`reservation-next-button`}
+            buttonType={ButtonType.ACCEPT}
             onClick={() => {
               handlePatchReservation(
                 req,
@@ -105,7 +106,7 @@ export default function NextProgressButton({
       case ReservationStatus.MENTEE_CHECKED:
         return (
           <Button
-            className={`reservation-next-button`}
+            buttonType={ButtonType.ACCEPT}
             onClick={() => {
               dispatch(openFeedbackModal());
             }}

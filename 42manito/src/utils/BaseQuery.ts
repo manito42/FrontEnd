@@ -36,24 +36,25 @@ export const BaseQuery =
       });
       return { data: result.data };
     } catch (axiosError) {
-      let err = axiosError as AxiosError;
-      if (err.status === 400) {
-        alert("잘못된 요청입니다.");
-        Router.push("/");
-      } else if (err.status === 404) {
-        alert("존재하지 않는 작업입니다.");
-        Router.push("/404");
-      } else if (err.status === 409) {
-        alert("이미 완료된 작업입니다.");
-      } else if (err.status === 401) {
-        alert("로그인이 필요합니다.");
-        Router.push("/");
-      } else if (err.status === 403) {
-        alert("권한이 없습니다.");
-      } else if (err.status === 500) {
-        alert("서버에 오류가 발생했습니다.");
-      } else if (err.status === 503) {
-        alert("서버가 점검중입니다.");
+      const err = axiosError as AxiosError;
+      if (err.response) {
+        const status = err.response.status;
+        if (status === 400) {
+          alert("잘못된 요청입니다.");
+        } else if (status === 404) {
+          alert("존재하지 않는 작업입니다.");
+        } else if (status === 409) {
+          alert("이미 완료된 작업입니다.");
+        } else if (status === 401 || status === 403) {
+          alert("권한이 없습니다.");
+          Router.push("/");
+        } else if (status === 500) {
+          alert("서버에 오류가 발생했습니다.");
+        } else if (status === 503) {
+          alert("서버가 점검중입니다.");
+        }
+      } else {
+        console.error(err.message);
       }
 
       return {
