@@ -13,11 +13,12 @@ import { useRouter } from "next/router";
 export default function Header() {
   const [visible, setVisible] = useState(false);
   const Owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
+
   const handleSingOut = () => {
     const id = localStorage.getItem("uid");
     if (id) {
@@ -55,7 +56,7 @@ export default function Header() {
       <header className="layout-header">
         <div className="layout-header-container">
           <div className="flex flex-row justify-between items-center w-full absolute">
-            <button onClick={showSidebar} className="layout-btn">
+            <button onClick={showSidebar} className="layout-btn sm:invisible">
               <UnorderedListOutlined style={{ fontSize: 20 }} />
             </button>
             {Owner === 0 && (

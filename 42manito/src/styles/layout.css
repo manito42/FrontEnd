@@ -15,7 +15,8 @@ header {
   .layout-btn {
     @apply flex justify-center items-center
           min-w-[35px] min-h-[35px]
-          z-50 my-1;
+          z-50 my-1
+          sm:invisible;
   }
   .layout-sign-btn {
     @apply border border-solid border-bg_color-300 py-1 px-2
