@@ -27,7 +27,7 @@ export default function Sidebar({ onClose, onSignIn }: props) {
   return (
     <>
       <div className="my-1 flex justify-center">
-        <SearchInput />
+        <SearchInput btnVisible={false} />
       </div>
       <Link href="/" onClick={onClose}>
         <p className="sidebar-text sidebar-text-btn">홈</p>
