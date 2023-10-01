@@ -15,8 +15,8 @@ export default function ManitoToggle() {
   );
 
   const changeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (!e.target.checked){
-          setIsHideMutation({ id: userId as number, isHide: !e.target.checked });
+      if (e.target.checked === false){
+          setIsHideMutation({ id: userId as number, isHide: true });
       }
       else{
           if (userData) {
@@ -28,19 +28,13 @@ export default function ManitoToggle() {
               else if (hashtags.length == 0)
                   alert("관심 분야를 최소한 하나 이상 설정해야 합니다.");
               else
-                  setIsHideMutation({ id: userId as number, isHide: !e.target.checked });
+                  setIsHideMutation({ id: userId as number, isHide: false });
           }
       }
   };
 
   useEffect(() => {
-    if (userData) {
-      setIsHide(userData.mentorProfile.isHide);
-    }
-  }, [userId, userData]);
-
-  useEffect(() => {
-    if (userData !== undefined && !userLoading) {
+    if (userData !== undefined && userLoading === false) {
       setIsHide(userData.mentorProfile.isHide);
     }
   }, [userData, userLoading]);
