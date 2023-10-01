@@ -15,11 +15,11 @@ export default function Sidebar({ onClose, onSignIn }: props) {
   const uid = useSelector((state: RootState) => state.rootReducers.global.uId);
   const dispatch = useAppDispatch();
 
-  const handleSingOut = async () => {
+  const handleSingOut = () => {
     const id = localStorage.getItem("uid");
     if (id) {
-      await localStorage.removeItem("uid");
-      await localStorage.removeItem("accessToken");
+      localStorage.removeItem("uid");
+      localStorage.removeItem("accessToken");
       dispatch(signOut());
       location.reload();
     }
