@@ -18,10 +18,9 @@ import { useSelector } from "react-redux";
 import { useGetCategoriesQuery } from "@/RTK/Apis/Category";
 import ProfileImage from "@/components/Profile/Image";
 import ProfileInfo from "@/components/Profile/Info";
-import ProfileCategories from "@/components/Profile/Categories";
-import ProfileHashtag from "@/components/Profile/Hashtag";
 import CategoryUpdateMultiple from "@/components/Profile/Update/CategoryUpdateMultiple";
 import HashtagUpdateInput from "@/components/Profile/Update/HashtagUpdateInput";
+import CardHashtag from "@/components/Global/CardHashtag";
 
 const { TextArea } = Input;
 
@@ -105,13 +104,13 @@ export default function ProfileUpdate() {
   return (
     <Layout>
       {UserData && !UserLoading && (
-        <div className="ProfileWrapper">
-          <div className="ProfileContainer">
-            <div className="ProfileImageNameConatiner">
+        <div className="profile-wrapper">
+          <div className="profile-container">
+            <div className="profile-image-name-container">
               <ProfileImage src={UserData.profileImage} />
               <ProfileInfo nickname={UserData.nickname} />
             </div>
-            <div className="ShortDescriptionContainer">
+            <div className="short-description-container">
               <TextArea
                 showCount
                 maxLength={50}
@@ -126,33 +125,52 @@ export default function ProfileUpdate() {
                 className="whitespace-pre-wrap"
               />
             </div>
-            <div className="w-[60vw] ProfileTagWrapper">
-              <span className="ProfileHeader">멘토링 분야</span>
-
-              <ProfileCategories categories={formData.categories} />
+            <div className="w-[100%] profile-tag-wrapper">
+              <span className="profile-title">멘토링 분야</span>
+              <span className="profile-small-message">
+                멘토가 될 분야를 선택해주세요
+              </span>
+              <div className="profile-tag-list my-2">
+                {formData.categories.length > 0 &&
+                  formData.categories.map((category, idx) => (
+                    <CardHashtag
+                      name={category.name}
+                      key={idx}
+                      className={"text-sm"}
+                    />
+                  ))}
+              </div>
               {allCategories && (
                 <CategoryUpdateMultiple categories={allCategories} />
               )}
             </div>
-            <div className="w-[90vw] ProfileTagWrapper">
-              <span className="ProfileHeader">관심분야</span>
-              <span className="ProfileSmall">태그를 클릭하면 사라집니다</span>
-              <ProfileHashtag
-                hashtag={formData.hashtags}
-                onClick={(h) => {
-                  dispatch(deleteOneHashtag(h));
-                }}
-              />
+            <div className="w-[100%] profile-tag-wrapper">
+              <span className="profile-title">관심분야</span>
+              <span className="profile-small-message">
+                태그를 클릭하면 사라집니다
+              </span>
+              <div className="profile-tag-list my-2">
+                {formData.hashtags.length > 0 &&
+                  formData.hashtags.map((hashtag, idx) => (
+                    <CardHashtag
+                      name={hashtag.name}
+                      key={idx}
+                      sharp={true}
+                      onClick={() => dispatch(deleteOneHashtag(hashtag.name))}
+                      className={"text-sm"}
+                    />
+                  ))}
+              </div>
               <HashtagUpdateInput hashtags={formData.hashtags} />
             </div>
 
-            <div className="ProfileDescriptionWrapper">
-              <div className="ProfileHeader mb-5">소개글</div>
-              <div className="ProfileDescription">
+            <div className="profile-description-wrapper">
+              <div className="profile-title mb-5">소개글</div>
+              <div className="profile-description">
                 <TextArea
-                  placeholder="최대2000"
+                  placeholder="소개글을 작성해주세요"
                   showCount
-                  maxLength={2000}
+                  maxLength={1000}
                   value={Description}
                   style={{
                     marginBottom: 15,
