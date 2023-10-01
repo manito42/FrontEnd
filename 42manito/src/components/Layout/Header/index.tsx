@@ -54,7 +54,7 @@ export default function Header() {
   return (
     <>
       <header className="layout-header">
-        <div className="layout-header-container ">
+        <div className="layout-header-container">
           <div className="flex flex-row justify-between items-center w-full absolute">
             <button onClick={showSidebar} className="layout-btn">
               <UnorderedListOutlined style={{ fontSize: 20 }} />
@@ -96,6 +96,7 @@ export default function Header() {
             closable={false}
             onClose={onClose}
             open={visible}
+            width={"320px"}
           >
             <Sidebar onClose={onClose} onSignIn={handleLoading} />
           </Drawer>
