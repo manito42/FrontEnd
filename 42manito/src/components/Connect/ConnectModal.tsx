@@ -5,39 +5,33 @@ import ConnectHashtagSelect from "@/components/Mentor/HashtagSelect";
 import { Input } from "antd";
 import { setMessage } from "@/RTK/Slices/MentorConnect";
 import ConnectCategorySelect from "@/components/Mentor/CategorySelect";
-import { useModalOpenClose } from "@/hooks/Mentor/modalOpenClose";
+import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { Button } from "@/common";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 interface Props {
-  message: string;
-  onClose: () => void;
   handleYes: () => void;
   children?: React.ReactNode;
 }
 
-const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
+const ConnectModal = ({ handleYes, children }: Props) => {
   const [focus, setFocus] = useState(false);
-  const [disabled, setDisabled] = useState(false);
   const currentMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
   const dispatch = useAppDispatch();
-  const { handleConnectModalClose } = useModalOpenClose();
 
   const handleFocusOut = () => {
     setFocus(true);
-    window.history.back();
     setTimeout(() => {
       setFocus(false);
-      handleConnectModalClose();
+      dispatch(CurrMentorSlice.actions.closeConnectModal());
     }, 200);
   };
 
   const handleConnect = () => {
-    setDisabled(true);
     handleYes();
-    setDisabled(false);
   };
-
   return (
     <div
       className="connect-wrapper"
@@ -45,23 +39,21 @@ const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
       onClick={(e) => e.stopPropagation()}
     >
       <section
-        className={`connect-modal-section ${
-          (focus || currentMentorState.focus) && "close-connect-modal"
-        }`}
+        className={`connect-modal-section ${focus && "close-connect-modal"}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="connect-container">
-          <div className="connect-title mt-5">멘토링 요청</div>
+          <div className="connect-title mt-5"> 멘토링 요청</div>
           <div className="connect-content-wrapper">
-            <div className="connect-header"> 카테고리</div>
+            <div className="connect-header"> 멘토링 분야 </div>
             <ConnectCategorySelect
               categories={currentMentorState.currMentor.categories}
             />
-            <div className="connect-header"> 해시태그</div>
+            <div className="connect-header"> 관심 분야 </div>
             <ConnectHashtagSelect
               hashtag={currentMentorState.currMentor.hashtags}
             />
-            <div className="connect-header">요청 메시지</div>
+            <div className="connect-header"> 요청 메시지 </div>
             <Input.TextArea
               showCount
               maxLength={1000}
@@ -72,20 +64,19 @@ const ConnectModal = ({ message, onClose, handleYes, children }: Props) => {
             />
           </div>
           <div className="connect-btn-wrapper">
-            <button
-              className="connect-approve-btn connect-btn"
-              type="button"
-              onClick={handleConnect}
+            <Button
+              buttonType={ButtonType.CANCLE}
+              onClick={() => handleFocusOut()}
             >
-              Connect
-            </button>
-            <button
-              className="connect-cancel-btn connect-btn"
-              type="button"
-              onClick={handleFocusOut}
+              취소하기
+            </Button>
+            <Button
+              buttonType={ButtonType.ACCEPT}
+              onClick={() => handleConnect()}
             >
-              Cancel
-            </button>
+              요청하기
+            </Button>
+
           </div>
         </div>
       </section>

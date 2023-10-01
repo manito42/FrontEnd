@@ -26,14 +26,14 @@ interface props {
 function DescriptionComponent({ description }: props) {
   if (!description)
     return (
-      <div className="ProfileDescription">
+      <div className="profile-description">
         <div className={"flex flex-row justify-center"}>소개글이 없습니다.</div>
       </div>
     );
 
   const linkedDescription = linkifyReact(description);
 
-  return <div className="ProfileDescription">{linkedDescription}</div>;
+  return <div className="profile-description">{linkedDescription}</div>;
 }
 
 export default DescriptionComponent;

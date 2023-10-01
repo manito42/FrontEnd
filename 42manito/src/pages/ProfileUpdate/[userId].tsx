@@ -18,10 +18,10 @@ import { useSelector } from "react-redux";
 import { useGetCategoriesQuery } from "@/RTK/Apis/Category";
 import ProfileImage from "@/components/Profile/Image";
 import ProfileInfo from "@/components/Profile/Info";
-import ProfileCategories from "@/components/Profile/Categories";
-import ProfileHashtag from "@/components/Profile/Hashtag";
 import CategoryUpdateMultiple from "@/components/Profile/Update/CategoryUpdateMultiple";
 import HashtagUpdateInput from "@/components/Profile/Update/HashtagUpdateInput";
+import { ButtonType } from "@/Types/General/ButtonType";
+import CardHashtag from "@/components/Global/CardHashtag";
 
 const { TextArea } = Input;
 
@@ -33,13 +33,13 @@ export default function ProfileUpdate() {
   const { data: allCategories, isLoading, error } = useGetCategoriesQuery();
   const dispatch = useAppDispatch();
   const formData = useSelector(
-    (state: RootState) => state.rootReducers.profileUpdate,
+    (state: RootState) => state.rootReducers.profileUpdate
   );
   const { data: UserData, isLoading: UserLoading } = useGetUserQuery(
     {
       id: Number(userId as string),
     },
-    { skip: userId === undefined },
+    { skip: userId === undefined }
   );
   const [UserUpdate, { data: updateData, isLoading: updateLoading }] =
     useSetUserUpdateMutation();
@@ -77,19 +77,19 @@ export default function ProfileUpdate() {
     if (UserData) {
       dispatch(
         ProfileUpdateSlice.actions.setShortIntro(
-          UserData.mentorProfile.shortDescription,
-        ),
+          UserData.mentorProfile.shortDescription
+        )
       );
       dispatch(
-        ProfileUpdateSlice.actions.setIntro(UserData.mentorProfile.description),
+        ProfileUpdateSlice.actions.setIntro(UserData.mentorProfile.description)
       );
       dispatch(
-        ProfileUpdateSlice.actions.setHashtags(UserData.mentorProfile.hashtags),
+        ProfileUpdateSlice.actions.setHashtags(UserData.mentorProfile.hashtags)
       );
       dispatch(
         ProfileUpdateSlice.actions.setCategories(
-          UserData.mentorProfile.categories,
-        ),
+          UserData.mentorProfile.categories
+        )
       );
       setDescription(UserData.mentorProfile.description);
       setShortDescription(UserData.mentorProfile.shortDescription);
@@ -105,13 +105,13 @@ export default function ProfileUpdate() {
   return (
     <Layout>
       {UserData && !UserLoading && (
-        <div className="ProfileWrapper">
-          <div className="ProfileContainer">
-            <div className="ProfileImageNameConatiner">
+        <div className="profile-wrapper">
+          <div className="profile-container">
+            <div className="profile-image-name-container">
               <ProfileImage src={UserData.profileImage} />
               <ProfileInfo nickname={UserData.nickname} />
             </div>
-            <div className="ShortDescriptionContainer">
+            <div className="short-description-container">
               <TextArea
                 showCount
                 maxLength={50}
@@ -126,33 +126,52 @@ export default function ProfileUpdate() {
                 className="whitespace-pre-wrap"
               />
             </div>
-            <div className="w-[60vw] ProfileTagWrapper">
-              <span className="ProfileHeader">멘토링 분야</span>
-
-              <ProfileCategories categories={formData.categories} />
+            <div className="w-[100%] profile-tag-wrapper">
+              <span className="profile-title">멘토링 분야</span>
+              <span className="profile-small-message">
+                멘토가 될 분야를 선택해주세요
+              </span>
+              <div className="profile-tag-list my-2">
+                {formData.categories.length > 0 &&
+                  formData.categories.map((category, idx) => (
+                    <CardHashtag
+                      name={category.name}
+                      key={idx}
+                      className={"text-sm"}
+                    />
+                  ))}
+              </div>
               {allCategories && (
                 <CategoryUpdateMultiple categories={allCategories} />
               )}
             </div>
-            <div className="w-[90vw] ProfileTagWrapper">
-              <span className="ProfileHeader">관심분야</span>
-              <span className="ProfileSmall">태그를 클릭하면 사라집니다</span>
-              <ProfileHashtag
-                hashtag={formData.hashtags}
-                onClick={(h) => {
-                  dispatch(deleteOneHashtag(h));
-                }}
-              />
+            <div className="w-[100%] profile-tag-wrapper">
+              <span className="profile-title">관심분야</span>
+              <span className="profile-small-message">
+                태그를 클릭하면 사라집니다
+              </span>
+              <div className="profile-tag-list my-2">
+                {formData.hashtags.length > 0 &&
+                  formData.hashtags.map((hashtag, idx) => (
+                    <CardHashtag
+                      name={hashtag.name}
+                      key={idx}
+                      sharp={true}
+                      onClick={() => dispatch(deleteOneHashtag(hashtag.name))}
+                      className={"text-sm"}
+                    />
+                  ))}
+              </div>
               <HashtagUpdateInput hashtags={formData.hashtags} />
             </div>
 
-            <div className="ProfileDescriptionWrapper">
-              <div className="ProfileHeader mb-5">소개글</div>
-              <div className="ProfileDescription">
+            <div className="profile-description-wrapper">
+              <div className="profile-title mb-5">소개글</div>
+              <div className="profile-description">
                 <TextArea
-                  placeholder="최대2000"
+                  placeholder="소개글을 작성해주세요"
                   showCount
-                  maxLength={2000}
+                  maxLength={1000}
                   value={Description}
                   style={{
                     marginBottom: 15,
@@ -167,14 +186,14 @@ export default function ProfileUpdate() {
             </div>
             <div className="profile-update-btn-wrapper">
               <Button
-                className="profile-update-cancel-btn"
+                buttonType={ButtonType.CANCLE}
                 type="button"
                 onClick={() => cancelButtonHandler()}
               >
-                취소
+                취소하기
               </Button>
               <Button
-                className="profile-update-approve-btn"
+                buttonType={ButtonType.ACCEPT}
                 type="button"
                 onClick={() => updateButtonHandler()}
               >

@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 export default function Header() {
   const [visible, setVisible] = useState(false);
   const Owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId
+    (state: RootState) => state.rootReducers.global.uId,
   );
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
@@ -24,8 +24,7 @@ export default function Header() {
       localStorage.removeItem("uid");
       localStorage.removeItem("accessToken");
       dispatch(signOut());
-      if (router.pathname !== "/") router.push("/");
-      else router.reload();
+      router.reload();
     }
   };
 

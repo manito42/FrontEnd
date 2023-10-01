@@ -2,46 +2,43 @@ import { RootState, useAppDispatch } from "@/RTK/store";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { usePostReservationRequestMutation } from "@/RTK/Apis/Reservation";
-import { initMentorConnect } from "@/RTK/Slices/MentorConnect";
+import {
+  MentorConnectSlice,
+  initMentorConnect,
+} from "@/RTK/Slices/MentorConnect";
 import ConnectModal from "../Connect/ConnectModal";
 import UserProfile from "@/components/Profile/UserProfile";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
-import { useConnectModal } from "@/hooks/Mentor/ConnectModal";
-import { useModalOpenClose } from "@/hooks/Mentor/modalOpenClose";
+import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { Button } from "@/common";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 const MentorModal = () => {
   const [closeAnimation, setCloseAnimation] = useState(false);
   const dispatch = useAppDispatch();
   const currentMentorState = useSelector(
-    (state: RootState) => state.rootReducers.currMentor,
+    (state: RootState) => state.rootReducers.currMentor
   );
 
   const mentorId = currentMentorState.currMentor.user.id;
   const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const connectState = useSelector(
-    (state: RootState) => state.rootReducers.mentorConnect,
+    (state: RootState) => state.rootReducers.mentorConnect
   );
-  const { openConnectModal } = useConnectModal();
-  const {
-    handleConnectModalOpen,
-    handleMentorModalClose,
-    handleConnectModalClose,
-  } = useModalOpenClose();
 
   const [postReservation] = usePostReservationRequestMutation();
 
   const handleZoomOut = () => {
-    if (openConnectModal) {
-      handleConnectModalClose();
+    if (currentMentorState.openConnectModal) {
+      dispatch(CurrMentorSlice.actions.closeConnectModal());
       return;
     }
     setCloseAnimation(true);
-    window.history.back();
     setTimeout(() => {
       setCloseAnimation(false);
-      handleMentorModalClose();
+      dispatch(CurrMentorSlice.actions.closeMentorModal());
     }, 300);
   };
 
@@ -51,7 +48,7 @@ const MentorModal = () => {
       return;
     }
     dispatch(initMentorConnect());
-    handleConnectModalOpen();
+    dispatch(CurrMentorSlice.actions.openConnectModal());
   };
 
   const handleYes = async () => {
@@ -59,19 +56,20 @@ const MentorModal = () => {
       alert("로그인이 필요합니다.");
       return;
     }
-    if (
-      connectState.message.length === 0 ||
-      connectState.hashtags.length <= 0
-    ) {
-      alert("요청 메세지와 해시태그를 입력해주세요.");
+    if (connectState.categoryId === 0) {
+      alert("멘토링 분야를 선택해주세요.");
+    } else if (connectState.hashtags.length <= 0) {
+      alert("관심 분야를 선택해주세요.");
+    } else if (connectState.message.length === 0) {
+      alert("요청 메세지를 입력해주세요.");
     } else {
       try {
         await postReservation({
           mentorId: mentorId,
           menteeId: userId,
-          categoryId: connectState.categoryId, // 카테고리 선택할 수 있게 해야함
-          requestMessage: connectState.message, // 요청 메세지
-          hashtags: connectState.hashtags, // 해시태그
+          categoryId: connectState.categoryId,
+          requestMessage: connectState.message,
+          hashtags: connectState.hashtags,
         }).unwrap();
         alert("예약이 완료되었습니다.");
       } catch (e: BaseQueryError<any>) {
@@ -81,7 +79,8 @@ const MentorModal = () => {
           alert("예약이 실패하였습니다.");
         }
       }
-      handleConnectModalClose();
+      dispatch(CurrMentorSlice.actions.closeConnectModal());
+      dispatch(MentorConnectSlice.actions.initMentorConnect());
     }
   };
 
@@ -94,22 +93,19 @@ const MentorModal = () => {
       >
         <section
           className={`mentor-modal-section ${
-            closeAnimation || currentMentorState.zoomOut
-              ? "close-modal"
-              : "open-modal"
+            closeAnimation ? "close-modal" : "open-modal"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
           {
             <UserProfile UserId={mentorId}>
               <div className="connect-btn-container">
-                <button
-                  className="connect-btn"
-                  type="button"
+                <Button
+                  buttonType={ButtonType.ACCEPT}
                   onClick={() => handleConnectOpen()}
                 >
                   멘토링 요청
-                </button>
+                </Button>
               </div>
               <button className="close-btn" onClick={handleZoomOut}>
                 닫기
@@ -119,11 +115,7 @@ const MentorModal = () => {
         </section>
       </div>
       {currentMentorState.openConnectModal && (
-        <ConnectModal
-          message="멘토에게 커넥트 요청을 보내시겠습니까?"
-          onClose={handleConnectModalClose}
-          handleYes={handleYes}
-        />
+        <ConnectModal handleYes={handleYes} />
       )}
     </>
   );

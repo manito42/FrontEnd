@@ -1,18 +1,18 @@
-.reservation-requests-pagination{
-    @apply flex flex-row justify-center items-center
-        w-[100%]
+.reservation-requests-pagination {
+  @apply flex flex-row justify-center items-center
+        w-[100%];
 }
 
 .reservation-requests-wrapper {
   @apply flex flex-row overflow-x-scroll justify-center items-center
         w-[100%]  md:px-5 py-5;
-    .reservation-requests-scroll {
-        @apply flex flex-row justify-between
+  .reservation-requests-scroll {
+    @apply flex flex-row justify-between
             z-10;
-    }
+  }
 
-    .reservation-requests-container {
-      @apply flex flex-row overflow-x-scroll scroll-smooth
+  .reservation-requests-container {
+    @apply flex flex-row overflow-x-scroll scroll-smooth
             justify-start
             items-center
             h-[280px]
@@ -21,212 +21,191 @@
             border
             border-bg_color-300 dark:border-bg_color-700
             rounded-xl;
-    }
-    .reservation-requests-empty {
-        @apply flex flex-wrap justify-center items-center
+  }
+  .reservation-requests-empty {
+    @apply flex flex-wrap justify-center items-center
             text-bg_color-500 dark:text-bg_color-400
             w-[100%];
-    }
+  }
 }
 
 .reservation-card {
-    @apply flex flex-col justify-center items-center
+  @apply flex flex-col justify-center items-center
     min-w-[160px] h-[250px] px-2 py-4 mx-[10px]
     rounded-xl shadow-sm;
 }
 
 .reservation-card-user-info {
-        @apply flex flex-col justify-center items-center
+  @apply flex flex-col justify-center items-center
         w-[90%] h-[60%];
 
-    .reservation-card-image-holder {
-        @apply w-[100%] flex justify-center items-center;
-    }
+  .reservation-card-image-holder {
+    @apply w-[100%] flex justify-center items-center;
+  }
 
-    .reservation-card-image {
-        @apply w-[80px] h-[80px] rounded-full object-cover
+  .reservation-card-image {
+    @apply w-[80px] h-[80px] rounded-full object-cover
         mb-2;
-    }
+  }
 
-    .reservation-card-nickname {
-        @apply flex items-center justify-center
+  .reservation-card-nickname {
+    @apply flex items-center justify-center
         w-[100%] h-[20%]
         text-base font-bold truncate overflow-ellipsis
         text-bg_color-800 dark:text-bg_color-200;
     }
     .reservation-card-role {
         @apply text-black dark:text-white
-        font-light text-xs;
+        font-light text-xs mb-2;
     }
 
-    .reservation-card-hashtags {
-        @apply  flex flex-wrap flex-row h-[20%]
+  .reservation-card-hashtags {
+    @apply flex flex-wrap flex-row h-[20%]
         overflow-hidden justify-center items-center px-2;
-    }
+  }
 }
 
 /* Reservation modal */
 .reservation-modal-wrapper {
-   @apply fixed inset-0
+  @apply fixed inset-0
         bg-black bg-opacity-25
         backdrop-blur-sm
         flex justify-center overflow-y-auto
         z-[50]
         py-5;
-    .reservation-modal-section {
-        @apply overflow-y-scroll h-fit;
-    }
-    .close-btn {
-        @apply text-bg_color-500 hover:text-red-500 dark:text-bg_color-400 text-sm;
-    }
+  .reservation-modal-section {
+    @apply overflow-y-scroll h-fit;
+  }
+  .close-btn {
+    @apply text-bg_color-500 hover:text-red-500 dark:text-bg_color-400 text-sm;
+  }
 }
 
 /* Reservation Component */
-.reservation-container{
-    @apply flex flex-col
+.reservation-container {
+  @apply flex flex-col
         items-center justify-center
         py-5
         w-[90vmin] md:w-[600px]
         rounded-2xl bg-bg_color-100 dark:bg-bg_color-900
         drop-shadow-xl;
-    .reservation-header {
-        @apply flex flex-col
+  .reservation-header {
+    @apply flex flex-col
             items-center justify-center
             text-center text-3xl font-bold
             mt-5
             w-[90%];
-    }
-    .reservation-title {
-        @apply flex flex-row
+  }
+  .reservation-title {
+    @apply flex flex-row
             items-center justify-center
-            text-center text-lg font-bold;
+            text-center text-xl font-bold my-1;
     }
     .reservation-image-holder{
         @apply flex flex-row
             items-center justify-center
             w-[100%] h-[20%]
             -mt-5 mb-5;
-    }
-    .reservation-user-info {
-        @apply flex flex-col
+  }
+  .reservation-user-info {
+    @apply flex flex-col
             items-center justify-center
             w-[90%]
             mb-5;
-        .reservation-user-info-name {
-            @apply flex flex-row
+    .reservation-user-info-name {
+      @apply flex flex-row
                 items-center justify-center
                 w-[100%] h-[20%] mb-1
-                text-2xl font-bold truncate overflow-ellipsis
-        }
-        .reservation-user-role {
-            @apply text-black dark:text-white
-                text-base;
-        }
+                text-2xl font-bold truncate overflow-ellipsis;
     }
-    .reservation-info {
-        @apply flex flex-col
+    .reservation-user-role {
+      @apply text-black dark:text-white
+                text-base;
+    }
+  }
+  .reservation-info {
+    @apply flex flex-col
             items-center justify-center
             mb-5 w-[100%];
-        .reservation-message {
-            @apply w-[70%] mt-2
-        }
-        .reservation-hashtags {
-            @apply flex flex-wrap md:flex-row
+    .reservation-message {
+      @apply w-[70%] mt-2;
+    }
+    .reservation-hashtags {
+      @apply flex flex-wrap md:flex-row
                 items-center justify-center
                 w-[100%] h-[20%]
                 overflow-hidden;
-        }
     }
-    .reservation-feedbacks {
-        @apply flex flex-col
+  }
+  .reservation-feedbacks {
+    @apply flex flex-col
             items-center justify-center
             w-[70%];
-        .feedback-wrapper {
-           @apply whitespace-pre-wrap w-[100%] break-words
+    .feedback-wrapper {
+      @apply whitespace-pre-wrap w-[100%] break-words
             px-6 py-4 rounded-2xl
             bg-bg_color-50 dark:bg-bg_color-800
             shadow-sm;
-            .feedback-header {
-                @apply flex flex-row justify-start items-start;
-                .feedback-profile-img {
-                    @apply w-[60px] h-[60px] rounded-full object-cover;
-                }
-                .feedback-info {
-                    @apply ml-5;
-                    .feedback-mentee-name {
-                        @apply font-bold text-base ml-0.5;
-                    }
-                    .feedback-date {
-                        @apply font-light text-xs ml-0.5 text-gray-500 dark:text-gray-400 mb-1;
-                    }
-                }
-            }
-            .feedback-content {
-                @apply text-base mt-3 ml-1.5 font-light;
-            }
+      .feedback-header {
+        @apply flex flex-row justify-start items-start;
+        .feedback-profile-img {
+          @apply w-[60px] h-[60px] rounded-full object-cover;
         }
+        .feedback-info {
+          @apply ml-5;
+          .feedback-mentee-name {
+            @apply font-bold text-base ml-0.5;
+          }
+          .feedback-date {
+            @apply font-light text-xs ml-0.5 text-gray-500 dark:text-gray-400 mb-1;
+          }
+        }
+      }
+      .feedback-content {
+        @apply text-base mt-3 ml-1.5 font-light;
+      }
     }
-    .reservation-buttons {
-        @apply flex flex-row
+  }
+  .reservation-buttons {
+    @apply flex flex-row
             items-center justify-center
             h-[20%] mt-10;
-        .reservation-cancel-button {
-            @apply flex flex-row
-                items-center justify-center
-                px-4 py-1.5
-                text-sm mx-3
-                text-white bg-neutral-400
-                hover:bg-neutral-300
-                rounded-full;
-        }
-        .reservation-next-button {
-            @apply flex flex-row
-            items-center justify-center
-            px-4 py-1.5
-            text-sm mx-3
-            text-white bg-signature_color-500
-            hover:bg-signature_color-400
-            rounded-full;
-        }
-    }
-    .reservation-child-container {
-        @apply mt-5;
-    }
+  }
+  .reservation-child-container {
+    @apply mt-5;
+  }
 }
 
 .feedback-rating {
-    @apply flex justify-center items-center;
+  @apply flex justify-center items-center;
 }
-
-
 
 .reservation-status-container {
-    @apply flex flex-wrap flex-row justify-center items-center
+  @apply flex flex-wrap flex-row justify-center items-center
     overflow-hidden
     w-[95%] h-[20%];
-    /* Reservatio Status  */
-    .reservation-status {
-        @apply rounded-full px-3 py-1
+
+  /* Reservatio Status  */
+  .reservation-status {
+    @apply rounded-full px-3 py-1
         text-xs text-white text-center
         mb-2;
-    }
-    /* status */
-    .REQUEST {
-        @apply bg-red-400 dark:bg-red-500;
-    }
-    .ACCEPT,
-    .MENTEE_CHECKED{
-        @apply bg-green-500 dark:bg-green-600;
-    }
-    .CANCEL {
-        @apply bg-neutral-400 dark:bg-neutral-700;
-    }
-    .MENTEE_FEEDBACK {
-        @apply bg-purple-500 dark:bg-purple-600;
-    }
-    .DONE {
-        @apply bg-neutral-500 dark:bg-neutral-800;
-    }
+  }
+  /* status */
+  .REQUEST {
+    @apply bg-red-400 dark:bg-red-500;
+  }
+  .ACCEPT,
+  .MENTEE_CHECKED {
+    @apply bg-green-500 dark:bg-green-600;
+  }
+  .CANCEL {
+    @apply bg-neutral-400 dark:bg-neutral-700;
+  }
+  .MENTEE_FEEDBACK {
+    @apply bg-purple-500 dark:bg-purple-600;
+  }
+  .DONE {
+    @apply bg-neutral-500 dark:bg-neutral-800;
+  }
 }
-
-

@@ -9,8 +9,15 @@
 /** card hashtag */
 .card-hashtag-container {
   @apply px-3 py-1 mx-1
-    rounded-full my-3 text-center border-2 border-signature_color-500 dark:border-signature_color-600
-    overflow-hidden;
+    rounded-3xl my-1 text-center border-2 border-signature_color-500 dark:border-signature_color-600
+    ;
+}
+
+.card-hashtag-container {
+  @apply px-3 py-1 mx-1
+  rounded-3xl my-1 text-center border-2 border-signature_color-500 dark:border-signature_color-600
+  ;
+
 }
 
 .card-hashtag-name {

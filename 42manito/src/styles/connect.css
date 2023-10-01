@@ -36,24 +36,7 @@
   }
 
   .connect-btn-wrapper {
-    @apply flex flex-row mt-5 mb-5 space-x-[5vw];
-  }
-
-  .connect-btn {
-    @apply px-4 py-2
-        rounded-full;
-  }
-
-  .connect-cancel-btn {
-    @apply bg-bg_color-800 dark:bg-bg_color-400
-        active:bg-pink-600
-        text-white font-bold text-xs;
-  }
-
-  .connect-approve-btn {
-    @apply bg-signature_color-500 dark:bg-signature_color-500
-        active:bg-pink-600
-        text-white font-bold text-sm;
+    @apply flex flex-row mt-5 mb-5;
   }
 
   .connect-title {
