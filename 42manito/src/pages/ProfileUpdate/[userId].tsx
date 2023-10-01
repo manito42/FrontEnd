@@ -4,6 +4,7 @@ import {
   useSetUserUpdateMutation,
 } from "@/RTK/Apis/User";
 import {
+  deleteOneCategory,
   deleteOneHashtag,
   ProfileUpdateSlice,
 } from "@/RTK/Slices/ProfileUpdate";
@@ -138,11 +139,15 @@ export default function ProfileUpdate() {
                       name={category.name}
                       key={idx}
                       className={"text-sm"}
+                      onClick={() => dispatch(deleteOneCategory(category.name))}
                     />
                   ))}
               </div>
               {allCategories && (
-                <CategoryUpdateMultiple categories={allCategories} />
+                <CategoryUpdateMultiple
+                  categories={allCategories}
+                  userCategories={formData.categories}
+                />
               )}
             </div>
             <div className="w-[100%] profile-tag-wrapper">
@@ -177,9 +182,7 @@ export default function ProfileUpdate() {
                     marginBottom: 15,
                     height: 200,
                   }}
-                  onChange={(e) =>
-                    setDescription(e.target.value.slice(0, 2000))
-                  }
+                  onChange={(e) => setDescription(e.target.value)}
                   className="whitespace-pre-wrap"
                 />
               </div>

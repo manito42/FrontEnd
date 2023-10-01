@@ -90,6 +90,7 @@ export const {
   addCategory,
   addHashtag,
   deleteOneHashtag,
+  deleteOneCategory,
   setDisabled,
   setViewConnectModal,
 } = ProfileUpdateSlice.actions;
