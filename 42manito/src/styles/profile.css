@@ -36,12 +36,12 @@
 .profile-tag-wrapper {
   @apply flex flex-col
                 justify-start items-center
-                overflow-ellipsis mb-5
+                overflow-ellipsis mb-5 w-[80%]
                 ;
     .profile-tag-list {
         @apply flex flex-wrap
         justify-center items-center
-        w-[90%] overflow-hidden
+        w-[100%] overflow-hidden
     }
 }
 
