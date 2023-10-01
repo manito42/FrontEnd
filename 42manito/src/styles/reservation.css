@@ -53,11 +53,11 @@
         w-[100%] h-[20%]
         text-base font-bold truncate overflow-ellipsis
         text-bg_color-800 dark:text-bg_color-200;
-  }
-  .reservation-card-role {
-    @apply text-black dark:text-white
-        font-light text-xs;
-  }
+    }
+    .reservation-card-role {
+        @apply text-black dark:text-white
+        font-light text-xs mb-2;
+    }
 
   .reservation-card-hashtags {
     @apply flex flex-wrap flex-row h-[20%]
@@ -99,10 +99,10 @@
   .reservation-title {
     @apply flex flex-row
             items-center justify-center
-            text-center text-lg font-bold;
-  }
-  .reservation-image-holder {
-    @apply flex flex-row
+            text-center text-xl font-bold my-1;
+    }
+    .reservation-image-holder{
+        @apply flex flex-row
             items-center justify-center
             w-[100%] h-[20%]
             -mt-5 mb-5;

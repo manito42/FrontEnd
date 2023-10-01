@@ -2,7 +2,10 @@ import { RootState, useAppDispatch } from "@/RTK/store";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { usePostReservationRequestMutation } from "@/RTK/Apis/Reservation";
-import { initMentorConnect } from "@/RTK/Slices/MentorConnect";
+import {
+  MentorConnectSlice,
+  initMentorConnect,
+} from "@/RTK/Slices/MentorConnect";
 import ConnectModal from "../Connect/ConnectModal";
 import UserProfile from "@/components/Profile/UserProfile";
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
@@ -53,19 +56,20 @@ const MentorModal = () => {
       alert("로그인이 필요합니다.");
       return;
     }
-    if (
-      connectState.message.length === 0 ||
-      connectState.hashtags.length <= 0
-    ) {
-      alert("요청 메세지와 해시태그를 입력해주세요.");
+    if (connectState.categoryId === 0) {
+      alert("멘토링 분야를 선택해주세요.");
+    } else if (connectState.hashtags.length <= 0) {
+      alert("관심 분야를 선택해주세요.");
+    } else if (connectState.message.length === 0) {
+      alert("요청 메세지를 입력해주세요.");
     } else {
       try {
         await postReservation({
           mentorId: mentorId,
           menteeId: userId,
-          categoryId: connectState.categoryId, // 카테고리 선택할 수 있게 해야함
-          requestMessage: connectState.message, // 요청 메세지
-          hashtags: connectState.hashtags, // 해시태그
+          categoryId: connectState.categoryId,
+          requestMessage: connectState.message,
+          hashtags: connectState.hashtags,
         }).unwrap();
         alert("예약이 완료되었습니다.");
       } catch (e: BaseQueryError<any>) {
@@ -76,6 +80,7 @@ const MentorModal = () => {
         }
       }
       dispatch(CurrMentorSlice.actions.closeConnectModal());
+      dispatch(MentorConnectSlice.actions.initMentorConnect());
     }
   };
 
