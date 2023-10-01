@@ -10,8 +10,13 @@ header {
   .layout-header-container {
     @apply mx-auto py-2 flex flex-wrap relative
           flex-row items-center justify-center
-          w-[90%] md:w-[600px] lg:w-[900px];
+          w-[90%] lg:w-[900px] h-[45px];
   }
+
+  .layout-nav-container {
+    @apply flex flex-row justify-between items-center w-full absolute;
+  }
+
   .layout-btn {
     @apply flex justify-center items-center
           min-w-[35px] min-h-[35px]
@@ -23,6 +28,32 @@ header {
       rounded
       text-sm
       bg-bg_color-100;
+  }
+
+  .layout-desktop-container {
+    @apply px-3 z-10 md:block hidden;
+
+    .layout-desktop-link-container {
+      @apply flex flex-wrap items-center;
+    }
+    .layout-desktop-title {
+      @apply text-2xl font-extrabold hover:text-indigo-500;
+    }
+    .layout-desktop-link {
+      @apply text-lg font-normal hover:text-indigo-500 px-4;
+    }
+  }
+
+  .layout-mobile-container {
+    @apply flex-grow px-3 z-10 md:hidden block;
+
+    .layout-mobile-link-container {
+      @apply flex relative w-full items-center justify-center;
+
+      .layout-mobile-title {
+        @apply text-2xl font-extrabold hover:text-indigo-500;
+      }
+    }
   }
 }
 
