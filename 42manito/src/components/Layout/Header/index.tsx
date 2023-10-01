@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { Drawer } from "antd";
 import { RootState, useAppDispatch } from "@/RTK/store";
 import { signIn, signOut } from "@/RTK/Slices/Global";
 import { useSelector } from "react-redux";
 import Sidebar from "./components/Sidebar";
 import { SignIn } from "@/utils/SignIn";
-import { UnorderedListOutlined } from "@ant-design/icons";
 import Loading from "@/components/Global/Loading";
 import { useRouter } from "next/router";
+import { DesktopNav } from "./components/DesktopNav";
+import { MobileNav } from "./components/MobileNav";
 
 export default function Header() {
   const [visible, setVisible] = useState(false);
   const Owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
+
   const handleSingOut = () => {
     const id = localStorage.getItem("uid");
     if (id) {
@@ -54,10 +55,9 @@ export default function Header() {
     <>
       <header className="layout-header">
         <div className="layout-header-container">
-          <div className="flex flex-row justify-between items-center w-full absolute">
-            <button onClick={showSidebar} className="layout-btn">
-              <UnorderedListOutlined style={{ fontSize: 20 }} />
-            </button>
+          <div className="layout-nav-container">
+            <DesktopNav Owner={Owner} />
+            <MobileNav showSidebar={showSidebar} />
             {Owner === 0 && (
               <button
                 id="42AuthSignIn"
@@ -81,14 +81,6 @@ export default function Header() {
               </button>
             )}
           </div>
-          <Link
-            href="/"
-            className="flex flex-wrap title-font font-medium items-center z-10"
-          >
-            <span className=" text-2xl font-extrabold hover:text-indigo-500">
-              42 Manito
-            </span>
-          </Link>
           <Drawer
             className="dark:bg-bg_color-600 px-4 fade-in md:pt-10"
             placement="left"
