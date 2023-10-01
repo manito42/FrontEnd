@@ -6,6 +6,8 @@ import { Input } from "antd";
 import { setMessage } from "@/RTK/Slices/MentorConnect";
 import ConnectCategorySelect from "@/components/Mentor/CategorySelect";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { Button } from "@/common";
+import { ButtonType } from "@/Types/General/ButtonType";
 
 interface Props {
   handleYes: () => void;
@@ -14,7 +16,6 @@ interface Props {
 
 const ConnectModal = ({ handleYes, children }: Props) => {
   const [focus, setFocus] = useState(false);
-  const [disabled, setDisabled] = useState(false);
   const currentMentorState = useSelector(
     (state: RootState) => state.rootReducers.currMentor
   );
@@ -29,11 +30,8 @@ const ConnectModal = ({ handleYes, children }: Props) => {
   };
 
   const handleConnect = () => {
-    setDisabled(true);
     handleYes();
-    setDisabled(false);
   };
-
   return (
     <div
       className="connect-wrapper"
@@ -45,17 +43,17 @@ const ConnectModal = ({ handleYes, children }: Props) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="connect-container">
-          <div className="connect-title mt-5">멘토링 요청</div>
+          <div className="connect-title mt-5"> 멘토링 요청</div>
           <div className="connect-content-wrapper">
-            <div className="connect-header"> 카테고리</div>
+            <div className="connect-header"> 멘토링 분야 </div>
             <ConnectCategorySelect
               categories={currentMentorState.currMentor.categories}
             />
-            <div className="connect-header"> 해시태그</div>
+            <div className="connect-header"> 관심 분야 </div>
             <ConnectHashtagSelect
               hashtag={currentMentorState.currMentor.hashtags}
             />
-            <div className="connect-header">요청 메시지</div>
+            <div className="connect-header"> 요청 메시지 </div>
             <Input.TextArea
               showCount
               maxLength={1000}
@@ -66,20 +64,19 @@ const ConnectModal = ({ handleYes, children }: Props) => {
             />
           </div>
           <div className="connect-btn-wrapper">
-            <button
-              className="connect-approve-btn connect-btn"
-              type="button"
-              onClick={handleConnect}
+            <Button
+              buttonType={ButtonType.CANCLE}
+              onClick={() => handleFocusOut()}
             >
-              Connect
-            </button>
-            <button
-              className="connect-cancel-btn connect-btn"
-              type="button"
-              onClick={handleFocusOut}
+              취소하기
+            </Button>
+            <Button
+              buttonType={ButtonType.ACCEPT}
+              onClick={() => handleConnect()}
             >
-              Cancel
-            </button>
+              요청하기
+            </Button>
+
           </div>
         </div>
       </section>

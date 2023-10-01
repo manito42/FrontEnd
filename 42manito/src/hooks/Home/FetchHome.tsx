@@ -1,22 +1,28 @@
 import React, { useEffect } from "react";
-import { useGetMentorsMutation } from "@/RTK/Apis/Home";
+import { useGetMentorsQuery } from "@/RTK/Apis/Home";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 
 export const useFetchHome = (categoryId?: number | undefined) => {
+  const [page, setPage] = React.useState<number>(0);
   const [newMentor, setNewMentor] = React.useState<
     MentorProfileDto[] | undefined
   >(undefined);
-  const [getMentors, { data: mentors, isLoading, error }] =
-    useGetMentorsMutation();
-  const [page, setPage] = React.useState<number>(0);
+
+  const {
+    data: mentors,
+    isLoading,
+    error,
+  } = useGetMentorsQuery({
+    category_id: categoryId,
+    page,
+    take: 12,
+  });
 
   const fetchNewCategory = () => {
-    getMentors({ take: 12, page: 0, category_id: categoryId });
     setPage(0);
   };
 
   const fetchMoreData = () => {
-    getMentors({ take: 12, page: page + 1, category_id: categoryId });
     setPage(page + 1);
   };
 
@@ -25,7 +31,7 @@ export const useFetchHome = (categoryId?: number | undefined) => {
       setNewMentor(mentors);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
+  }, [isLoading, mentors]);
 
   return { newMentor, fetchNewCategory, fetchMoreData };
 };
