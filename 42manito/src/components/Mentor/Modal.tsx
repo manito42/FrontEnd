@@ -99,6 +99,7 @@ const MentorModal = () => {
         >
           {
             <UserProfile UserId={mentorId}>
+            {userId !== mentorId &&
               <div className="connect-btn-container">
                 <Button
                   buttonType={ButtonType.ACCEPT}
@@ -107,6 +108,7 @@ const MentorModal = () => {
                   멘토링 요청
                 </Button>
               </div>
+            }
               <button className="close-btn" onClick={handleZoomOut}>
                 닫기
               </button>
