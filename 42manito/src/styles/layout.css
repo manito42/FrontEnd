@@ -2,28 +2,55 @@ header {
   @apply bg-bg_color-200 dark:bg-bg_color-900 md:pt-0;
 
   .layout-header {
-    @apply text-bg_color-600 grow
-        w-full
-        z-[10];
+    @apply text-bg_color-600 grow w-full;
   }
 
   .layout-header-container {
     @apply mx-auto py-2 flex flex-wrap relative
           flex-row items-center justify-center
-          w-[90%] md:w-[600px] lg:w-[900px];
+          w-[90%] lg:w-[900px] h-[60px];
   }
+
+  .layout-nav-container {
+    @apply flex flex-row justify-between items-center w-full absolute;
+  }
+
   .layout-btn {
     @apply flex justify-center items-center
-          min-w-[35px] min-h-[35px]
-          z-50 my-1;
+          min-w-[70px] min-h-[35px] my-1;
   }
   .layout-sign-btn {
-    @apply
-      border border-solid border-bg_color-300 py-1 px-2
+    @apply border border-solid border-bg_color-300 py-1 px-2
       font-light
       rounded
       text-sm
       bg-bg_color-100;
+  }
+
+  .layout-desktop-container {
+    @apply px-3 md:block hidden;
+
+    .layout-desktop-link-container {
+      @apply flex flex-wrap items-center;
+    }
+    .layout-desktop-title {
+      @apply text-2xl font-extrabold hover:text-indigo-500;
+    }
+    .layout-desktop-link {
+      @apply text-lg font-normal hover:text-indigo-500 px-4;
+    }
+  }
+
+  .layout-mobile-container {
+    @apply w-full px-3 md:hidden block;
+
+    .layout-mobile-link-container {
+      @apply flex relative w-full items-center justify-center;
+
+      .layout-mobile-title {
+        @apply text-2xl font-extrabold hover:text-indigo-500;
+      }
+    }
   }
 }
 
@@ -36,7 +63,7 @@ footer {
 }
 
 .sidebar-text {
-  @apply text-xl px-3 mt-10 m-5;
+  @apply text-xl px-3 mt-10 m-5 text-bg_color-600;
 }
 
 .sidebar-text-btn {

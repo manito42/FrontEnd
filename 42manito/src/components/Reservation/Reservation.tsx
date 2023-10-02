@@ -19,6 +19,7 @@ import {
 import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { RootState } from "@/RTK/store";
 import FeedbackCard from "@/components/Reservation/feedback/FeedbackCard";
+import { ButtonType } from "@/Types/General/ButtonType";
 import { useRouter } from "next/router";
 
 interface props {
@@ -130,19 +131,12 @@ export default function Reservation({ children }: props) {
               )}
           </div>
           <div className="reservation-buttons">
-            {
-              <NextProgressButton
-                role={myRole}
-                status={status}
-                reservationId={reservation.id}
-              />
-            }
             {/* 내가 멘티일 경우 수락 이후 취소 불가*/}
             {(status === ReservationStatus.REQUEST ||
               (myRole === ReservationUserRole.mentor &&
                 status === ReservationStatus.ACCEPT)) && (
               <Button
-                className="reservation-cancel-button"
+                buttonType={ButtonType.CANCLE}
                 onClick={() => {
                   handleCancelReservation(
                     "취소 완료되었습니다.",
@@ -156,6 +150,13 @@ export default function Reservation({ children }: props) {
                   : "취소하기"}
               </Button>
             )}
+            {
+              <NextProgressButton
+                role={myRole}
+                status={status}
+                reservationId={reservation.id}
+              />
+            }
           </div>
           <div className="reservation-child-container">{children}</div>
         </div>
