@@ -24,7 +24,7 @@ const sliceHashtags = (hashtags: HashtagResponseDto[], limit: number) => {
     if (acc + hashtag.name.length > limit) {
       continue;
     }
-    acc += hashtag.name.length + 4;
+    acc += hashtag.name.length + 6; // 최적화된 값임.. 6은 #{} 의 길이
     slicedHashtags.push(hashtag);
   }
   return slicedHashtags;
@@ -34,7 +34,7 @@ const MentorCard = ({ data }: props) => {
   const dispatch = useAppDispatch();
   const { nickname, profileImage } = data.user;
   const { shortDescription, hashtags } = data;
-  const slicedHashtags = sliceHashtags(hashtags, 29);
+  const slicedHashtags = sliceHashtags(hashtags, 31);
   const openMentorModal = (data: MentorProfileDto) => {
     dispatch(CurrMentorSlice.actions.deleteMentor());
     dispatch(CurrMentorSlice.actions.setMentor(data));
