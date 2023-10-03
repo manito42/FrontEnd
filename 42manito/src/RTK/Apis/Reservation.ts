@@ -80,6 +80,7 @@ export const reservationApi = createApi({
         return {
           url: `/reservations/${args.id}/cancel`,
           method: "PATCH",
+          data: {content: args.content},
         };
       },
       invalidatesTags: [{ type: "Reservation", id: "LIST" }],
