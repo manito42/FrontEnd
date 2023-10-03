@@ -31,9 +31,12 @@ export default function Reservation({ children }: props) {
     userId === reservation.mentorId
       ? reservation.menteeId
       : reservation.mentorId;
-  const { data: targetUser } = useGetUserQuery({
-    id: targetUserId,
-  });
+  const { data: targetUser } = useGetUserQuery(
+    {
+      id: targetUserId,
+    },
+    { skip: targetUserId === 0 },
+  );
   const status = reservation.status;
   const targetUserRole =
     targetUserId === reservation.mentorId
