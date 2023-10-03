@@ -7,6 +7,7 @@ import React, { useEffect } from "react";
 import Layout from "@/components/Layout/Layout";
 import FeedbackModal from "@/components/Reservation/modal/FeedbackModal";
 import { RootState } from "@/RTK/store";
+import CancelModal from "@/components/Cancel/CancelModal";
 
 export default function ReservationPage() {
   const route = useRouter();
@@ -20,6 +21,9 @@ export default function ReservationPage() {
   });
   const isFeedbackModalOpen = useSelector(
     (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen,
+  );
+  const isCancelModalOpen = useSelector(
+      (state: RootState) => state.rootReducers.reservation.isCancelModalOpen,
   );
   const dispatch = useDispatch();
 
@@ -35,6 +39,7 @@ export default function ReservationPage() {
           <div className="py-10">{!isLoading && !error && <Reservation />}</div>
         </div>
         {isFeedbackModalOpen && <FeedbackModal />}
+        {isCancelModalOpen && <CancelModal />}
       </Layout>
     </>
   );
