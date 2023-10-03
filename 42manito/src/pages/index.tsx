@@ -18,6 +18,7 @@ import { BannersData } from "@/components/Banners/Banners";
 import { ReservationRole } from "@/Types/Reservations/ReservationRole";
 import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import CancelModal from "@/components/Cancel/CancelModal";
+import FeedbackModal from "@/components/Reservation/modal/FeedbackModal";
 
 const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
@@ -36,6 +37,9 @@ export default function Home() {
   );
   const isReservationModalOpen = useSelector(
     (state: RootState) => state.rootReducers.reservation.isReservationModalOpen
+  );
+  const isFeedbackModalOpen = useSelector(
+      (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen
   );
   const isCancelModalOpen = useSelector(
       (state: RootState) => state.rootReducers.reservation.isCancelModalOpen,
@@ -151,6 +155,7 @@ export default function Home() {
           <MentorModal />
         )}
         {isReservationModalOpen && <ReservationModal />}
+        {isFeedbackModalOpen && <FeedbackModal />}
         {isCancelModalOpen && (<CancelModal />)}
         <button
           onClick={scrollToTop}
