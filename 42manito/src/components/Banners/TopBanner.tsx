@@ -10,6 +10,7 @@ interface props {
 
 // 추후 여러 배너를 받을 수 있는 형태로 수정이 필요함.
 export default function TopBanner({ banner }: props) {
+  const bannerLength = banner.length;
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleBannerClick = () => {
@@ -72,14 +73,16 @@ export default function TopBanner({ banner }: props) {
       <div
         className={`top-banner-wrapper ${banner[currentIndex].backgroundColor} ${banner[currentIndex].textColor}`}
       >
-        <div className="left-arrow-wrapper">
-          <button
-            className="left-arrow-button"
-            onClick={() => sideButtonHandler("left")}
-          >
-            <CaretLeftOutlined className="left-arrow"></CaretLeftOutlined>
-          </button>
-        </div>
+        {bannerLength !== 1 && (
+          <div className="left-arrow-wrapper">
+            <button
+              className="left-arrow-button"
+              onClick={() => sideButtonHandler("left")}
+            >
+              <CaretLeftOutlined className="left-arrow"></CaretLeftOutlined>
+            </button>
+          </div>
+        )}
         <div className="top-banner-container">
           <div className="top-banner-right" onClick={handleBannerClick}>
             <Image
@@ -100,17 +103,21 @@ export default function TopBanner({ banner }: props) {
             </div>
           </div>
         </div>
-        <div className="banner-circles-wrapper">
-          <div className="banner-circles-container ">{bannerCircle}</div>
-        </div>
-        <div className="right-arrow-wrapper">
-          <button
-            className="right-arrow-button"
-            onClick={() => sideButtonHandler("right")}
-          >
-            <CaretRightOutlined className="right-arrow"></CaretRightOutlined>
-          </button>
-        </div>
+        {bannerLength !== 1 && (
+          <div className="banner-circles-wrapper">
+            <div className="banner-circles-container ">{bannerCircle}</div>
+          </div>
+        )}
+        {bannerLength !== 1 && (
+          <div className="right-arrow-wrapper">
+            <button
+              className="right-arrow-button"
+              onClick={() => sideButtonHandler("right")}
+            >
+              <CaretRightOutlined className="right-arrow"></CaretRightOutlined>
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
