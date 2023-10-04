@@ -189,7 +189,7 @@ export default function ProfileUpdate() {
             </div>
             <div className="profile-update-btn-wrapper">
               <Button
-                buttonType={ButtonType.CANCLE}
+                buttonType={ButtonType.CANCEL}
                 type="button"
                 onClick={() => cancelButtonHandler()}
               >

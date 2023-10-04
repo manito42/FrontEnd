@@ -122,7 +122,7 @@ export default function Reservation({ children }: props) {
               (myRole === ReservationUserRole.mentor &&
                 status === ReservationStatus.ACCEPT)) && (
               <Button
-                buttonType={ButtonType.CANCLE}
+                buttonType={ButtonType.CANCEL}
                 onClick={() => {
                   dispatch(ReservationSlice.actions.openCancelModal());
                 }}

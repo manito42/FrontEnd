@@ -65,7 +65,7 @@ const ConnectModal = ({ handleYes, children }: Props) => {
           </div>
           <div className="connect-btn-wrapper">
             <Button
-              buttonType={ButtonType.CANCLE}
+              buttonType={ButtonType.CANCEL}
               onClick={() => handleFocusOut()}
             >
               취소하기

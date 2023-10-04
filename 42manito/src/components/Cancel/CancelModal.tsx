@@ -62,7 +62,7 @@ const CancelModal = () => {
           </div>
           <div className="connect-btn-wrapper">
             <Button
-              buttonType={ButtonType.CANCLE}
+              buttonType={ButtonType.CANCEL}
               onClick={() => handleClose()}
             >
               닫기
