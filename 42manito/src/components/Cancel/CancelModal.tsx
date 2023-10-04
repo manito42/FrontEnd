@@ -12,7 +12,7 @@ import {useSelector} from "react-redux";
 
 const CancelModal = () => {
   const [openTextArea, setOpenTextArea] = useState(false);
-  const [cancelMsg, setCancelMsg] = useState("");
+  const [cancelMsg, setCancelMsg] = useState("시간이 맞지않아 취소합니다.");
   const dispatch = useAppDispatch();
   const [patchCancelReservation] = usePatchReservationCancelMutation();
   const reservation = useSelector(
