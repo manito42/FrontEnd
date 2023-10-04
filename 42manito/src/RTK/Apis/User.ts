@@ -38,11 +38,12 @@ export const userApi = createApi({
     }),
     setIsHide: builder.mutation<
       MentorProfileDto,
-      { id: number; isHide: boolean }
+      { id: number; isHide: boolean; socialLink?: string }
     >({
-      query: (args: { id: number; isHide: boolean }) => {
+      query: (args: { id: number; isHide: boolean; socialLink?: string }) => {
         const body = {
           isHide: args.isHide,
+          socialLink: args?.socialLink,
         };
         return {
           url: `/mentor_profiles/${args.id}`,

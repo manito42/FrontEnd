@@ -25,7 +25,12 @@ export default function ManitoToggle() {
         else if (hashtags.length == 0)
           alert("관심 분야를 최소한 하나 이상 설정해야 합니다.");
         else if (socialLink == "") alert("슬랙 프로필 링크를 추가해야 합니다.");
-        else setIsHideMutation({ id: userId as number, isHide: false });
+        else
+          setIsHideMutation({
+            id: userId as number,
+            isHide: false,
+            socialLink: socialLink,
+          });
       }
     }
   };
