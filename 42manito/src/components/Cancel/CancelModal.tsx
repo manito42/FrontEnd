@@ -25,10 +25,10 @@ const CancelModal = () => {
         content: cancelMsg,
       }).unwrap();
       dispatch(setSelectedReservation(data));
-      alert(msg ? msg : "Success");
+      alert(msg ? msg : "멘토링이 취소되었습니다.");
       dispatch(closeCancelModal());
     } catch (e: BaseQueryError<any>) {
-      alert(errorMsg ? errorMsg : "Error");
+      alert(errorMsg ? errorMsg : "멘토링 취소가 실패했습니다.");
     }
   };
 
