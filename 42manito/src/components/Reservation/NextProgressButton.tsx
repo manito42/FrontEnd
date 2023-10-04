@@ -97,9 +97,10 @@ export default function NextProgressButton({
                 "확인되었습니다.",
                 "요청에 실패했습니다."
               );
+              // window.open("멘티 프로필");
             }}
           >
-            확인
+            진행하기
           </Button>
         );
       /* 리뷰 등록에 대해서 별도의 모달이 필요함*/
