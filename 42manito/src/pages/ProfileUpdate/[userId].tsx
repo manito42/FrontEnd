@@ -23,6 +23,8 @@ import CategoryUpdateMultiple from "@/components/Profile/Update/CategoryUpdateMu
 import HashtagUpdateInput from "@/components/Profile/Update/HashtagUpdateInput";
 import { ButtonType } from "@/Types/General/ButtonType";
 import CardHashtag from "@/components/Global/CardHashtag";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
 const { TextArea } = Input;
 
@@ -31,6 +33,7 @@ export default function ProfileUpdate() {
   const { userId } = route.query;
   const [shortDescription, setShortDescription] = useState<string>("");
   const [Description, setDescription] = useState<string>("");
+  const [socialLink, setSocialLink] = useState<string>("");
   const { data: allCategories, isLoading, error } = useGetCategoriesQuery();
   const dispatch = useAppDispatch();
   const formData = useSelector(
@@ -61,6 +64,7 @@ export default function ProfileUpdate() {
       form.categories = formData.categories;
       form.shortDescription = shortDescription;
       form.description = Description;
+      form.socialLink = socialLink;
       UserUpdate({
         id: Number(userId as string),
         profile: form,
@@ -92,8 +96,14 @@ export default function ProfileUpdate() {
           UserData.mentorProfile.categories
         )
       );
+      dispatch(
+        ProfileUpdateSlice.actions.setSocialLink(
+          UserData.mentorProfile.socialLink
+        )
+      );
       setDescription(UserData.mentorProfile.description);
       setShortDescription(UserData.mentorProfile.shortDescription);
+      setSocialLink(UserData.mentorProfile.socialLink);
     }
   }, [UserData, dispatch]);
 
@@ -168,6 +178,24 @@ export default function ProfileUpdate() {
                   ))}
               </div>
               <HashtagUpdateInput hashtags={formData.hashtags} />
+            </div>
+
+            <div className="w-[100%] profile-social-link-wrapper">
+              <span className="profile-title">
+                슬랙 링크
+                <a href="/Guide" target="_blank">
+                  <QuestionCircleOutlined className="text-gray-400 align-middle pb-1.5 pl-1 text-lg" />
+                </a>
+              </span>
+              <span className="profile-small-message">
+                슬랙 프로필 링크를 입력해주세요
+              </span>
+              <TextArea
+                className="profile-social-link-input-wrapper"
+                placeholder="슬랙 프로필 링크를 입력해주세요"
+                value={socialLink}
+                onChange={(e) => setSocialLink(e.target.value)}
+              />
             </div>
 
             <div className="profile-description-wrapper">

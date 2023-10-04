@@ -5,8 +5,9 @@ import DescriptionComponent from "@/components/Profile/Description";
 import { useProfileDetailModal } from "@/hooks/Profile/Component";
 import { useRouter } from "next/router";
 import CardHashtag from "@/components/Global/CardHashtag";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { RootState } from "@/RTK/store";
 
 interface props {
   UserId: number;
@@ -24,7 +25,10 @@ export default function UserProfile({ UserId, children }: props) {
     router.push(`/Search/${name}`);
     dispatch(CurrMentorSlice.actions.closeMentorModal());
   };
-
+  const uid = Number(router.query.userId);
+  const loginId = useSelector(
+    (state: RootState) => state.rootReducers.global.uId
+  );
   return (
     <>
       {UserData && !UserLoading && (
@@ -34,6 +38,7 @@ export default function UserProfile({ UserId, children }: props) {
             <ProfileInfo
               nickname={UserData.user.nickname}
               count={UserData.mentoringCount}
+              socialLink={uid === loginId ? UserData.socialLink : undefined}
             />
           </div>
           <div className="short-description-container">
