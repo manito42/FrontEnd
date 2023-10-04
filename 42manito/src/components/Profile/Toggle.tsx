@@ -20,7 +20,6 @@ export default function ManitoToggle() {
     } else {
       if (userData) {
         const { categories, hashtags, socialLink } = userData.mentorProfile;
-        console.log(categories, hashtags, socialLink);
         if (categories.length == 0)
           alert("멘토링 분야를 최소한 하나 이상 설정해야 합니다.");
         else if (hashtags.length == 0)
