@@ -53,10 +53,10 @@ const CancelModal = () => {
             <CancelMessageSelect setOpenTextArea={setOpenTextArea} setCancelMsg={setCancelMsg}/>
             {openTextArea && <Input.TextArea
               showCount
-              maxLength={1000}
+              maxLength={100}
               style={{ height: 80, marginBottom: 24 }}
               onChange={(e) => setCancelMsg(e.target.value)}
-              placeholder="최대 1000글자"
+              placeholder="최대 100글자"
               className="w-full max-w-[500px] mt-3"
             />}
           </div>
