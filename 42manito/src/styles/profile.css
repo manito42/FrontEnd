@@ -50,34 +50,9 @@
                 overflow-ellipsis mb-5;
   .profile-tag-list {
     @apply flex flex-wrap
-                overflow-ellipsis mb-5 w-[80%];
-    .profile-tag-list {
-      @apply flex flex-wrap
-        justify-center items-center
-        w-[90%] overflow-hidden;
-    }
-  }
-}
-
-.profile-social-link-input-wrapper {
-  @apply flex justify-center items-center my-5 w-[80%];
-  .profile-social-link-input-btn {
-    @apply bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 ml-2 text-sm font-bold text-white py-1 px-2 rounded;
-  }
-  width: min(30%, max-content);
-  overflow-ellipsis mb-5 w-[80%] .profile-tag-list {
-    @apply flex flex-wrap
         justify-center items-center
         w-[100%] overflow-hidden;
   }
-}
-
-.profile-social-link-input-wrapper {
-  @apply flex justify-center items-center my-5 w-[80%];
-  .profile-social-link-input-btn {
-    @apply bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 ml-2 text-sm font-bold text-white py-1 px-2 rounded;
-  }
-  width: min(30%, max-content);
 }
 
 .profile-title {
