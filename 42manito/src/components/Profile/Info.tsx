@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface props {
@@ -15,7 +16,13 @@ export default function ProfileInfo({ nickname, count, socialLink }: props) {
             {nickname}
             {socialLink !== undefined && (
               <a href={socialLink} target="_blank">
-                <img className="ml-2 w-6 h-6" src="/Slack-mark-RGB.png"></img>
+                <Image
+                  alt="slack-icon"
+                  width={24}
+                  height={24}
+                  className="ml-2"
+                  src="/Slack-mark-RGB.png"
+                ></Image>
               </a>
             )}
           </div>

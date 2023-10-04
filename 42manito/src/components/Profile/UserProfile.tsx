@@ -18,6 +18,9 @@ export default function UserProfile({ UserId, children }: props) {
   const { UserData, UserLoading } = useProfileDetailModal(UserId);
   const router = useRouter();
   const dispatch = useDispatch();
+  const loginId = useSelector(
+    (state: RootState) => state.rootReducers.global.uId
+  );
   if (typeof window === "undefined") {
     return <div>로딩 중...</div>; // 로딩 표시를 보여주셔도 되고, 아무것도 보여주지 않으셔도 됩니다.
   }
@@ -26,9 +29,7 @@ export default function UserProfile({ UserId, children }: props) {
     dispatch(CurrMentorSlice.actions.closeMentorModal());
   };
   const uid = Number(router.query.userId);
-  const loginId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId
-  );
+
   return (
     <>
       {UserData && !UserLoading && (
