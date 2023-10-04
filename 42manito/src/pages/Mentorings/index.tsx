@@ -10,6 +10,7 @@ import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { useRouter } from "next/router";
 import Loading from "@/components/Global/Loading";
 import FeedbackModal from "@/components/Reservation/modal/FeedbackModal";
+import CancelModal from "@/components/Cancel/CancelModal";
 
 const Mentoring = () => {
   const banner = [
@@ -33,6 +34,9 @@ const Mentoring = () => {
   );
   const isFeedbackModalOpen = useSelector(
     (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen
+  );
+  const isCancelModalOpen = useSelector(
+      (state: RootState) => state.rootReducers.reservation.isCancelModalOpen
   );
   const handleRoleSelect = (id: string) => {
     if (id === "mentor") {
@@ -142,6 +146,7 @@ const Mentoring = () => {
         </div>
         {isReservationModalOpen && <ReservationModal />}
         {isFeedbackModalOpen && <FeedbackModal />}
+        {isCancelModalOpen && <CancelModal />}
       </Layout>
     </>
   );

@@ -11,12 +11,7 @@ import {
 import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import { Button } from "@/common";
 import NextProgressButton from "@/components/Reservation/NextProgressButton";
-import { usePatchReservationCancelMutation } from "@/RTK/Apis/Reservation";
-import {
-  ReservationSlice,
-  setSelectedReservation,
-} from "@/RTK/Slices/Reservation";
-import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
+import { ReservationSlice } from "@/RTK/Slices/Reservation";
 import { RootState } from "@/RTK/store";
 import FeedbackCard from "@/components/Reservation/feedback/FeedbackCard";
 import { ButtonType } from "@/Types/General/ButtonType";
@@ -51,20 +46,8 @@ export default function Reservation({ children }: props) {
     targetUserRole === ReservationUserRole.mentor
       ? ReservationUserRole.mentee
       : ReservationUserRole.mentor;
-  const [patchCancelReservation] = usePatchReservationCancelMutation();
   const dispatch = useDispatch();
   const router = useRouter();
-  const handleCancelReservation = async (msg?: string, errorMsg?: string) => {
-    try {
-      const data = await patchCancelReservation({
-        id: reservation.id,
-      }).unwrap();
-      dispatch(setSelectedReservation(data));
-      alert(msg ? msg : "Success");
-    } catch (e: BaseQueryError<any>) {
-      alert(errorMsg ? errorMsg : "Error");
-    }
-  };
   const handleClick = (name: string) => {
     router.push(`/Search/${name}`);
     dispatch(ReservationSlice.actions.closeReservationModal());
@@ -139,12 +122,9 @@ export default function Reservation({ children }: props) {
               (myRole === ReservationUserRole.mentor &&
                 status === ReservationStatus.ACCEPT)) && (
               <Button
-                buttonType={ButtonType.CANCLE}
+                buttonType={ButtonType.CANCEL}
                 onClick={() => {
-                  handleCancelReservation(
-                    "취소 완료되었습니다.",
-                    "취소에 실패하였습니다.",
-                  );
+                  dispatch(ReservationSlice.actions.openCancelModal());
                 }}
               >
                 {myRole === ReservationUserRole.mentor &&
