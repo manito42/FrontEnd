@@ -20,7 +20,7 @@ export const useFetchSearch = () => {
     if (searchKeyword && typeof searchKeyword === "string") {
       // trim first # from searchKeyword
       let keyword = searchKeyword;
-      if (keyword[0] === "#") {
+      if (keyword[0] === "#" && keyword.length > 1) {
         keyword = keyword.slice(1);
         SearchMutation({
           search_string: keyword,
