@@ -40,7 +40,7 @@ export default function NextProgressButton({
     try {
       const res = await patchFunc(data).unwrap();
       dispatch(setSelectedReservation(res));
-      alert(msg ? msg : "Success");
+      msg && alert(msg);
     } catch (e: BaseQueryError<any>) {
       alert(errorMsg ? errorMsg : "Error");
     }
