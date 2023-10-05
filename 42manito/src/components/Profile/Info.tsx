@@ -14,7 +14,7 @@ export default function ProfileInfo({ nickname, count, socialLink }: props) {
         <div className="profile-info-container">
           <div className="text-4xl font-bold flex justify-center items-center">
             {nickname}
-            {socialLink !== undefined && (
+            {socialLink !== undefined && socialLink && (
               <a href={socialLink} target="_blank">
                 <Image
                   alt="slack-icon"
