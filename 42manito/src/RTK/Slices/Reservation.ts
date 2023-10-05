@@ -6,6 +6,7 @@ interface currMentorType {
   isReservationModalOpen: boolean;
   isFeedbackModalOpen: boolean;
   isCancelModalOpen: boolean;
+  isSocialLinkModalOpen: boolean;
   selectedReservation: ReservationDefaultDto;
 }
 
@@ -13,6 +14,7 @@ const InitialState: currMentorType = {
   isReservationModalOpen: false,
   isFeedbackModalOpen: false,
   isCancelModalOpen: false,
+  isSocialLinkModalOpen: false,
   selectedReservation: {
     id: 0,
     mentorId: 0,
@@ -48,7 +50,7 @@ export const ReservationSlice = createSlice({
     closeFeedbackModal(state) {
       state.isFeedbackModalOpen = false;
     },
-    openCancelModal(state ) {
+    openCancelModal(state) {
       state.isCancelModalOpen = true;
     },
     closeCancelModal(state) {
@@ -56,6 +58,12 @@ export const ReservationSlice = createSlice({
     },
     setSelectedReservation(state, action) {
       state.selectedReservation = action.payload;
+    },
+    openSocialLinkModal(state) {
+      state.isSocialLinkModalOpen = true;
+    },
+    closeSocialLinkModal(state) {
+      state.isSocialLinkModalOpen = false;
     },
   },
 });
@@ -68,4 +76,6 @@ export const {
   openCancelModal,
   closeCancelModal,
   setSelectedReservation,
+  openSocialLinkModal,
+  closeSocialLinkModal,
 } = ReservationSlice.actions;

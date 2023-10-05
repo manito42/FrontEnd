@@ -8,6 +8,7 @@ import Layout from "@/components/Layout/Layout";
 import FeedbackModal from "@/components/Reservation/modal/FeedbackModal";
 import { RootState } from "@/RTK/store";
 import CancelModal from "@/components/Cancel/CancelModal";
+import SocialLinkModal from "@/components/Reservation/modal/SocialLinkModal";
 
 export default function ReservationPage() {
   const route = useRouter();
@@ -20,10 +21,13 @@ export default function ReservationPage() {
     skip: reservationId === undefined,
   });
   const isFeedbackModalOpen = useSelector(
-    (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen,
+    (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen
   );
   const isCancelModalOpen = useSelector(
-      (state: RootState) => state.rootReducers.reservation.isCancelModalOpen,
+    (state: RootState) => state.rootReducers.reservation.isCancelModalOpen
+  );
+  const isSociaLinkModalOpen = useSelector(
+    (state: RootState) => state.rootReducers.reservation.isSocialLinkModalOpen
   );
   const dispatch = useDispatch();
 
@@ -40,6 +44,7 @@ export default function ReservationPage() {
         </div>
         {isFeedbackModalOpen && <FeedbackModal />}
         {isCancelModalOpen && <CancelModal />}
+        {isSociaLinkModalOpen && <SocialLinkModal />}
       </Layout>
     </>
   );

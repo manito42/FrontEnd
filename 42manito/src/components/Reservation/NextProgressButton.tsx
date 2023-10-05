@@ -10,6 +10,7 @@ import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { useDispatch } from "react-redux";
 import {
   openFeedbackModal,
+  openSocialLinkModal,
   setSelectedReservation,
 } from "@/RTK/Slices/Reservation";
 
@@ -73,7 +74,7 @@ export default function NextProgressButton({
           <Button
             buttonType={ButtonType.ACCEPT}
             onClick={() => {
-              dispatch(openFeedbackModal());
+              dispatch(openSocialLinkModal());
             }}
           >
             리뷰 등록
@@ -97,7 +98,7 @@ export default function NextProgressButton({
                 "확인되었습니다.",
                 "요청에 실패했습니다."
               );
-              // window.open("멘토 슬랙 링크"");
+              dispatch(openSocialLinkModal());
             }}
           >
             진행하기
