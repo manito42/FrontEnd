@@ -8,5 +8,5 @@ export interface MentorProfilePatchReqDto {
   description?: string;
   hashtags?: HashtagResponseDto[];
   categories?: CategoriesResponseDto[];
-  socialLink?: string;
+  socialLink?: string | null;
 }

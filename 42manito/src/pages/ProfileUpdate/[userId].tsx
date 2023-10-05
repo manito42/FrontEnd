@@ -58,9 +58,10 @@ export default function ProfileUpdate() {
       setInvalidInput("");
       return true;
     }
+
     const socialLinkRegex =
       /^https:\/\/42born2code\.slack\.com\/team\/[a-zA-Z0-9_]+$/;
-    if (socialLinkRegex.test(socialLink) === false) {
+    if (socialLink !== null && socialLinkRegex.test(socialLink) === false) {
       setInvalidInput("슬랙 프로필 링크 형식을 확인해주세요.");
       return false;
     } else {
@@ -88,7 +89,7 @@ export default function ProfileUpdate() {
       form.categories = formData.categories;
       form.shortDescription = shortDescription;
       form.description = Description;
-      form.socialLink = socialLink === "" ? undefined : socialLink;
+      form.socialLink = socialLink === "" ? null : socialLink;
 
       if (invalidInput === "") {
         UserUpdate({

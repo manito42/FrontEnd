@@ -53,7 +53,12 @@ export default function NextProgressButton({
           <Button
             buttonType={ButtonType.ACCEPT}
             onClick={() => {
-              handlePatchReservation(req, patchAcceptReservation);
+              handlePatchReservation(
+                req,
+                patchAcceptReservation,
+                "수락되었습니다.",
+                "수락에 실패하였습니다."
+              );
             }}
           >
             수락하기
@@ -87,12 +92,7 @@ export default function NextProgressButton({
           <Button
             buttonType={ButtonType.ACCEPT}
             onClick={() => {
-              handlePatchReservation(
-                req,
-                patchMenteeCheckedReservation,
-                "확인되었습니다.",
-                "요청에 실패했습니다."
-              );
+              handlePatchReservation(req, patchMenteeCheckedReservation);
               dispatch(openSocialLinkModal());
             }}
           >
