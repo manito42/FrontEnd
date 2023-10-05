@@ -45,7 +45,7 @@ export const userApi = createApi({
           isHide: args.isHide,
         };
         return {
-          url: `/mentor_profiles/${args.id}`,
+          url: `/mentor_profiles/${args.id}/activation`,
           data: body,
           method: "PATCH",
         };
