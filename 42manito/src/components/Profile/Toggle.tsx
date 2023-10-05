@@ -29,7 +29,7 @@ export default function ManitoToggle() {
           setIsHideMutation({
             id: userId as number,
             isHide: false,
-            socialLink: socialLink,
+            // socialLink: socialLink,
           });
       }
     }

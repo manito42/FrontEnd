@@ -97,7 +97,7 @@ export default function NextProgressButton({
                 "확인되었습니다.",
                 "요청에 실패했습니다."
               );
-              // window.open("멘티 프로필");
+              // window.open("멘토 슬랙 링크"");
             }}
           >
             진행하기

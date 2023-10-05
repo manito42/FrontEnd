@@ -64,7 +64,10 @@ export default function ProfileUpdate() {
       form.categories = formData.categories;
       form.shortDescription = shortDescription;
       form.description = Description;
-      form.socialLink = socialLink;
+      socialLink != ""
+        ? (form.socialLink = socialLink)
+        : (form.socialLink = null);
+
       UserUpdate({
         id: Number(userId as string),
         profile: form,
