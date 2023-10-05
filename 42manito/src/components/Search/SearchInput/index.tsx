@@ -19,7 +19,7 @@ const SearchInput = ({ className, btnVisible }: Props) => {
   const handleClick = () => {
     if (search.length > 0) {
       dispatch(closeSidebar());
-      if (router.pathname === "/Search/[searchKeyword]") {
+      if (router.pathname === `/Search/${search}`) {
         router.reload();
       } else {
         router.push("/Search/[searchKeyword]", `/Search/${search}`);
@@ -31,7 +31,7 @@ const SearchInput = ({ className, btnVisible }: Props) => {
     e.preventDefault();
     if (search.length > 0) {
       dispatch(closeSidebar());
-      if (router.pathname === "/Search/[searchKeyword]") {
+      if (router.pathname === `/Search/${search}`) {
         router.reload();
       } else {
         router.push("/Search/[searchKeyword]", `/Search/${search}`);
