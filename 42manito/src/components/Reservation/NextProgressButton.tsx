@@ -53,12 +53,7 @@ export default function NextProgressButton({
           <Button
             buttonType={ButtonType.ACCEPT}
             onClick={() => {
-              handlePatchReservation(
-                req,
-                patchAcceptReservation,
-                "수락되었습니다.",
-                "수락에 실패하였습니다."
-              );
+              handlePatchReservation(req, patchAcceptReservation);
             }}
           >
             수락하기
