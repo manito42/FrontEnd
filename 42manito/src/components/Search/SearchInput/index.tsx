@@ -1,4 +1,3 @@
-import { initSearchResult } from "@/RTK/Slices/Search";
 import { useAppDispatch } from "@/RTK/store";
 import { useRouter } from "next/router";
 import React, { useState, FormEvent } from "react";
@@ -21,7 +20,6 @@ const SearchInput = ({ className, btnVisible }: Props) => {
     if (search.length > 0) {
       dispatch(closeSidebar());
       router.push("/Search/[searchKeyword]", `/Search/${search}`);
-      dispatch(initSearchResult());
     }
   };
 
