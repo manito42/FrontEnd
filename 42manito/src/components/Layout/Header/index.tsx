@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Drawer } from "antd";
 import { RootState, useAppDispatch } from "@/RTK/store";
-import { signIn, signOut } from "@/RTK/Slices/Global";
+import {
+  signIn,
+  signOut,
+  openSidebar,
+  closeSidebar,
+} from "@/RTK/Slices/Global";
 import { useSelector } from "react-redux";
 import Sidebar from "./components/Sidebar";
 import { SignIn } from "@/utils/SignIn";
@@ -11,9 +16,11 @@ import { DesktopNav } from "./components/DesktopNav";
 import { MobileNav } from "./components/MobileNav";
 
 export default function Header() {
-  const [visible, setVisible] = useState(false);
+  const isSidebarOpen = useSelector(
+    (state: RootState) => state.rootReducers.global.isSidebarOpen,
+  );
   const Owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId
+    (state: RootState) => state.rootReducers.global.uId,
   );
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
@@ -30,10 +37,10 @@ export default function Header() {
   };
 
   const showSidebar = () => {
-    setVisible(!visible);
+    dispatch(openSidebar());
   };
   const onClose = () => {
-    setVisible(false);
+    dispatch(closeSidebar());
   };
   const handleLoading = () => {
     setLoading(true);
@@ -86,7 +93,7 @@ export default function Header() {
             placement="left"
             closable={false}
             onClose={onClose}
-            open={visible}
+            open={isSidebarOpen}
             width={"320px"}
           >
             <Sidebar onClose={onClose} onSignIn={handleLoading} />

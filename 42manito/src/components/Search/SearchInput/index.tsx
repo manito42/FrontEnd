@@ -2,6 +2,7 @@ import { initSearchResult } from "@/RTK/Slices/Search";
 import { useAppDispatch } from "@/RTK/store";
 import { useRouter } from "next/router";
 import React, { useState, FormEvent } from "react";
+import { closeSidebar } from "@/RTK/Slices/Global";
 
 interface Props {
   className?: string;
@@ -18,6 +19,7 @@ const SearchInput = ({ className, btnVisible }: Props) => {
 
   const handleClick = () => {
     if (search.length > 0) {
+      dispatch(closeSidebar());
       router.push("/Search/[searchKeyword]", `/Search/${search}`);
       dispatch(initSearchResult());
     }
@@ -26,8 +28,8 @@ const SearchInput = ({ className, btnVisible }: Props) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (search.length > 0) {
-      router.push("/Search/[searchKeyword]", `/Search/${search}`);
-      dispatch(initSearchResult());
+      dispatch(closeSidebar());
+      router.push("/Search/[s경earchKeyword]", `/Search/${search}`);
     }
   };
 
