@@ -18,7 +18,7 @@ const Mentoring = () => {
       head: "멘토링",
       title: "나의 멘토링",
       description: "멘토링 관리 페이지입니다",
-      link: "/Guide",
+      link: "/Mentorings",
       backgroundColor: "bg-signature_color-500",
       textColor: "text-white",
       // image: "/guide.png",
