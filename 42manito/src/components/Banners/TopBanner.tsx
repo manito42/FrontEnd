@@ -103,7 +103,7 @@ export default function TopBanner({ banner }: props) {
               />
             )}
           </div>
-          <div className="top-banner-left" onClick={handleBannerClick}>
+          <div className="top-banner-left">
             <div className="top-banner-head">{banner[currentIndex].head}</div>
             <div className="top-banner-title">{banner[currentIndex].title}</div>
             <div className="top-banner-description">
