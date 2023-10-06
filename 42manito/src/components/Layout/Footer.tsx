@@ -12,7 +12,7 @@ export default function Footer() {
               href="/"
               className="flex title-font font-medium items-center md:justify-start justify-center text-bg_color-900"
             >
-              <span className="ml-3 text-xl">42Manito</span>
+              <span className="md:ml-3 text-xl">42Manito</span>
             </Link>
             <span className="text-sm text-bg_color-500 sm:ml-6 sm:mt-0 mt-4 text-center">
               42Manito ©2023
