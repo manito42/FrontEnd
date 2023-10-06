@@ -44,7 +44,8 @@ export const BaseQuery =
         } else if (status === 404) {
           alert("존재하지 않는 작업입니다.");
         } else if (status === 409) {
-          alert("이미 완료된 작업입니다.");
+          // 409 의 경우 따로 처리해야함.
+          // alert("이미 완료된 작업입니다.");
         } else if (status === 401 || status === 403) {
           alert("권한이 없습니다.");
           Router.push("/");
