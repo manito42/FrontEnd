@@ -23,6 +23,8 @@ import CategoryUpdateMultiple from "@/components/Profile/Update/CategoryUpdateMu
 import HashtagUpdateInput from "@/components/Profile/Update/HashtagUpdateInput";
 import { ButtonType } from "@/Types/General/ButtonType";
 import CardHashtag from "@/components/Global/CardHashtag";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
 const { TextArea } = Input;
 
@@ -31,6 +33,8 @@ export default function ProfileUpdate() {
   const { userId } = route.query;
   const [shortDescription, setShortDescription] = useState<string>("");
   const [Description, setDescription] = useState<string>("");
+  const [socialLink, setSocialLink] = useState<string>("");
+  const [invalidInput, setInvalidInput] = useState<string>("");
   const { data: allCategories, isLoading, error } = useGetCategoriesQuery();
   const dispatch = useAppDispatch();
   const formData = useSelector(
@@ -49,11 +53,35 @@ export default function ProfileUpdate() {
     { data: hashtagData, isLoading: hashtagLoading, isError: hashtagError },
   ] = usePostHashtagMutation();
 
+  const socialLinkHandler = () => {
+    if (socialLink === "") {
+      setInvalidInput("");
+      return true;
+    }
+
+    const socialLinkRegex =
+      /^https:\/\/42born2code\.slack\.com\/team\/[a-zA-Z0-9_]+$/;
+    if (socialLink !== null && socialLinkRegex.test(socialLink) === false) {
+      setInvalidInput("슬랙 프로필 링크 형식을 확인해주세요.");
+      return false;
+    } else {
+      setInvalidInput("");
+    }
+    return true;
+  };
+
+  const invalidInputMessage = (input: string) => {
+    return <div className="text-red-500 text-sm ">{input}</div>;
+  };
+
   const cancelButtonHandler = () => {
     route.back();
   };
 
   const updateButtonHandler = () => {
+    if (socialLinkHandler() === false) {
+      return;
+    }
     if (UserData) {
       const form: MentorProfilePatchReqDto = {};
 
@@ -61,12 +89,20 @@ export default function ProfileUpdate() {
       form.categories = formData.categories;
       form.shortDescription = shortDescription;
       form.description = Description;
-      UserUpdate({
-        id: Number(userId as string),
-        profile: form,
-      });
+      form.socialLink = socialLink === "" ? null : socialLink;
+
+      if (invalidInput === "") {
+        UserUpdate({
+          id: Number(userId as string),
+          profile: form,
+        });
+      }
     }
   };
+
+  useEffect(() => {
+    socialLinkHandler();
+  }, [socialLink]);
 
   useEffect(() => {
     if (hashtagData) {
@@ -92,8 +128,14 @@ export default function ProfileUpdate() {
           UserData.mentorProfile.categories
         )
       );
+      dispatch(
+        ProfileUpdateSlice.actions.setSocialLink(
+          UserData.mentorProfile.socialLink
+        )
+      );
       setDescription(UserData.mentorProfile.description);
       setShortDescription(UserData.mentorProfile.shortDescription);
+      setSocialLink(UserData.mentorProfile.socialLink);
     }
   }, [UserData, dispatch]);
 
@@ -170,6 +212,29 @@ export default function ProfileUpdate() {
               <HashtagUpdateInput hashtags={formData.hashtags} />
             </div>
 
+            <div className="w-[100%] profile-social-link-wrapper">
+              <span className="profile-title">
+                슬랙 링크
+                <a
+                  href="https://github.com/manito42/guide/wiki/42-%EB%A7%88%EB%8B%88%EB%98%90-%EC%9D%B4%EC%9A%A9%ED%95%98%EA%B8%B0#%EC%8A%AC%EB%9E%99-%EB%A7%81%ED%81%AC-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0"
+                  target="_blank"
+                >
+                  <QuestionCircleOutlined className="text-gray-400 align-middle pb-1.5 pl-1 text-lg" />
+                </a>
+              </span>
+              <span className="profile-small-message">
+                슬랙 프로필 링크를 입력해주세요
+              </span>
+              <TextArea
+                className="profile-social-link-input-wrapper"
+                placeholder="슬랙 프로필 링크를 입력해주세요"
+                value={socialLink}
+                onChange={(e) => {
+                  setSocialLink(e.target.value);
+                }}
+              />
+            </div>
+
             <div className="profile-description-wrapper">
               <div className="profile-title mb-5">소개글</div>
               <div className="profile-description">
@@ -187,6 +252,7 @@ export default function ProfileUpdate() {
                 />
               </div>
             </div>
+            {invalidInput !== "" && invalidInputMessage(invalidInput)}
             <div className="profile-update-btn-wrapper">
               <Button
                 buttonType={ButtonType.CANCEL}

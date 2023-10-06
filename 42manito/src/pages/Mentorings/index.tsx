@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import Loading from "@/components/Global/Loading";
 import FeedbackModal from "@/components/Reservation/modal/FeedbackModal";
 import CancelModal from "@/components/Cancel/CancelModal";
+import SocialLinkModal from "@/components/Reservation/modal/SocialLinkModal";
 
 const Mentoring = () => {
   const banner = [
@@ -36,7 +37,10 @@ const Mentoring = () => {
     (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen
   );
   const isCancelModalOpen = useSelector(
-      (state: RootState) => state.rootReducers.reservation.isCancelModalOpen
+    (state: RootState) => state.rootReducers.reservation.isCancelModalOpen
+  );
+  const isSociaLinkModalOpen = useSelector(
+    (state: RootState) => state.rootReducers.reservation.isSocialLinkModalOpen
   );
   const handleRoleSelect = (id: string) => {
     if (id === "mentor") {
@@ -147,6 +151,7 @@ const Mentoring = () => {
         {isReservationModalOpen && <ReservationModal />}
         {isFeedbackModalOpen && <FeedbackModal />}
         {isCancelModalOpen && <CancelModal />}
+        {isSociaLinkModalOpen && <SocialLinkModal />}
       </Layout>
     </>
   );

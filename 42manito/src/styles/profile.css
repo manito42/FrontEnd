@@ -36,13 +36,24 @@
 .profile-tag-wrapper {
   @apply flex flex-col
                 justify-start items-center
-                overflow-ellipsis mb-5 w-[80%]
-                ;
-    .profile-tag-list {
-        @apply flex flex-wrap
+                overflow-ellipsis mb-5 w-[80%];
+  .profile-tag-list {
+    @apply flex flex-wrap
         justify-center items-center
-        w-[100%] overflow-hidden
-    }
+        w-[100%] overflow-hidden;
+  }
+}
+
+.profile-social-link-wrapper {
+  @apply flex flex-col
+                justify-start items-center
+                overflow-ellipsis mb-5;
+}
+
+.profile-social-link-input-wrapper {
+  @apply w-[80%] flex flex-row
+                justify-center items-center
+                mt-5;
 }
 
 .profile-title {
@@ -51,8 +62,6 @@
                 text-bg_color-800
                 dark:text-bg_color-200;
 }
-
-
 
 .profile-description-wrapper {
   @apply flex flex-col

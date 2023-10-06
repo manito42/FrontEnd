@@ -10,6 +10,7 @@ interface InitialState {
   categories: CategoriesResponseDto[];
   disabled: boolean;
   viewConnectModal: boolean;
+  socialLink: string;
 }
 
 const ProfileUpdate: InitialState = {
@@ -20,6 +21,7 @@ const ProfileUpdate: InitialState = {
   categories: [] as CategoriesResponseDto[],
   disabled: false,
   viewConnectModal: false,
+  socialLink: "",
 };
 
 export const ProfileUpdateSlice = createSlice({
@@ -52,7 +54,7 @@ export const ProfileUpdateSlice = createSlice({
     addCategory(state, action: PayloadAction<HashtagResponseDto>) {
       if (
         state.categories.some(
-          (category) => category.name === action.payload.name,
+          (category) => category.name === action.payload.name
         )
       ) {
         return;
@@ -65,14 +67,17 @@ export const ProfileUpdateSlice = createSlice({
     setViewConnectModal(state, action: PayloadAction<boolean>) {
       state.viewConnectModal = action.payload;
     },
+    setSocialLink(state, action: PayloadAction<string>) {
+      state.socialLink = action.payload;
+    },
     deleteOneHashtag(state, action: PayloadAction<string>) {
       state.hashtags = state.hashtags.filter(
-        (hashtag) => hashtag.name !== action.payload,
+        (hashtag) => hashtag.name !== action.payload
       );
     },
     deleteOneCategory(state, action: PayloadAction<string>) {
       state.categories = state.categories.filter(
-        (category) => category.name !== action.payload,
+        (category) => category.name !== action.payload
       );
     },
     deleteAll(state) {
@@ -93,6 +98,7 @@ export const {
   deleteOneCategory,
   setDisabled,
   setViewConnectModal,
+  setSocialLink,
 } = ProfileUpdateSlice.actions;
 
 export default ProfileUpdateSlice.reducer;

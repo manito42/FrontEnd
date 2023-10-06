@@ -7,30 +7,31 @@ export default function ManitoToggle() {
   const [isHide, setIsHide] = useState(false);
   const [setIsHideMutation, {}] = useSetIsHideMutation();
   const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const { data: userData, isLoading: userLoading } = useGetUserQuery(
     { id: userId as number },
-    { skip: userId === undefined },
+    { skip: userId === undefined }
   );
 
   const changeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.checked === false){
-          setIsHideMutation({ id: userId as number, isHide: true });
+    if (e.target.checked === false) {
+      setIsHideMutation({ id: userId as number, isHide: true });
+    } else {
+      if (userData) {
+        const { categories, hashtags, socialLink } = userData.mentorProfile;
+        if (categories.length == 0)
+          alert("멘토링 분야를 최소한 하나 이상 설정해야 합니다.");
+        else if (hashtags.length == 0)
+          alert("관심 분야를 최소한 하나 이상 설정해야 합니다.");
+        else if (socialLink == "") alert("슬랙 프로필 링크를 추가해야 합니다.");
+        else
+          setIsHideMutation({
+            id: userId as number,
+            isHide: false,
+          });
       }
-      else{
-          if (userData) {
-              const {categories, hashtags} = userData.mentorProfile;
-              if(categories.length == 0 && hashtags.length == 0)
-                  alert("멘토링 분야와 관심 분야를 각각 최소한 하나 이상 설정해야 합니다.");
-              else if (categories.length == 0)
-                  alert("멘토링 분야를 최소한 하나 이상 설정해야 합니다.");
-              else if (hashtags.length == 0)
-                  alert("관심 분야를 최소한 하나 이상 설정해야 합니다.");
-              else
-                  setIsHideMutation({ id: userId as number, isHide: false });
-          }
-      }
+    }
   };
 
   useEffect(() => {
