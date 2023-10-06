@@ -7,6 +7,7 @@ import { CategorySlice } from "./Slices/Category";
 import { EnrollSlice } from "./Slices/Enroll";
 import { SearchSlice } from "./Slices/Search";
 import { MentorConnectSlice } from "./Slices/MentorConnect";
+import { ReservationSlice } from "@/RTK/Slices/Reservation";
 
 export const rootReducer = combineReducers({
   global: GlobalSlice.reducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
   enroll: EnrollSlice.reducer,
   search: SearchSlice.reducer,
   mentorConnect: MentorConnectSlice.reducer,
+  reservation: ReservationSlice.reducer,
 });

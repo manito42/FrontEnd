@@ -2,7 +2,7 @@
 
 .mentor-card {
   @apply flex flex-col items-start
-        w-[280px] h-[170px]
+        w-[280px] h-[220px]
         rounded-xl m-2 shadow-sm;
 }
 
@@ -11,12 +11,12 @@
 }
 
 .mentor-card-profile-info {
-  @apply flex flex-row justify-start items-center w-[100%] h-[65%] px-2 mt-2;
+  @apply flex flex-row justify-start items-center w-[100%] h-[80%] px-2 mt-2;
 }
 
 .mentor-card-hashtags {
-  @apply h-[35%] w-[100%]
-        flex flex-wrap flex-row overflow-hidden justify-end items-center px-2 mt-2;
+  @apply h-[50px] w-[100%]
+        flex overflow-hidden justify-end items-center px-2 my-2;
 }
 
 .mentor-card-image-holder {
@@ -29,14 +29,11 @@
   @apply flex flex-col w-[65%] h-[100%] px-4 mt-4;
 }
 .mentor-card-nickname {
-  @apply h-[35%] text-base font-bold truncate overflow-ellipsis
+  @apply h-[25%] text-xl font-bold truncate overflow-ellipsis
         text-bg_color-800 dark:text-bg_color-200;
 }
 .mentor-card-description {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  @apply h-[65%] flex-wrap text-xs font-light  overflow-hidden
+  @apply h-[75%] flex-wrap text-sm font-light break-all overflow-hidden
     text-bg_color-500 dark:text-bg_color-200;
 }
 
@@ -44,13 +41,14 @@
 
 .mentor-modal-container {
   @apply fixed inset-0
+            py-5
             bg-black bg-opacity-25
             backdrop-blur-sm
             flex justify-center overflow-y-auto
             z-[50];
 
   .mentor-modal-section {
-    @apply overflow-y-scroll;
+    @apply overflow-y-scroll h-fit;
 
     .close-btn {
       @apply text-bg_color-600 hover:text-red-500 dark:text-bg_color-400 mb-5 text-base;
@@ -62,18 +60,10 @@
   animation: slideOut 0.3s ease-out;
 }
 
-.mentor-modal {
+.open-modal {
   animation: slideIn 0.3s ease-in;
 }
 
 .connect-btn-container {
   @apply flex justify-center items-center w-full mb-5;
-
-  .connect-btn {
-    @apply rounded-full
-            py-2 px-5
-            bg-blue-500
-            text-white text-lg
-            hover:bg-blue-600;
-  }
 }

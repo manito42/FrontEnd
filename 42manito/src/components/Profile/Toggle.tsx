@@ -6,33 +6,43 @@ import { useSelector } from "react-redux";
 export default function ManitoToggle() {
   const [isHide, setIsHide] = useState(false);
   const [setIsHideMutation, {}] = useSetIsHideMutation();
-  const owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+  const userId = useSelector(
+    (state: RootState) => state.rootReducers.global.uId
   );
-  const { data: userDate, isLoading: userLoading } = useGetUserQuery(
-    { id: owner },
-    { skip: owner === undefined },
+  const { data: userData, isLoading: userLoading } = useGetUserQuery(
+    { id: userId as number },
+    { skip: userId === undefined }
   );
 
   const changeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsHideMutation({ id: owner, isHide: !e.target.checked });
+    if (e.target.checked === false) {
+      setIsHideMutation({ id: userId as number, isHide: true });
+    } else {
+      if (userData) {
+        const { categories, hashtags, socialLink } = userData.mentorProfile;
+        if (categories.length == 0)
+          alert("멘토링 분야를 최소한 하나 이상 설정해야 합니다.");
+        else if (hashtags.length == 0)
+          alert("관심 분야를 최소한 하나 이상 설정해야 합니다.");
+        else if (socialLink == "") alert("슬랙 프로필 링크를 추가해야 합니다.");
+        else
+          setIsHideMutation({
+            id: userId as number,
+            isHide: false,
+          });
+      }
+    }
   };
 
   useEffect(() => {
-    if (userDate) {
-      setIsHide(userDate.mentorProfile.isHide);
+    if (userData !== undefined && userLoading === false) {
+      setIsHide(userData.mentorProfile.isHide);
     }
-  }, [owner, userDate]);
-
-  useEffect(() => {
-    if (userDate !== undefined && userLoading === false) {
-      setIsHide(userDate.mentorProfile.isHide);
-    }
-  }, [userDate, userLoading]);
+  }, [userData, userLoading]);
 
   return (
     <div className="items-center justify-center flex flex-row mb-5">
-      <div className="text-lg font-bold mr-3 mb-0.5">프로필 공개하기</div>
+      <div className="text-lg font-bold mr-3 mb-0.5">멘토로 활동하기</div>
       <label className="relative inline-flex items-center cursor-pointer">
         <input
           type="checkbox"

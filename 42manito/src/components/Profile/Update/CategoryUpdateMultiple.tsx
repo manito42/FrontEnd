@@ -1,15 +1,18 @@
-import { Select, Tag } from "antd";
+import { Select } from "antd";
 import React from "react";
-import type { CustomTagProps } from "rc-select/lib/BaseSelect";
 import { useAppDispatch } from "@/RTK/store";
 import { CategoriesResponseDto } from "@/Types/Categories/CategoriesResponse.dto";
 import { setCategories } from "@/RTK/Slices/ProfileUpdate";
 
 interface props {
   categories: CategoriesResponseDto[];
+  userCategories: CategoriesResponseDto[];
 }
 
-export default function CategoryUpdateMultiple({ categories }: props) {
+export default function CategoryUpdateMultiple({
+  categories,
+  userCategories,
+}: props) {
   const dispatch = useAppDispatch();
 
   const handleChange = (value: string[]) => {
@@ -34,6 +37,7 @@ export default function CategoryUpdateMultiple({ categories }: props) {
           label: tag.name,
           value: `${tag.name}:${tag.id}`,
         }))}
+        value={userCategories.map((tag) => `${tag.name}:${tag.id}`)}
         className="md:w-[25em] w-[100%] mb-5"
       />
     </div>

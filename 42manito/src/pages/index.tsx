@@ -1,26 +1,30 @@
 import Layout from "../components/Layout/Layout";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "@/RTK/store";
+import { RootState } from "@/RTK/store";
 import dynamic from "next/dynamic";
-import { initAllMentor } from "@/RTK/Slices/Home";
-import { signIn } from "@/RTK/Slices/Global";
 import { useMentorModal } from "@/hooks/Mentor/MentorModal";
 import { useFetchHome } from "@/hooks/Home/FetchHome";
-import ReservationRequests from "@/components/Home/Reservation/ReservationRequests";
-import TopBanner from "@/components/Global/TopBanner";
+import ReservationLists from "@/components/Reservation/ReservationLists";
+import TopBanner from "@/components/Banners/TopBanner";
 import { useGetCategoriesQuery } from "@/RTK/Apis/Category";
 import CategoryIconList from "@/components/Home/CategoryIconList";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Spin } from "antd";
 import MentorCard from "@/components/Mentor/Card";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
+import ReservationModal from "@/components/Reservation/modal/ReservationModal";
+import { BannersData } from "@/components/Banners/Banners";
+import { ReservationRole } from "@/Types/Reservations/ReservationRole";
+import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
+import CancelModal from "@/components/Cancel/CancelModal";
+import FeedbackModal from "@/components/Reservation/modal/FeedbackModal";
+import SocialLinkModal from "@/components/Reservation/modal/SocialLinkModal";
 
 const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
 export default function Home() {
-  const dispatch = useAppDispatch();
-  const OwnerId = useSelector(
+  const userId = useSelector(
     (state: RootState) => state.rootReducers.global.uId
   );
   const [hasMore, setHasMore] = React.useState<boolean>(true);
@@ -32,18 +36,24 @@ export default function Home() {
   const [mentorList, setMentorList] = useState<MentorProfileDto[] | undefined>(
     undefined
   );
-
-  useEffect(() => {
-    if (OwnerId === 0) {
-      const id = localStorage.getItem("uid");
-      if (id !== null) {
-        dispatch(signIn(Number(id)));
-      }
-    }
-    return () => {
-      dispatch(initAllMentor());
-    };
-  }, [OwnerId, dispatch]);
+  const isReservationModalOpen = useSelector(
+    (state: RootState) => state.rootReducers.reservation.isReservationModalOpen
+  );
+  const isFeedbackModalOpen = useSelector(
+    (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen
+  );
+  const isCancelModalOpen = useSelector(
+    (state: RootState) => state.rootReducers.reservation.isCancelModalOpen
+  );
+  const isSociaLinkModalOpen = useSelector(
+    (state: RootState) => state.rootReducers.reservation.isSocialLinkModalOpen
+  );
+  const requestQuery = {
+    take: 100,
+    page: 0,
+    role: ReservationRole.ALL,
+    status: [ReservationStatus.REQUEST, ReservationStatus.ACCEPT],
+  };
 
   useEffect(() => {
     setHasMore(true);
@@ -78,31 +88,25 @@ export default function Home() {
   };
 
   // 별도로 운영자가 밖에서 들고와서  완리할 수 있게 해두면 좋을 것 같음
-  const banner = {
-    head: "가이드",
-    title: "마니또가 처음이신가요?",
-    description: "가이드와 함께 멘토링을 시작해보세요!",
-    link: "/Guide",
-    backgroundColor: "bg-signature_color-500",
-    textColor: "text-white",
-    image: "/guide.png",
-    license:
-      "https://kor.pngtree.com/freepng/meb-map-guide_4462396.html' 의 PNG 이미지 kor.pngtree.com",
-  };
-
   return (
     <Layout>
       <div className="app-container">
-        <TopBanner banner={banner} />
+        <TopBanner banner={BannersData} />
         <div className="home">
           <div className="temp-spacer">
-            {OwnerId !== 0 && (
+            {!!userId && (
               <div className="home-reservation-request-wrapper">
                 <div className="home-text-header">대기 중인 멘토링</div>
                 <div className="home-text-detail">
                   멘토링 요청들을 확인해보세요
                 </div>
-                <ReservationRequests />
+                <ReservationLists
+                  take={requestQuery.take}
+                  role={requestQuery.role}
+                  status={requestQuery.status}
+                  name={"home-request"}
+                  emptyMsg={"대기 중인 멘토링이 없습니다 🥲"}
+                />
               </div>
             )}
           </div>
@@ -144,8 +148,8 @@ export default function Home() {
               }
             >
               <div className="mentor-cards-container">
-                {mentorList.map((mentor) => (
-                  <MentorCard data={mentor} key={mentor.id} />
+                {mentorList.map((mentor, idx) => (
+                  <MentorCard data={mentor} key={idx} />
                 ))}
               </div>
             </InfiniteScroll>
@@ -154,6 +158,10 @@ export default function Home() {
         {currMentorState.openMentorModal && currMentorState.currMentor.user && (
           <MentorModal />
         )}
+        {isReservationModalOpen && <ReservationModal />}
+        {isFeedbackModalOpen && <FeedbackModal />}
+        {isCancelModalOpen && <CancelModal />}
+        {isSociaLinkModalOpen && <SocialLinkModal />}
         <button
           onClick={scrollToTop}
           className="fixed bottom-5 right-5 rounded-full

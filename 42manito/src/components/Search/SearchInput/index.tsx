@@ -1,12 +1,13 @@
-import { initSearchResult } from "@/RTK/Slices/Search";
 import { useAppDispatch } from "@/RTK/store";
 import { useRouter } from "next/router";
 import React, { useState, FormEvent } from "react";
+import { closeSidebar } from "@/RTK/Slices/Global";
 
 interface Props {
   className?: string;
+  btnVisible?: boolean;
 }
-const SearchInput = ({ className }: Props) => {
+const SearchInput = ({ className, btnVisible }: Props) => {
   const [search, setSearch] = useState("");
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -17,16 +18,26 @@ const SearchInput = ({ className }: Props) => {
 
   const handleClick = () => {
     if (search.length > 0) {
-      router.push("/Search/[searchKeyword]", `/Search/${search}`);
-      dispatch(initSearchResult());
+      dispatch(closeSidebar());
+      const searchURL = `/Search/${encodeURIComponent(search)}`;
+      if (router.pathname === searchURL) {
+        router.reload();
+      } else {
+        router.push(searchURL);
+      }
     }
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (search.length > 0) {
-      router.push("/Search/[searchKeyword]", `/Search/${search}`);
-      dispatch(initSearchResult());
+      dispatch(closeSidebar());
+      const searchURL = `/Search/${encodeURIComponent(search)}`;
+      if (router.pathname === searchURL) {
+        router.reload();
+      } else {
+        router.push(searchURL);
+      }
     }
   };
 
@@ -63,33 +74,35 @@ const SearchInput = ({ className }: Props) => {
               required
             />
           </div>
-          <button
-            onClick={handleClick}
-            type="button"
-            className="p-1.5 ml-2 text-sm font-medium rounded-lg border border-signature_color-600
+          {btnVisible !== false && (
+            <button
+              onClick={handleClick}
+              type="button"
+              className="p-1.5 ml-2 text-sm font-medium rounded-lg border border-signature_color-600
                   text-white
                   bg-signature_color-500
                   hover:bg-signature_color-800
                   focus:ring-4 focus:outline-none focus:ring-signature_color-300
                   dark:bg-signature_color-600 dark:active:bg-signature_color-800 dark:focus:ring-signature_color-800"
-            disabled={search.length === 0}
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+              disabled={search.length === 0}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              ></path>
-            </svg>
-            <span className="sr-only">Search</span>
-          </button>
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+              <span className="sr-only">Search</span>
+            </button>
+          )}
         </form>
       </div>
     </>

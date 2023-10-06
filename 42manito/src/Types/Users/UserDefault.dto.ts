@@ -20,5 +20,6 @@ export interface UserDefaultDto {
     updatedAt: string;
     hashtags: HashtagResponseDto[];
     categories: CategoriesResponseDto[];
+    socialLink: string;
   };
 }

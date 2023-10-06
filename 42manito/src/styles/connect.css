@@ -1,5 +1,6 @@
 @import "./animation.css";
 
+/* connect modal 뿐만 아니라 feedback modal에서도 동일하게 사용되어 다른 이름으로 변경하는 것이 적합함*/
 .connect-modal {
   animation: zoomIn 0.2s ease-out;
 }
@@ -8,7 +9,7 @@
   animation: zoonOut 0.2s ease-in;
 }
 
-.ConnectWrapper {
+.connect-wrapper {
   @apply fixed  inset-0 z-[100] bg-black bg-opacity-50 backdrop-blur-sm
             flex
             items-center justify-center;
@@ -17,7 +18,7 @@
 .connect-modal-section {
   @apply flex fixed h-[100vh]
             items-center justify-center
-            w-[80vw] max-w-screen-md
+            w-[80vw] md:w-[400px] max-w-screen-md
             overflow-y-scroll;
 }
 
@@ -35,24 +36,7 @@
   }
 
   .connect-btn-wrapper {
-    @apply flex flex-row mt-5 mb-5 space-x-[10vw];
-  }
-
-  .connect-btn {
-    @apply px-4 py-2
-        rounded-full;
-  }
-
-  .connect-cancel-btn {
-    @apply bg-bg_color-800 dark:bg-bg_color-400
-        active:bg-pink-600
-        text-white font-bold text-xs;
-  }
-
-  .connect-approve-btn {
-    @apply bg-sky-400 dark:bg-sky-500
-        active:bg-pink-600
-        text-white font-bold text-sm;
+    @apply flex flex-row mt-5 mb-5;
   }
 
   .connect-title {
@@ -66,40 +50,9 @@
     @apply text-lg
         ml-1
         font-bold
+        text-center
         text-bg_color-800
         dark:text-bg_color-200
         mt-5 mb-2;
   }
 }
-
-/*.connect-container {*/
-/*  @apply fixed inset-0 z-[101] bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center min-w-[100vw];*/
-
-/*  & .connect-section {*/
-/*    @apply relative py-16 mt-24 connect-modal w-full;*/
-
-/*    & .connect-container {*/
-/*      @apply px-4;*/
-
-/*      & .close-btn {*/
-/*        @apply text-white text-5xl w-full flex justify-end p-5;*/
-/*      }*/
-
-/*      & .connect-content {*/
-/*        @apply relative flex flex-col min-w-0 break-words bg-white dark:bg-bg_color-600 w-full mb-6 shadow-xl rounded-lg max-w-[600px];*/
-
-/*        & .message {*/
-/*          @apply text-3xl font-semibold leading-normal;*/
-/*        }*/
-
-/*        & .connect-btn-container {*/
-/*          @apply flex flex-row m-5 justify-center items-center;*/
-
-/*          & .connect-btn {*/
-/*            @apply bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 mx-7;*/
-/*          }*/
-/*        }*/
-/*      }*/
-/*    }*/
-/*  }*/
-/*}*/

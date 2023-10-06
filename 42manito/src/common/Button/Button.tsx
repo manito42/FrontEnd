@@ -1,23 +1,22 @@
-import { ComponentProps } from 'react';
-import styles from './Button.module.css';
+import { ComponentProps } from "react";
+import styles from "./Button.module.css";
+import { ButtonType } from "@/Types/General/ButtonType";
 
-interface ButtonProps extends ComponentProps<'button'> {
-  size?: 'small' | 'medium' | 'large';
-  fullWidth?: boolean;
+interface ButtonProps extends ComponentProps<"button"> {
+  buttonType?: ButtonType;
 }
 
 export default function Button({
   children,
-  size,
-  fullWidth,
+  buttonType,
   ...props
 }: ButtonProps) {
-  const sizeClass = size ? styles[`button-${size}`] : styles['button-medium'];
+  const buttonTypeClass =
+    buttonType === ButtonType.ACCEPT
+      ? styles["button-accept"]
+      : styles["button-reject"];
   return (
-    <button
-      className={`${styles.base} ${sizeClass} ${fullWidth ? 'w-full' : ''}`}
-      {...props}
-    >
+    <button className={`${styles.base} ${buttonTypeClass}`} {...props}>
       {children}
     </button>
   );

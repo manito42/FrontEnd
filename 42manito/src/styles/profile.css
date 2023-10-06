@@ -1,26 +1,17 @@
-.ProfileWrapper {
+.profile-wrapper {
   @apply flex
-                items-center justify-center;
+                items-center justify-center py-5;
 }
 
-.ProfileContainer {
+.profile-container {
   @apply flex flex-col
                 items-center justify-center
-                mt-5 mb-5
                 w-[90vmin] md:w-[600px]
                 rounded-2xl bg-bg_color-100 dark:bg-bg_color-900
                 drop-shadow-xl;
-
-  .profile-update-btn {
-    @apply text-xs md:text-sm
-    bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 active:bg-signature_color-600
-    uppercase text-white font-bold hover:shadow-md shadow
-    px-4 py-2 rounded outline-none focus:outline-none
-    sm:mr-2 mb-1 ease-linear transition-all duration-150;
-  }
 }
 
-.ProfileImageNameContainer {
+.profile-image-name-container {
   @apply flex-wrap w-full items-center justify-center mt-12;
 }
 
@@ -31,7 +22,7 @@
   @apply flex flex-col justify-center mt-5;
 }
 
-.ShortDescriptionContainer {
+.short-description-container {
   @apply flex
                 justify-center
                 w-[80%]
@@ -42,49 +33,37 @@
                 shadow-sm;
 }
 
-.ProfileTagWrapper {
+.profile-tag-wrapper {
   @apply flex flex-col
                 justify-start items-center
-                overflow-y-auto mb-5;
+                overflow-ellipsis mb-5 w-[80%];
+  .profile-tag-list {
+    @apply flex flex-wrap
+        justify-center items-center
+        w-[100%] overflow-hidden;
+  }
 }
 
-.ProfileTitle {
-  @apply text-3xl
-    font-bold
-    text-bg_color-800
-    dark:text-bg_color-200;
+.profile-social-link-wrapper {
+  @apply flex flex-col
+                justify-start items-center
+                overflow-ellipsis mb-5;
 }
 
-.ProfileHeader {
-  @apply text-2xl
+.profile-social-link-input-wrapper {
+  @apply w-[80%] flex flex-row
+                justify-center items-center
+                mt-5;
+}
+
+.profile-title {
+  @apply text-xl
                 font-bold
                 text-bg_color-800
                 dark:text-bg_color-200;
 }
 
-.ProfileTagListWrapper {
-  @apply flex flex-wrap
-                justify-center
-                my-2;
-}
-
-.ProfileTag {
-  @apply whitespace-nowrap
-            m-2
-            text-sm
-            font-bold
-            rounded-full px-3 py-1;
-}
-
-.ProfileCategoryTag {
-  @apply bg-rose-300 dark:bg-rose-700;
-}
-
-.ProfileHashtagTag {
-  @apply bg-sky-300 dark:bg-sky-700;
-}
-
-.ProfileDescriptionWrapper {
+.profile-description-wrapper {
   @apply flex flex-col
                 items-center justify-center
                 w-[80%] mb-5;
@@ -108,7 +87,7 @@
                 md:w-[200px] md:h-[200px] mt-10;
 }
 
-.ProfileDescription {
+.profile-description {
   @apply whitespace-pre-wrap w-[100%] break-words
     px-6 py-4 rounded-2xl
     bg-bg_color-50 dark:bg-bg_color-800
@@ -123,10 +102,10 @@ shadow-sm;
   width: min(30%, max-content);
 }
 
-.ProfileSmall {
-  @apply text-xs
+.profile-small-message {
+  @apply text-sm
                 text-bg_color-400
-                dark:text-bg_color-400;
+                dark:text-bg_color-400 -mb-1.5;
 }
 
 .profile-category-card-wrapper {
@@ -147,21 +126,7 @@ shadow-sm;
 }
 
 .profile-update-btn-wrapper {
-  @apply flex flex-row mt-3 mb-10 space-x-4;
-  .profile-update-approve-btn {
-    @apply text-xs md:text-sm
-    bg-signature_color-500 dark:bg-signature_color-600 hover:bg-signature_color-600 active:bg-signature_color-600
-    uppercase text-white font-bold hover:shadow-md shadow
-    px-4 py-2 rounded outline-none focus:outline-none
-    sm:mr-2 mb-1 ease-linear transition-all duration-150;
-  }
-
-  .profile-update-cancel-btn {
-    @apply text-xs md:text-sm
-    bg-bg_color-500 dark:bg-bg_color-500 hover:bg-bg_color-300 active:bg-bg_color-600
-    uppercase text-white font-bold
-    hover:shadow-md shadow
-    px-4 py-2 rounded outline-none
-    focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150;
-  }
+  @apply flex flex-row
+         items-center justify-center 
+         mt-3 mb-10;
 }

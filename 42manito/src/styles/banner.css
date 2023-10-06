@@ -7,14 +7,14 @@
 
 .top-banner-container {
   @apply flex flex-col md:flex-row-reverse justify-between
-    w-[90%] lg:w-[900px]
+    w-[90%] lg:w-[900px] hover:cursor-pointer;
 }
 
 .top-banner-left {
-  @apply ml-10 mb-10 flex flex-col justify-end
-    cursor-pointer
+  @apply ml-5 sm:ml-10 mb-10 flex flex-col justify-end
+    cursor-pointer;
 }
-.top-banner-right{
+.top-banner-right {
   @apply flex items-center justify-center h-full;
 }
 
@@ -27,4 +27,40 @@
 
 .top-banner-description {
   @apply font-light text-base;
+}
+
+.banner-circles-wrapper {
+  @apply absolute bottom-1.5;
+}
+
+.banner-circles-container {
+  @apply flex w-full mx-auto;
+}
+
+.banner-circle {
+  @apply w-2 h-2 rounded-2xl mx-1;
+}
+
+.left-arrow-wrapper {
+  @apply absolute left-0 w-[15%] h-full items-center flex;
+}
+
+.left-arrow-button {
+  @apply w-10 h-10 lg:w-14 lg:h-14 text-xl bg-gray-600/20 rounded-full align-middle right-0 left-0 mx-auto;
+}
+
+.left-arrow {
+  @apply mb-2 mr-1 text-2xl lg:text-4xl lg:mb-2 lg:mr-1;
+}
+
+.right-arrow-wrapper {
+  @apply absolute right-0 w-[15%] h-full items-center flex;
+}
+
+.right-arrow-button {
+  @apply w-10 h-10 lg:w-14 lg:h-14 text-xl bg-gray-600/20 rounded-full align-middle left-0 right-0 m-auto;
+}
+
+.right-arrow {
+  @apply mb-2 ml-1 text-2xl lg:text-4xl lg:mb-2 lg:ml-1;
 }

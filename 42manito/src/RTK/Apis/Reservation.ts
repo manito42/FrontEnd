@@ -1,4 +1,3 @@
-import { UserReservationReqDto } from "@/Types/UserReservation/UserReservationReqDto";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 import { ReservationPatchAcceptDto } from "@/Types/Reservations/ReservationPatchAccept.dto";
 import { ReservationPatchCancelReqDto } from "@/Types/Reservations/ReservationPatchCancelReq.dto";
@@ -7,7 +6,10 @@ import { ReservationPatchMentorCompletionDto } from "@/Types/Reservations/Reserv
 import { ReservationPostDto } from "@/Types/Reservations/ReservationPost.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
-import { UserReservationResDto } from "@/Types/UserReservation/UserReservationResDto";
+import { ReservationPatchMenteeCheckReqDto } from "@/Types/Reservations/ReservationPatchMenteeCheckReq.dto";
+import { ReservationGetResDto } from "@/Types/Reservations/ReservationGetRes.dto";
+import { ReservationGetReqDto } from "@/Types/Reservations/ReservationGetReq.dto";
+import { ObjectToURLString } from "@/utils/ObjectToURLString";
 
 export const reservationApi = createApi({
   reducerPath: "reservationApi",
@@ -17,69 +19,24 @@ export const reservationApi = createApi({
   tagTypes: ["Reservation"],
   endpoints: (builder) => ({
     // request = REQUEST, ACCEPT, MENTEE_CHECKED
-    getRequestReservations: builder.query<
-      UserReservationResDto,
-      { id: number }
-    >({
-      query: ({ id }) => {
+    getReservations: builder.query<ReservationGetResDto, ReservationGetReqDto>({
+      query: (request: ReservationGetReqDto) => {
+        const query = ObjectToURLString(request.query);
         return {
-          url: `/users/${id}/reservations/request`,
+          url: `/users/${request.id}/reservations${query}`,
           method: "GET",
         };
       },
+      providesTags: [{ type: "Reservation", id: "LIST" }],
     }),
-    // active = NOT DONE, NOT CANCEL
-    getActiveReservation: builder.query<
-      UserReservationResDto,
-      UserReservationReqDto
-    >({
-      query: (args: UserReservationReqDto) => {
+    getReservation: builder.query<ReservationDefaultDto, number>({
+      query: (id: number) => {
         return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${
-            args.page
-          }&active=${true}&as_mentor=${true}&as_mentee=${false}`,
+          url: `/reservations/${id}`,
           method: "GET",
         };
       },
-    }),
-    getActiveMenteeReservation: builder.query<
-      UserReservationResDto,
-      UserReservationReqDto
-    >({
-      query: (args: UserReservationReqDto) => {
-        return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${
-            args.page
-          }&active=${true}&as_mentor=${false}&as_mentee=${true}`,
-          method: "GET",
-        };
-      },
-    }),
-    getAllMentorReservation: builder.query<
-      UserReservationResDto,
-      UserReservationReqDto
-    >({
-      query: (args: UserReservationReqDto) => {
-        return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${
-            args.page
-          }&as_mentor=${true}&as_mentee=${false}&active=${false}`,
-          method: "GET",
-        };
-      },
-    }),
-    getAllMenteeReservation: builder.query<
-      UserReservationResDto,
-      UserReservationReqDto
-    >({
-      query: (args: UserReservationReqDto) => {
-        return {
-          url: `/users/${args.id}/reservations?take=${args.take}&page=${
-            args.page
-          }&as_mentor=${false}&as_mentee=${true}&active=${false}`,
-          method: "GET",
-        };
-      },
+      providesTags: [{ type: "Reservation", id: "LIST" }],
     }),
     /** 처음 멘토링 신청을 보낼때 */
     postReservationRequest: builder.mutation<
@@ -123,6 +80,20 @@ export const reservationApi = createApi({
         return {
           url: `/reservations/${args.id}/cancel`,
           method: "PATCH",
+          data: {content: args.content},
+        };
+      },
+      invalidatesTags: [{ type: "Reservation", id: "LIST" }],
+    }),
+    /** 멘티 확인 */
+    patchReservationMenteeCheck: builder.mutation<
+      ReservationDefaultDto,
+      ReservationPatchMenteeCheckReqDto
+    >({
+      query: (args: ReservationPatchCancelReqDto) => {
+        return {
+          url: `/reservations/${args.id}/check`,
+          method: "PATCH",
         };
       },
       invalidatesTags: [{ type: "Reservation", id: "LIST" }],
@@ -141,7 +112,7 @@ export const reservationApi = createApi({
       },
       invalidatesTags: [{ type: "Reservation", id: "LIST" }],
     }),
-    patchReservationDone: builder.mutation<
+    patchReservationMentorFeedback: builder.mutation<
       ReservationDefaultDto,
       ReservationPatchMentorCompletionDto
     >({
@@ -158,14 +129,12 @@ export const reservationApi = createApi({
 });
 
 export const {
-  useGetRequestReservationsQuery,
-  useGetActiveReservationQuery,
-  useGetActiveMenteeReservationQuery,
-  useGetAllMenteeReservationQuery,
-  useGetAllMentorReservationQuery,
+  useGetReservationsQuery,
+  useGetReservationQuery,
   usePostReservationRequestMutation,
   usePatchReservationAcceptMutation,
   usePatchReservationCancelMutation,
+  usePatchReservationMenteeCheckMutation,
   usePatchReservationMenteeFeedbackMutation,
-  usePatchReservationDoneMutation,
+  usePatchReservationMentorFeedbackMutation,
 } = reservationApi;

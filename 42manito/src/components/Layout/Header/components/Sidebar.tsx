@@ -12,16 +12,14 @@ interface props {
 }
 
 export default function Sidebar({ onClose, onSignIn }: props) {
-  const Owner = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
-  );
+  const uid = useSelector((state: RootState) => state.rootReducers.global.uId);
   const dispatch = useAppDispatch();
 
-  const handleSingOut = async () => {
+  const handleSingOut = () => {
     const id = localStorage.getItem("uid");
     if (id) {
-      await localStorage.removeItem("uid");
-      await localStorage.removeItem("accessToken");
+      localStorage.removeItem("uid");
+      localStorage.removeItem("accessToken");
       dispatch(signOut());
       location.reload();
     }
@@ -29,20 +27,22 @@ export default function Sidebar({ onClose, onSignIn }: props) {
   return (
     <>
       <div className="my-1 flex justify-center">
-        <SearchInput />
+        <SearchInput btnVisible={false} />
       </div>
       <Link href="/" onClick={onClose}>
-        <p className="sidebar-text sidebar-text-btn">Home</p>
+        <p className="sidebar-text sidebar-text-btn">홈</p>
       </Link>
-      <Link href="/About" onClick={onClose}>
-        <p className="sidebar-text sidebar-text-btn">About</p>
-      </Link>
-      {Owner !== 0 && !Number.isNaN(Owner) && (
-        <Link href={`/Profile/${Owner}`} onClick={onClose}>
-          <p className="sidebar-text sidebar-text-btn">Profile</p>
+      {!!uid && (
+        <Link href="/Mentorings" onClick={onClose}>
+          <p className="sidebar-text sidebar-text-btn">멘토링</p>
         </Link>
       )}
-      {Owner === 0 && (
+      {!!uid && (
+        <Link href={`/Profile/${uid}`} onClick={onClose}>
+          <p className="sidebar-text sidebar-text-btn">프로필</p>
+        </Link>
+      )}
+      {!uid && (
         <button
           id="42AuthSignIn"
           onClick={() => {
@@ -51,12 +51,12 @@ export default function Sidebar({ onClose, onSignIn }: props) {
             return SignIn();
           }}
         >
-          <p className="sidebar-text sidebar-text-btn">Sign In</p>
+          <p className="sidebar-text sidebar-text-btn">로그인</p>
         </button>
       )}
-      {Owner !== 0 && !Number.isNaN(Owner) && (
+      {!!uid && !Number.isNaN(uid) && (
         <button id="SignOut" onClick={handleSingOut}>
-          <p className="sidebar-text sidebar-text-btn">Sign Out</p>
+          <p className="sidebar-text sidebar-text-btn">로그아웃</p>
         </button>
       )}
     </>

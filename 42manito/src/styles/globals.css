@@ -12,6 +12,7 @@
 @import "./banner.css";
 @import "./layout.css";
 @import "./loading.css";
+@import "./mentorings.css";
 /* @import "./about.css"; */
 
 ::-webkit-scrollbar {
@@ -139,7 +140,7 @@ p {
   animation: slideOut 0.3s ease-out;
 }
 
-.mentor-modal {
+.open-modal {
   animation: slideIn 0.3s ease-in;
 }
 
@@ -422,5 +423,5 @@ p {
 /* card color */
 .card {
   @apply bg-bg_color-100 border border-bg_color-200
-          dark:bg-bg_color-600  dark:border-bg_color-700
+          dark:bg-bg_color-600  dark:border-bg_color-700;
 }
