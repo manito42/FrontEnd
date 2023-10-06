@@ -14,8 +14,11 @@ export default function TopBanner({ banner }: props) {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleBannerClick = () => {
-    // 새 탭으로 열기
-    window.open(banner[currentIndex].link, "_blank");
+    if (banner[currentIndex].link && banner[currentIndex].link[0] === "/") {
+      router.push(banner[currentIndex].link);
+    } else {
+      window.open(banner[currentIndex].link, "_blank");
+    }
   };
   const [bannerTimerId, setBannerTimerId] = useState<NodeJS.Timeout>();
   const timer = 3000; // 임의로 넣어뒀습니다
