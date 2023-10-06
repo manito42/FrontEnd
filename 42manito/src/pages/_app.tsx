@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
   
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}}');
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
           `}
         </Script>
         <Head>
