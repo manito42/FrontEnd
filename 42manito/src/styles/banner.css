@@ -7,11 +7,11 @@
 
 .top-banner-container {
   @apply flex flex-col md:flex-row-reverse justify-between
-    w-[90%] lg:w-[900px];
+    w-[90%] lg:w-[900px] hover:cursor-pointer;
 }
 
 .top-banner-left {
-  @apply ml-10 mb-10 flex flex-col justify-end
+  @apply ml-5 sm:ml-10 mb-10 flex flex-col justify-end
     cursor-pointer;
 }
 .top-banner-right {

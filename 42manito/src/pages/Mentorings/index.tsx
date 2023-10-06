@@ -21,22 +21,22 @@ const Mentoring = () => {
       link: "/Guide",
       backgroundColor: "bg-signature_color-500",
       textColor: "text-white",
-      image: "/guide.png",
-      license:
-        "https://kor.pngtree.com/freepng/meb-map-guide_4462396.html' 의 PNG 이미지 kor.pngtree.com",
+      // image: "/guide.png",
+      // license:
+      //   "https://kor.pngtree.com/freepng/meb-map-guide_4462396.html' 의 PNG 이미지 kor.pngtree.com",
     },
   ];
   const router = useRouter();
   const uid = useSelector((state: RootState) => state.rootReducers.global.uId);
   const [role, setRole] = useState<ReservationRole>(ReservationRole.ALL);
   const isReservationModalOpen = useSelector(
-    (state: RootState) => state.rootReducers.reservation.isReservationModalOpen
+    (state: RootState) => state.rootReducers.reservation.isReservationModalOpen,
   );
   const isFeedbackModalOpen = useSelector(
-    (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen
+    (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen,
   );
   const isCancelModalOpen = useSelector(
-      (state: RootState) => state.rootReducers.reservation.isCancelModalOpen
+    (state: RootState) => state.rootReducers.reservation.isCancelModalOpen,
   );
   const handleRoleSelect = (id: string) => {
     if (id === "mentor") {

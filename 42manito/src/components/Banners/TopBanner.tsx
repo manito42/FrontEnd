@@ -14,7 +14,8 @@ export default function TopBanner({ banner }: props) {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleBannerClick = () => {
-    router.push(banner[currentIndex].link);
+    // 새 탭으로 열기
+    window.open(banner[currentIndex].link, "_blank");
   };
   const [bannerTimerId, setBannerTimerId] = useState<NodeJS.Timeout>();
   const timer = 3000; // 임의로 넣어뒀습니다
@@ -83,17 +84,21 @@ export default function TopBanner({ banner }: props) {
             </button>
           </div>
         )}
-        <div className="top-banner-container">
-          <div className="top-banner-right" onClick={handleBannerClick}>
-            <Image
-              src={banner[currentIndex].image}
-              alt={
-                banner[currentIndex].license ? banner[currentIndex].license : ""
-              }
-              width={200}
-              height={200}
-              priority={true}
-            />
+        <div className="top-banner-container" onClick={handleBannerClick}>
+          <div className="top-banner-right">
+            {banner[currentIndex].image !== undefined && (
+              <Image
+                src={banner[currentIndex].image as string}
+                alt={
+                  banner[currentIndex].license
+                    ? (banner[currentIndex].license as string)
+                    : ""
+                }
+                width={200}
+                height={200}
+                priority={true}
+              />
+            )}
           </div>
           <div className="top-banner-left" onClick={handleBannerClick}>
             <div className="top-banner-head">{banner[currentIndex].head}</div>
