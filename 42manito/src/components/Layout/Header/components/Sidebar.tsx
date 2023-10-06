@@ -32,9 +32,11 @@ export default function Sidebar({ onClose, onSignIn }: props) {
       <Link href="/" onClick={onClose}>
         <p className="sidebar-text sidebar-text-btn">홈</p>
       </Link>
-      <Link href="/Mentorings" onClick={onClose}>
-        <p className="sidebar-text sidebar-text-btn">멘토링</p>
-      </Link>
+      {!!uid && (
+        <Link href="/Mentorings" onClick={onClose}>
+          <p className="sidebar-text sidebar-text-btn">멘토링</p>
+        </Link>
+      )}
       {!!uid && (
         <Link href={`/Profile/${uid}`} onClick={onClose}>
           <p className="sidebar-text sidebar-text-btn">프로필</p>
