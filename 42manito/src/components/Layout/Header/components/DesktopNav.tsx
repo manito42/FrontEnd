@@ -13,12 +13,14 @@ export const DesktopNav = ({ Owner }: Props) => {
         <Link href="/" className="layout-desktop-link-container">
           <span className="layout-desktop-title">42 Manito</span>
         </Link>
-        <Link
-          href="/Mentorings"
-          className="layout-desktop-link-container ml-10"
-        >
-          <span className="layout-desktop-link">멘토링</span>
-        </Link>
+        {Owner !== 0 && (
+          <Link
+            href="/Mentorings"
+            className="layout-desktop-link-container ml-10"
+          >
+            <span className="layout-desktop-link">멘토링</span>
+          </Link>
+        )}
         {Owner !== 0 && (
           <Link
             href={`/Profile/${Owner}`}

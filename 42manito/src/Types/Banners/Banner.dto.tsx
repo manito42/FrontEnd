@@ -5,6 +5,6 @@ export interface BannerDto {
   link: string; // image link
   backgroundColor: string; // backgroundColor
   textColor: string; // textColor
-  image: string; // image
-  license: string; // license
+  image?: string; // image
+  license?: string; // license
 }
