@@ -26,7 +26,8 @@ export default function HashtagUpdateInput({ hashtags }: props) {
   ] = usePostHashtagMutation();
 
   const hashtagPostHandler = () => {
-    if (inputValue.length === 0) {
+    if (inputValue.length <= 1) {
+      alert("최소 2글자 이상 입력해야합니다.");
       return;
     }
     const doesHashtagExist = hashtags.some(
