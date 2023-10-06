@@ -2,6 +2,7 @@ export const ObjectToURLString = (obj: any) => {
   let str = "";
   let count = 0;
   for (const key in obj) {
+    if (obj[key] === undefined) continue;
     str += count == 0 ? "?" : "&";
     str += `${key}=`;
     ++count;

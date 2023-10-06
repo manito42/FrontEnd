@@ -2,6 +2,7 @@ import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import { SearchGetDto } from "@/Types/Searchs/SearchGet.dto";
 import { BaseQuery } from "@/utils/BaseQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
+import { ObjectToURLString } from "@/utils/ObjectToURLString";
 
 export const searchApi = createApi({
   reducerPath: "searchApi",
@@ -12,10 +13,10 @@ export const searchApi = createApi({
   endpoints: (builder) => ({
     getSearch: builder.mutation<MentorProfileDto[], SearchGetDto>({
       query: (args: SearchGetDto) => {
+        const keyword = args.search_string;
+        const query = ObjectToURLString({ ...args, search_string: undefined });
         return {
-          url: `/search/mentor/${encodeURIComponent(args.search_string)}?take=${
-            args.take
-          }&page=${args.page}`,
+          url: `/search/mentor/${encodeURIComponent(keyword)}${query}`,
           method: "GET",
         };
       },

@@ -1,7 +1,7 @@
-import { initSearchResult } from "@/RTK/Slices/Search";
 import { useAppDispatch } from "@/RTK/store";
 import { useRouter } from "next/router";
 import React, { useState, FormEvent } from "react";
+import { closeSidebar } from "@/RTK/Slices/Global";
 
 interface Props {
   className?: string;
@@ -18,16 +18,26 @@ const SearchInput = ({ className, btnVisible }: Props) => {
 
   const handleClick = () => {
     if (search.length > 0) {
-      router.push("/Search/[searchKeyword]", `/Search/${search}`);
-      dispatch(initSearchResult());
+      dispatch(closeSidebar());
+      const searchURL = `/Search/${encodeURIComponent(search)}`;
+      if (router.pathname === searchURL) {
+        router.reload();
+      } else {
+        router.push(searchURL);
+      }
     }
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (search.length > 0) {
-      router.push("/Search/[searchKeyword]", `/Search/${search}`);
-      dispatch(initSearchResult());
+      dispatch(closeSidebar());
+      const searchURL = `/Search/${encodeURIComponent(search)}`;
+      if (router.pathname === searchURL) {
+        router.reload();
+      } else {
+        router.push(searchURL);
+      }
     }
   };
 

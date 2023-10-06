@@ -44,11 +44,13 @@ const Search: React.FC = () => {
       <Layout>
         <div className="app-container">
           <div className="search-input-wrapper">
-            <SearchInput />
+            <div className="md:hidden">
+              <SearchInput />
+            </div>
           </div>
           <div className="search-header-text items-center">
             <span className="text-bg_color-400">{`"${searchKeyword}"`} </span>
-            {"  검색 결과"}
+            {"검색 결과"}
           </div>
           <div className="search-container">
             {searchMentors.length == 0 && notExist}{" "}
