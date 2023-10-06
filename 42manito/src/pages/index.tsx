@@ -19,6 +19,7 @@ import { ReservationRole } from "@/Types/Reservations/ReservationRole";
 import { ReservationStatus } from "@/Types/Reservations/ReservationStatus";
 import CancelModal from "@/components/Cancel/CancelModal";
 import FeedbackModal from "@/components/Reservation/modal/FeedbackModal";
+import SocialLinkModal from "@/components/Reservation/modal/SocialLinkModal";
 
 const MentorModal = dynamic(() => import("@/components/Mentor/Modal"));
 
@@ -39,10 +40,13 @@ export default function Home() {
     (state: RootState) => state.rootReducers.reservation.isReservationModalOpen
   );
   const isFeedbackModalOpen = useSelector(
-      (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen
+    (state: RootState) => state.rootReducers.reservation.isFeedbackModalOpen
   );
   const isCancelModalOpen = useSelector(
-      (state: RootState) => state.rootReducers.reservation.isCancelModalOpen,
+    (state: RootState) => state.rootReducers.reservation.isCancelModalOpen
+  );
+  const isSociaLinkModalOpen = useSelector(
+    (state: RootState) => state.rootReducers.reservation.isSocialLinkModalOpen
   );
   const requestQuery = {
     take: 100,
@@ -156,7 +160,8 @@ export default function Home() {
         )}
         {isReservationModalOpen && <ReservationModal />}
         {isFeedbackModalOpen && <FeedbackModal />}
-        {isCancelModalOpen && (<CancelModal />)}
+        {isCancelModalOpen && <CancelModal />}
+        {isSociaLinkModalOpen && <SocialLinkModal />}
         <button
           onClick={scrollToTop}
           className="fixed bottom-5 right-5 rounded-full

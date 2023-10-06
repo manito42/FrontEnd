@@ -5,8 +5,9 @@ import DescriptionComponent from "@/components/Profile/Description";
 import { useProfileDetailModal } from "@/hooks/Profile/Component";
 import { useRouter } from "next/router";
 import CardHashtag from "@/components/Global/CardHashtag";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
+import { RootState } from "@/RTK/store";
 
 interface props {
   UserId: number;
@@ -17,6 +18,9 @@ export default function UserProfile({ UserId, children }: props) {
   const { UserData, UserLoading } = useProfileDetailModal(UserId);
   const router = useRouter();
   const dispatch = useDispatch();
+  const loginId = useSelector(
+    (state: RootState) => state.rootReducers.global.uId
+  );
   if (typeof window === "undefined") {
     return <div>로딩 중...</div>; // 로딩 표시를 보여주셔도 되고, 아무것도 보여주지 않으셔도 됩니다.
   }
@@ -24,6 +28,7 @@ export default function UserProfile({ UserId, children }: props) {
     router.push(`/Search/${name}`);
     dispatch(CurrMentorSlice.actions.closeMentorModal());
   };
+  const uid = Number(router.query.userId);
 
   return (
     <>
@@ -34,6 +39,7 @@ export default function UserProfile({ UserId, children }: props) {
             <ProfileInfo
               nickname={UserData.user.nickname}
               count={UserData.mentoringCount}
+              socialLink={uid === loginId ? UserData.socialLink : undefined}
             />
           </div>
           <div className="short-description-container">

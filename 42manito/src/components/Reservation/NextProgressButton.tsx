@@ -10,6 +10,7 @@ import { BaseQueryError } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { useDispatch } from "react-redux";
 import {
   openFeedbackModal,
+  openSocialLinkModal,
   setSelectedReservation,
 } from "@/RTK/Slices/Reservation";
 
@@ -39,7 +40,7 @@ export default function NextProgressButton({
     try {
       const res = await patchFunc(data).unwrap();
       dispatch(setSelectedReservation(res));
-      alert(msg ? msg : "Success");
+      msg && alert(msg);
     } catch (e: BaseQueryError<any>) {
       alert(errorMsg ? errorMsg : "Error");
     }
@@ -91,15 +92,11 @@ export default function NextProgressButton({
           <Button
             buttonType={ButtonType.ACCEPT}
             onClick={() => {
-              handlePatchReservation(
-                req,
-                patchMenteeCheckedReservation,
-                "확인되었습니다.",
-                "요청에 실패했습니다."
-              );
+              handlePatchReservation(req, patchMenteeCheckedReservation);
+              dispatch(openSocialLinkModal());
             }}
           >
-            확인
+            진행하기
           </Button>
         );
       /* 리뷰 등록에 대해서 별도의 모달이 필요함*/

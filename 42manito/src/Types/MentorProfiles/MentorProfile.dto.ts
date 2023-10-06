@@ -16,4 +16,5 @@ export interface MentorProfileDto {
     nickname: string;
     profileImage: string;
   };
+  socialLink?: string;
 }
