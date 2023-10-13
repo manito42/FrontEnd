@@ -157,7 +157,7 @@ export default function ProfileUpdate() {
             <div className="short-description-wrapper">
               <span className="profile-title">짧은 소개글</span>
               <span className="profile-small-message">
-                카드에서 표현되는 짧은 소개글입니다
+                카드에서 표현되는 짧은 소개글입니다.
               </span>
               <div className="short-description-container">
                 <TextArea
@@ -178,7 +178,7 @@ export default function ProfileUpdate() {
             <div className="w-[100%] profile-tag-wrapper">
               <span className="profile-title">멘토링 분야</span>
               <span className="profile-small-message">
-                멘토가 될 분야를 선택해주세요
+                멘토가 될 분야를 선택해주세요.
               </span>
               <div className="profile-tag-list my-2">
                 {formData.categories.length > 0 &&
@@ -201,10 +201,10 @@ export default function ProfileUpdate() {
             <div className="w-[100%] profile-tag-wrapper">
               <span className="profile-title">세부 분야</span>
               <span className="profile-small-message pb-1">
-                멘토링 세부 분야를 추가해주세요
+                멘토링 세부 분야를 추가해주세요.
               </span>
               <span className="profile-small-message">
-                태그를 클릭하면 사라집니다
+                태그를 클릭하면 사라집니다.
               </span>
               <div className="profile-tag-list my-2">
                 {formData.hashtags.length > 0 &&
@@ -232,7 +232,7 @@ export default function ProfileUpdate() {
                 </a>
               </span>
               <span className="profile-small-message">
-                슬랙 프로필 링크를 입력해주세요
+                슬랙 프로필 링크를 입력해주세요.
               </span>
               <TextArea
                 className="profile-social-link-input-wrapper"
