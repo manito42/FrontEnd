@@ -200,6 +200,9 @@ export default function ProfileUpdate() {
             </div>
             <div className="w-[100%] profile-tag-wrapper">
               <span className="profile-title">세부 분야</span>
+              <span className="profile-small-message pb-1">
+                멘토링 세부 분야를 추가해주세요
+              </span>
               <span className="profile-small-message">
                 태그를 클릭하면 사라집니다
               </span>
