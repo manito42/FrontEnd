@@ -49,7 +49,7 @@ const ConnectModal = ({ handleYes, children }: Props) => {
             <ConnectCategorySelect
               categories={currentMentorState.currMentor.categories}
             />
-            <div className="connect-header"> 관심 분야 </div>
+            <div className="connect-header"> 세부 분야 </div>
             <ConnectHashtagSelect
               hashtag={currentMentorState.currMentor.hashtags}
             />
@@ -76,7 +76,6 @@ const ConnectModal = ({ handleYes, children }: Props) => {
             >
               요청하기
             </Button>
-
           </div>
         </div>
       </section>

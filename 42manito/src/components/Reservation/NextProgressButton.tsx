@@ -74,7 +74,7 @@ export default function NextProgressButton({
           <Button
             buttonType={ButtonType.ACCEPT}
             onClick={() => {
-              dispatch(openFeedbackModal());
+              dispatch(openSocialLinkModal());
             }}
           >
             리뷰 등록
@@ -105,7 +105,7 @@ export default function NextProgressButton({
           <Button
             buttonType={ButtonType.ACCEPT}
             onClick={() => {
-              dispatch(openFeedbackModal());
+              dispatch(openSocialLinkModal());
             }}
           >
             리뷰 등록

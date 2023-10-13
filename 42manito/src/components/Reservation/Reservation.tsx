@@ -22,10 +22,10 @@ interface props {
 }
 export default function Reservation({ children }: props) {
   const userId = useSelector(
-    (state: RootState) => state.rootReducers.global.uId,
+    (state: RootState) => state.rootReducers.global.uId
   );
   const reservation = useSelector(
-    (state: RootState) => state.rootReducers.reservation.selectedReservation,
+    (state: RootState) => state.rootReducers.reservation.selectedReservation
   );
   const targetUserId =
     userId === reservation.mentorId
@@ -35,7 +35,7 @@ export default function Reservation({ children }: props) {
     {
       id: targetUserId,
     },
-    { skip: targetUserId === 0 },
+    { skip: targetUserId === 0 }
   );
   const status = reservation.status;
   const targetUserRole =
@@ -81,7 +81,7 @@ export default function Reservation({ children }: props) {
               className={"text-sm bg-bg_color-50"}
               onClick={handleClick}
             />
-            <div className="reservation-title">관심 분야</div>
+            <div className="reservation-title">세부 분야</div>
             <div className="reservation-hashtags">
               {reservation.hashtags.map((hashtag, idx) => (
                 <CardHashtag

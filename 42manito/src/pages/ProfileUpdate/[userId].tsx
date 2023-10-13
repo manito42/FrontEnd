@@ -154,20 +154,26 @@ export default function ProfileUpdate() {
               <ProfileImage src={UserData.profileImage} />
               <ProfileInfo nickname={UserData.nickname} />
             </div>
-            <div className="short-description-container">
-              <TextArea
-                showCount
-                maxLength={50}
-                value={shortDescription}
-                style={{
-                  marginBottom: 15,
-                }}
-                onChange={(e) =>
-                  setShortDescription(e.target.value.slice(0, 50))
-                }
-                placeholder="최대 50글자"
-                className="whitespace-pre-wrap"
-              />
+            <div className="short-description-wrapper">
+              <span className="profile-title">짧은 소개글</span>
+              <span className="profile-small-message">
+                카드에서 표현되는 짧은 소개글입니다
+              </span>
+              <div className="short-description-container">
+                <TextArea
+                  showCount
+                  maxLength={50}
+                  value={shortDescription}
+                  style={{
+                    marginBottom: 15,
+                  }}
+                  onChange={(e) =>
+                    setShortDescription(e.target.value.slice(0, 50))
+                  }
+                  placeholder="최대 50글자"
+                  className="whitespace-pre-wrap"
+                />
+              </div>
             </div>
             <div className="w-[100%] profile-tag-wrapper">
               <span className="profile-title">멘토링 분야</span>
@@ -193,7 +199,7 @@ export default function ProfileUpdate() {
               )}
             </div>
             <div className="w-[100%] profile-tag-wrapper">
-              <span className="profile-title">관심분야</span>
+              <span className="profile-title">세부 분야</span>
               <span className="profile-small-message">
                 태그를 클릭하면 사라집니다
               </span>
