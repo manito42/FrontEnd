@@ -42,7 +42,9 @@ export default function SocialLinkModal() {
           <div className="connect-content-wrapper mt-5 self-center flex">
             <span className="break-keep text-center mx-auto">
               멘토의
-              {getMentor.data?.socialLink ? " 슬랙 프로필 " : " 인트라 프로필 "}
+              {getMentor.data?.socialLink !== ""
+                ? " 슬랙 프로필 "
+                : " 인트라 프로필 "}
               페이지로 이동하시겠습니까?
             </span>
           </div>
