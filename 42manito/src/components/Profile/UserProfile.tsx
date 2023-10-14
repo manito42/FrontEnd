@@ -63,7 +63,7 @@ export default function UserProfile({ UserId, children }: props) {
             </div>
           </div>
           <div className="profile-tag-wrapper">
-            <span className="profile-title mb-2">관심분야</span>
+            <span className="profile-title mb-2">세부 분야</span>
             <div className="profile-tag-list">
               {UserData &&
                 UserData.hashtags.length > 0 &&

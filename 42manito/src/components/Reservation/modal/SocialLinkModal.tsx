@@ -20,7 +20,11 @@ export default function SocialLinkModal() {
   };
 
   const handleOnAccept = () => {
-    window.open(getMentor.data?.socialLink);
+    getMentor.data?.socialLink
+      ? window.open(getMentor.data?.socialLink)
+      : window.open(
+          `https://profile.intra.42.fr/users/${getMentor.data?.user.nickname}`
+        );
     dispatch(closeSocialLinkModal());
   };
 
@@ -36,8 +40,12 @@ export default function SocialLinkModal() {
       >
         <div className="connect-container">
           <div className="connect-content-wrapper mt-5 self-center flex">
-            <span className="break-keep text-center">
-              멘토의 슬랙프로필 페이지로 이동하시겠습니까?
+            <span className="break-keep text-center mx-auto">
+              멘토의
+              {getMentor.data?.socialLink !== ""
+                ? " 슬랙 프로필 "
+                : " 인트라 프로필 "}
+              페이지로 이동하시겠습니까?
             </span>
           </div>
           <div className="connect-btn-wrapper">
