@@ -20,7 +20,7 @@ export default function SocialLinkModal() {
   };
 
   const handleOnAccept = () => {
-    getMentor.data?.socialLink
+    getMentor.data?.socialLink !== ""
       ? window.open(getMentor.data?.socialLink)
       : window.open(
           `https://profile.intra.42.fr/users/${getMentor.data?.user.nickname}`
