@@ -59,7 +59,7 @@ const MentorModal = () => {
     if (connectState.categoryId === 0) {
       alert("멘토링 분야를 선택해주세요.");
     } else if (connectState.hashtags.length <= 0) {
-      alert("관심 분야를 선택해주세요.");
+      alert("세부 분야를 선택해주세요.");
     } else if (connectState.message.length === 0) {
       alert("요청 메세지를 입력해주세요.");
     } else {
@@ -99,16 +99,16 @@ const MentorModal = () => {
         >
           {
             <UserProfile UserId={mentorId}>
-            {userId !== mentorId &&
-              <div className="connect-btn-container">
-                <Button
-                  buttonType={ButtonType.ACCEPT}
-                  onClick={() => handleConnectOpen()}
-                >
-                  멘토링 요청
-                </Button>
-              </div>
-            }
+              {userId !== mentorId && (
+                <div className="connect-btn-container">
+                  <Button
+                    buttonType={ButtonType.ACCEPT}
+                    onClick={() => handleConnectOpen()}
+                  >
+                    멘토링 요청
+                  </Button>
+                </div>
+              )}
               <button className="close-btn" onClick={handleZoomOut}>
                 닫기
               </button>

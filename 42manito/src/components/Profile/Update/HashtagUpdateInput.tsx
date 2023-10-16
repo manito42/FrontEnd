@@ -31,10 +31,10 @@ export default function HashtagUpdateInput({ hashtags }: props) {
       return;
     }
     const doesHashtagExist = hashtags.some(
-      (hashtag) => hashtag.name === inputValue,
+      (hashtag) => hashtag.name === inputValue
     );
     if (hashtags.length >= 5) {
-      alert("관심 분야는 5개까지만 추가 가능합니다.");
+      alert("세부 분야는 5개까지만 추가 가능합니다.");
       setInputValue("");
       return;
     }
@@ -60,7 +60,7 @@ export default function HashtagUpdateInput({ hashtags }: props) {
   return (
     <div className="profile-update-hashtag-input-wrapper">
       <Input
-        placeholder={"관심분야를 입력해주세요."}
+        placeholder={"세부 분야를 입력해주세요."}
         onChange={(e) => setInputValue(e.currentTarget.value)}
         onKeyPress={(e) => {
           if (e.key === "Enter") {

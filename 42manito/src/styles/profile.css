@@ -22,13 +22,19 @@
   @apply flex flex-col justify-center mt-5;
 }
 
+.short-description-wrapper {
+  @apply flex flex-col
+                items-center justify-center
+                w-[80%] mt-10;
+}
+
 .short-description-container {
   @apply flex
                 justify-center
                 w-[80%]
                 break-all
                 px-3 py-4
-                mt-10 mb-10
+                mt-5 mb-10
                 rounded-2xl bg-bg_color-50 dark:bg-bg_color-800
                 shadow-sm;
 }

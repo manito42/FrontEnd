@@ -20,7 +20,7 @@ function linkifyReact(inputText: string) {
 }
 
 interface props {
-  description: string;
+  description: string | undefined;
 }
 
 function DescriptionComponent({ description }: props) {
