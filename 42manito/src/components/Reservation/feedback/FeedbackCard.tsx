@@ -1,13 +1,21 @@
 import { MenteeFeedbacksResDto } from "@/Types/MenteeFeedbacks/MenteeFeedbacksRes.dto";
 import { useGetUserQuery } from "@/RTK/Apis/User";
 import Rating from "@mui/material/Rating";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Img } from "@storybook/components";
 
 interface props {
   menteeFeedback: MenteeFeedbacksResDto;
 }
 export default function FeedbackCard({ menteeFeedback }: props) {
-  const { data: mentee } = useGetUserQuery({ id: menteeFeedback.menteeId });
+  const { data: mentee, isLoading } = useGetUserQuery({
+    id: menteeFeedback.menteeId,
+  });
+  const [image, setImage] = useState(mentee?.profileImage);
+  useEffect(() => {
+    if (isLoading) return;
+    setImage(mentee?.profileImage);
+  }, [mentee, isLoading]);
 
   if (!mentee) return <></>;
   const dateString = new Date(menteeFeedback.createdAt).toLocaleDateString();
@@ -15,9 +23,10 @@ export default function FeedbackCard({ menteeFeedback }: props) {
     <>
       <div className="feedback-wrapper">
         <div className="feedback-header">
-          <Image
-            src={mentee.profileImage}
+          <Img
+            src={image}
             alt={mentee.nickname}
+            onError={() => setImage("/default_profile.png")}
             className={"feedback-profile-img mt-1"}
             width={60}
             height={60}
