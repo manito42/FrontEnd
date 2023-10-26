@@ -9,6 +9,7 @@ const nextConfig = {
       "i.pravatar.cc",
       "cloudflare-ipfs.com",
     ],
+    minimumCacheTTL: 60,
   },
   env: {
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
