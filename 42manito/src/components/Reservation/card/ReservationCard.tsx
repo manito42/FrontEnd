@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReservationDefaultDto } from "@/Types/Reservations/ReservationDefault.dto";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/RTK/store";
 import { useGetUserQuery } from "@/RTK/Apis/User";
 import CardHashtag from "@/components/Global/CardHashtag";
-import Image from "next/image";
 import { openReservationModal } from "@/RTK/Slices/Reservation";
 import {
   getStatus,
   ReservationUserRole,
 } from "@/components/Reservation/getReservationStatus";
+import { Img } from "@storybook/components";
 
 interface props {
   reservation: ReservationDefaultDto;
@@ -25,11 +25,17 @@ export default function ReservationCard({ reservation }: props) {
     targetUserId === mentorId
       ? ReservationUserRole.mentor
       : ReservationUserRole.mentee;
-  const { data: targetUser } = useGetUserQuery({ id: targetUserId });
+  const { data: targetUser, isLoading } = useGetUserQuery({ id: targetUserId });
+  const [image, setImage] = useState(targetUser?.profileImage);
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(openReservationModal(reservation));
   };
+
+  useEffect(() => {
+    if (isLoading) return;
+    setImage(targetUser?.profileImage);
+  }, [targetUser, isLoading]);
 
   return (
     <>
@@ -42,10 +48,11 @@ export default function ReservationCard({ reservation }: props) {
           </div>
           <div className={"reservation-card-user-info"}>
             <div className="reservation-card-image-holder">
-              <Image
+              <Img
                 className="reservation-card-image"
-                src={targetUser.profileImage}
+                src={image}
                 alt={targetUser.nickname}
+                onError={() => setImage("/default_profile.png")}
                 width={200}
                 height={200}
               />
