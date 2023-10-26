@@ -1,10 +1,10 @@
-import React, { memo } from "react";
-import Image from "next/image";
+import React, { memo, useState } from "react";
 import { useAppDispatch } from "@/RTK/store";
 import { CurrMentorSlice } from "@/RTK/Slices/CurrMentor";
 import { MentorProfileDto } from "@/Types/MentorProfiles/MentorProfile.dto";
 import CardHashtag from "@/components/Global/CardHashtag";
 import { HashtagResponseDto } from "@/Types/Hashtags/HashtagResponse.dto";
+import { Img } from "@storybook/components";
 
 interface props {
   data: MentorProfileDto;
@@ -33,6 +33,7 @@ const sliceHashtags = (hashtags: HashtagResponseDto[], limit: number) => {
 const MentorCard = ({ data }: props) => {
   const dispatch = useAppDispatch();
   const { nickname, profileImage } = data.user;
+  const [image, setImage] = useState(profileImage);
   const { shortDescription, hashtags } = data;
   const slicedHashtags = sliceHashtags(hashtags, 32);
   const openMentorModal = (data: MentorProfileDto) => {
@@ -46,9 +47,10 @@ const MentorCard = ({ data }: props) => {
       <div className="mentor-card card" onClick={() => openMentorModal(data)}>
         <div className="mentor-card-profile-info">
           <div className="mentor-card-image-holder">
-            <Image
+            <Img
               className="mentor-card-image"
-              src={profileImage}
+              src={image}
+              onError={() => setImage("/default_profile.png")}
               alt={nickname}
               width={200}
               height={200}
