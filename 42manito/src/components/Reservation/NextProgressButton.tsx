@@ -56,7 +56,7 @@ export default function NextProgressButton({
               handlePatchReservation(
                 req,
                 patchAcceptReservation,
-                "수락되었습니다.",
+                "수락되었습니다. 멘티에게 연락을 취해주세요.",
                 "수락에 실패하였습니다."
               );
             }}

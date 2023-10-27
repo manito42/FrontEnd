@@ -39,13 +39,16 @@ export default function SocialLinkModal() {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="connect-container">
-          <div className="connect-content-wrapper mt-5 self-center flex">
-            <span className="break-keep text-center mx-auto">
+          <div className="connect-content-wrapper mt-5 self-center flex-col">
+            <span className="break-keep text-center mx-auto block">
               멘토의
               {getMentor.data?.socialLink !== ""
                 ? " 슬랙 프로필 "
                 : " 인트라 프로필 "}
               페이지로 이동하시겠습니까?
+            </span>
+            <span className="break-keep text-center mx-auto block mt-2">
+              멘토에게 연락을 취해주세요.
             </span>
           </div>
           <div className="connect-btn-wrapper">
