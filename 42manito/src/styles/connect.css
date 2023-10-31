@@ -56,3 +56,7 @@
         mt-5 mb-2;
   }
 }
+
+.connect-text {
+  @apply break-keep text-center mx-auto block;
+}
