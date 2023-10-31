@@ -38,8 +38,8 @@ export default function SocialLinkModal() {
       window.open(
         `https://profile.intra.42.fr/users/${UserData?.user.nickname}`
       );
-      dispatch(closeSocialLinkModal());
     }
+    dispatch(closeSocialLinkModal());
   };
 
   return (
