@@ -31,18 +31,12 @@ export default function NextProgressButton({
     usePatchReservationMenteeCheckMutation();
 
   const dispatch = useDispatch();
-  const handlePatchReservation = async (
-    data: any,
-    patchFunc: any,
-    msg?: string,
-    errorMsg?: string
-  ) => {
+  const handlePatchReservation = async (data: any, patchFunc: any) => {
     try {
       const res = await patchFunc(data).unwrap();
       dispatch(setSelectedReservation(res));
-      msg && alert(msg);
     } catch (e: BaseQueryError<any>) {
-      alert(errorMsg ? errorMsg : "Error");
+      alert("Error");
     }
   };
 
@@ -53,12 +47,8 @@ export default function NextProgressButton({
           <Button
             buttonType={ButtonType.ACCEPT}
             onClick={() => {
-              handlePatchReservation(
-                req,
-                patchAcceptReservation,
-                "수락되었습니다.",
-                "수락에 실패하였습니다."
-              );
+              handlePatchReservation(req, patchAcceptReservation);
+              dispatch(openSocialLinkModal());
             }}
           >
             수락하기
