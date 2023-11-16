@@ -1,0 +1,45 @@
+FROM node:18-alpine AS base
+
+WORKDIR /frontend
+
+#alpine에 라이브러리 설치
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+
+COPY package.json yarn.lock .env ./
+# --immutable : yarn.lock 파일이 변경되지 않았는지 확인, 변경되었다면 에러 발생
+# --immutable-cache : yarn cache를 변경하지 않았는지 확인, 변경되었다면 에러 발생
+# --check-cache : 항상 패키지를 다시 가져옴
+RUN yarn install --immutable --immutable-cache --ckeck-cache --production; 
+RUN rm -rf ./.next/cache
+
+FROM base AS builder
+WORKDIR /frontend
+COPY --from=deps /frontend/node_modules ./node_modules
+COPY . .
+
+RUN yarn install
+
+RUN yarn build
+RUN rm -rf ./.yarn/cache
+
+FROM base AS runner
+WORKDIR /frontend
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /frontend/public ./public
+
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+COPY --from=builder --chown=nextjs:nodejs /frontend/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /frontend/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+CMD ["node", "server.js"]
