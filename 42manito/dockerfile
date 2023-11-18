@@ -9,7 +9,8 @@ RUN apk add --no-cache libc6-compat
 COPY package.json yarn.lock .env ./
 # --immutable : yarn.lock 파일이 변경되지 않았는지 확인, 변경되었다면 에러 발생
 # --immutable-cache : yarn cache를 변경하지 않았는지 확인, 변경되었다면 에러 발생
-# --check-cache : 항상? 실패하면? 패키지를 다시 가져옴
+# --check-cache : 캐시가 존재하면 캐시에서 패키지를 사용. 캐시가 없거나 캐시가 유효하지 않다면 패키지를 다운로드
+#--production: 개발 종속성(devDependencies)을 설치하지 않음
 RUN yarn install --immutable --immutable-cache --ckeck-cache --production; 
 
 # build 파일 생성
