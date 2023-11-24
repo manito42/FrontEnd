@@ -54,7 +54,7 @@ export default function SocialLinkModal() {
       >
         <div className="connect-container md:w-full">
           <div className="w-full mt-5 self-center flex-col">
-            <span className="connect-text text-lg font-bold pb-3">
+            <span className="connect-text text-lg font-bold pb-3 flex flex-col">
               <svg
                 width="20"
                 height="20"
