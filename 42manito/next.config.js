@@ -35,4 +35,10 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+// standalone 상태로 export 하면 프로덕션 배포에 필요한 파일들만 추출해서 독립 실행 가능한 폴더 만들어준다구 해여
+// 근데 원래 쓰던 게 있어서 ... 일단 주석처리하고 도커 빌드 되게 해뒀습니다
+
+// module.exports = nextConfig;
+module.exports = {
+  output: "standalone",
+};
