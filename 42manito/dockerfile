@@ -1,0 +1,49 @@
+# base image
+FROM node:18-alpine AS base
+WORKDIR /frontend
+
+# Dependencies 설치
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+
+COPY package.json yarn.lock .env ./
+# --immutable : yarn.lock 파일이 변경되지 않았는지 확인, 변경되었다면 에러 발생
+# --immutable-cache : yarn cache를 변경하지 않았는지 확인, 변경되었다면 에러 발생
+# --check-cache : 캐시가 존재하면 캐시에서 패키지를 사용. 캐시가 없거나 캐시가 유효하지 않다면 패키지를 다운로드
+#--production: 개발 종속성(devDependencies)을 설치하지 않음
+RUN yarn install --immutable --immutable-cache --ckeck-cache --production; 
+
+# build 파일 생성
+FROM base AS builder
+WORKDIR /frontend
+COPY --from=deps /frontend/node_modules ./node_modules
+COPY . .
+
+# 빌드 후 캐시 삭제, 다음 빌드시 시간이 더 소요되지만 이미지가 작아짐..
+RUN yarn build && rm -rf .next/cache && rm -rf .yarn/cache
+
+# runner
+FROM base AS runner
+WORKDIR /frontend
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# 프리렌더링을 위한 .next 폴더 생성 및 권한 설정
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+# 빌드된 정적, standalone 파일 복사
+# standalone : 프로덕션 배포에 필요한 파일만 복사하는 폴더를 자동으로 생성, 프로젝트를 실행할 수 있는 server.js 파일을 만들어줌
+# node_modules를 설치하지 않아도 배포 가능한 파일, public 또는 .next/static 폴더는 복사하지 않음
+# 수동으로 복사가 가능하나, 그냥 빌드된 파일을 복사하는 걸로..~
+COPY --from=builder --chown=nextjs:nodejs /frontend/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /frontend/.next/static ./.next/static
+COPY --from=builder /frontend/public ./public
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+CMD ["node", "server.js"]
